@@ -52,7 +52,7 @@ public class ConfigurationHandler {
 		}
 		
 		for (String s : RanksManager.rankNames) {
-			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s),rankPricesConfiguration.get(s + ".")));
+			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s),rankPricesConfiguration.getString(s + ".Chat-Prefix"),rankPricesConfiguration.getInt(s + ".Rankup-Cost")));
 		}
 	}
 	

@@ -8,28 +8,29 @@ import java.util.logging.Logger;
 
 public class PrisonCore extends JavaPlugin {
 	
-	private static Logger logger;
 	public static boolean discordIntegration = false;
-	private ConfigurationHandler configurationHandler = new ConfigurationHandler(this);
+	private static Logger logger;
 	private static PrisonCore instance;
+	private ConfigurationHandler configurationHandler = new ConfigurationHandler(this);
 	
 	public static void log(String message) {
 	
+	}
+	
+	public static PrisonCore getInstance() {
+		return instance;
 	}
 	
 	@Override
 	public void onEnable() {
 		logger = Bukkit.getLogger();
 		instance = this;
+		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 	}
 	
 	@Override
 	public void onDisable() {
 	
-	}
-	
-	public static PrisonCore getInstance() {
-		return instance;
 	}
 	
 }
