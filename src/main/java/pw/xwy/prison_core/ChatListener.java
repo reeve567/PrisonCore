@@ -14,8 +14,13 @@ public class ChatListener implements Listener {
 		String prefix = "§a§lBilly §8§l»»";
 		if (message.contains("hello") && message.contains("billy")) {
 			e.setCancelled(true);
-			e.getPlayer().sendMessage(prefix + "Hello");
-		} else {
+			e.getPlayer().sendMessage(prefix + "Hello Im Billy your personal assistant and prostitute. Ask any questions that start with a what and address me somewhere in the question and i will answer");
+		}
+		else if (message.contains("what") && message.contains("billy")){
+			e.setCancelled(true);
+			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins" )
+		}
+		else {
 			Bukkit.broadcastMessage("§7[Noob] " + e.getPlayer().getName() + " » " + e.getMessage());
 		}
 	}
