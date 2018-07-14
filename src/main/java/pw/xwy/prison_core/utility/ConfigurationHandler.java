@@ -2,6 +2,8 @@ package pw.xwy.prison_core.utility;
 
 import pw.xwy.prison_core.PrisonCore;
 
+import java.util.ArrayList;
+
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 
 public class ConfigurationHandler {
@@ -41,7 +43,17 @@ public class ConfigurationHandler {
 	
 	private void loadRankPrices() {
 		if (rankPricesConfiguration.getInt("ver") != 1) {
-			
+			rankPricesConfiguration.set("ver",1);
+			for (String s: RanksManager.rankNames) {
+				rankPricesConfiguration.set(s + ".Rankup-Cost",1);
+				rankPricesConfiguration.set(s + ".Chat-Prefix"," &7[&6" + s + "] ");
+				rankPricesConfiguration.set(s + ".Shop",new ArrayList<String>());
+			}
+		}
+		
+		for (String s : RanksManager.rankNames) {
+			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s),rankPricesConfiguration.get(s + ".")));
 		}
 	}
+	
 }
