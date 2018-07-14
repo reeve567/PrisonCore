@@ -18,7 +18,7 @@ public class ChatListener implements Listener {
 		}
 		else if (message.contains("what") && message.contains("billy")){
 			e.setCancelled(true);
-			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins" )
+			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins" );
 		}
 		else {
 			Bukkit.broadcastMessage("§7[Noob] " + e.getPlayer().getName() + " » " + e.getMessage());
