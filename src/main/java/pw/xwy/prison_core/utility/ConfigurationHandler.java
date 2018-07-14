@@ -1,5 +1,6 @@
 package pw.xwy.prison_core.utility;
 
+import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.PrisonCore;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ConfigurationHandler {
 	private void loadConfig() {
 		loadMain();
 		loadRankPrices();
+		new PlayerDataManager();
 	}
 	
 	private void loadMain() {
