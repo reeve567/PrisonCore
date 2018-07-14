@@ -6,7 +6,7 @@ public class Feed {
 	
 	public static void run(Player player) {
 		player.setFoodLevel(20);
-		player.sendMessage(ChatListener.prefix + "Billy has fed you");
+		player.sendMessage(ChatListener.prefix + "You have been fed");
 	}
 	
 }
