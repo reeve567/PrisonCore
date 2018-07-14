@@ -1,6 +1,9 @@
 package pw.xwy.prison_core;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 
@@ -19,6 +22,15 @@ public class PrisonCore extends JavaPlugin {
 	
 	public static PrisonCore getInstance() {
 		return instance;
+	}
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (command.getLabel().equalsIgnoreCase("feed")) {
+			Feed.run((Player) sender);
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
