@@ -4,6 +4,7 @@ import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.PrisonCore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 
@@ -11,7 +12,7 @@ public class ConfigurationHandler {
 	
 	private static Config mainConfiguration;
 	private static Config mineConfiguration;
-	private Config rankPricesConfiguration;
+	private static Config rankPricesConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
@@ -24,6 +25,8 @@ public class ConfigurationHandler {
 		loadMain();
 		loadRankPrices();
 		new PlayerDataManager();
+		new MineManager();
+		loadMines();
 	}
 	
 	private void loadMain() {
@@ -53,12 +56,45 @@ public class ConfigurationHandler {
 		}
 		
 		for (String s : RanksManager.rankNames) {
-			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s), rankPricesConfiguration.getString(s + ".Chat-Prefix"), rankPricesConfiguration.getInt(s + ".Rankup-Cost")));
+			ERank.valueOf(s).setRankPrefix(rankPricesConfiguration.getString(s + ".Chat-Prefix"));
+			ERank.valueOf(s).setRankupCost(rankPricesConfiguration.getInt(s + ".Rankup-Cost"));
 		}
+	}
+	
+	private void loadMines() {
+		if (mineConfiguration.getInt("ver") != 1) {
+			//set defaults
+			mineConfiguration.set("ver", 1);
+			saveMines();
+		}
+		for (ERank rank : ERank.values()) {
+			if (rank != ERank.Free) {
+				Mine mine = MineManager.mines.get(rank);
+				mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
+				mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
+				mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
+			}
+		}
+	}
+	
+	public void saveMines() {
+		for (ERank rank : ERank.values()) {
+			if (rank != ERank.Free) {
+				Mine mine = MineManager.mines.get(rank);
+				mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
+				mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
+				mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
+			}
+		}
+		mineConfiguration.saveConfig();
 	}
 	
 	public static Config getMainConfiguration() {
 		return mainConfiguration;
+	}
+	
+	public static Config getRankPricesConfiguration() {
+		return rankPricesConfiguration;
 	}
 	
 	public static Config getMineConfiguration() {
@@ -66,6 +102,7 @@ public class ConfigurationHandler {
 	}
 	
 	public void onDisable() {
-		MineHandler.onDisable();
+		saveMines();
+		
 	}
 }

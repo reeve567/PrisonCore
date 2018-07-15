@@ -1,9 +1,8 @@
 main: pw.xwy.prison_core.PrisonCore
 name: PrisonCore
-version: RELEASe
+version: RELEASE
 author: Xwy
 authors: [Xaq]
-depend: [Citizens]
 commands:
   feed:
   mine:

@@ -12,6 +12,9 @@ public enum ERank {
 	}
 	
 	public int getCostToRankup() {
+		if (this == Free) {
+			return -1;
+		}
 		return costToRankup;
 	}
 	
@@ -19,7 +22,7 @@ public enum ERank {
 		return chatPrefix;
 	}
 	
-	public void setRankCost(int cost) {
+	public void setRankupCost(int cost) {
 		costToRankup = cost;
 	}
 	

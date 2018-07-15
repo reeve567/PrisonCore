@@ -8,58 +8,21 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class MineHandler implements Listener {
+public class MineManager implements Listener {
 	public static final ItemStack mineSelector = new CustomItem(Material.STICK).setName("§6Mine Stick").setLore("§7Left click to set first corner", "§7Right click to set second corner", "§7Shift-right click in the air to reset corners.");
 	public static HashMap<ERank, Mine> mines = new HashMap<>();
 	public static HashMap<UUID, Location> locationOneHashMap = new HashMap<>();
 	public static HashMap<UUID, Location> locationTwoHashMap = new HashMap<>();
 	
-	public MineHandler() {
+	public MineManager() {
 		for (ERank rank : ERank.values()) {
 			if (rank != ERank.Free) {
 				mines.put(rank, new Mine(rank.toString()));
 			}
 		}
-		loadMines();
-	}
-	
-	private void loadMines() {
-		Config config = ConfigurationHandler.getMineConfiguration();
-		if (config.getInt("ver") != 1) {
-			//set defaults
-			config.set("ver",1);
-			for (ERank rank : ERank.values()) {
-				if (rank != ERank.Free) {
-					Mine mine = mines.get(rank);
-					config.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
-					config.set(rank.toString() + ".composition", mine.compositionString());
-				}
-			}
-			config.saveConfig();
-		}
-		for (ERank rank : ERank.values()) {
-			if (rank != ERank.Free) {
-				Mine mine = mines.get(rank);
-				mine.setComposition(config.getString(rank.toString() + ".composition"));
-				mine.setRectangle(config.getStringList(rank.toString() + ".location").toArray(new String[0]));
-			}
-		}
-	}
-	
-	public static void onDisable() {
-		Config config = ConfigurationHandler.getMineConfiguration();
-		for (ERank rank : ERank.values()) {
-			if (rank != ERank.Free) {
-				Mine mine = mines.get(rank);
-				config.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
-				config.set(rank.toString() + ".composition", mine.compositionString());
-			}
-		}
-		config.saveConfig();
 	}
 	
 	@EventHandler
