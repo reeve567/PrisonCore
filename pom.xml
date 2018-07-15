@@ -40,6 +40,10 @@
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
+		<repository>
+			<id>everything</id>
+			<url>http://repo.citizensnpcs.co/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -54,6 +58,13 @@
 			<groupId>com.github.MrPowerGamerBR</groupId>
 			<artifactId>TemmieWebhook</artifactId>
 			<version>-59de40c3b6-1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.citizensnpcs</groupId>
+			<artifactId>citizensapi</artifactId>
+			<version>2.0.14-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

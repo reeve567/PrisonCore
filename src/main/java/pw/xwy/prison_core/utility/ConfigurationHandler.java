@@ -66,6 +66,6 @@ public class ConfigurationHandler {
 	}
 	
 	public void onDisable() {
-		mineConfiguration.saveConfig();
+		MineHandler.onDisable();
 	}
 }

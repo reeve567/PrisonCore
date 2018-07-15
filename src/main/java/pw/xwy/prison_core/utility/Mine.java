@@ -42,6 +42,14 @@ public class Mine implements Listener {
 		return area;
 	}
 	
+	public String[] areaStrings() {
+		if (area == null) {
+			return new String[]{"unset"};
+		} else {
+			return area.toStrings();
+		}
+	}
+	
 	public int airCheck() {
 		return 1000 - total();
 	}
@@ -56,7 +64,13 @@ public class Mine implements Listener {
 	}
 	
 	public void setRectangle(String[] rect) {
-		area = new Rect3D(rect);
+		if (rect.length >= 1) {
+			if (rect[0].equalsIgnoreCase("unset")) {
+				area = null;
+			} else {
+				area = new Rect3D(rect);
+			}
+		}
 	}
 	
 	public void clean() {

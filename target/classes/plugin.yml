@@ -3,6 +3,7 @@ name: PrisonCore
 version: RELEASe
 author: Xwy
 authors: [Xaq]
+depend: [Citizens]
 commands:
   feed:
   mine:

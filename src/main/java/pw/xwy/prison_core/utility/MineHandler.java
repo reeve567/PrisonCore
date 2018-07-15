@@ -31,21 +31,35 @@ public class MineHandler implements Listener {
 		Config config = ConfigurationHandler.getMineConfiguration();
 		if (config.getInt("ver") != 1) {
 			//set defaults
-			for (ERank rank : mines.keySet()) {
+			config.set("ver",1);
+			for (ERank rank : ERank.values()) {
 				if (rank != ERank.Free) {
-					config.set(rank.toString() + ".location", Arrays.asList(mines.get(rank).getArea().toStrings()));
-					config.set(rank.toString() + ".composition", mines.get(rank).compositionString());
+					Mine mine = mines.get(rank);
+					config.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
+					config.set(rank.toString() + ".composition", mine.compositionString());
 				}
 			}
 			config.saveConfig();
 		}
-		for (ERank rank : mines.keySet()) {
+		for (ERank rank : ERank.values()) {
 			if (rank != ERank.Free) {
 				Mine mine = mines.get(rank);
 				mine.setComposition(config.getString(rank.toString() + ".composition"));
 				mine.setRectangle(config.getStringList(rank.toString() + ".location").toArray(new String[0]));
 			}
 		}
+	}
+	
+	public static void onDisable() {
+		Config config = ConfigurationHandler.getMineConfiguration();
+		for (ERank rank : ERank.values()) {
+			if (rank != ERank.Free) {
+				Mine mine = mines.get(rank);
+				config.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
+				config.set(rank.toString() + ".composition", mine.compositionString());
+			}
+		}
+		config.saveConfig();
 	}
 	
 	@EventHandler

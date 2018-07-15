@@ -1,6 +1,9 @@
 package pw.xwy.prison_core.commands;
 
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.utility.ERank;
 import pw.xwy.prison_core.utility.Mine;
@@ -48,6 +51,11 @@ public class MineCommand {
 						player.sendMessage("Mine cleaned");
 					}
 				}
+			}
+			if (args[0].equalsIgnoreCase("npc")) {
+				NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Xwy");
+				npc.spawn(player.getLocation());
+				npc.setName("§6Sell All");
 			}
 		}
 		
