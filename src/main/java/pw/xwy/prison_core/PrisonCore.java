@@ -5,7 +5,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import pw.xwy.prison_core.commands.FeedCommand;
+import pw.xwy.prison_core.commands.MineCommand;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
+import pw.xwy.prison_core.utility.MineHandler;
 
 import java.util.logging.Logger;
 
@@ -27,7 +30,10 @@ public class PrisonCore extends JavaPlugin {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getLabel().equalsIgnoreCase("feed")) {
-			Feed.run((Player) sender);
+			FeedCommand.run((Player) sender);
+			return true;
+		} else if (command.getLabel().equalsIgnoreCase("mine")) {
+			MineCommand.run((Player) sender, args);
 			return true;
 		}
 		return false;
@@ -38,11 +44,12 @@ public class PrisonCore extends JavaPlugin {
 		logger = Bukkit.getLogger();
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+		Bukkit.getPluginManager().registerEvents(new MineHandler(), this);
 	}
 	
 	@Override
 	public void onDisable() {
-	
+		configurationHandler.onDisable();
 	}
 	
 }

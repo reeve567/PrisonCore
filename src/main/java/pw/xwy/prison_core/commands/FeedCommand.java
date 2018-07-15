@@ -1,8 +1,9 @@
-package pw.xwy.prison_core;
+package pw.xwy.prison_core.commands;
 
 import org.bukkit.entity.Player;
+import pw.xwy.prison_core.ChatListener;
 
-public class Feed {
+public class FeedCommand {
 	
 	public static void run(Player player) {
 		player.setFoodLevel(20);

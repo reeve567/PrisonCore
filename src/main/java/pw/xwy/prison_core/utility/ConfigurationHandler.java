@@ -9,17 +9,15 @@ import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 
 public class ConfigurationHandler {
 	
-	private Config mainConfiguration;
+	private static Config mainConfiguration;
+	private static Config mineConfiguration;
 	private Config rankPricesConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
-		rankPricesConfiguration = new Config(core.getDataFolder(),"ranks");
+		rankPricesConfiguration = new Config(core.getDataFolder(), "ranks");
+		mineConfiguration = new Config(core.getDataFolder(), "mines");
 		loadConfig();
-	}
-	
-	public Config getMainConfiguration() {
-		return mainConfiguration;
 	}
 	
 	private void loadConfig() {
@@ -39,23 +37,35 @@ public class ConfigurationHandler {
 		
 		discordIntegration = mainConfiguration.getBoolean("Discord-Integration.Enabled");
 		if (discordIntegration) {
-			new DiscordIntegration("System", mainConfiguration.getString("Discord-Integration.Webhook-URL"), mainConfiguration.getString("Discord-Integration.Server-Identifier")).runTaskTimer(PrisonCore.getInstance(),0,5);
+			new DiscordIntegration("System", mainConfiguration.getString("Discord-Integration.Webhook-URL"), mainConfiguration.getString("Discord-Integration.Server-Identifier")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
 		}
 	}
 	
 	private void loadRankPrices() {
 		if (rankPricesConfiguration.getInt("ver") != 1) {
-			rankPricesConfiguration.set("ver",1);
-			for (String s: RanksManager.rankNames) {
-				rankPricesConfiguration.set(s + ".Rankup-Cost",1);
-				rankPricesConfiguration.set(s + ".Chat-Prefix"," &7[&6" + s + "] ");
-				rankPricesConfiguration.set(s + ".Shop",new ArrayList<String>());
+			rankPricesConfiguration.set("ver", 1);
+			for (String s : RanksManager.rankNames) {
+				rankPricesConfiguration.set(s + ".Rankup-Cost", 1);
+				rankPricesConfiguration.set(s + ".Chat-Prefix", " &7[&6" + s + "] ");
+				rankPricesConfiguration.set(s + ".Shop", new ArrayList<String>());
 			}
+			rankPricesConfiguration.saveConfig();
 		}
 		
 		for (String s : RanksManager.rankNames) {
-			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s),rankPricesConfiguration.getString(s + ".Chat-Prefix"),rankPricesConfiguration.getInt(s + ".Rankup-Cost")));
+			RanksManager.addRank(new Rank(rankPricesConfiguration.getString(s), rankPricesConfiguration.getString(s + ".Chat-Prefix"), rankPricesConfiguration.getInt(s + ".Rankup-Cost")));
 		}
 	}
 	
+	public static Config getMainConfiguration() {
+		return mainConfiguration;
+	}
+	
+	public static Config getMineConfiguration() {
+		return mineConfiguration;
+	}
+	
+	public void onDisable() {
+		mineConfiguration.saveConfig();
+	}
 }
