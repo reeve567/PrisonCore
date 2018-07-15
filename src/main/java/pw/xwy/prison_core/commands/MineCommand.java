@@ -53,9 +53,13 @@ public class MineCommand {
 				}
 			}
 			if (args[0].equalsIgnoreCase("npc")) {
-				NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Xwy");
+				NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.VILLAGER, "");
 				npc.spawn(player.getLocation());
+				npc.data().set(npc.NAMEPLATE_VISIBLE_METADATA,false);
 				npc.setName("§6Sell All");
+				
+				//create hologram
+				
 			}
 		}
 		

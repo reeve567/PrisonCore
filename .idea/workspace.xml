@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82678478-9112-4d1f-aa58-630e640d614b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/Citizens.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/MineCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/MineCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/MineHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/MineHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/TestOther.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/MineCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/MineCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ConfigurationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ConfigurationHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$Task.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/MineHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/MineHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-PrisonCore.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -57,8 +41,8 @@
       <file leaf-file-name="MineCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/MineCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
+            <state relative-caret-position="672">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -277,15 +261,6 @@
               <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -404,10 +379,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27796000" />
+    <option name="totallyTimeSpent" value="28089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -946,8 +922,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/MineCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
+        <state relative-caret-position="672">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
