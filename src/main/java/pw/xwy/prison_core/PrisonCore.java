@@ -59,6 +59,7 @@ public class PrisonCore extends JavaPlugin {
 		new JoinListener();
 		configurationHandler = new ConfigurationHandler(this);
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+		registerEvents(new Drugslistener());
 		
 		new CustomEnchantsHandler().onEnable();
 		
