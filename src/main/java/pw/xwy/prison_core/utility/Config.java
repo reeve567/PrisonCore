@@ -2,6 +2,7 @@ package pw.xwy.prison_core.utility;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +39,10 @@ public class Config {
 		} catch (IOException | InvalidConfigurationException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<ItemStack> getItemStackList(String path) {
+		return (ArrayList<ItemStack>) fc.getList(path);
 	}
 	
 	public Object get(String path) {
