@@ -8,7 +8,7 @@ public enum ERank {
 	
 	ERank() {
 		costToRankup = 1;
-		chatPrefix = "§7[" + this.name() + "§7] ";
+		chatPrefix = "§7[" + this.name() + "§7]";
 	}
 	
 	public int getCostToRankup() {

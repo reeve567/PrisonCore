@@ -1,10 +1,16 @@
 package pw.xwy.prison_core.utility;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import pw.xwy.prison_core.PlayerData;
 import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.UUID;
 
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 
@@ -13,28 +19,38 @@ public class ConfigurationHandler {
 	private static Config mainConfiguration;
 	private static Config mineConfiguration;
 	private static Config rankPricesConfiguration;
+	private static Config playerBalanceData;
+	private static Config playerRankData;
+	private static Config playerPrestigeData;
+	private static Config scoreboardConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
 		rankPricesConfiguration = new Config(core.getDataFolder(), "ranks");
 		mineConfiguration = new Config(core.getDataFolder(), "mines");
+		playerBalanceData = new Config(core.getDataFolder(), "player-balances");
+		playerRankData = new Config(core.getDataFolder(), "player-ranks");
+		playerPrestigeData = new Config(core.getDataFolder(), "player-prestiges");
+		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
 		loadConfig();
 	}
 	
 	private void loadConfig() {
 		loadMain();
 		loadRankPrices();
-		new PlayerDataManager();
-		new MineManager();
+		loadPlayerData();
 		loadMines();
+		new ScoreboardsManager();
 	}
 	
 	private void loadMain() {
-		if (mainConfiguration.getInt("ver") != 1) {
-			mainConfiguration.set("ver", 1);
+		if (mainConfiguration.getInt("ver") != 0) {
+			mainConfiguration.set("ver", 0);
 			mainConfiguration.setComment("Discord-Integration", "This is for logging everything to do with the plugin to discord, if enabled.", "The webhook url you get from being an admin on a discord channel and right clicking on the text channel.", "Server identifier isn't anything special, it's purely cosmetic.");
 			mainConfiguration.set("Discord-Integration.Enabled", false);
 			mainConfiguration.set("Discord-Integration.Webhook-URL", "discord webhook url here");
+			mainConfiguration.set("General.Starting-Money", 0.0);
+			mainConfiguration.set("General.Money-Symbol", "$");
 			mainConfiguration.saveConfig();
 		}
 		
@@ -42,14 +58,16 @@ public class ConfigurationHandler {
 		if (discordIntegration) {
 			new DiscordIntegration("System", mainConfiguration.getString("Discord-Integration.Webhook-URL"), mainConfiguration.getString("Discord-Integration.Server-Identifier")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
 		}
+		PlayerDataManager.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
+		PlayerDataManager.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
 	}
 	
 	private void loadRankPrices() {
-		if (rankPricesConfiguration.getInt("ver") != 1) {
-			rankPricesConfiguration.set("ver", 1);
+		if (rankPricesConfiguration.getInt("ver") != 3) {
+			rankPricesConfiguration.set("ver", 3);
 			for (String s : RanksManager.rankNames) {
 				rankPricesConfiguration.set(s + ".Rankup-Cost", 1);
-				rankPricesConfiguration.set(s + ".Chat-Prefix", " &7[&6" + s + "] ");
+				rankPricesConfiguration.set(s + ".Chat-Prefix", "§8[§6" + s + "§8]");
 				rankPricesConfiguration.set(s + ".Shop", new ArrayList<String>());
 			}
 			rankPricesConfiguration.saveConfig();
@@ -61,10 +79,47 @@ public class ConfigurationHandler {
 		}
 	}
 	
+	public void loadPlayerData() {
+		HashMap<UUID, Double> balance = new HashMap<>();
+		HashMap<UUID, ERank> ranks = new HashMap<>();
+		HashMap<UUID, Integer> prestige = new HashMap<>();
+		
+		if (playerBalanceData.getInt("ver") != 3) {
+			playerBalanceData.set("ver", 3);
+			savePlayerData();
+		} else {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				balance.put(p.getUniqueId(), playerBalanceData.getDouble("players." + p.getUniqueId(), PlayerDataManager.startingMoney));
+			}
+		}
+		
+		if (playerRankData.getInt("ver") != 7) {
+			playerRankData.set("ver", 7);
+			savePlayerData();
+		} else {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				ranks.put(p.getUniqueId(), ERank.valueOf(playerRankData.getString("players." + p.getUniqueId(), "A")));
+			}
+		}
+		
+		if (playerPrestigeData.getInt("ver") != 5) {
+			playerPrestigeData.set("ver", 5);
+			savePlayerData();
+		} else {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				prestige.put(p.getUniqueId(), playerPrestigeData.getInt("players." + p.getUniqueId(), 0));
+			}
+		}
+		
+		for (UUID uuid : balance.keySet()) {
+			PlayerDataManager.addPlayerData(uuid, new PlayerData(uuid, balance.get(uuid), ranks.get(uuid), prestige.get(uuid)));
+		}
+	}
+	
 	private void loadMines() {
-		if (mineConfiguration.getInt("ver") != 1) {
+		if (mineConfiguration.getInt("ver") != 6) {
 			//set defaults
-			mineConfiguration.set("ver", 1);
+			mineConfiguration.set("ver", 6);
 			saveMines();
 		}
 		for (ERank rank : ERank.values()) {
@@ -73,8 +128,20 @@ public class ConfigurationHandler {
 				mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
 				mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
 				mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
+				mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
 			}
 		}
+	}
+	
+	public void savePlayerData() {
+		for (PlayerData data : PlayerDataManager.getPlayerData().values()) {
+			playerBalanceData.set("players." + data.getUuid(), data.getBalance());
+			playerRankData.set("players." + data.getUuid(), data.getRank().toString());
+			playerPrestigeData.set("players." + data.getUuid(), data.getPrestige());
+		}
+		playerBalanceData.saveConfig();
+		playerRankData.saveConfig();
+		playerPrestigeData.saveConfig();
 	}
 	
 	public void saveMines() {
@@ -84,9 +151,14 @@ public class ConfigurationHandler {
 				mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
 				mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
 				mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
+				mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
 			}
 		}
 		mineConfiguration.saveConfig();
+	}
+	
+	public static Config getScoreboardConfiguration() {
+		return scoreboardConfiguration;
 	}
 	
 	public static Config getMainConfiguration() {
@@ -101,8 +173,20 @@ public class ConfigurationHandler {
 		return mineConfiguration;
 	}
 	
+	public static Config getPlayerBalanceData() {
+		return playerBalanceData;
+	}
+	
+	public static Config getPlayerRankData() {
+		return playerRankData;
+	}
+	
+	public static Config getPlayerPrestigeData() {
+		return playerPrestigeData;
+	}
+	
 	public void onDisable() {
 		saveMines();
-		
+		savePlayerData();
 	}
 }

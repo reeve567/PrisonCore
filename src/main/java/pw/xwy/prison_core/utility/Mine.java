@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.prison_core.PrisonCore;
@@ -21,6 +22,7 @@ public class Mine implements Listener {
 	private Rect3D area = null;
 	private int percentLeft;
 	private Block progressSign = null;
+	private Location warp = null;
 	
 	public Mine(String name) {
 		this.name = name;
@@ -103,11 +105,17 @@ public class Mine implements Listener {
 	
 	public void clean() {
 		if (area != null) {
+			if (warp != null) {
+				for (Player p : area.playersInside()) {
+					p.teleport(warp);
+				}
+			}
 			//then actually clean
 			for (Block b : area.getBlocks()) {
 				b.setType(randomMaterial());
 			}
 			PrisonCore.log("Cleaned " + name);
+			calculatePercentLeft();
 		}
 	}
 	
@@ -127,6 +135,19 @@ public class Mine implements Listener {
 			material = Material.AIR;
 		}
 		return material;
+	}
+	
+	public void calculatePercentLeft() {
+		if (area != null) {
+			int total = 0;
+			for (Block b : area.getBlocks()) {
+				if (b != null)
+					if (b.getType() != Material.AIR) {
+						total++;
+					}
+			}
+			percentLeft = (int) (((double) total / area.getSize()) * 100.0);
+		} else percentLeft = 100;
 	}
 	
 	public Block getProgressSign() {
@@ -153,6 +174,42 @@ public class Mine implements Listener {
 		string = string.substring(string.indexOf(":") + 1);
 		z = Integer.parseInt(string);
 		return new Location(Bukkit.getWorld(world), x, y, z);
+	}
+	
+	public void setWarp(String[] strings) {
+		if (strings.length >= 1) {
+			if (strings[0].equalsIgnoreCase("unset")) {
+				warp = null;
+			} else {
+				warp = locationFromStringPichYaw(strings[0], strings[1]);
+			}
+		} else {
+			warp = null;
+		}
+	}
+	
+	private Location locationFromStringPichYaw(String string, String world) {
+		double x, y, z, pi, ya;
+		x = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		y = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		z = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		pi = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		ya = Integer.parseInt(string);
+		
+		return new Location(Bukkit.getWorld(world), x, y, z, (float) pi, (float) ya);
+	}
+	
+	public void setWarp(Location location) {
+		warp = location;
+	}
+	
+	public String[] getWarpStrings() {
+		if (warp == null) return new String[]{"unset"};
+		return new String[]{warp.getX() + ":" + warp.getY() + ":" + warp.getZ() + ":" + warp.getPitch() + ":" + warp.getYaw(), warp.getWorld().getName()};
 	}
 	
 	public String compositionString() {
@@ -190,7 +247,7 @@ public class Mine implements Listener {
 				sign.update(true);
 			}
 			
-			if (amount % 3 == 0) {
+			if (amount % 3 == 0 && amount != 0) {
 				calculatePercentLeft();
 				if (airCheck() < 300) {
 					if (percentLeft < 30) {
@@ -211,19 +268,6 @@ public class Mine implements Listener {
 				clean();
 				clean = false;
 			}
-		}
-		
-		public void calculatePercentLeft() {
-			if (area != null) {
-				int total = 0;
-				for (Block b : area.getBlocks()) {
-					if (b != null)
-						if (b.getType() != Material.AIR) {
-							total++;
-						}
-				}
-				percentLeft = (int) (((double) total / area.getSize()) * 100.0);
-			} else percentLeft = 100;
 		}
 	}
 	

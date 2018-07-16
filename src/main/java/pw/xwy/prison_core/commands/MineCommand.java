@@ -14,8 +14,8 @@ public class MineCommand {
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("setArea")) {
 				if (args.length == 2) {
-					if (ERank.valueOf(args[1]) != ERank.Free) {
-						MineManager.mines.get(ERank.valueOf(args[1])).setRectangle(MineManager.locationOneHashMap.getOrDefault(player.getUniqueId(), null), MineManager.locationTwoHashMap.getOrDefault(player.getUniqueId(), null));
+					if (ERank.valueOf(args[1].toUpperCase()) != ERank.Free) {
+						MineManager.mines.get(ERank.valueOf(args[1].toUpperCase())).setRectangle(MineManager.locationOneHashMap.getOrDefault(player.getUniqueId(), null), MineManager.locationTwoHashMap.getOrDefault(player.getUniqueId(), null));
 						player.sendMessage("set area");
 					}
 				}
@@ -25,7 +25,7 @@ public class MineCommand {
 					if (ERank.valueOf(args[1].toUpperCase()) != ERank.Free) {
 						if (player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) {
 							Mine mine = MineManager.mines.get(ERank.valueOf(args[1].toUpperCase()));
-							if (mine.canSet(Integer.parseInt(args[2]),player.getItemInHand().getType())) {
+							if (mine.canSet(Integer.parseInt(args[2]), player.getItemInHand().getType())) {
 								mine.materials.put(player.getItemInHand().getType(), Integer.valueOf(args[2]));
 								player.sendMessage("set, total : " + mine.total());
 								
@@ -59,6 +59,15 @@ public class MineCommand {
 							player.sendMessage("Sign set");
 						}
 						
+					}
+				}
+			}
+			if (args[0].equalsIgnoreCase("setWarp")) {
+				if (args.length == 2) {
+					if (ERank.valueOf(args[1].toUpperCase()) != ERank.Free) {
+						Mine mine = MineManager.mines.get(ERank.valueOf(args[1].toUpperCase()));
+						mine.setWarp(player.getLocation());
+						player.sendMessage("Warp set");
 					}
 				}
 			}

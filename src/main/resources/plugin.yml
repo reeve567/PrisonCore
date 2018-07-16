@@ -3,6 +3,13 @@ name: PrisonCore
 version: RELEASE
 author: Xwy
 authors: [Xaq]
+depend: [Citizens]
 commands:
   feed:
   mine:
+  bal:
+    aliases: [balance,money]
+  scoreboardtoggle:
+    aliases: [sbt,sbtoggle]
+  ce:
+    aliases: customenchants

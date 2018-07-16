@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -91,14 +92,14 @@ public class Rect3D {
 		this.blocks = blocks.toArray(new Block[0]);
 	}
 	
-	/**
-	 * Check if the given Block is contained within this Cuboid.
-	 *
-	 * @param b the Block to check for
-	 * @return true if the Block is within this Cuboid, false otherwise
-	 */
-	public boolean contains(Block b) {
-		return contains(b.getLocation());
+	public ArrayList<Player> playersInside() {
+		ArrayList<Player> temp = new ArrayList<>();
+		
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (contains(p.getLocation()))
+				temp.add(p);
+		}
+		return temp;
 	}
 	
 	/**
@@ -121,6 +122,16 @@ public class Rect3D {
 	 */
 	public boolean contains(int x, int y, int z) {
 		return x >= x1 && x <= x2 && y >= y1 && y <= y2 && z >= z1 && z <= z2;
+	}
+	
+	/**
+	 * Check if the given Block is contained within this Cuboid.
+	 *
+	 * @param b the Block to check for
+	 * @return true if the Block is within this Cuboid, false otherwise
+	 */
+	public boolean contains(Block b) {
+		return contains(b.getLocation());
 	}
 	
 	public int getSize() {

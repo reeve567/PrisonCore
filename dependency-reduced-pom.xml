@@ -43,6 +43,13 @@
       <scope>system</scope>
       <systemPath>${pom.basedir}/lib/spigot-1.7.10-SNAPSHOT-b1657.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>net.citizensnpcs</groupId>
+      <artifactId>citizens</artifactId>
+      <version>2.0.13-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>
 

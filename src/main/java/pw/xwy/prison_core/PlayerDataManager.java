@@ -1,16 +1,25 @@
 package pw.xwy.prison_core;
 
-import java.util.ArrayList;
+import pw.xwy.prison_core.utility.ERank;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class PlayerDataManager {
-	private ArrayList<PlayerData> playerData = new ArrayList<>();
+	public static double startingMoney;
+	public static String moneySymbol;
+	private static HashMap<UUID, PlayerData> playerDataMap = new HashMap<>();
 	
-	public PlayerDataManager() {
-		
-		loadConfig();
+	public static void addPlayerData(UUID uuid, PlayerData data) {
+		System.out.println("Player data added - " + uuid.toString());
+		playerDataMap.put(uuid, data);
 	}
 	
-	private void loadConfig() {
+	public static HashMap<UUID, PlayerData> getPlayerData() {
+		return playerDataMap;
+	}
 	
+	public static PlayerData getPlayerData(UUID uuid) {
+		return playerDataMap.getOrDefault(uuid, new PlayerData(uuid, startingMoney, ERank.A, 0));
 	}
 }

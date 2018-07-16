@@ -68,6 +68,10 @@ public class Config {
 		return fc.getInt(path);
 	}
 	
+	public int getInt(String path, int def) {
+		return fc.getInt(path, def);
+	}
+	
 	public void setComment(String path, String... comments) {
 		ArrayList<String> strings = new ArrayList<>();
 		strings.add("(This config parameter does nothing, it's just here for commenting)");
@@ -81,5 +85,13 @@ public class Config {
 	
 	public String getString(String path) {
 		return fc.getString(path);
+	}
+	
+	public Double getDouble(String s, double i) {
+		return fc.getDouble(s, i);
+	}
+	
+	public String getString(String s, String a) {
+		return fc.getString(s, a);
 	}
 }

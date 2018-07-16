@@ -19,7 +19,8 @@ public class ChatListener implements Listener {
 		} else if (message.contains("what") && message.contains("billy")) {
 			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins");
 		} else {
-			Bukkit.broadcastMessage("§7[Noob] " + e.getPlayer().getName() + " » " + e.getMessage());
+			PlayerData data = PlayerDataManager.getPlayerData(e.getPlayer().getUniqueId());
+			Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&',data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 		}
 	}
 	
