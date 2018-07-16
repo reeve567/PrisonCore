@@ -58,6 +58,7 @@ pw\xwy\prison_core\custom_enchants\listeners\ArmorListener.class
 pw\xwy\prison_core\custom_enchants\commands\CECommandHandler.class
 pw\xwy\prison_core\custom_enchants\commands\admin\CeGive.class
 pw\xwy\prison_core\custom_enchants\enums\Souls.class
+pw\xwy\prison_core\Drugslistener.class
 pw\xwy\prison_core\utility\NormalWarps.class
 pw\xwy\prison_core\custom_enchants\enums\MenuItem.class
 pw\xwy\prison_core\custom_enchants\schedules\WaterBreathing.class
