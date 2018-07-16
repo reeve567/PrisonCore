@@ -190,15 +190,15 @@ public class Mine implements Listener {
 	
 	private Location locationFromStringPichYaw(String string, String world) {
 		double x, y, z, pi, ya;
-		x = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		x = Double.parseDouble(string.substring(0, string.indexOf(":")));
 		string = string.substring(string.indexOf(":") + 1);
-		y = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		y = Double.parseDouble(string.substring(0, string.indexOf(":")));
 		string = string.substring(string.indexOf(":") + 1);
-		z = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		z = Double.parseDouble(string.substring(0, string.indexOf(":")));
 		string = string.substring(string.indexOf(":") + 1);
-		pi = Integer.parseInt(string.substring(0, string.indexOf(":")));
+		pi = Double.parseDouble(string.substring(0, string.indexOf(":")));
 		string = string.substring(string.indexOf(":") + 1);
-		ya = Integer.parseInt(string);
+		ya = Double.parseDouble(string);
 		
 		return new Location(Bukkit.getWorld(world), x, y, z, (float) pi, (float) ya);
 	}
