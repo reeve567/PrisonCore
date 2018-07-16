@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Drugslistener implements Listener {
 
-	public static final String prefix = "§6Drugs §8§l»»§7";
+	public static final String prefix = "§6Drugs §8§l»» §7";
 	@EventHandler
 	public void onPlayeruse(PlayerInteractEvent event) {
 		Player e = event.getPlayer();
