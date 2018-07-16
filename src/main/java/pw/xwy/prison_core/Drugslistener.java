@@ -22,7 +22,7 @@ public class Drugslistener implements Listener {
 				if (e.hasPotionEffect(PotionEffectType.SPEED))
 					e.removePotionEffect(PotionEffectType.SPEED);
 
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.SPEED, 1800, 2));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1800, 2));
 				e.getPlayer().sendMessage("You snorted cocaine");
 			}
 			if (e.getItemInHand().getType() == Material.SULPHUR && e.isSneaking()) {
@@ -30,7 +30,7 @@ public class Drugslistener implements Listener {
 				if (e.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE))
 					e.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1800, 1));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1800, 1));
 				e.getPlayer().sendMessage("You took steroids");
 
 			}
@@ -43,10 +43,10 @@ public class Drugslistener implements Listener {
 					e.removePotionEffect(PotionEffectType.REGENERATION);
 				if (e.hasPotionEffect(PotionEffectType.SPEED))
 					e.removePotionEffect(PotionEffectType.SPEED);
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.SLOW_DIGGING, 600, 1));
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.REGENERATION, 600, 2));
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.JUMP, 300, 3));
-				e.getActivePotionEffects().add(new PotionEffect(PotionEffectType.SPEED, 600, 3));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 600, 1));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 600, 2));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 300, 3));
+				e.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 3));
 				e.getPlayer().sendMessage("You popped a molly");
 			}
 

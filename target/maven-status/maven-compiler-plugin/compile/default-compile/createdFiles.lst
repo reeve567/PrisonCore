@@ -40,7 +40,6 @@ pw\xwy\prison_core\custom_enchants\enums\CustomEnchant.class
 pw\xwy\prison_core\custom_enchants\soulcrates\MysticalSC.class
 pw\xwy\prison_core\custom_enchants\schedules\crates\MysticalCrate.class
 pw\xwy\prison_core\scoreboard\ScoreboardObj.class
-pw\xwy\prison_core\custom_enchants\utilities\Glow.class
 pw\xwy\prison_core\custom_enchants\menus\PickMenu.class
 pw\xwy\prison_core\PrisonCore.class
 pw\xwy\prison_core\commands\BalanceCommand.class

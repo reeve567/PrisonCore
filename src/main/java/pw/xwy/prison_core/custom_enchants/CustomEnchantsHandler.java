@@ -25,8 +25,8 @@ import pw.xwy.prison_core.custom_enchants.menus.*;
 import pw.xwy.prison_core.custom_enchants.schedules.*;
 import pw.xwy.prison_core.custom_enchants.soulcrates.*;
 import pw.xwy.prison_core.custom_enchants.utilities.ConfigCheck;
-import pw.xwy.prison_core.custom_enchants.utilities.Glow;
 import pw.xwy.prison_core.custom_enchants.utilities.MessagesFunctions;
+import pw.xwy.prison_core.utility.Glow;
 
 import java.io.File;
 import java.io.IOException;
