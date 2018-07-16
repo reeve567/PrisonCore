@@ -11,11 +11,11 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Drugslistener implements Listener {
 
+	public static final String prefix = "§6Drugs §8§l»»";
 	@EventHandler
 	public void onPlayeruse(PlayerInteractEvent event) {
 		Player e = event.getPlayer();
 		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-
 			if (e.getItemInHand().getType() == Material.SUGAR && e.isSneaking()) {
 
 
@@ -23,7 +23,11 @@ public class Drugslistener implements Listener {
 					e.removePotionEffect(PotionEffectType.SPEED);
 
 				e.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1800, 2));
-				e.getPlayer().sendMessage("You snorted cocaine");
+				if (e.getItemInHand().getAmount() >1)
+					e.getItemInHand().setAmount(e.getItemInHand().getAmount()-1);
+				else
+					e.getItemInHand().setType(Material.AIR);
+				e.getPlayer().sendMessage(prefix+"You snorted cocaine");
 			}
 			if (e.getItemInHand().getType() == Material.SULPHUR && e.isSneaking()) {
 
@@ -31,7 +35,11 @@ public class Drugslistener implements Listener {
 					e.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 
 				e.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1800, 1));
-				e.getPlayer().sendMessage("You took steroids");
+				if (e.getItemInHand().getAmount() >1)
+					e.getItemInHand().setAmount(e.getItemInHand().getAmount()-1);
+				else
+					e.getItemInHand().setType(Material.AIR);
+				e.getPlayer().sendMessage(prefix+ "You took steroids");
 
 			}
 			if (e.getItemInHand().getType() == Material.GHAST_TEAR && e.isSneaking()) {
@@ -47,7 +55,11 @@ public class Drugslistener implements Listener {
 				e.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 600, 2));
 				e.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 300, 3));
 				e.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 3));
-				e.getPlayer().sendMessage("You popped a molly");
+				e.getPlayer().sendMessage(prefix+"You popped a molly");
+				if (e.getItemInHand().getAmount() >1)
+					e.getItemInHand().setAmount(e.getItemInHand().getAmount()-1);
+				else
+					e.getItemInHand().setType(Material.AIR);
 			}
 
 		}
