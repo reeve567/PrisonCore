@@ -52,16 +52,50 @@ public class DonorShopGUI implements Listener {
 				
 				switch (e.getCurrentItem().getType()) {
 					case GLOWSTONE_DUST:
-						
+						if (data.getBalance() >= 5000)
+							player.getInventory().addItem(Material.GLOWSTONE_DUST)
+							data.addBalance(-5000);
 						break;
 					case ENDER_PEARL:
-						
+						if (data.getBalance() >= 10000)
+							player.getInventory().addItem(Material.ENDER_PEARL)
+							data.addBalance(-10000);
 						break;
 					case MELON:
-						
+						if (data.getBalance() >= 2000)
+							player.getInventory().addItem(Material.MELON)
+							data.addBalance(-2000);
 						break;
-					
-					
+					case NETHER_WARTS:
+						if (data.getBalance() >= 10000)
+							player.getInventory().addItem(Material.NETHER_WARTS)
+							data.addBalance(-10000);
+						break;
+					case SUGAR_CANE:
+						if (data.getBalance() >= 2000)
+							player.getInventory().addItem(Material.SUGAR_CANE)
+							data.addBalance(-2000);
+						break;
+					case SOUL_SAND:
+						if (data.getBalance() >= 8000)
+							player.getInventory().addItem(Material.SOUL_SAND)
+							data.addBalance(-8000);
+						break;
+					case LEATHER:
+						if (data.getBalance() >= 7500)
+							player.getInventory().addItem(Material.LEATHER)
+							data.addBalance(7500);
+						break;
+					case CARROT:
+						if  (data.getBalance() >= 2000)
+							player.getInventory().addItem(Material.CARROT)
+							data.addBalance(-2000);
+						break;
+					case BLAZE_ROD:
+						if (data.getBalance() >= 2000)
+							player.getInventory().addItem(Material.BLAZE_ROD)
+							data.addBalance(-2000);
+						break;
 				}
 			}
 		}
