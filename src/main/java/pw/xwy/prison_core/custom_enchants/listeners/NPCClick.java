@@ -26,7 +26,7 @@ public class NPCClick implements Listener {
 	private void onClick(NPCClickEvent e) {
 		if (e.getNPC().getName().contains("CE Menu") || e.getNPC().getName().contains("CustomEnchants")) {
 			if (e.getClicker() != null) {
-				e.getClicker().openInventory(MainMenu.get());
+				e.getClicker().openInventory(new MainMenu().get());
 			}
 		}
 	}

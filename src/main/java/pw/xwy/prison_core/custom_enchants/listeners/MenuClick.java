@@ -56,7 +56,7 @@ public class MenuClick implements Listener {
 							new ConversionMenu().openInventory((Player) e.getWhoClicked());
 						}
 						else if (e.getSlot() == 44)
-							e.getWhoClicked().openInventory(MainMenu.get());
+							e.getWhoClicked().openInventory(new MainMenu().get());
 					}
 				}
 			}
