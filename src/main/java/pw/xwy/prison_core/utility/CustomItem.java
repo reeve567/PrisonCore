@@ -2,6 +2,7 @@ package pw.xwy.prison_core.utility;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -21,7 +22,7 @@ public class CustomItem extends ItemStack {
 	
 	public CustomItem addGlow() {
 		ItemMeta meta = meta();
-		meta.addEnchant(new Glow(999), 1, true);
+		meta.addEnchant(Enchantment.getByName("Glow"), 1, true);
 		setMeta(meta);
 		return this;
 	}

@@ -144,7 +144,7 @@ public class CustomEnchantsHandler {
 			e.printStackTrace();
 		}
 		try {
-			Glow glow = new Glow(999);
+			 v Glow glow = new Glow(999);
 			Enchantment.registerEnchantment(glow);
 		} catch (Exception e) {
 			e.printStackTrace();

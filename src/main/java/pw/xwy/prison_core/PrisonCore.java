@@ -11,6 +11,7 @@ import pw.xwy.prison_core.commands.BalanceCommand;
 import pw.xwy.prison_core.commands.FeedCommand;
 import pw.xwy.prison_core.commands.MineCommand;
 import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
+import pw.xwy.prison_core.custom_enchants.menus.MainMenu;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.MineManager;
 
@@ -27,14 +28,6 @@ public class PrisonCore extends JavaPlugin {
 	public static void log(String message) {
 		logger.log(Level.INFO, message);
 		//add discord message stuff
-	}
-	
-	public static PrisonCore getInstance() {
-		return instance;
-	}
-	
-	public static void registerEvents(Listener listener) {
-		Bukkit.getPluginManager().registerEvents(listener, instance);
 	}
 	
 	@Override
@@ -78,6 +71,14 @@ public class PrisonCore extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
 		
+	}
+	
+	public static void registerEvents(Listener listener) {
+		Bukkit.getPluginManager().registerEvents(listener, instance);
+	}
+	
+	public static PrisonCore getInstance() {
+		return instance;
 	}
 	
 	@Override

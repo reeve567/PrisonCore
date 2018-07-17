@@ -21,7 +21,7 @@ public class CeMenu {
 	public void run(CommandSender sender) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			Inventory inv = MainMenu.get();
+			Inventory inv = new MainMenu().get();
 			player.openInventory(inv);
 		} else
 			sender.sendMessage(Messages.senderIsConsole.get());

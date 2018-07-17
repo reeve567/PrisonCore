@@ -15,38 +15,29 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.custom_enchants.utilities.MainUtility;
-import pw.xwy.prison_core.custom_enchants.utilities.MenuUtility;
 import pw.xwy.prison_core.utility.CustomItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainMenu {
 	
-	private static Inventory MainMenu = Bukkit.createInventory(null, 54, "§c§lCustom Enchants");
+	private final Inventory MainMenu;
 	
-	static {
-		
-		List<String> desc = new ArrayList<String>();
+	public MainMenu() {
+		MainMenu = Bukkit.createInventory(null, 54, "§c§lCustom Enchants");
 		
 		for (int i = 0; i < 54; i++) {
-			desc.clear();
-			ItemStack topPane = MenuUtility.getItem(" ", Material.STAINED_GLASS_PANE, desc);
+			ItemStack topPane = new CustomItem(Material.STAINED_GLASS_PANE).setName(" ");
 			topPane.setDurability((short) 7);
 			MainMenu.setItem(i, topPane);
 		}
 		
-		desc.clear();
-		ItemStack Helm = MainUtility.getItem("§5Helmet Enchantments", Material.DIAMOND_HELMET, desc, true);
-		ItemStack Chest = MainUtility.getItem("§5Chestplate Enchantments", Material.DIAMOND_CHESTPLATE, desc, true);
-		ItemStack Leggings = MainUtility.getItem("§5Leggings Enchantments", Material.DIAMOND_LEGGINGS, desc, true);
-		ItemStack Boots = MainUtility.getItem("§5Boots Enchantments", Material.DIAMOND_BOOTS, desc, true);
-		
-		ItemStack Bow = MainUtility.getItem("§5Bow Enchantments", Material.BOW, desc, true);
-		ItemStack Pick = MainUtility.getItem("§5Pickaxe Enchantments", Material.DIAMOND_PICKAXE, desc, true);
-		ItemStack Sword = MainUtility.getItem("§5Sword Enchantments", Material.DIAMOND_SWORD, desc, true);
-		ItemStack Axe = MainUtility.getItem("§5Axe Enchantments", Material.DIAMOND_AXE, desc, true);
+		ItemStack Helm = new CustomItem(Material.DIAMOND_HELMET).setName("§5Helmet Enchantments");
+		ItemStack Pick = new CustomItem(Material.DIAMOND_PICKAXE).setName("§5Pickaxe Enchantments");
+		ItemStack Chest = new CustomItem(Material.DIAMOND_CHESTPLATE).setName("§5Chestplate Enchantments");
+		ItemStack Sword = new CustomItem(Material.DIAMOND_SWORD).setName("§5Sword Enchantments");
+		ItemStack Axe = new CustomItem(Material.DIAMOND_AXE).setName("§5Axe Enchantments");
+		ItemStack Leggings = new CustomItem(Material.DIAMOND_LEGGINGS).setName("§5Leggings Enchantments");
+		ItemStack Bow = new CustomItem(Material.BOW).setName("§5Bow Enchantments");
+		ItemStack Boots = new CustomItem(Material.DIAMOND_BOOTS).setName("§5Boots Enchantments");
 		
 		MainMenu.setItem(13, Helm);
 		MainMenu.setItem(20, Pick);
@@ -59,7 +50,7 @@ public class MainMenu {
 		MainMenu.setItem(49, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(4).setName("§eEXP Conversion"));
 	}
 	
-	public static Inventory get() {
+	public Inventory get() {
 		
 		return MainMenu;
 	}
