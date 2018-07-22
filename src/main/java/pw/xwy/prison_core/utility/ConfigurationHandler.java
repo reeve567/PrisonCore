@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PlayerData;
 import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.listeners.JoinListener;
 import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class ConfigurationHandler {
 			mainConfiguration.set("General.Starting-Money", 0.0);
 			mainConfiguration.set("General.Money-Symbol", "$");
 			mainConfiguration.set("General.Max-Prestige", 20);
+			mainConfiguration.set("General.Unique-Players",0);
 			mainConfiguration.saveConfig();
 		}
 		
@@ -65,6 +67,7 @@ public class ConfigurationHandler {
 		PlayerDataManager.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
 		PlayerDataManager.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
 		RanksManager.maxPrestige = mainConfiguration.getInt("General.Max-Prestige");
+		JoinListener.UniquePlayers = mainConfiguration.getInt("General.Unique-Players");
 	}
 	
 	private void loadRankPrices() {
@@ -206,5 +209,7 @@ public class ConfigurationHandler {
 	public void onDisable() {
 		saveMines();
 		savePlayerData();
+		mainConfiguration.set("General.Unique-Players",JoinListener.UniquePlayers);
+		mainConfiguration.saveConfig();
 	}
 }

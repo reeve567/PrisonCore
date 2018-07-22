@@ -1,5 +1,6 @@
 package pw.xwy.prison_core.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -10,11 +11,12 @@ import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.Rank;
 
 public class JoinListener implements Listener {
-	
+	public static int UniquePlayers;
+
 	public JoinListener() {
 		PrisonCore.registerEvents(this);
 	}
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if (!PlayerDataManager.getPlayerData().keySet().contains(e.getPlayer().getUniqueId())) {
@@ -24,8 +26,13 @@ public class JoinListener implements Listener {
 					ConfigurationHandler.getPlayerPrestigeData().getInt("players." + e.getPlayer().getUniqueId(), 0)
 			));
 		}
-		
-		
+
+		if (e.getPlayer().hasPlayedBefore() == false) {
+			Bukkit.broadcastMessage("Welcome " + e.getPlayer().getName() + "to the server");
+			Bukkit.broadcastMessage(++UniquePlayers + " has joined");
+
+		}
+		e.getPlayer().sendMessage("Welcome to Mudkip Prison");
 	}
-	
+
 }
