@@ -1,4 +1,4 @@
-package pw.xwy.prison_core;
+package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

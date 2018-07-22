@@ -1,7 +1,7 @@
 package pw.xwy.prison_core.commands;
 
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.DonorShopGUI;
+import pw.xwy.prison_core.listeners.DonorShopGUI;
 
 public class DonorShopCommand {
 	

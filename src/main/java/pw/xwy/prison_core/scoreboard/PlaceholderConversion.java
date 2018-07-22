@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PlayerData;
 import pw.xwy.prison_core.PlayerDataManager;
-import pw.xwy.prison_core.utility.ERank;
+import pw.xwy.prison_core.utility.Rank;
 import pw.xwy.prison_core.utility.ReadableNumbers;
 
 public class PlaceholderConversion {
@@ -21,7 +21,7 @@ public class PlaceholderConversion {
 		s = s.replaceAll("<player-balance-readable>", data.getBalanceReadable());
 		s = s.replaceAll("<player-balance>", String.valueOf(data.getBalance()));
 		s = s.replaceAll("<player-mine-rank>", String.valueOf(data.getRank()));
-		s = s.replaceAll("<player-prestige-rankup>", String.valueOf(data.getRank() == ERank.Z ? "Prestige Cost" : "Rankup Cost"));
+		s = s.replaceAll("<player-prestige-rankup>", String.valueOf(data.getRank() == Rank.Z ? "Prestige Cost" : "Rankup Cost"));
 		s = s.replaceAll("<player-rankup-progress>", String.valueOf(data.percentProgress()) + "%");
 		s = s.replaceAll("<player-prestige>", String.valueOf(data.getPrestige()));
 		s = s.replaceAll("<player-rankup-cost>", String.valueOf(ReadableNumbers.coolFormat(data.getRankupPriceMultiplied(), 0)));

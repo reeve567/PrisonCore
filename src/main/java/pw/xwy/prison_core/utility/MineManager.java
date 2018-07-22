@@ -13,12 +13,12 @@ import java.util.UUID;
 
 public class MineManager implements Listener {
 	public static final ItemStack mineSelector = new CustomItem(Material.STICK).setName("§6Mine Stick").setLore("§7Left click to set first corner", "§7Right click to set second corner", "§7Shift-right click in the air to reset corners.");
-	public static HashMap<ERank, Mine> mines = new HashMap<>();
+	public static HashMap<Rank, Mine> mines = new HashMap<>();
 	public static HashMap<UUID, Location> locationOneHashMap = new HashMap<>();
 	public static HashMap<UUID, Location> locationTwoHashMap = new HashMap<>();
 	
 	public MineManager() {
-		for (ERank rank : ERank.values()) {
+		for (Rank rank : Rank.values()) {
 			mines.put(rank, new Mine(rank.toString()));
 		}
 	}

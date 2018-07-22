@@ -1,6 +1,6 @@
 package pw.xwy.prison_core;
 
-import pw.xwy.prison_core.utility.ERank;
+import pw.xwy.prison_core.utility.Rank;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -20,6 +20,6 @@ public class PlayerDataManager {
 	}
 	
 	public static PlayerData getPlayerData(UUID uuid) {
-		return playerDataMap.getOrDefault(uuid, new PlayerData(uuid, startingMoney, ERank.A, 0));
+		return playerDataMap.getOrDefault(uuid, new PlayerData(uuid, startingMoney, Rank.A, 0));
 	}
 }

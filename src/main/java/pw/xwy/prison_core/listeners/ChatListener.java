@@ -1,10 +1,12 @@
-package pw.xwy.prison_core;
+package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import pw.xwy.prison_core.PlayerData;
+import pw.xwy.prison_core.PlayerDataManager;
 
 public class ChatListener implements Listener {
 	

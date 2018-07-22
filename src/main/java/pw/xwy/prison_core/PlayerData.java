@@ -1,6 +1,6 @@
 package pw.xwy.prison_core;
 
-import pw.xwy.prison_core.utility.ERank;
+import pw.xwy.prison_core.utility.Rank;
 import pw.xwy.prison_core.utility.RanksManager;
 import pw.xwy.prison_core.utility.ReadableNumbers;
 
@@ -9,10 +9,10 @@ import java.util.UUID;
 public class PlayerData {
 	private UUID uuid;
 	private double balance;
-	private ERank rank;
+	private Rank rank;
 	private int prestige;
 	
-	public PlayerData(UUID uuid, double balance, ERank rank, int prestige) {
+	public PlayerData(UUID uuid, double balance, Rank rank, int prestige) {
 		this.uuid = uuid;
 		this.balance = balance;
 		this.rank = rank;
@@ -23,17 +23,17 @@ public class PlayerData {
 		return uuid;
 	}
 	
-	public ERank getRank() {
+	public Rank getRank() {
 		return rank;
 	}
 	
-	public void setRank(ERank rank) {
+	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
 	
 	public void prestige() {
 		setPrestige(getPrestige() + 1);
-		setRank(ERank.A);
+		setRank(Rank.A);
 		addBalance(-getRankupPriceMultiplied());
 	}
 	
@@ -85,12 +85,12 @@ public class PlayerData {
 	
 	public void rankup() {
 		int i = rank.ordinal();
-		setRank(ERank.values()[i + 1]);
+		setRank(Rank.values()[i + 1]);
 		addBalance(-getRankupPriceMultiplied());
 	}
 	
 	public boolean canPrestige() {
-		return rank == ERank.Z && canRankup();
+		return rank == Rank.Z && canRankup();
 	}
 	
 	public boolean canRankup() {

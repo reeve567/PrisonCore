@@ -9,6 +9,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.prison_core.commands.*;
 import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
+import pw.xwy.prison_core.listeners.ChatListener;
+import pw.xwy.prison_core.listeners.DonorShopGUI;
+import pw.xwy.prison_core.listeners.DrugsListener;
+import pw.xwy.prison_core.listeners.JoinListener;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.MineManager;
 

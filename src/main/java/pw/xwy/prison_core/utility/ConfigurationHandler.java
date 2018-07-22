@@ -79,14 +79,14 @@ public class ConfigurationHandler {
 		}
 		
 		for (String s : RanksManager.rankNames) {
-			ERank.valueOf(s).setRankPrefix(rankInfoConfiguration.getString(s + ".Chat-Prefix"));
-			ERank.valueOf(s).setRankupCost(rankInfoConfiguration.getInt(s + ".Rankup-Cost"));
+			Rank.valueOf(s).setRankPrefix(rankInfoConfiguration.getString(s + ".Chat-Prefix"));
+			Rank.valueOf(s).setRankupCost(rankInfoConfiguration.getInt(s + ".Rankup-Cost"));
 		}
 	}
 	
 	public void loadPlayerData() {
 		HashMap<UUID, Double> balance = new HashMap<>();
-		HashMap<UUID, ERank> ranks = new HashMap<>();
+		HashMap<UUID, Rank> ranks = new HashMap<>();
 		HashMap<UUID, Integer> prestige = new HashMap<>();
 		
 		if (playerBalanceData.getInt("ver") != 3) {
@@ -103,7 +103,7 @@ public class ConfigurationHandler {
 			savePlayerData();
 		} else {
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				ranks.put(p.getUniqueId(), ERank.valueOf(playerRankData.getString("players." + p.getUniqueId(), "A")));
+				ranks.put(p.getUniqueId(), Rank.valueOf(playerRankData.getString("players." + p.getUniqueId(), "A")));
 			}
 		}
 		
@@ -127,7 +127,7 @@ public class ConfigurationHandler {
 			mineConfiguration.set("ver", 6);
 			saveMines();
 		}
-		for (ERank rank : ERank.values()) {
+		for (Rank rank : Rank.values()) {
 			Mine mine = MineManager.mines.get(rank);
 			mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
 			mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
@@ -165,7 +165,7 @@ public class ConfigurationHandler {
 	}
 	
 	public void saveMines() {
-		for (ERank rank : ERank.values()) {
+		for (Rank rank : Rank.values()) {
 			Mine mine = MineManager.mines.get(rank);
 			mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
 			mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
