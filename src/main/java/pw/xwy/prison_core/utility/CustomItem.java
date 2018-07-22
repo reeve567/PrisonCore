@@ -66,7 +66,7 @@ public class CustomItem extends ItemStack {
 	
 	public CustomItem removeGlow() {
 		ItemMeta meta = meta();
-		meta.removeEnchant(new Glow(999));
+		meta.removeEnchant(Enchantment.getByName("Glow"));
 		setMeta(meta);
 		return this;
 	}

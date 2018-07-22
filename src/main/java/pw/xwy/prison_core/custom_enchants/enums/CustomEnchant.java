@@ -10,6 +10,7 @@
 package pw.xwy.prison_core.custom_enchants.enums;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import pw.xwy.prison_core.utility.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,13 +108,13 @@ public class CustomEnchant {
 		return sets;
 	}
 	
-	public void saveDefault(FileConfiguration fileConfiguration) {
+	public void saveDefault(Config config) {
 		String base = "CustomEnchants." + realName + ".";
-		fileConfiguration.set(base + "name", name);
-		fileConfiguration.set(base + "rarity", rarity.toString());
-		fileConfiguration.set(base + "commandLabel", commandLabel);
-		fileConfiguration.set(base + "description", description);
-		fileConfiguration.set(base + "enabled", true);
+		config.set(base + "name", name);
+		config.set(base + "rarity", rarity.toString());
+		config.set(base + "commandLabel", commandLabel);
+		config.set(base + "description", description);
+		config.set(base + "enabled", true);
 		addToList(enchant);
 	}
 	
@@ -131,7 +132,6 @@ public class CustomEnchant {
 				hydro.add(enchant);
 			} else {
 				System.out.println(getName() + " -- " + getRarity());
-				System.out.println(common);
 			}
 		}
 	}
@@ -152,13 +152,14 @@ public class CustomEnchant {
 		this.name = name;
 	}
 	
-	public void setCustomStuff(FileConfiguration fileConfiguration) {
+	public void setCustomStuff(Config config) {
 		String base = "CustomEnchants." + realName + ".";
-		name = fileConfiguration.getString(base + "name");
-		rarity = Rarity.valueOf(fileConfiguration.getString(base + "rarity"));
-		commandLabel = fileConfiguration.getString(base + "commandLabel");
-		description = fileConfiguration.getStringList(base + "description");
-		boolean enabled = fileConfiguration.getBoolean(base + "enabled");
+		System.out.println(base);
+		name = config.getString(base + "name");
+		rarity = Rarity.valueOf(config.getString(base + "rarity"));
+		commandLabel = config.getString(base + "commandLabel");
+		description = config.getStringList(base + "description");
+		boolean enabled = config.getBoolean(base + "enabled");
 		if (!enabled) enchant.disable();
 		addToList(enchant);
 	}

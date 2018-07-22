@@ -18,20 +18,22 @@ public class ConfigurationHandler {
 	
 	private static Config mainConfiguration;
 	private static Config mineConfiguration;
-	private static Config rankPricesConfiguration;
+	private static Config rankInfoConfiguration;
 	private static Config playerBalanceData;
 	private static Config playerRankData;
 	private static Config playerPrestigeData;
 	private static Config scoreboardConfiguration;
+	private static Config prestigeConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
-		rankPricesConfiguration = new Config(core.getDataFolder(), "ranks");
+		rankInfoConfiguration = new Config(core.getDataFolder(), "ranks");
 		mineConfiguration = new Config(core.getDataFolder(), "mines");
 		playerBalanceData = new Config(core.getDataFolder(), "player-balances");
 		playerRankData = new Config(core.getDataFolder(), "player-ranks");
 		playerPrestigeData = new Config(core.getDataFolder(), "player-prestiges");
 		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
+		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
 		loadConfig();
 	}
 	
@@ -40,17 +42,19 @@ public class ConfigurationHandler {
 		loadRankPrices();
 		loadPlayerData();
 		loadMines();
+		loadPrestiges();
 		new ScoreboardsManager();
 	}
 	
 	private void loadMain() {
-		if (mainConfiguration.getInt("ver") != 0) {
-			mainConfiguration.set("ver", 0);
+		if (mainConfiguration.getInt("ver") != 1) {
+			mainConfiguration.set("ver", 1);
 			mainConfiguration.setComment("Discord-Integration", "This is for logging everything to do with the plugin to discord, if enabled.", "The webhook url you get from being an admin on a discord channel and right clicking on the text channel.", "Server identifier isn't anything special, it's purely cosmetic.");
 			mainConfiguration.set("Discord-Integration.Enabled", false);
 			mainConfiguration.set("Discord-Integration.Webhook-URL", "discord webhook url here");
 			mainConfiguration.set("General.Starting-Money", 0.0);
 			mainConfiguration.set("General.Money-Symbol", "$");
+			mainConfiguration.set("General.Max-Prestige", 20);
 			mainConfiguration.saveConfig();
 		}
 		
@@ -60,22 +64,23 @@ public class ConfigurationHandler {
 		}
 		PlayerDataManager.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
 		PlayerDataManager.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
+		RanksManager.maxPrestige = mainConfiguration.getInt("General.Max-Prestige");
 	}
 	
 	private void loadRankPrices() {
-		if (rankPricesConfiguration.getInt("ver") != 3) {
-			rankPricesConfiguration.set("ver", 3);
+		if (rankInfoConfiguration.getInt("ver") != 3) {
+			rankInfoConfiguration.set("ver", 3);
 			for (String s : RanksManager.rankNames) {
-				rankPricesConfiguration.set(s + ".Rankup-Cost", 1);
-				rankPricesConfiguration.set(s + ".Chat-Prefix", "§8[§6" + s + "§8]");
-				rankPricesConfiguration.set(s + ".Shop", new ArrayList<String>());
+				rankInfoConfiguration.set(s + ".Rankup-Cost", 1);
+				rankInfoConfiguration.set(s + ".Chat-Prefix", "§8[§6" + s + "§8]");
+				rankInfoConfiguration.set(s + ".Shop", new ArrayList<String>());
 			}
-			rankPricesConfiguration.saveConfig();
+			rankInfoConfiguration.saveConfig();
 		}
 		
 		for (String s : RanksManager.rankNames) {
-			ERank.valueOf(s).setRankPrefix(rankPricesConfiguration.getString(s + ".Chat-Prefix"));
-			ERank.valueOf(s).setRankupCost(rankPricesConfiguration.getInt(s + ".Rankup-Cost"));
+			ERank.valueOf(s).setRankPrefix(rankInfoConfiguration.getString(s + ".Chat-Prefix"));
+			ERank.valueOf(s).setRankupCost(rankInfoConfiguration.getInt(s + ".Rankup-Cost"));
 		}
 	}
 	
@@ -123,14 +128,29 @@ public class ConfigurationHandler {
 			saveMines();
 		}
 		for (ERank rank : ERank.values()) {
-			if (rank != ERank.Free) {
-				Mine mine = MineManager.mines.get(rank);
-				mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
-				mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
-				mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
-				mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
-			}
+			Mine mine = MineManager.mines.get(rank);
+			mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
+			mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
+			mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
+			mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
 		}
+	}
+	
+	private void loadPrestiges() {
+		if (prestigeConfiguration.getInt("ver") != 2) {
+			prestigeConfiguration.set("ver", 2);
+			prestigeConfiguration.set("Multiply-Rankup-Price-Multiplier", true);
+			for (int i = 1; i <= 20; i++) {
+				prestigeConfiguration.set("Prestiges." + i + ".Sell-Multiplier", 1.0);
+				prestigeConfiguration.set("Prestiges." + i + ".Rankup-Price-Multiplier", 1.0);
+			}
+			prestigeConfiguration.saveConfig();
+		}
+		
+		for (int i = 1; i <= RanksManager.maxPrestige; i++) {
+			RanksManager.addPrestige(i, prestigeConfiguration.getDouble("Prestiges." + i + ".Rankup-Price-Multiplier"), prestigeConfiguration.getDouble("Prestiges." + i + ".Sell-Multiplier"));
+		}
+		RanksManager.usePreviousPrestigeMultipliers = prestigeConfiguration.getBoolean("Multiply-Rankup-Price-Multiplier");
 	}
 	
 	public void savePlayerData() {
@@ -146,13 +166,11 @@ public class ConfigurationHandler {
 	
 	public void saveMines() {
 		for (ERank rank : ERank.values()) {
-			if (rank != ERank.Free) {
-				Mine mine = MineManager.mines.get(rank);
-				mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
-				mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
-				mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
-				mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
-			}
+			Mine mine = MineManager.mines.get(rank);
+			mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
+			mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
+			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
+			mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
 		}
 		mineConfiguration.saveConfig();
 	}
@@ -165,8 +183,8 @@ public class ConfigurationHandler {
 		return mainConfiguration;
 	}
 	
-	public static Config getRankPricesConfiguration() {
-		return rankPricesConfiguration;
+	public static Config getRankInfoConfiguration() {
+		return rankInfoConfiguration;
 	}
 	
 	public static Config getMineConfiguration() {

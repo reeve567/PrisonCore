@@ -13,3 +13,7 @@ commands:
     aliases: [sbt,sbtoggle]
   ce:
     aliases: customenchants
+  ds:
+    aliases: [donorshop]
+  rankup:
+    aliases: [ru]

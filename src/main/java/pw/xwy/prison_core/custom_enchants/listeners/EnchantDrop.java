@@ -304,7 +304,7 @@ public class EnchantDrop implements Listener {
 						iTW.addUnsafeEnchantment(Enchantment.getByName("Glow"), 1);
 						return true;
 					} else {
-						List<String> lore = new ArrayList<String>();
+						List<String> lore = new ArrayList<>();
 						ItemMeta meta = iTW.getItemMeta();
 						lore.add(itemOnCursor.getItemMeta().getDisplayName());
 						meta.setLore(lore);

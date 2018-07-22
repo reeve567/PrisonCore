@@ -12,8 +12,6 @@ package pw.xwy.prison_core.custom_enchants;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PrisonCore;
@@ -24,12 +22,10 @@ import pw.xwy.prison_core.custom_enchants.listeners.CEListenerHandler;
 import pw.xwy.prison_core.custom_enchants.menus.*;
 import pw.xwy.prison_core.custom_enchants.schedules.*;
 import pw.xwy.prison_core.custom_enchants.soulcrates.*;
-import pw.xwy.prison_core.custom_enchants.utilities.ConfigCheck;
 import pw.xwy.prison_core.custom_enchants.utilities.MessagesFunctions;
+import pw.xwy.prison_core.utility.Config;
 import pw.xwy.prison_core.utility.Glow;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.logging.Logger;
 
@@ -56,27 +52,7 @@ public class CustomEnchantsHandler {
 		loadCrates();
 		startTasks();
 		loadMenus();
-		YamlConfiguration config = new YamlConfiguration();
-		File f = new File(PrisonCore.getInstance().getDataFolder(), "custom-enchants.yml");
-		boolean newF = false;
-		ConfigCheck configCheck = new ConfigCheck(PrisonCore.getInstance());
-		if (configCheck.Init()) {
-			PrisonCore.getInstance().getDataFolder().mkdirs();
-			if (!f.exists()) {
-				try {
-					f.createNewFile();
-					newF = true;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			try {
-				config.load(f);
-			} catch (IOException | InvalidConfigurationException e) {
-				e.printStackTrace();
-			}
-			System.out.println("setup completed");
-		}
+		Config config = new Config(PrisonCore.getInstance().getDataFolder(), "custom-enchants");
 		int ce = 0;
 		
 		int sword = 0;
@@ -88,8 +64,15 @@ public class CustomEnchantsHandler {
 		int leggings = 0;
 		int boots = 0;
 		
+		boolean newf = false;
+		if (config.getInt("ver") != 1) {
+			newf = true;
+			config.set("ver", 1);
+		}
 		for (CEnchant c : CEnchant.values()) {
-			if (newF) {
+			
+			
+			if (newf) {
 				c.customEnchant.saveDefault(config);
 			} else {
 				c.getCustomStuff(config);
@@ -107,11 +90,7 @@ public class CustomEnchantsHandler {
 				if (c.checkSets(Material.DIAMOND_BOOTS)) boots++;
 			}
 		}
-		try {
-			config.save(f);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		config.saveConfig();
 		
 		if (Bukkit.getOnlinePlayers().length > 0) {
 			for (Player p : Bukkit.getOnlinePlayers()) {
@@ -144,8 +123,10 @@ public class CustomEnchantsHandler {
 			e.printStackTrace();
 		}
 		try {
-			 v Glow glow = new Glow(999);
-			Enchantment.registerEnchantment(glow);
+			if (Enchantment.getByName("Glow") != null) {
+				Glow glow = new Glow(99);
+				Enchantment.registerEnchantment(glow);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

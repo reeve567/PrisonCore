@@ -19,9 +19,7 @@ public class MineManager implements Listener {
 	
 	public MineManager() {
 		for (ERank rank : ERank.values()) {
-			if (rank != ERank.Free) {
-				mines.put(rank, new Mine(rank.toString()));
-			}
+			mines.put(rank, new Mine(rank.toString()));
 		}
 	}
 	

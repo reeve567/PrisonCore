@@ -7,11 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import pw.xwy.prison_core.commands.BalanceCommand;
-import pw.xwy.prison_core.commands.FeedCommand;
-import pw.xwy.prison_core.commands.MineCommand;
+import pw.xwy.prison_core.commands.*;
 import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
-import pw.xwy.prison_core.custom_enchants.menus.MainMenu;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.MineManager;
 
@@ -40,6 +37,8 @@ public class PrisonCore extends JavaPlugin {
 			return true;
 		} else if (command.getLabel().equalsIgnoreCase("bal")) {
 			BalanceCommand.run((Player) sender, args);
+		} else if (command.getLabel().equalsIgnoreCase("ds")) {
+			DonorShopCommand.run((Player) sender);
 		}
 		return false;
 	}
@@ -50,9 +49,10 @@ public class PrisonCore extends JavaPlugin {
 		logger = Bukkit.getLogger();
 		registerEvents(new MineManager());
 		new JoinListener();
+		new RankupCommand();
 		configurationHandler = new ConfigurationHandler(this);
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
-		registerEvents(new Drugslistener());
+		registerEvents(new DrugsListener());
 		registerEvents(new DonorShopGUI(null));
 		
 		new CustomEnchantsHandler().onEnable();
@@ -70,7 +70,6 @@ public class PrisonCore extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
-		
 	}
 	
 	public static void registerEvents(Listener listener) {

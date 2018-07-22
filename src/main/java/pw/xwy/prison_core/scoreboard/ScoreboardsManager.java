@@ -1,7 +1,5 @@
 package pw.xwy.prison_core.scoreboard;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitTask;
 import pw.xwy.prison_core.PrisonCore;
@@ -17,10 +15,6 @@ public class ScoreboardsManager implements Listener {
 	private ScoreboardTask scoreboardTask;
 	private BukkitTask task;
 	
-	public static ArrayList<ScoreboardObj> getScoreboards() {
-		return scoreboards;
-	}
-	
 	public ScoreboardsManager() {
 		onEnable();
 	}
@@ -35,9 +29,9 @@ public class ScoreboardsManager implements Listener {
 	
 	public void loadConfig() {
 		Config config = ConfigurationHandler.getScoreboardConfiguration();
-		if (config.getInt("ver") != 2) {
+		if (config.getInt("ver") != 1) {
 			//set defaults
-			config.set("ver", 2);
+			config.set("ver", 1);
 			config.set("animationLength", 1);
 			config.setComment("frames", "The duration is how long in seconds this frame is displayed in the animation, disregard this if you only are using one frame", "Copy all of frame '0' to another frame called '1' (and so on) to make an animation.", "If your frames aren't displaying, make sure the 'animationLength' is the right value");
 			config.set("frames.0.title", "&aScoreboard Title");
@@ -55,15 +49,24 @@ public class ScoreboardsManager implements Listener {
 	
 	private ArrayList<String> setupDefault() {
 		ArrayList<String> temp = new ArrayList<>();
-		temp.add("&a&a------------");
+		temp.add("&a&7------------");
 		temp.add("");
-		temp.add("&a&lPlayers:");
-		temp.add("<players-online>");
+		temp.add("&6Balance:");
+		temp.add("&f<player-balance-readable>");
+		temp.add("&6Rank:");
+		temp.add("&f<player-mine-rank>");
+		temp.add("&6Next Rank:");
+		temp.add("&f<player-rankup-cost>");
+		temp.add("&6Progress:");
+		temp.add("&f<player-rankup-progress>");
+		temp.add("&6Prestige:");
+		temp.add("&f<player-prestige>");
 		temp.add(" ");
-		temp.add("&a&lBalance:");
-		temp.add("<player-balance>");
-		temp.add("  ");
-		temp.add("&a------------");
+		temp.add("&7------------");
 		return temp;
+	}
+	
+	public static ArrayList<ScoreboardObj> getScoreboards() {
+		return scoreboards;
 	}
 }

@@ -9,8 +9,13 @@ public class BalanceCommand {
 		if (args.length == 0) {
 			player.sendMessage("§6Balance §8§l»» §7" + PlayerDataManager.moneySymbol + PlayerDataManager.getPlayerData(player.getUniqueId()).getBalance());
 		} else if (args.length == 2) {
-			if (args[0].equalsIgnoreCase("add")) {
+			if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("give")) {
 				PlayerDataManager.getPlayerData(player.getUniqueId()).setBalance(PlayerDataManager.getPlayerData(player.getUniqueId()).getBalance() + Double.parseDouble(args[1]));
+			}
+			
+		} else if (args.length == 1) {
+			if (args[0].equalsIgnoreCase("reset")) {
+				PlayerDataManager.getPlayerData(player.getUniqueId()).setBalance(PlayerDataManager.startingMoney);
 			}
 		}
 	}

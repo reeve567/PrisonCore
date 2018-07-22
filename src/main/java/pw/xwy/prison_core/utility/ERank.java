@@ -1,7 +1,7 @@
 package pw.xwy.prison_core.utility;
 
 public enum ERank {
-	A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Free;
+	A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
 	
 	int costToRankup;
 	String chatPrefix;
@@ -12,9 +12,6 @@ public enum ERank {
 	}
 	
 	public int getCostToRankup() {
-		if (this == Free) {
-			return -1;
-		}
 		return costToRankup;
 	}
 	
