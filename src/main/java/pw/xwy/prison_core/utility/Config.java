@@ -99,4 +99,8 @@ public class Config {
 	public String getString(String s, String a) {
 		return fc.getString(s, a);
 	}
+	
+	public boolean getBoolean(String s, boolean b) {
+		return fc.getBoolean(s, b);
+	}
 }

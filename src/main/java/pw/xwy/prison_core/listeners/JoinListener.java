@@ -12,11 +12,11 @@ import pw.xwy.prison_core.utility.Rank;
 
 public class JoinListener implements Listener {
 	public static int UniquePlayers;
-
+	
 	public JoinListener() {
 		PrisonCore.registerEvents(this);
 	}
-
+	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if (!PlayerDataManager.getPlayerData().keySet().contains(e.getPlayer().getUniqueId())) {
@@ -26,13 +26,13 @@ public class JoinListener implements Listener {
 					ConfigurationHandler.getPlayerPrestigeData().getInt("players." + e.getPlayer().getUniqueId(), 0)
 			));
 		}
-
-		if (e.getPlayer().hasPlayedBefore() == false) {
-			Bukkit.broadcastMessage("Welcome " + e.getPlayer().getName() + "to the server");
-			Bukkit.broadcastMessage(++UniquePlayers + " has joined");
-
+		
+		if (ConfigurationHandler.isUniquePlayer(e.getPlayer())) {
+			Bukkit.broadcastMessage("§7Welcome §6" + e.getPlayer().getName() + " §7to the server");
+			Bukkit.broadcastMessage("§6" + ++UniquePlayers + " §7unique players have joined");
+			ConfigurationHandler.addPlayerToUnique(e.getPlayer());
 		}
-		e.getPlayer().sendMessage("Welcome to Mudkip Prison");
+		e.getPlayer().sendMessage("§7Welcome to §6Mud§6kip §8Prison§7!");
 	}
-
+	
 }

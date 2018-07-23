@@ -25,6 +25,7 @@ public class ConfigurationHandler {
 	private static Config playerPrestigeData;
 	private static Config scoreboardConfiguration;
 	private static Config prestigeConfiguration;
+	private static Config uniquePlayersConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
@@ -35,6 +36,7 @@ public class ConfigurationHandler {
 		playerPrestigeData = new Config(core.getDataFolder(), "player-prestiges");
 		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
 		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
+		uniquePlayersConfiguration = new Config(core.getDataFolder(), "player-list");
 		loadConfig();
 	}
 	
@@ -44,6 +46,7 @@ public class ConfigurationHandler {
 		loadPlayerData();
 		loadMines();
 		loadPrestiges();
+		loadUniquePlayers();
 		new ScoreboardsManager();
 	}
 	
@@ -56,7 +59,6 @@ public class ConfigurationHandler {
 			mainConfiguration.set("General.Starting-Money", 0.0);
 			mainConfiguration.set("General.Money-Symbol", "$");
 			mainConfiguration.set("General.Max-Prestige", 20);
-			mainConfiguration.set("General.Unique-Players",0);
 			mainConfiguration.saveConfig();
 		}
 		
@@ -67,7 +69,6 @@ public class ConfigurationHandler {
 		PlayerDataManager.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
 		PlayerDataManager.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
 		RanksManager.maxPrestige = mainConfiguration.getInt("General.Max-Prestige");
-		JoinListener.UniquePlayers = mainConfiguration.getInt("General.Unique-Players");
 	}
 	
 	private void loadRankPrices() {
@@ -156,6 +157,15 @@ public class ConfigurationHandler {
 		RanksManager.usePreviousPrestigeMultipliers = prestigeConfiguration.getBoolean("Multiply-Rankup-Price-Multiplier");
 	}
 	
+	private void loadUniquePlayers() {
+		if (uniquePlayersConfiguration.getInt("ver") != 1) {
+			uniquePlayersConfiguration.set("ver", 1);
+			uniquePlayersConfiguration.set("Unique-Players", 0);
+			uniquePlayersConfiguration.saveConfig();
+		}
+		JoinListener.UniquePlayers = uniquePlayersConfiguration.getInt("Unique-Players");
+	}
+	
 	public void savePlayerData() {
 		for (PlayerData data : PlayerDataManager.getPlayerData().values()) {
 			playerBalanceData.set("players." + data.getUuid(), data.getBalance());
@@ -176,6 +186,15 @@ public class ConfigurationHandler {
 			mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
 		}
 		mineConfiguration.saveConfig();
+	}
+	
+	public static void addPlayerToUnique(Player player) {
+		uniquePlayersConfiguration.set("Players." + player.getUniqueId().toString(), true);
+		uniquePlayersConfiguration.saveConfig();
+	}
+	
+	public static boolean isUniquePlayer(Player player) {
+		return uniquePlayersConfiguration.getBoolean("Players." + player.getUniqueId().toString(), true);
 	}
 	
 	public static Config getScoreboardConfiguration() {
@@ -209,7 +228,11 @@ public class ConfigurationHandler {
 	public void onDisable() {
 		saveMines();
 		savePlayerData();
-		mainConfiguration.set("General.Unique-Players",JoinListener.UniquePlayers);
-		mainConfiguration.saveConfig();
+		savePlayers();
+	}
+	
+	public void savePlayers() {
+		uniquePlayersConfiguration.set("Unique-Players", JoinListener.UniquePlayers);
+		uniquePlayersConfiguration.saveConfig();
 	}
 }
