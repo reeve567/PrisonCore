@@ -3,29 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="82678478-9112-4d1f-aa58-630e640d614b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/JoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/JoinListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/ChatListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/DonorShopGUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/DonorShopGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/Drugslistener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/JoinListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerDataManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerDataManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PrisonCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PrisonCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/DonorShopCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/DonorShopCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/FeedCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/FeedCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/MineCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/MineCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/scoreboard/PlaceholderConversion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/scoreboard/PlaceholderConversion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ConfigurationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ConfigurationHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ERank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/MineManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/MineManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PlayerDataManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PrisonCore.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/FeedCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/commands/MineCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/ConfigurationHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/CustomItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/DiscordIntegration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Glow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$Task.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/PlayerSkull.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Rank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/RanksManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Rect3D.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-PrisonCore.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -45,24 +42,8 @@
       <file leaf-file-name="ConfigurationHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1884">
-              <caret line="86" column="92" lean-forward="true" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
-              <folding>
-                <element signature="e#7913#7914#0" expanded="true" />
-                <element signature="e#7950#7951#0" expanded="true" />
-                <element signature="e#7999#8000#0" expanded="true" />
-                <element signature="e#8030#8031#0" expanded="true" />
-                <element signature="e#8083#8084#0" expanded="true" />
-                <element signature="e#8118#8119#0" expanded="true" />
-                <element signature="e#8167#8168#0" expanded="true" />
-                <element signature="e#8198#8199#0" expanded="true" />
-                <element signature="e#8247#8248#0" expanded="true" />
-                <element signature="e#8278#8279#0" expanded="true" />
-                <element signature="e#8324#8325#0" expanded="true" />
-                <element signature="e#8352#8353#0" expanded="true" />
-                <element signature="e#8402#8403#0" expanded="true" />
-                <element signature="e#8434#8435#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="608">
+              <caret line="217" column="5" lean-forward="true" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -70,17 +51,15 @@
       <file leaf-file-name="Rank.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Rank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+            <state relative-caret-position="459">
+              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#609#610#0" expanded="true" />
-                <element signature="e#667#668#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
+                <element signature="e#610#611#0" expanded="true" />
                 <element signature="e#758#759#0" expanded="true" />
                 <element signature="e#801#802#0" expanded="true" />
                 <element signature="e#850#851#0" expanded="true" />
-                <element signature="e#892#893#0" expanded="true" />
+                <element signature="e#893#894#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,12 +68,10 @@
       <file leaf-file-name="JoinListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/JoinListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#509#510#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,12 +80,21 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
+            <state relative-caret-position="1190">
               <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
               <folding>
                 <element signature="e#2206#2207#0" expanded="true" />
-                <element signature="e#2221#2222#0" expanded="true" />
+                <element signature="e#2239#2240#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="469">
+              <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -149,7 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/menus/PickMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/menus/AxeMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/listeners/NPCClick.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/commands/player/CeMenu.java" />
@@ -199,6 +184,7 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Rank.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/JoinListener.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" />
       </list>
     </option>
@@ -247,9 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,6 +300,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,67 +415,50 @@
       <workItem from="1532193039160" duration="1051000" />
       <workItem from="1532216316793" duration="9088000" />
       <workItem from="1532277170808" duration="376000" />
+      <workItem from="1532366489154" duration="974000" />
+      <workItem from="1532397656162" duration="2293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85354000" />
+    <option name="totallyTimeSpent" value="88621000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="right" id="Maven Projects" order="3" visible="true" weight="0.08177083" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32987747" />
+      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.08177083" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18567389" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5080113" visible="true" weight="0.17083333" />
       <window_info anchor="bottom" id="Statistic" order="7" weight="0.32987747" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.4919887" side_tool="true" weight="0.21458334" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32987747" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5080113" visible="true" weight="0.17083333" />
-      <window_info id="Structure" order="1" sideWeight="0.4919887" side_tool="true" weight="0.21458334" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="8" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.18567389" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Statistic" order="7" weight="0.32987747" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32987747" />
+      <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.08177083" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5080113" visible="true" weight="0.17083333" />
+      <window_info anchor="right" id="Bean Validation" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32987747" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32987747" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -497,30 +466,30 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.37283236" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5086705" visible="true" weight="0.21458334" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.4913295" side_tool="true" weight="0.22991072" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Statistic" order="8" weight="0.32987747" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32987747" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5086705" visible="true" weight="0.21458334" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +499,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/menus/BowMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/menus/ChestMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/schedules/NightVision.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/schedules/ValorCheck.java" />
@@ -693,64 +661,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Rank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="459">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
             <element signature="e#758#759#0" expanded="true" />
             <element signature="e#801#802#0" expanded="true" />
             <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/JoinListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#509#510#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
+        <state relative-caret-position="1190">
           <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
           <folding>
             <element signature="e#2206#2207#0" expanded="true" />
-            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1884">
-          <caret line="86" column="92" lean-forward="true" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
-          <folding>
-            <element signature="e#7913#7914#0" expanded="true" />
-            <element signature="e#7950#7951#0" expanded="true" />
-            <element signature="e#7999#8000#0" expanded="true" />
-            <element signature="e#8030#8031#0" expanded="true" />
-            <element signature="e#8083#8084#0" expanded="true" />
-            <element signature="e#8118#8119#0" expanded="true" />
-            <element signature="e#8167#8168#0" expanded="true" />
-            <element signature="e#8198#8199#0" expanded="true" />
-            <element signature="e#8247#8248#0" expanded="true" />
-            <element signature="e#8278#8279#0" expanded="true" />
-            <element signature="e#8324#8325#0" expanded="true" />
-            <element signature="e#8352#8353#0" expanded="true" />
-            <element signature="e#8402#8403#0" expanded="true" />
-            <element signature="e#8434#8435#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="608">
+          <caret line="217" column="5" lean-forward="true" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
         </state>
       </provider>
     </entry>

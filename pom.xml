@@ -63,6 +63,11 @@
 			<scope>system</scope>
 			<systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>com.github.rubenlagus</groupId>
+			<artifactId>TelegramBots</artifactId>
+			<version>master-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>
