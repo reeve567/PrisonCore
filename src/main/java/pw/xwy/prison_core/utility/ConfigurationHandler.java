@@ -2,10 +2,7 @@ package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.PlayerData;
-import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.PrisonCore;
-import pw.xwy.prison_core.listeners.JoinListener;
 import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
 import java.util.ArrayList;
@@ -17,26 +14,19 @@ import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 
 public class ConfigurationHandler {
 	
+	public static HashMap<UUID, PlayerConfig> playerConfigs = new HashMap<>();
 	private static Config mainConfiguration;
 	private static Config mineConfiguration;
 	private static Config rankInfoConfiguration;
-	private static Config playerBalanceData;
-	private static Config playerRankData;
-	private static Config playerPrestigeData;
 	private static Config scoreboardConfiguration;
 	private static Config prestigeConfiguration;
-	private static Config uniquePlayersConfiguration;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
 		rankInfoConfiguration = new Config(core.getDataFolder(), "ranks");
 		mineConfiguration = new Config(core.getDataFolder(), "mines");
-		playerBalanceData = new Config(core.getDataFolder(), "player-balances");
-		playerRankData = new Config(core.getDataFolder(), "player-ranks");
-		playerPrestigeData = new Config(core.getDataFolder(), "player-prestiges");
 		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
 		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
-		uniquePlayersConfiguration = new Config(core.getDataFolder(), "player-list");
 		loadConfig();
 	}
 	
@@ -46,7 +36,6 @@ public class ConfigurationHandler {
 		loadPlayerData();
 		loadMines();
 		loadPrestiges();
-		loadUniquePlayers();
 		new ScoreboardsManager();
 	}
 	
@@ -66,8 +55,8 @@ public class ConfigurationHandler {
 		if (discordIntegration) {
 			new DiscordIntegration("System", mainConfiguration.getString("Discord-Integration.Webhook-URL"), mainConfiguration.getString("Discord-Integration.Server-Identifier")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
 		}
-		PlayerDataManager.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
-		PlayerDataManager.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
+		PlayerConfig.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
+		PlayerConfig.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
 		RanksManager.maxPrestige = mainConfiguration.getInt("General.Max-Prestige");
 	}
 	
@@ -89,39 +78,8 @@ public class ConfigurationHandler {
 	}
 	
 	public void loadPlayerData() {
-		HashMap<UUID, Double> balance = new HashMap<>();
-		HashMap<UUID, Rank> ranks = new HashMap<>();
-		HashMap<UUID, Integer> prestige = new HashMap<>();
-		
-		if (playerBalanceData.getInt("ver") != 3) {
-			playerBalanceData.set("ver", 3);
-			savePlayerData();
-		} else {
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				balance.put(p.getUniqueId(), playerBalanceData.getDouble("players." + p.getUniqueId(), PlayerDataManager.startingMoney));
-			}
-		}
-		
-		if (playerRankData.getInt("ver") != 7) {
-			playerRankData.set("ver", 7);
-			savePlayerData();
-		} else {
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				ranks.put(p.getUniqueId(), Rank.valueOf(playerRankData.getString("players." + p.getUniqueId(), "A")));
-			}
-		}
-		
-		if (playerPrestigeData.getInt("ver") != 5) {
-			playerPrestigeData.set("ver", 5);
-			savePlayerData();
-		} else {
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				prestige.put(p.getUniqueId(), playerPrestigeData.getInt("players." + p.getUniqueId(), 0));
-			}
-		}
-		
-		for (UUID uuid : balance.keySet()) {
-			PlayerDataManager.addPlayerData(uuid, new PlayerData(uuid, balance.get(uuid), ranks.get(uuid), prestige.get(uuid)));
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			playerConfigs.put(p.getUniqueId(), new PlayerConfig(p.getUniqueId()));
 		}
 	}
 	
@@ -157,26 +115,6 @@ public class ConfigurationHandler {
 		RanksManager.usePreviousPrestigeMultipliers = prestigeConfiguration.getBoolean("Multiply-Rankup-Price-Multiplier");
 	}
 	
-	private void loadUniquePlayers() {
-		if (uniquePlayersConfiguration.getInt("ver") != 1) {
-			uniquePlayersConfiguration.set("ver", 1);
-			uniquePlayersConfiguration.set("Unique-Players", 0);
-			uniquePlayersConfiguration.saveConfig();
-		}
-		JoinListener.UniquePlayers = uniquePlayersConfiguration.getInt("Unique-Players");
-	}
-	
-	public void savePlayerData() {
-		for (PlayerData data : PlayerDataManager.getPlayerData().values()) {
-			playerBalanceData.set("players." + data.getUuid(), data.getBalance());
-			playerRankData.set("players." + data.getUuid(), data.getRank().toString());
-			playerPrestigeData.set("players." + data.getUuid(), data.getPrestige());
-		}
-		playerBalanceData.saveConfig();
-		playerRankData.saveConfig();
-		playerPrestigeData.saveConfig();
-	}
-	
 	public void saveMines() {
 		for (Rank rank : Rank.values()) {
 			Mine mine = MineManager.mines.get(rank);
@@ -188,13 +126,8 @@ public class ConfigurationHandler {
 		mineConfiguration.saveConfig();
 	}
 	
-	public static void addPlayerToUnique(Player player) {
-		uniquePlayersConfiguration.set("Players." + player.getUniqueId().toString(), true);
-		uniquePlayersConfiguration.saveConfig();
-	}
-	
 	public static boolean isUniquePlayer(Player player) {
-		return uniquePlayersConfiguration.getBoolean("Players." + player.getUniqueId().toString(), true);
+		return playerConfigs.get(player.getUniqueId()).isFirstJoin();
 	}
 	
 	public static Config getScoreboardConfiguration() {
@@ -213,26 +146,21 @@ public class ConfigurationHandler {
 		return mineConfiguration;
 	}
 	
-	public static Config getPlayerBalanceData() {
-		return playerBalanceData;
-	}
-	
-	public static Config getPlayerRankData() {
-		return playerRankData;
-	}
-	
-	public static Config getPlayerPrestigeData() {
-		return playerPrestigeData;
+	public static void unloadPlayer(UUID id) {
+		playerConfigs.get(id).saveData();
+		playerConfigs.remove(id);
 	}
 	
 	public void onDisable() {
 		saveMines();
 		savePlayerData();
-		savePlayers();
 	}
 	
-	public void savePlayers() {
-		uniquePlayersConfiguration.set("Unique-Players", JoinListener.UniquePlayers);
-		uniquePlayersConfiguration.saveConfig();
+	public void savePlayerData() {
+		for (UUID id : playerConfigs.keySet()) {
+			PlayerConfig config = playerConfigs.get(id);
+			config.saveData();
+		}
 	}
+	
 }

@@ -7,9 +7,11 @@ pw\xwy\prison_core\custom_enchants\schedules\crates\RewardPlayer.class
 pw\xwy\prison_core\scoreboard\ScoreboardTask.class
 pw\xwy\prison_core\utility\MineManager.class
 pw\xwy\prison_core\custom_enchants\listeners\CEListenerHandler.class
+pw\xwy\prison_core\listeners\LeaveListener.class
 pw\xwy\prison_core\utility\TimeFormatting$Time.class
 pw\xwy\prison_core\custom_enchants\enums\CEnchant.class
 pw\xwy\prison_core\custom_enchants\enums\CustomEnchant$1.class
+pw\xwy\prison_core\utility\PlayerConfig.class
 pw\xwy\prison_core\custom_enchants\listeners\BowListener.class
 pw\xwy\prison_core\listeners\JoinListener.class
 pw\xwy\prison_core\commands\RankupCommand.class
@@ -98,7 +100,6 @@ pw\xwy\prison_core\utility\Glow.class
 pw\xwy\prison_core\custom_enchants\schedules\crates\HydroCrate.class
 pw\xwy\prison_core\custom_enchants\schedules\Speed.class
 pw\xwy\prison_core\custom_enchants\utilities\CratesUtility.class
-pw\xwy\prison_core\PlayerDataManager.class
 pw\xwy\prison_core\custom_enchants\enums\ChangeLog.class
 pw\xwy\prison_core\commands\MineCommand.class
 pw\xwy\prison_core\custom_enchants\enums\Messages.class

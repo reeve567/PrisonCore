@@ -18,13 +18,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.prison_core.PlayerDataManager;
 import pw.xwy.prison_core.custom_enchants.enums.CEnchant;
 import pw.xwy.prison_core.custom_enchants.enums.Messages;
 import pw.xwy.prison_core.custom_enchants.enums.Rarity;
 import pw.xwy.prison_core.custom_enchants.enums.Souls;
 import pw.xwy.prison_core.custom_enchants.listeners.EnchantDrop;
 import pw.xwy.prison_core.custom_enchants.utilities.MainUtility;
+import pw.xwy.prison_core.utility.ConfigurationHandler;
 
 import java.util.ArrayList;
 
@@ -38,10 +38,6 @@ public class RewardPlayer extends BukkitRunnable {
 		this.inv = inv;
 		this.p = p;
 		this.soul = soul;
-	}
-	
-	public void depositPlayer(Player player, double amount) {
-		PlayerDataManager.getPlayerData(player.getUniqueId()).addBalance(amount);
 	}
 	
 	@Override
@@ -273,5 +269,10 @@ public class RewardPlayer extends BukkitRunnable {
 				
 			}
 		}
+	}
+	
+	public void depositPlayer(Player player, double amount) {
+		
+		ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(amount);
 	}
 }

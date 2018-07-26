@@ -3,14 +3,14 @@ package pw.xwy.prison_core.scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PlayerData;
-import pw.xwy.prison_core.PlayerDataManager;
+import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.Rank;
 import pw.xwy.prison_core.utility.ReadableNumbers;
 
 public class PlaceholderConversion {
 	
 	public static String convert(Player p, String s) {
-		PlayerData data = PlayerDataManager.getPlayerData(p.getUniqueId());
+		PlayerData data = ConfigurationHandler.playerConfigs.get(p.getUniqueId()).getData();
 		s = s.replaceAll("<players-online>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		s = s.replaceAll("<player-username>", p.getName());
 		s = s.replaceAll("<player-displayname>", p.getDisplayName());

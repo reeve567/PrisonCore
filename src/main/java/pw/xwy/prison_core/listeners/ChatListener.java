@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pw.xwy.prison_core.PlayerData;
-import pw.xwy.prison_core.PlayerDataManager;
+import pw.xwy.prison_core.utility.ConfigurationHandler;
 
 public class ChatListener implements Listener {
 	
@@ -21,7 +21,7 @@ public class ChatListener implements Listener {
 		} else if (message.contains("what") && message.contains("billy")) {
 			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins");
 		} else {
-			PlayerData data = PlayerDataManager.getPlayerData(e.getPlayer().getUniqueId());
+			PlayerData data = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
 			Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&',data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 		}
 	}

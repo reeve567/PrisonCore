@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PlayerData;
-import pw.xwy.prison_core.PlayerDataManager;
+import pw.xwy.prison_core.utility.ConfigurationHandler;
 
 public class RankupCommand implements CommandExecutor {
 	
@@ -20,7 +20,7 @@ public class RankupCommand implements CommandExecutor {
 			if (commandSender instanceof Player) {
 				Player player = (Player) commandSender;
 				
-				PlayerData data = PlayerDataManager.getPlayerData(player.getUniqueId());
+				PlayerData data = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
 				if (data.canPrestige()) {
 					data.prestige();
 					player.sendMessage("prestiged");
