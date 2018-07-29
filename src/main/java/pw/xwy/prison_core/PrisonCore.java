@@ -11,7 +11,9 @@ import pw.xwy.prison_core.commands.*;
 import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
 import pw.xwy.prison_core.listeners.*;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
+import pw.xwy.prison_core.utility.DiscordIntegration;
 import pw.xwy.prison_core.utility.MineManager;
+import pw.xwy.prison_core.utility.TelegramIntegration;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +29,12 @@ public class PrisonCore extends JavaPlugin {
 	public static void log(String message) {
 		logger.log(Level.INFO, message);
 		//add discord message stuff
+		if (discordIntegration) {
+			DiscordIntegration.messages.add(message);
+		}
+		if (telegramIntegration) {
+			TelegramIntegration.messages.add(message);
+		}
 	}
 	
 	@Override
@@ -58,6 +66,7 @@ public class PrisonCore extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		registerEvents(new DrugsListener());
 		registerEvents(new DonorShopGUI(null));
+		registerEvents(new KitGUI(null));
 		registerEvents(new LeaveListener());
 		
 		new CustomEnchantsHandler().onEnable();

@@ -2,30 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82678478-9112-4d1f-aa58-630e640d614b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/KitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TelegramIntegration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TimeFormatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TimeFormatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore-RELEASE-shaded.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PrisonCore.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PrisonCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/PrisonCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/Mine$Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/listeners/KitGUI$Slot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/listeners/KitGUI$Slot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/listeners/KitGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/listeners/KitGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/CustomItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/CustomItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/PlayerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/PlayerConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/TimeFormatting$Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/TimeFormatting$Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/TimeFormatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pw/xwy/prison_core/utility/TimeFormatting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-PrisonCore.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-PrisonCore.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -42,7 +31,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConfigurationHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConfigurationHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -64,6 +53,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="PlayerConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2126#2127#0" expanded="true" />
+                <element signature="e#2146#2147#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,29 +79,53 @@
       <file leaf-file-name="PrisonCore.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+            <state relative-caret-position="884">
+              <caret line="71" column="4" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TelegramIntegration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TelegramIntegration.java">
+      <file leaf-file-name="DonorShopGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DonorShopGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+            <state relative-caret-position="544">
+              <caret line="50" column="58" lean-forward="true" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KitGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="111" column="12" lean-forward="true" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2658#2659#0" expanded="true" />
+                <element signature="e#2696#2697#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DiscordIntegration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/DiscordIntegration.java">
+      <file leaf-file-name="CustomItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomItem.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+              <folding>
+                <element signature="e#382#383#0" expanded="true" />
+                <element signature="e#404#405#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomEnchant.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -139,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/schedules/crates/HydroCrate.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/listeners/JoinListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/soulcrates/MysticalSC.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/menus/MainMenu.java" />
@@ -158,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/Vault.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/DonorShopCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CEnchant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/CustomEnchantsHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/DonorShopGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ERank.java" />
@@ -180,16 +205,18 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/BalanceCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/scoreboard/PlaceholderConversion.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DonorShopGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TimeFormatting.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/KitCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TelegramIntegration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ConfigurationHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java" />
       </list>
     </option>
   </component>
@@ -276,6 +303,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="prison_core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
+              <item name="listeners" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
@@ -435,12 +471,12 @@
       <workItem from="1532366489154" duration="974000" />
       <workItem from="1532397656162" duration="2293000" />
       <workItem from="1532617555885" duration="11121000" />
-      <workItem from="1532796208095" duration="4688000" />
+      <workItem from="1532796208095" duration="6641000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104430000" />
+    <option name="totallyTimeSpent" value="106383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -466,6 +502,7 @@
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.18567389" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5080113" visible="true" weight="0.17083333" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32987747" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Spring" order="8" />
@@ -476,7 +513,6 @@
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32987747" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -522,7 +558,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/listeners/HitListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/listeners/CEListenerHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/schedules/HeartCheck.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/schedules/JumpBoost.java" />
@@ -562,13 +597,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/DonorShopCommand.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="130" column="30" selection-start-line="130" selection-start-column="30" selection-end-line="130" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/Rarity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -710,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DonorShopGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="66" column="43" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Mine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -743,18 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="71" column="40" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2696#2697#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -764,16 +773,6 @@
             <element signature="e#2239#2240#0" expanded="true" />
             <element signature="e#2282#2283#0" expanded="true" />
             <element signature="e#2312#2313#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -802,13 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/TelegramIntegration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -816,6 +808,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DonorShopGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="50" column="58" lean-forward="true" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -827,6 +826,55 @@
             <element signature="e#5482#5483#0" expanded="true" />
             <element signature="e#5549#5550#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/PrisonCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="71" column="4" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding>
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/KitGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="111" column="12" lean-forward="true" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2658#2659#0" expanded="true" />
+            <element signature="e#2696#2697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/PlayerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2126#2127#0" expanded="true" />
+            <element signature="e#2146#2147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/enums/CustomEnchant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
         </state>
       </provider>
     </entry>

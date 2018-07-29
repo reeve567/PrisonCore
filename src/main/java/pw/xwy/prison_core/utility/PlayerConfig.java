@@ -71,8 +71,12 @@ public class PlayerConfig extends Config {
 		return lastUsed.get(s);
 	}
 	
+	public void setLastUsed(String s) {
+		lastUsed.put(s, new Date());
+	}
+	
 	public void saveData() {
-		set("prison-data.rank", data.getRank());
+		set("prison-data.rank", data.getRank().toString());
 		set("prison-data.prestige", data.getPrestige());
 		set("general-data.balance", data.getBalance());
 		saveConfig();

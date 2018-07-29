@@ -35,6 +35,11 @@ public class CustomItem extends ItemStack {
 		setItemMeta(meta);
 	}
 	
+	public CustomItem addEnchant(Enchantment enchantment, int level) {
+		addUnsafeEnchantment(enchantment, level);
+		return this;
+	}
+	
 	public CustomItem setCustomAmount(int amount) {
 		setAmount(amount);
 		return this;

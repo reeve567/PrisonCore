@@ -2,9 +2,13 @@ package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.custom_enchants.utilities.InventoryUtility;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.CustomItem;
@@ -68,13 +72,52 @@ public class KitGUI implements Listener {
 		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
 	}
 	
-	public void openInventory() {
-		player.openInventory(inventory);
-	}
-	
 	private boolean isIn24Hours(Date date) {
 		Instant now = Instant.now();
 		return (!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now));
+	}
+	
+	@EventHandler
+	public void onClick(InventoryClickEvent e) {
+		if (!e.getInventory().getTitle().equalsIgnoreCase("§6Kits")) {
+			return;
+		}
+		if (e.getRawSlot() == -1 || !(e.getRawSlot() < 45)) {
+			return;
+		}
+		
+		e.setCancelled(true);
+		
+		ArrayList<ItemStack> stacks = new ArrayList<>();
+		
+		if (e.getCurrentItem() == null || e.getCurrentItem().getDurability() == 14) {
+			return;
+		}
+		Player player = (Player) e.getWhoClicked();
+		PlayerConfig config = ConfigurationHandler.playerConfigs.get(player.getUniqueId());
+		
+		switch (e.getRawSlot()) {
+			case 10:
+				//god tools
+				config.setLastUsed("god-tools");
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.SILK_TOUCH, 1));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.SILK_TOUCH, 1));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.SILK_TOUCH, 1));
+				break;
+		}
+		player.getInventory().addItem(stacks.toArray(new ItemStack[0]));
+		player.closeInventory();
+		new KitGUI(player).openInventory();
+	}
+	
+	public void openInventory() {
+		player.openInventory(inventory);
 	}
 	
 	private class Slot {

@@ -130,8 +130,6 @@ public class CustomEnchant {
 				mystical.add(enchant);
 			} else if (getRarity() == Rarity.HYDRO) {
 				hydro.add(enchant);
-			} else {
-				System.out.println(getName() + " -- " + getRarity());
 			}
 		}
 	}
@@ -154,7 +152,6 @@ public class CustomEnchant {
 	
 	public void setCustomStuff(Config config) {
 		String base = "CustomEnchants." + realName + ".";
-		System.out.println(base);
 		name = config.getString(base + "name");
 		rarity = Rarity.valueOf(config.getString(base + "rarity"));
 		commandLabel = config.getString(base + "commandLabel");
