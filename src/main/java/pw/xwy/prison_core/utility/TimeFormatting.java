@@ -1,5 +1,7 @@
 package pw.xwy.prison_core.utility;
 
+import java.util.Date;
+
 public class TimeFormatting {
 	
 	public static Time getTime(int seconds) {
@@ -10,8 +12,11 @@ public class TimeFormatting {
 		return "§l" + time.getMinutes() + "m " + time.getSeconds() + "s";
 	}
 	
+	public static String kitFormat(Time time) {
+		return "§7" + time.getHours() + "§fh §7" + time.getMinutes() + "§fm";
+	}
 	
-	static class Time {
+	public static class Time {
 		private int hours;
 		private int minutes;
 		private int seconds;

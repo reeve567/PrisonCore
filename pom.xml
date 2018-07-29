@@ -25,7 +25,6 @@
 				<version>3.1.0</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
 						</goals>
@@ -53,7 +52,7 @@
 		<dependency>
 			<groupId>com.github.MrPowerGamerBR</groupId>
 			<artifactId>TemmieWebhook</artifactId>
-			<version>-59de40c3b6-1</version>
+			<version>master-59de40c3b6-1</version>
 		</dependency>
 		<dependency>
 			<groupId>net.citizensnpcs</groupId>
@@ -64,9 +63,9 @@
 			<systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
 		</dependency>
 		<dependency>
-			<groupId>com.github.rubenlagus</groupId>
-			<artifactId>TelegramBots</artifactId>
-			<version>master-SNAPSHOT</version>
+			<groupId>com.github.pengrad</groupId>
+			<artifactId>java-telegram-bot-api</artifactId>
+			<version>3.6.0</version>
 		</dependency>
 	</dependencies>
 

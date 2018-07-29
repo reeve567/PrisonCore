@@ -17,3 +17,4 @@ commands:
     aliases: [donorshop]
   rankup:
     aliases: [ru]
+  kit:

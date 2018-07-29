@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class PrisonCore extends JavaPlugin {
 	
 	public static boolean discordIntegration = false;
+	public static boolean telegramIntegration = false;
 	private static Logger logger;
 	private static PrisonCore instance;
 	private ConfigurationHandler configurationHandler;
@@ -40,6 +41,8 @@ public class PrisonCore extends JavaPlugin {
 			BalanceCommand.run((Player) sender, args);
 		} else if (command.getLabel().equalsIgnoreCase("ds")) {
 			DonorShopCommand.run((Player) sender);
+		} else if (command.getLabel().equalsIgnoreCase("kit")) {
+			KitCommand.run((Player) sender, args);
 		}
 		return false;
 	}

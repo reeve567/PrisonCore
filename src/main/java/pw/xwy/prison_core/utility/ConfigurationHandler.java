@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
+import static pw.xwy.prison_core.PrisonCore.telegramIntegration;
 
 public class ConfigurationHandler {
 	
@@ -40,11 +41,14 @@ public class ConfigurationHandler {
 	}
 	
 	private void loadMain() {
-		if (mainConfiguration.getInt("ver") != 1) {
-			mainConfiguration.set("ver", 1);
+		if (mainConfiguration.getInt("ver") != 2) {
+			mainConfiguration.set("ver", 2);
 			mainConfiguration.setComment("Discord-Integration", "This is for logging everything to do with the plugin to discord, if enabled.", "The webhook url you get from being an admin on a discord channel and right clicking on the text channel.", "Server identifier isn't anything special, it's purely cosmetic.");
 			mainConfiguration.set("Discord-Integration.Enabled", false);
 			mainConfiguration.set("Discord-Integration.Webhook-URL", "discord webhook url here");
+			mainConfiguration.set("Telegram-Integration.Enabled", false);
+			mainConfiguration.set("Telegram-Integration.Bot-ID", "");
+			mainConfiguration.set("Telegram-Integration.Chat-ID", "");
 			mainConfiguration.set("General.Starting-Money", 0.0);
 			mainConfiguration.set("General.Money-Symbol", "$");
 			mainConfiguration.set("General.Max-Prestige", 20);
@@ -54,6 +58,11 @@ public class ConfigurationHandler {
 		discordIntegration = mainConfiguration.getBoolean("Discord-Integration.Enabled");
 		if (discordIntegration) {
 			new DiscordIntegration("System", mainConfiguration.getString("Discord-Integration.Webhook-URL"), mainConfiguration.getString("Discord-Integration.Server-Identifier")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
+		}
+		telegramIntegration = mainConfiguration.getBoolean("Telegram-Integration.Enabled");
+		if (telegramIntegration) {
+			new TelegramIntegration(mainConfiguration.getString("Telegram-Integration.Bot-ID"), mainConfiguration.getString("Telegram-Integration.Chat-ID")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
+			TelegramIntegration.messages.add("Integration Enabled!");
 		}
 		PlayerConfig.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
 		PlayerConfig.startingMoney = mainConfiguration.getDouble("General.Starting-Money");

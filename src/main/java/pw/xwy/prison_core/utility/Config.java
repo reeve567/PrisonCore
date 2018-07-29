@@ -103,4 +103,12 @@ public class Config {
 	public boolean getBoolean(String s, boolean b) {
 		return fc.getBoolean(s, b);
 	}
+	
+	public long getLong(String s, long l) {
+		return fc.getLong(s, l);
+	}
+	
+	public long getLong(String s) {
+		return fc.getLong(s);
+	}
 }
