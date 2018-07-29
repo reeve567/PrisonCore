@@ -18,6 +18,7 @@ import pw.xwy.prison_core.utility.TimeFormatting;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -43,8 +44,8 @@ public class KitGUI implements Listener {
 			items.add(new Slot(14, 10, "§6PvP", names[2]));
 			items.add(new Slot(16, 10, "§6Guppy", names[3]));
 			items.add(new Slot(28, 1, "§6Mudkip", names[4]));
-			items.add(new Slot(30, 3, "§6Shark", names[5]));
-			items.add(new Slot(32, 11, "§6Whale", names[6]));
+			items.add(new Slot(30, 11, "§6Shark", names[5]));
+			items.add(new Slot(32, 3, "§6Whale", names[6]));
 			items.add(new Slot(34, 6, "§6Jellyfish", names[7]));
 			
 			for (Slot s : items) {
@@ -55,14 +56,14 @@ public class KitGUI implements Listener {
 						if (s.ready) {
 							s.lore = ready;
 						} else {
-							s.lore = "§7You do not have this kit for another\n" + TimeFormatting.kitFormat(TimeFormatting.getTime((int) getDateDiff(data.getLastUsed(s.mapName), new Date(), TimeUnit.SECONDS)));
+							s.lore = "§7You do not have this kit for another++" + TimeFormatting.kitFormat(TimeFormatting.getTime((int) getDateDiff(data.getLastUsed(s.mapName), new Date(), TimeUnit.SECONDS)));
 						}
 					}
 				} else {
 					s.durability = 14;
-					s.lore = "§7No permission ot use this kit!";
+					s.lore = "§7No permission to use this kit!";
 				}
-				inventory.setItem(s.slotNumber, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(s.durability).setName(s.name).setLore(s.lore));
+				inventory.setItem(s.slotNumber, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(s.durability).setName(s.name).setLore(conv(s.lore)));
 			}
 		}
 	}
@@ -70,6 +71,17 @@ public class KitGUI implements Listener {
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
 		long diffInMillies = date2.getTime() - date1.getTime();
 		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+	}
+	
+	private ArrayList<String> conv(String desc) {
+		if (!desc.contains("++")) {
+			return new ArrayList<>(Arrays.asList(desc));
+		}
+		ArrayList<String> de = new ArrayList<>();
+		while (desc.contains("++")) {
+			desc = desc.replace(desc.substring(0, desc.indexOf("++") + 2), "");
+		}
+		return de;
 	}
 	
 	private boolean isIn24Hours(Date date) {
@@ -156,7 +168,7 @@ public class KitGUI implements Listener {
 				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).addEnchant(Enchantment.DURABILITY, 2).setName("§6Mud§bKip §7Boots"));
 				
 				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 4).addEnchant(Enchantment.DURABILITY, 2));
-				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 4  ).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 4).addEnchant(Enchantment.DURABILITY, 2));
 				stacks.add(new CustomItem(Material.ARROW).setCustomAmount(64));
 				
 				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2));
@@ -164,7 +176,7 @@ public class KitGUI implements Listener {
 				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2));
 				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(4));
 				break;
-				
+			
 			case 30:
 				config.setLastUsed("shark");
 				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Helmet"));
@@ -173,15 +185,64 @@ public class KitGUI implements Listener {
 				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Boots"));
 				
 				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3));
-				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5  ).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE,1));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE, 1));
 				stacks.add(new CustomItem(Material.ARROW));
+				
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
 				
 				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
 				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
 				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
 				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(12));
 				break;
+			case 32:
+				config.setLastUsed("whale");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§9Whale §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§9Whale §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§9Whale §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§9Whale §7Boots"));
 				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE, 1));
+				stacks.add(new CustomItem(Material.ARROW));
+				
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(24));
+				break;
+			case 34:
+				config.setLastUsed("jellyfish");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Boots"));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§d§lJellyfish §7Boots"));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE, 1));
+				stacks.add(new CustomItem(Material.ARROW));
+				
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				stacks.add(new CustomItem(Material.EXP_BOTTLE).setCustomAmount(64));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(48));
+				break;
 		}
 		player.getInventory().addItem(stacks.toArray(new ItemStack[0]));
 		player.closeInventory();

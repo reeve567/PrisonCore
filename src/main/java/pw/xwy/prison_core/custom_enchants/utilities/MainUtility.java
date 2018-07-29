@@ -29,8 +29,8 @@ public class MainUtility {
 		List<String> desc = new ArrayList<>();
 		if (perfect) {
 			desc.add("");
-			desc.add("§aSuccess: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(50, 100)));
-			desc.add("§cDestroy: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(0, 100)));
+			desc.add("§aSuccess: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(75, 100)));
+			desc.add("§cDestroy: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(0, 25)));
 			desc.add("");
 		} else {
 			desc.add("");
@@ -49,7 +49,7 @@ public class MainUtility {
 					desc.add("");
 					desc.add(CEnchant.XWY.getRarity().getLabel());
 					desc.add("");
-					desc.add(CEnchant.XWY.getLoreLbl());
+					desc.add("§fBoots");
 					return getItem(CEnchant.XWY.getName(), desc);
 				}
 				desc.add(e.getRarity().getLabel());

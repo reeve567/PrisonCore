@@ -38,7 +38,7 @@ public class CustomEnchant {
 		this.name = name;
 		this.sets = itemSets;
 		this.rarity = rarity;
-		this.commandLabel = name.substring(2);
+		this.commandLabel = name;
 		this.loreLabel = itemSets.getName();
 		this.amount = itemSets.getAmount();
 	}
@@ -87,17 +87,11 @@ public class CustomEnchant {
 		return loreLabel;
 	}
 	
-	public void setLoreLabel(String loreLabel) {
-		this.loreLabel = loreLabel;
-	}
 	
 	public String getCommandLabel() {
 		return commandLabel;
 	}
 	
-	public void setCommandLabel(String commandLabel) {
-		this.commandLabel = commandLabel;
-	}
 	
 	public int getAmount() {
 		return amount;
@@ -142,7 +136,7 @@ public class CustomEnchant {
 	}
 	
 	public String getName() {
-		return name;
+		return rarity.getColor() + name;
 	}
 	
 	public void setName(String name) {

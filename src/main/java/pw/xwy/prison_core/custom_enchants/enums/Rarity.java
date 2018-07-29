@@ -12,20 +12,26 @@ package pw.xwy.prison_core.custom_enchants.enums;
 import org.bukkit.ChatColor;
 
 public enum Rarity {
-	COMMON(ChatColor.GREEN + "Common"),
-	UNCOMMON(ChatColor.DARK_GREEN + "Uncommon"),
-	RARE(ChatColor.BLUE + "Rare"),
-	MYSTICAL(ChatColor.DARK_PURPLE + "Mystical"),
-	HYDRO(ChatColor.GOLD + "Hermes"),
-	ADMIN(ChatColor.AQUA + "Admin");
+	COMMON(ChatColor.GREEN, "Common"),
+	UNCOMMON(ChatColor.DARK_GREEN, "Uncommon"),
+	RARE(ChatColor.BLUE, "Rare"),
+	MYSTICAL(ChatColor.DARK_PURPLE, "Mystical"),
+	HYDRO(ChatColor.GOLD, "Legendary"),
+	ADMIN(ChatColor.AQUA, "Admin");
 	
 	private final String label;
+	private final ChatColor color;
 	
-	Rarity(String label) {
+	Rarity(ChatColor color, String label) {
+		this.color = color;
 		this.label = label;
 	}
 	
 	public String getLabel() {
-		return label;
+		return color + label;
+	}
+	
+	public ChatColor getColor() {
+		return color;
 	}
 }

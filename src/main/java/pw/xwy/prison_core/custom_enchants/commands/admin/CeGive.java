@@ -28,37 +28,55 @@ public class CeGive {
 	public void run(CommandSender sender, String[] args) {
 		if (sender.hasPermission("ce.admin") || sender.getName().equalsIgnoreCase("Xwy")) {
 			if (args.length >= 3) {
-				Player target = null;
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					if (p.getName().equalsIgnoreCase(args[2])) {
-						target = p;
-					}
-				}
-				if (target != null) {
+				if (args[2].equalsIgnoreCase("true")) {
+					
 					boolean found = false;
 					
 					for (CEnchant e : CEnchant.values()) {
 						if (cmdCheck(e.getLabel(), args[1])) {
 							found = true;
-							target.getInventory().addItem(bookGive(args[1], false));
-							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + e.getName() + ChatColor.GRAY + " to " +
-									ChatColor.RED + target.getName());
-						}
-					}
-					for (Souls s : Souls.values()) {
-						if (cmdCheck(s.getCommandLabel(), args[1])) {
-							found = true;
-							target.getInventory().addItem(s.getItem());
-							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
-									ChatColor.RED + target.getName());
+							((Player) sender).getInventory().addItem(bookGive(args[1], true));
+							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + e.getName());
+							break;
 						}
 					}
 					
 					if (!found) {
-						sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment: " + args[1]);
+						sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/key: " + args[1]);
 					}
-				} else
-					sender.sendMessage(ChatColor.RED + "Player " + ChatColor.AQUA + args[2] + " not found.");
+				} else {
+					Player target = null;
+					for (Player p : Bukkit.getOnlinePlayers()) {
+						if (p.getName().equalsIgnoreCase(args[2])) {
+							target = p;
+						}
+					}
+					if (target != null) {
+						boolean found = false;
+						
+						for (CEnchant e : CEnchant.values()) {
+							if (cmdCheck(e.getLabel(), args[1])) {
+								found = true;
+								target.getInventory().addItem(bookGive(args[1], false));
+								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + e.getName() + ChatColor.GRAY + " to " +
+										ChatColor.RED + target.getName());
+							}
+						}
+						for (Souls s : Souls.values()) {
+							if (cmdCheck(s.getCommandLabel(), args[1])) {
+								found = true;
+								target.getInventory().addItem(s.getItem());
+								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
+										ChatColor.RED + target.getName());
+							}
+						}
+						
+						if (!found) {
+							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment: " + args[1]);
+						}
+					} else
+						sender.sendMessage(ChatColor.RED + "Player " + ChatColor.AQUA + args[2] + " not found.");
+				}
 			} else if (args.length == 2) {
 				if (sender instanceof Player) {
 					boolean found = false;

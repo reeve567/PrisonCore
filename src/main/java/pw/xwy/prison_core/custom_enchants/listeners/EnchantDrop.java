@@ -46,7 +46,7 @@ public class EnchantDrop implements Listener {
 					inventory.getType().equals(InventoryType.CREATIVE)) {
 				if (itemOnCursor.getType().equals(Material.BOOK)) {
 					
-					int ret = canEnchantWithBook(itemOnCursor, itemInteractedWith, player);
+					int ret = canEnchantWithBook(itemOnCursor, itemInteractedWith);
 					
 					if (ret == 1) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
@@ -79,10 +79,10 @@ public class EnchantDrop implements Listener {
 		}
 	}
 	
-	private int canEnchantWithBook(ItemStack enchantmentBook, ItemStack itemToEnchant, Player player) {
+	private int canEnchantWithBook(ItemStack enchantmentBook, ItemStack itemToEnchant) {
 		
 		if (itemToEnchant.getItemMeta().hasLore()) {
-			if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType(), player)) {
+			if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType())) {
 				
 				
 				if (enchantmentBook.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.FORTUNEV.getName())) {
@@ -148,7 +148,7 @@ public class EnchantDrop implements Listener {
 					}
 				}
 			}
-		} else if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType(), player)) {
+		} else if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType())) {
 			return 1;
 		}
 		return 0;
@@ -268,7 +268,7 @@ public class EnchantDrop implements Listener {
 		
 	}
 	
-	private boolean checkCan(String name, Material type, Player player) {
+	private boolean checkCan(String name, Material type) {
 		
 		if (name != null) {
 			
@@ -301,7 +301,6 @@ public class EnchantDrop implements Listener {
 						lore.add(itemOnCursor.getItemMeta().getDisplayName());
 						meta.setLore(lore);
 						iTW.setItemMeta(meta);
-						iTW.addUnsafeEnchantment(Enchantment.getByName("Glow"), 1);
 						return true;
 					} else {
 						List<String> lore = new ArrayList<>();
@@ -309,7 +308,6 @@ public class EnchantDrop implements Listener {
 						lore.add(itemOnCursor.getItemMeta().getDisplayName());
 						meta.setLore(lore);
 						iTW.setItemMeta(meta);
-						iTW.addUnsafeEnchantment(Enchantment.getByName("Glow"), 1);
 						return true;
 					}
 				}

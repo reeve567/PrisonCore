@@ -36,7 +36,7 @@ public class ConversionMenu implements Listener {
 		inventory.setItem(11, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(13).setName(ChatColor.GREEN + "Convert 25 levels into an enchant").setLore("&7Uncommon"));
 		inventory.setItem(13, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(11).setName(ChatColor.BLUE + "Convert 35 levels into an enchant").setLore("&7Rare"));
 		inventory.setItem(15, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(10).setName(ChatColor.DARK_PURPLE + "Convert 45 levels into an enchant").setLore("&7Mystical"));
-		inventory.setItem(17, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(1).setName(ChatColor.GOLD + "Convert 50 levels into an enchant").setLore("&7Hermes"));
+		inventory.setItem(17, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(1).setName(ChatColor.GOLD + "Convert 50 levels into an enchant").setLore("&7Legendary"));
 	}
 	
 	@EventHandler

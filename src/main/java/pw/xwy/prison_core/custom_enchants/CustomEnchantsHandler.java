@@ -51,7 +51,6 @@ public class CustomEnchantsHandler {
 		listnerHandler.Init();
 		loadCrates();
 		startTasks();
-		loadMenus();
 		Config config = new Config(PrisonCore.getInstance().getDataFolder(), "custom-enchants");
 		int ce = 0;
 		
@@ -68,15 +67,16 @@ public class CustomEnchantsHandler {
 		if (config.getInt("ver") != 1) {
 			newf = true;
 			config.set("ver", 1);
+			config.saveConfig();
 		}
 		for (CEnchant c : CEnchant.values()) {
 			
 			
 			if (newf) {
 				c.customEnchant.saveDefault(config);
-			} else {
-				c.getCustomStuff(config);
 			}
+			c.getCustomStuff(config);
+			
 			
 			if (c.isEnabled() && c.getAmount() > 0) {
 				ce += c.getAmount();
@@ -110,7 +110,7 @@ public class CustomEnchantsHandler {
 				}
 			}
 		}
-		
+		loadMenus();
 		Bukkit.getPluginManager().registerEvents(new ConversionMenu(), PrisonCore.getInstance());
 	}
 	
@@ -123,10 +123,11 @@ public class CustomEnchantsHandler {
 			e.printStackTrace();
 		}
 		try {
-			if (Enchantment.getByName("Glow") != null) {
-				Glow glow = new Glow(99);
-				Enchantment.registerEnchantment(glow);
-			}
+			if (Enchantment.isAcceptingRegistrations())
+				if (Enchantment.getByName("Glow") != null) {
+					Glow glow = new Glow(99);
+					Enchantment.registerEnchantment(glow);
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
