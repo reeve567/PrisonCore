@@ -3,9 +3,9 @@ package pw.xwy.prison_core.commands;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.Rank;
 import pw.xwy.prison_core.utility.Mine;
 import pw.xwy.prison_core.utility.MineManager;
+import pw.xwy.prison_core.utility.Rank;
 
 public class MineCommand {
 	

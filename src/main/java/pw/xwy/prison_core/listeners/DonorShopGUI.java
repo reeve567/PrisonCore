@@ -52,7 +52,8 @@ public class DonorShopGUI implements Listener {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null) {
 				Player player = (Player) e.getWhoClicked();
-				PlayerData data = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();;
+				PlayerData data = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
+				;
 				
 				switch (e.getCurrentItem().getType()) {
 					case GLOWSTONE_DUST:

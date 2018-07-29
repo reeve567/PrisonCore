@@ -5,8 +5,7 @@ import org.bukkit.inventory.Inventory;
 
 public class Vault {
 	
-	private Inventory inv = Bukkit.createInventory(null,54,"§6Player Vault");
-	
+	private Inventory inv = Bukkit.createInventory(null, 54, "§6Player Vault");
 	
 	
 }

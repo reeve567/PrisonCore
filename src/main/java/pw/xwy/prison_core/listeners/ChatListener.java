@@ -22,7 +22,7 @@ public class ChatListener implements Listener {
 			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins");
 		} else {
 			PlayerData data = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
-			Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&',data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+			Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 		}
 	}
 	

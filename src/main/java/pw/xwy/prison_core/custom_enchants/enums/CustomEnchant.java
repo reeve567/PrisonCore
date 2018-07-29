@@ -9,7 +9,6 @@
 
 package pw.xwy.prison_core.custom_enchants.enums;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import pw.xwy.prison_core.utility.Config;
 
 import java.util.ArrayList;
@@ -165,7 +164,7 @@ public class CustomEnchant {
 		return description;
 	}
 	
-	public void setDescription(ArrayList<String> strings) {
+	public void setDescription(List<String> strings) {
 		description = strings;
 	}
 	

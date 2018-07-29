@@ -11,7 +11,6 @@ package pw.xwy.prison_core.custom_enchants.enums;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import pw.xwy.prison_core.utility.Config;
 
 public enum CEnchant {

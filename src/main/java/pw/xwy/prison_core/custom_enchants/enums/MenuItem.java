@@ -12,6 +12,7 @@ package pw.xwy.prison_core.custom_enchants.enums;
 import org.bukkit.Material;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public enum MenuItem {
 	DEMONSWEAKNESSI("Has a chance to give the opponent++weakness for 2 seconds.", Material.EYE_OF_ENDER),
@@ -88,7 +89,7 @@ public enum MenuItem {
 	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF);
 	
 	private final CEnchant customEnchant;
-	private final ArrayList<String> desc;
+	private final List<String> desc;
 	private final Material type;
 	private byte durability = 0;
 	
@@ -110,8 +111,8 @@ public enum MenuItem {
 		return de;
 	}
 	
-	public ArrayList<String> getDesc() {
-		return desc;
+	public List<String> getDesc() {
+		return customEnchant.customEnchant.getDescription();
 	}
 	
 	MenuItem(String desc, Material type, int dur) {
@@ -119,7 +120,7 @@ public enum MenuItem {
 		durability = (byte) dur;
 		this.desc = conv(desc);
 		this.type = type;
-		customEnchant.customEnchant.setDescription(getDesc());
+		customEnchant.customEnchant.setDescription(this.desc);
 	}
 	
 	public CEnchant getCustomEnchant() {

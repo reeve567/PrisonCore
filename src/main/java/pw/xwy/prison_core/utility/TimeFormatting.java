@@ -1,7 +1,5 @@
 package pw.xwy.prison_core.utility;
 
-import java.util.Date;
-
 public class TimeFormatting {
 	
 	public static Time getTime(int seconds) {

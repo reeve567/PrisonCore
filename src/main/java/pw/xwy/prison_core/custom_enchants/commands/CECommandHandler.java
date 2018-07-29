@@ -14,7 +14,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.custom_enchants.commands.admin.CeGive;
 import pw.xwy.prison_core.custom_enchants.commands.player.CeMenu;
 import pw.xwy.prison_core.custom_enchants.commands.player.Conv;
@@ -22,20 +21,15 @@ import pw.xwy.prison_core.custom_enchants.enums.ChangeLog;
 
 public class CECommandHandler implements CommandExecutor {
 	
+	private CeMenu ceMenu;
+	private CeGive ceGive;
 	public CECommandHandler() {
 		Bukkit.getServer().getPluginCommand("ce").setExecutor(this);
 	}
 	
-	private CeMenu ceMenu;
-	private CeGive ceGive;
-	
 	public void Init() {
 		ceMenu = new CeMenu();
 		ceGive = new CeGive();
-	}
-	
-	private boolean argCheck(String sent) {
-		return "give".equalsIgnoreCase(sent);
 	}
 	
 	@Override
@@ -52,5 +46,9 @@ public class CECommandHandler implements CommandExecutor {
 			Conv.run((Player) sender);
 		}
 		return true;
+	}
+	
+	private boolean argCheck(String sent) {
+		return "give".equalsIgnoreCase(sent);
 	}
 }

@@ -22,7 +22,6 @@ public class WarpGUI implements Listener {
 		setBackground(mineWarps, backgroup);
 		
 		
-		
 	}
 	
 	public static Inventory setBackground(Inventory inventory, ItemStack stack) {

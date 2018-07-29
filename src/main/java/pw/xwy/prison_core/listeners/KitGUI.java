@@ -110,6 +110,78 @@ public class KitGUI implements Listener {
 				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3));
 				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.SILK_TOUCH, 1));
 				break;
+			case 12:
+				config.setLastUsed("god-axe");
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.FIRE_ASPECT, 2));
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(20));
+				break;
+			case 14:
+				config.setLastUsed("pvp");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.FIRE_ASPECT, 2));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE, 1).addEnchant(Enchantment.ARROW_FIRE, 1));
+				stacks.add(new CustomItem(Material.ARROW));
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(20));
+				break;
+			case 16:
+				config.setLastUsed("guppy");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).addEnchant(Enchantment.DURABILITY, 1).setName("§3Guppy §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).addEnchant(Enchantment.DURABILITY, 1).setName("§3Guppy §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).addEnchant(Enchantment.DURABILITY, 1).setName("§3Guppy §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).addEnchant(Enchantment.DURABILITY, 1).setName("§3Guppy §7Boots"));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 2).addEnchant(Enchantment.DURABILITY, 1));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 3).addEnchant(Enchantment.DURABILITY, 1));
+				stacks.add(new CustomItem(Material.ARROW).setCustomAmount(64));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 3).addEnchant(Enchantment.DURABILITY, 1));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 3).addEnchant(Enchantment.DURABILITY, 1));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 3).addEnchant(Enchantment.DURABILITY, 1));
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1));
+				break;
+			case 28:
+				config.setLastUsed("mudkip");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).addEnchant(Enchantment.DURABILITY, 2).setName("§6Mud§bKip §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).addEnchant(Enchantment.DURABILITY, 2).setName("§6Mud§bKip §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).addEnchant(Enchantment.DURABILITY, 2).setName("§6Mud§bKip §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).addEnchant(Enchantment.DURABILITY, 2).setName("§6Mud§bKip §7Boots"));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 4).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 4  ).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.ARROW).setCustomAmount(64));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2));
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(4));
+				break;
+				
+			case 30:
+				config.setLastUsed("shark");
+				stacks.add(new CustomItem(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Helmet"));
+				stacks.add(new CustomItem(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Chestplate"));
+				stacks.add(new CustomItem(Material.DIAMOND_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Leggings"));
+				stacks.add(new CustomItem(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4).addEnchant(Enchantment.DURABILITY, 3).setName("§1Shark §7Boots"));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 5  ).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.ARROW_INFINITE,1));
+				stacks.add(new CustomItem(Material.ARROW));
+				
+				stacks.add(new CustomItem(Material.DIAMOND_PICKAXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_AXE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.DIAMOND_SPADE).addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3));
+				stacks.add(new CustomItem(Material.GOLDEN_APPLE).setDurability(1).setCustomAmount(12));
+				break;
+				
 		}
 		player.getInventory().addItem(stacks.toArray(new ItemStack[0]));
 		player.closeInventory();
