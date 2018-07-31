@@ -29,8 +29,8 @@ public class MainUtility {
 		List<String> desc = new ArrayList<>();
 		if (perfect) {
 			desc.add("");
-			desc.add("§aSuccess: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(75, 100)));
-			desc.add("§cDestroy: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(0, 25)));
+			desc.add("§aSuccess: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(100, 100)));
+			desc.add("§cDestroy: §f<number>%".replaceAll("<number>", "" + EnchantDrop.getRandomNumberFrom(0, 0)));
 			desc.add("");
 		} else {
 			desc.add("");
@@ -77,12 +77,11 @@ public class MainUtility {
 		return item;
 	}
 	
-	public static ItemStack getItem(String name, Material mat, List<String> desc, boolean glow) {
+	public static ItemStack getItem(String name, Material mat, List<String> desc) {
 		
 		ItemStack item = new ItemStack(mat, 1);
 		ItemMeta itemMeta = item.getItemMeta();
 		itemMeta.setDisplayName(name);
-		itemMeta.addEnchant(Enchantment.getByName("Glow"), 1, true);
 		itemMeta.setLore(desc);
 		item.setItemMeta(itemMeta);
 		

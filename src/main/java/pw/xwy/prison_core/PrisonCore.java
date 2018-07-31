@@ -61,7 +61,6 @@ public class PrisonCore extends JavaPlugin {
 		logger = Bukkit.getLogger();
 		registerEvents(new MineManager());
 		new JoinListener();
-		new RankupCommand();
 		configurationHandler = new ConfigurationHandler(this);
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		registerEvents(new DrugsListener());
@@ -84,6 +83,10 @@ public class PrisonCore extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
+		
+		new RankupCommand();
+		new SetCommand();
+		new SpawnCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

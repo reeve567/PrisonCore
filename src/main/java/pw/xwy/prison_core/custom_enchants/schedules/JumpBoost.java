@@ -34,11 +34,13 @@ public class JumpBoost implements Runnable {
 			if (Bukkit.getOnlinePlayers().length > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots())) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 40, 0));
+						if (p.hasPotionEffect(PotionEffectType.JUMP))
+							p.removePotionEffect(PotionEffectType.JUMP);
+						p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 45, 0));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	boolean ItemCheck(ItemStack i) {

@@ -37,13 +37,19 @@ public class Speed implements Runnable {
 			if (Bukkit.getOnlinePlayers().length > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots()) == 1) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 0));
+						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 45, 0));
+						if (p.hasPotionEffect(PotionEffectType.SPEED)) {
+							p.removePotionEffect(PotionEffectType.SPEED);
+						}
 					} else if (ItemCheck(p.getInventory().getBoots()) == 2) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 1));
+						if (p.hasPotionEffect(PotionEffectType.SPEED)) {
+							p.removePotionEffect(PotionEffectType.SPEED);
+						}
+						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 45, 1));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	int ItemCheck(ItemStack i) {

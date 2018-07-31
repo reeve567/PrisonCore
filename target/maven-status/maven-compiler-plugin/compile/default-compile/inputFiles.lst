@@ -3,10 +3,12 @@ F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utili
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\menus\AxeMenu.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\schedules\crates\UncommonCrate.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\utilities\MainUtility.java
+F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\commands\SetCommand.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\schedules\JumpBoost.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\scoreboard\ScoreboardsManager.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\menus\BowMenu.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\menus\ConversionMenu.java
+F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\listeners\BlockListener.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utility\TelegramIntegration.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\listeners\NPCClick.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\WarpGUI.java
@@ -31,6 +33,7 @@ F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\comma
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\utilities\ConfigCheck.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\soulcrates\MysticalSC.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\enums\CustomEnchant.java
+F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\commands\admin\CeOrganize.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utility\DiscordIntegration.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\menus\Menu.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\enums\ItemSets.java
@@ -50,6 +53,7 @@ F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\Vault
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\listeners\DonorShopGUI.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utility\TimeFormatting.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utility\RanksManager.java
+F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\commands\SpawnCommand.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\PlayerData.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\custom_enchants\schedules\HeartCheck.java
 F:\Development\Code\Java\other\PrisonCore\src\main\java\pw\xwy\prison_core\utility\Glow.java

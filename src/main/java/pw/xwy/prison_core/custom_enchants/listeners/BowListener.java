@@ -109,9 +109,7 @@ public class BowListener implements Listener {
 						}
 					}
 				} else if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-					if (e.getItem() != null && e.getItem().hasItemMeta() && e.getItem().getItemMeta().hasLore() && e.getItem().getItemMeta().getLore()
-							.contains(CEnchant.RIFLE
-									.getName())) {
+					if (e.getItem() != null && e.getItem().hasItemMeta() && e.getItem().getItemMeta().hasLore() && e.getItem().getItemMeta().getLore().contains(CEnchant.RIFLE.getName())) {
 						
 						if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle") ||
 								(e.getPlayer().getInventory().getBoots() != null && e.getPlayer().getInventory().getBoots().hasItemMeta() && e.getPlayer
@@ -130,12 +128,7 @@ public class BowListener implements Listener {
 										arrow.setVelocity(v);
 										e.getPlayer().updateInventory();
 										
-										Bukkit.getScheduler().runTaskLater(main, new Runnable() {
-											@Override
-											public void run() {
-												cantFire.remove(e.getPlayer().getName());
-											}
-										}, 100L);
+										Bukkit.getScheduler().runTaskLater(main, () -> cantFire.remove(e.getPlayer().getName()), 100L);
 										
 									} else {
 										e.setCancelled(true);
@@ -190,10 +183,11 @@ public class BowListener implements Listener {
 	
 	@EventHandler
 	public void shoot(EntityShootBowEvent e) {
-		
 		if (e.getEntity() instanceof Player) {
 			if (e.getBow().hasItemMeta()) {
 				if (e.getBow().getItemMeta().hasLore()) {
+					System.out.println(CEnchant.SHOTGUN.getName());
+					System.out.println(e.getBow().getItemMeta().getLore());
 					if (e.getBow().getItemMeta().getLore().contains(CEnchant.SHOTGUN.getName())) {
 						ItemStack i = e.getBow();
 						if (i.getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Default")) {
@@ -343,7 +337,8 @@ public class BowListener implements Listener {
 						int ab = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (ab <= 15) {
 							HitListener.playerMadeExplosion = true;
-							e.getEntity().getLocation().getWorld().createExplosion(e.getEntity().getLocation(), 5);
+							Location l = e.getEntity().getLocation();
+							e.getEntity().getLocation().getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 5, false, false);
 						}
 					}
 				}

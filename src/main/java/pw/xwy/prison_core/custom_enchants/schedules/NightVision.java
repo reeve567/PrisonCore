@@ -34,11 +34,14 @@ public class NightVision implements Runnable {
 			if (Bukkit.getOnlinePlayers().length > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet())) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 40, 0));
+						if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
+							p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+						}
+						p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 300, 0));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	boolean ItemCheck(ItemStack i) {

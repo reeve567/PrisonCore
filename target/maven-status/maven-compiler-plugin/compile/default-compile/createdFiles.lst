@@ -1,0 +1,5 @@
+pw\xwy\prison_core\custom_enchants\commands\admin\CeOrganize$1.class
+pw\xwy\prison_core\commands\SetCommand.class
+pw\xwy\prison_core\custom_enchants\commands\admin\CeOrganize.class
+pw\xwy\prison_core\listeners\BlockListener.class
+pw\xwy\prison_core\commands\SpawnCommand.class

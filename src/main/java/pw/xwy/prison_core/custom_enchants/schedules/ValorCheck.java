@@ -39,11 +39,14 @@ public class ValorCheck implements Runnable {
 							ItemCheck(p.getInventory().getChestplate()) &&
 							ItemCheck(p.getInventory().getLeggings()) &&
 							ItemCheck(p.getInventory().getBoots())) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 40, 0));
+						if (p.hasPotionEffect(PotionEffectType.DAMAGE_RESISTANCE)) {
+							p.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+						}
+						p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 45, 0));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	boolean ItemCheck(ItemStack i) {

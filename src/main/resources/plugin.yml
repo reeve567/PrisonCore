@@ -18,3 +18,5 @@ commands:
   rankup:
     aliases: [ru]
   kit:
+  set:
+  spawn:

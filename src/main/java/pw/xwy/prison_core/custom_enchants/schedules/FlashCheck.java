@@ -31,22 +31,22 @@ public class FlashCheck implements Runnable {
 	@Override
 	public void run() {
 		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
-			@Override
-			public void run() {
-				
-				if (Bukkit.getOnlinePlayers().length > 0) {
-					for (Player p : Bukkit.getOnlinePlayers()) {
-						if (ItemCheck(p.getInventory().getHelmet()) &&
-								ItemCheck(p.getInventory().getChestplate()) &&
-								ItemCheck(p.getInventory().getLeggings()) &&
-								ItemCheck(p.getInventory().getBoots())) {
-							p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 40, 0));
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
+			
+			if (Bukkit.getOnlinePlayers().length > 0) {
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					if (ItemCheck(p.getInventory().getHelmet()) &&
+							ItemCheck(p.getInventory().getChestplate()) &&
+							ItemCheck(p.getInventory().getLeggings()) &&
+							ItemCheck(p.getInventory().getBoots())) {
+						if (p.hasPotionEffect(PotionEffectType.FAST_DIGGING)) {
+							p.removePotionEffect(PotionEffectType.FAST_DIGGING);
 						}
+						p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 45, 0));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	boolean ItemCheck(ItemStack i) {

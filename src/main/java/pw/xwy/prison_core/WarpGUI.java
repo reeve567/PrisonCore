@@ -3,7 +3,9 @@ package pw.xwy.prison_core;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.CustomItem;
@@ -28,6 +30,11 @@ public class WarpGUI implements Listener {
 		for (int i = 0; i < inventory.getSize(); i++)
 			inventory.setItem(i, stack);
 		return inventory;
+	}
+	
+	@EventHandler
+	public void onClick(InventoryClickEvent e) {
+	
 	}
 	
 	

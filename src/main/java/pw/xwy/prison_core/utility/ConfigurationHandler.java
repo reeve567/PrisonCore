@@ -21,6 +21,7 @@ public class ConfigurationHandler {
 	private static Config rankInfoConfiguration;
 	private static Config scoreboardConfiguration;
 	private static Config prestigeConfiguration;
+	private static Config normalWarpsData;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
@@ -28,6 +29,7 @@ public class ConfigurationHandler {
 		mineConfiguration = new Config(core.getDataFolder(), "mines");
 		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
 		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
+		normalWarpsData = new Config(core.getDataFolder(), "warps");
 		loadConfig();
 	}
 	
@@ -37,6 +39,7 @@ public class ConfigurationHandler {
 		loadPlayerData();
 		loadMines();
 		loadPrestiges();
+		loadNormalWarps();
 		new ScoreboardsManager();
 	}
 	
@@ -160,7 +163,28 @@ public class ConfigurationHandler {
 		playerConfigs.remove(id);
 	}
 	
+	private void loadNormalWarps() {
+		if (normalWarpsData.getInt("ver") != 1) {
+			normalWarpsData.set("ver", 1);
+			for (NormalWarps warp : NormalWarps.values()) {
+				warp.save(normalWarpsData);
+			}
+			normalWarpsData.saveConfig();
+		}
+		for (NormalWarps warp : NormalWarps.values()) {
+			warp.loadLocationFromConfig(normalWarpsData);
+		}
+	}
+	
+	private void saveNormalWarps() {
+		for (NormalWarps warp: NormalWarps.values()) {
+			warp.save(normalWarpsData);
+		}
+		normalWarpsData.saveConfig();
+	}
+	
 	public void onDisable() {
+		saveNormalWarps();
 		saveMines();
 		savePlayerData();
 	}

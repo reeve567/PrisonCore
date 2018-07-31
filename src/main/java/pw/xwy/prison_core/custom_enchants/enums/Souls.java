@@ -41,7 +41,6 @@ public enum Souls {
 		ArrayList<String> lores = new ArrayList<>();
 		lores.add(ChatColor.GRAY + "Redeem this from Rubix for a prize.");
 		im.setLore(lores);
-		im.addEnchant(Enchantment.getByName("Glow"), 1, true);
 		it.setItemMeta(im);
 		this.item = it;
 	}

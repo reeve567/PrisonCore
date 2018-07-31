@@ -32,6 +32,38 @@ import java.util.Random;
 
 public class EnchantDrop implements Listener {
 	
+	private final int CANT_ENCHANT = 0;
+	private final int HAS_LOWER = 2;
+	private final int HAS_HIGHER = 6;
+	private final int HAS_SAME = 1;
+	private final int CAN_ENCHANT = 10;
+	private final int ADMIN_ENCHANT = 5;
+	
+	//TODO: make this manageable
+	
+	
+	/*
+	@EventHandler
+	public void onDrop(InventoryClickEvent e) {
+		Player player = (Player) e.getWhoClicked();
+		ItemStack cursor = e.getCursor();
+		ItemStack slot = e.getCurrentItem();
+		
+		if (e.getAction() != InventoryAction.SWAP_WITH_CURSOR) {
+			return;
+		}
+		
+		if (cursor == null) {
+			return;
+		}
+		
+		if (cursor.getType() == Material.BOOK) {
+		
+		
+		}
+		
+	}
+	*/
 	@EventHandler
 	public void eDrop(InventoryClickEvent e) {
 		
@@ -46,9 +78,9 @@ public class EnchantDrop implements Listener {
 					inventory.getType().equals(InventoryType.CREATIVE)) {
 				if (itemOnCursor.getType().equals(Material.BOOK)) {
 					
-					int ret = canEnchantWithBook(itemOnCursor, itemInteractedWith);
+					int ret = canEnchant(itemOnCursor, itemInteractedWith);
 					
-					if (ret == 1) {
+					if (ret == ADMIN_ENCHANT) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
 						if (itemInteractedWith.hasItemMeta() && itemInteractedWith.getItemMeta().hasLore()) {
 							if (itemInteractedWith.getItemMeta().getLore().contains(CEnchant.XWY.getName())) {
@@ -57,7 +89,7 @@ public class EnchantDrop implements Listener {
 								itemInteractedWith.setItemMeta(meta);
 							}
 						}
-					} else if (ret == 2) {
+					} else if (ret == HAS_LOWER) {
 						ItemMeta emeta = itemOnCursor.getItemMeta();
 						ItemMeta tmeta = itemInteractedWith.getItemMeta();
 						
@@ -71,7 +103,7 @@ public class EnchantDrop implements Listener {
 						}
 						
 						successFail(e, itemInteractedWith, itemOnCursor, player, true, old);
-					} else if (ret == 3) {
+					} else if (ret == CAN_ENCHANT) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
 					}
 				}
@@ -79,83 +111,86 @@ public class EnchantDrop implements Listener {
 		}
 	}
 	
-	private int canEnchantWithBook(ItemStack enchantmentBook, ItemStack itemToEnchant) {
-		
-		if (itemToEnchant.getItemMeta().hasLore()) {
-			if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType())) {
-				
-				
-				if (enchantmentBook.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.FORTUNEV.getName())) {
-					
-					if (itemToEnchant.getEnchantments().containsKey(Enchantment.LOOT_BONUS_BLOCKS)) {
-						if (!(itemToEnchant.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) == 5)) {
-							return 3;
-						}
-					} else {
-						return 3;
-					}
-					
-					
-				} else {
-					
-					List<String> meta = itemToEnchant.getItemMeta().getLore();
-					String ench = enchantmentBook.getItemMeta().getDisplayName();
-					boolean conflictFound = false;
-					
-					
-					if (meta.contains(ench)) {
-						conflictFound = true;
-					}
-					
-					if (!conflictFound) {
-						if (ench.charAt(ench.length() - 1) == 'I') {
-							String slvl = ench.substring(ench.indexOf("I"), ench.length());
-							int nlvl = 0;
-							
-							if (slvl.equalsIgnoreCase("I")) {
-								nlvl = 1;
-							} else if (slvl.equalsIgnoreCase("II")) {
-								nlvl = 2;
-							} else if (slvl.equalsIgnoreCase("III")) {
-								nlvl = 3;
-							}
-							
-							
-							if (nlvl == 1) {
-								String upper = ench.replaceAll("I", "II");
-								if (meta.contains(upper) || meta.contains(upper + "I")) {
-									return 0;
-								}
-							} else if (nlvl == 2) {
-								String lower = ench.replace(ench.substring(ench.indexOf("I"), ench.length()), "I");
-								String upper = ench.replaceAll("II", "III");
-								
-								if (meta.contains(upper)) {
-									return 0;
-								}
-								if (meta.contains(lower)) {
-									return 2;
-								}
-							} else if (nlvl == 3) {
-								String lower = ench.replace(ench.substring(ench.indexOf('I'), ench.length()), "I");
-								if (meta.contains(lower) || meta.contains(lower + "I")) {
-									return 2;
-								}
-							}
-							
-						}
-						return 1;
-					}
+	private int canEnchant(ItemStack book, ItemStack item) {
+		if (item == null) {
+			return CANT_ENCHANT;
+		}
+		if (book.hasItemMeta() && book.getItemMeta().hasLore() && book.getItemMeta().hasDisplayName() && checkCan(book.getItemMeta().getDisplayName(), item.getType())) {
+			//find custom enchant
+			CEnchant ce = null;
+			for (CEnchant c : CEnchant.values()) {
+				if (book.getItemMeta().getDisplayName().equalsIgnoreCase(c.getName())) {
+					ce = c;
+					break;
 				}
 			}
-		} else if (checkCan(enchantmentBook.getItemMeta().getDisplayName(), itemToEnchant.getType())) {
-			return 1;
+			if (ce == null) {
+				System.out.println("Enchant not found " + book.getItemMeta().getDisplayName());
+				return CANT_ENCHANT;
+			}
+			
+			if (ce == CEnchant.XWY) {
+				return ADMIN_ENCHANT;
+			}
+			
+			//if the item to be enchanted has item meta, check for conflicts
+			if (item.hasItemMeta() && item.getItemMeta().hasLore()) {
+				//check for conflicts
+				//see if there can be conflicts
+				
+				List<String> meta = item.getItemMeta().getLore();
+				String ench = book.getItemMeta().getDisplayName();
+				if (meta.contains(ench)) {
+					return HAS_SAME;
+				}
+				
+				if (ce.getAmount() == 0 || ce.getName().charAt(ce.getName().length() - 1) == 'I') {
+					String slvl = ench.substring(ench.indexOf('I'), ench.length());
+					int nlvl = 0;
+					
+					if (slvl.equalsIgnoreCase("I")) {
+						nlvl = 1;
+					} else if (slvl.equalsIgnoreCase("II")) {
+						nlvl = 2;
+					} else if (slvl.equalsIgnoreCase("III")) {
+						nlvl = 3;
+					}
+					
+					
+					if (nlvl == 1) {
+						String upper = ench.replaceAll("I", "II");
+						if (meta.contains(upper) || meta.contains(upper + "I")) {
+							return HAS_HIGHER;
+						}
+					} else if (nlvl == 2) {
+						String lower = ench.replaceAll("II", "I");
+						String upper = ench.replaceAll("II", "III");
+						
+						if (meta.contains(upper)) {
+							return HAS_HIGHER;
+						}
+						if (meta.contains(lower)) {
+							return HAS_LOWER;
+						}
+					} else if (nlvl == 3) {
+						String lowest = ench.replaceAll("III", "I");
+						String low = ench.replaceAll("III", "II");
+						if (meta.contains(lowest) || meta.contains(low)) {
+							return HAS_LOWER;
+						}
+					}
+					
+				}
+				return CAN_ENCHANT;
+			} else {
+				return CAN_ENCHANT;
+			}
+			
 		}
-		return 0;
+		return CANT_ENCHANT;
 	}
 	
 	private void successFail(InventoryClickEvent e, ItemStack itemInteractedWith, ItemStack itemOnCursor, Player player, boolean removeOld, String old) {
-		
 		List<String> lore = itemOnCursor.getItemMeta().getLore();
 		for (String string : lore) {
 			
@@ -170,40 +205,42 @@ public class EnchantDrop implements Listener {
 					
 					if (itemInteractedWith.getType().equals(Material.BOW)) {
 						if (itemInteractedWith.hasItemMeta()) {
+							boolean found = false;
 							if (itemInteractedWith.getItemMeta().hasLore()) {
-								boolean found = false;
 								for (String s : itemInteractedWith.getItemMeta().getLore()) {
 									if (s.contains("Mode:")) {
 										found = true;
+										break;
 									}
 								}
-								if (!found) {
-									if (enchant(itemOnCursor, itemInteractedWith)) {
-										player.setItemOnCursor(null);
-										player.sendMessage(Messages.itemSuccess.get());
-									}
-									List<String> l = itemInteractedWith.getItemMeta().getLore();
-									ItemMeta m = itemInteractedWith.getItemMeta();
-									l.add(ChatColor.GRAY + "Mode: Default");
-									m.setLore(l);
-									itemInteractedWith.setItemMeta(m);
-								} else {
-									List<String> l = itemInteractedWith.getItemMeta().getLore();
-									ItemMeta m = itemInteractedWith.getItemMeta();
-									for (String s : itemInteractedWith.getItemMeta().getLore()) {
-										if (s.contains("Mode:")) {
-											l.remove(s);
-											m.setLore(l);
-											itemInteractedWith.setItemMeta(m);
-											if (enchant(itemOnCursor, itemInteractedWith)) {
-												player.setItemOnCursor(null);
-												player.sendMessage(Messages.itemSuccess.get());
-											}
-											l = itemInteractedWith.getItemMeta().getLore();
-											l.add(ChatColor.GRAY + "Mode: Default");
-											m.setLore(l);
-											itemInteractedWith.setItemMeta(m);
+							}
+							if (!found) {
+								if (enchant(itemOnCursor, itemInteractedWith)) {
+									player.setItemOnCursor(null);
+									player.sendMessage(Messages.itemSuccess.get());
+								}
+								List<String> l = itemInteractedWith.getItemMeta().getLore();
+								ItemMeta m = itemInteractedWith.getItemMeta();
+								l.add(ChatColor.GRAY + "Mode: Default");
+								m.setLore(l);
+								itemInteractedWith.setItemMeta(m);
+							} else {
+								List<String> l = itemInteractedWith.getItemMeta().getLore();
+								ItemMeta m = itemInteractedWith.getItemMeta();
+								for (String s : itemInteractedWith.getItemMeta().getLore()) {
+									if (s.contains("Mode:")) {
+										l.remove(s);
+										m.setLore(l);
+										itemInteractedWith.setItemMeta(m);
+										if (enchant(itemOnCursor, itemInteractedWith)) {
+											player.setItemOnCursor(null);
+											player.sendMessage(Messages.itemSuccess.get());
 										}
+										l = itemInteractedWith.getItemMeta().getLore();
+										l.add(ChatColor.GRAY + "Mode: Default");
+										m.setLore(l);
+										itemInteractedWith.setItemMeta(m);
+										break;
 									}
 								}
 							}
@@ -259,10 +296,11 @@ public class EnchantDrop implements Listener {
 								player.setItemOnCursor(null);
 								player.sendMessage(Messages.itemUnsuccessful.get());
 							}
-							return;
+							break;
 						}
 					}
 				}
+				break;
 			}
 		}
 		
@@ -271,7 +309,6 @@ public class EnchantDrop implements Listener {
 	private boolean checkCan(String name, Material type) {
 		
 		if (name != null) {
-			
 			for (CEnchant e : CEnchant.values()) {
 				if (e.getName().equalsIgnoreCase(name)) {
 					if (e.checkSets(type)) {

@@ -41,7 +41,7 @@ public class HeartCheck implements Runnable {
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 20);
 	}
 	
 	boolean ItemCheck(ItemStack i) {

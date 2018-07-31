@@ -35,11 +35,14 @@ public class WaterBreathing implements Runnable {
 			if (Bukkit.getOnlinePlayers().length > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet())) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 40, 0));
+						if (p.hasPotionEffect(PotionEffectType.WATER_BREATHING)) {
+							p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+						}
+						p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 45, 0));
 					}
 				}
 			}
-		}, 20L, 0);
+		}, 0, 40);
 	}
 	
 	boolean ItemCheck(ItemStack i) {
