@@ -49,6 +49,13 @@
       <scope>system</scope>
       <systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>ru.tehkode</groupId>
+      <artifactId>PermissionsEx</artifactId>
+      <version>1.22.10</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/lib/PermissionsEx-1.22.10.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>
 

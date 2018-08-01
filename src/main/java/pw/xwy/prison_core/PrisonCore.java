@@ -59,15 +59,9 @@ public class PrisonCore extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		logger = Bukkit.getLogger();
-		registerEvents(new MineManager());
-		new JoinListener();
+		stageOneListeners();
 		configurationHandler = new ConfigurationHandler(this);
-		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
-		registerEvents(new DrugsListener());
-		registerEvents(new DonorShopGUI(null));
-		registerEvents(new KitGUI(null));
-		registerEvents(new LeaveListener());
-		
+		stageTwoListeners();
 		new CustomEnchantsHandler().onEnable();
 		
 		Bukkit.getConsoleSender().sendMessage("");
@@ -84,17 +78,38 @@ public class PrisonCore extends JavaPlugin {
 		Bukkit.getConsoleSender().sendMessage("");
 		Bukkit.getConsoleSender().sendMessage("");
 		
-		new RankupCommand();
-		new SetCommand();
-		new SpawnCommand();
+		loadCommands();
 	}
 	
-	public static void registerEvents(Listener listener) {
-		Bukkit.getPluginManager().registerEvents(listener, instance);
+	private void stageOneListeners() {
+		registerEvents(new MineManager());
+	}
+	
+	private void stageTwoListeners() {
+		registerEvents(new JoinListener());
+		registerEvents(new ChatListener());
+		registerEvents(new DrugsListener());
+		registerEvents(new DonorShopGUI(null));
+		registerEvents(new KitGUI(null));
+		registerEvents(new LeaveListener());
+		registerEvents(new BlockListener());
+		
 	}
 	
 	public static PrisonCore getInstance() {
 		return instance;
+	}
+	
+	public void loadCommands() {
+		new RankupCommand();
+		new SetCommand();
+		new SpawnCommand();
+		new ChatstopCommand();
+		new ChatclearCommand();
+	}
+	
+	public static void registerEvents(Listener listener) {
+		Bukkit.getPluginManager().registerEvents(listener, instance);
 	}
 	
 	@Override

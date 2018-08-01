@@ -11,10 +11,6 @@ import pw.xwy.prison_core.utility.PlayerConfig;
 public class JoinListener implements Listener {
 	public static int UniquePlayers;
 	
-	public JoinListener() {
-		PrisonCore.registerEvents(this);
-	}
-	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		ConfigurationHandler.playerConfigs.put(e.getPlayer().getUniqueId(), new PlayerConfig(e.getPlayer().getUniqueId()));

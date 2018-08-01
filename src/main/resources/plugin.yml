@@ -20,3 +20,7 @@ commands:
   kit:
   set:
   spawn:
+  chatstop:
+    aliases: [cs,sc,stopchat]
+  chatclear:
+    aliases: [cc,clearchat]

@@ -1,4 +1,4 @@
-package pw.xwy.prison_core;
+package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -36,6 +36,5 @@ public class WarpGUI implements Listener {
 	public void onClick(InventoryClickEvent e) {
 	
 	}
-	
 	
 }
