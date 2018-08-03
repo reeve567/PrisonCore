@@ -7,6 +7,8 @@ depend: [Citizens]
 commands:
   feed:
   mine:
+    permission: xwy.admin.mine
+    permission-message: §cYou do not have permission to do this!
   bal:
     aliases: [balance,money]
   scoreboardtoggle:
@@ -19,8 +21,18 @@ commands:
     aliases: [ru]
   kit:
   set:
+    permission: xwy.admin.set
+    permission-message: §cYou do not have permission to do this!
   spawn:
   chatstop:
     aliases: [cs,sc,stopchat]
+    permission: xwy.admin.chatstop
+    permission-message: §cYou do not have permission to do this!
   chatclear:
     aliases: [cc,clearchat]
+    permission: xwy.admin.chatclear
+    permission-message: §cYou do not have permission to do this!
+  workbench:
+    aliases: [wb]
+    permission: xwy.perks.commands.workbench
+    permission-message: §cYou do not have permission to do this!

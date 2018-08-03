@@ -15,16 +15,15 @@ public class ChatclearCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 		if (command.getLabel().equalsIgnoreCase("chatclear")) {
-			if (commandSender.hasPermission("xwy.admin.chatclear")) {
-				
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					if (!p.hasPermission("xwy.admin.chatclear"))
-						p.sendMessage(new String[200]);
-				}
-				Bukkit.broadcastMessage("");
-				Bukkit.broadcastMessage("§9Chat has been &ccleared &9by &8" + commandSender.getName() + "§9.");
-				Bukkit.broadcastMessage("");
+			
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				if (!p.hasPermission("xwy.admin.chatclear"))
+					p.sendMessage(new String[200]);
 			}
+			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage("§9Chat has been &ccleared &9by &8" + commandSender.getName() + "§9.");
+			Bukkit.broadcastMessage("");
+			return true;
 		}
 		return false;
 	}

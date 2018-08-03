@@ -11,8 +11,7 @@ import pw.xwy.prison_core.utility.NormalWarps;
 
 public class BlockListener implements Listener {
 	
-	
-	@EventHandler
+	/*@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		if (!e.isCancelled()) {
 			Mine mi = null;
@@ -34,9 +33,9 @@ public class BlockListener implements Listener {
 			}
 			BlockMinedEvent.call(e.getBlock(), e.getPlayer(), mi, true);
 		}
-	}
+	}*/
 	
-	@EventHandler
+	/*@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		if (!e.isCancelled()) {
 			//TODO: add support for cells
@@ -46,5 +45,5 @@ public class BlockListener implements Listener {
 				e.setCancelled(true);
 			}
 		}
-	}
+	}*/
 }

@@ -51,7 +51,7 @@ public class FlashCheck implements Runnable {
 	
 	boolean ItemCheck(ItemStack i) {
 		
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.VALOR.getName())) {
+		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.FLASH.getName())) {
 			return true;
 		}
 		return false;

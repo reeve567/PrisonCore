@@ -114,7 +114,6 @@ public class Mine implements Listener {
 			for (Block b : area.getBlocks()) {
 				b.setType(randomMaterial());
 			}
-			PrisonCore.log("Cleaned " + name);
 			calculatePercentLeft();
 		}
 	}
