@@ -1,7 +1,6 @@
 package pw.xwy.prison_core;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -37,6 +36,10 @@ public class PrisonCore extends JavaPlugin {
 		}
 	}
 	
+	public static PrisonCore getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getLabel().equalsIgnoreCase("feed")) {
@@ -63,21 +66,6 @@ public class PrisonCore extends JavaPlugin {
 		configurationHandler = new ConfigurationHandler(this);
 		stageTwoListeners();
 		new CustomEnchantsHandler().onEnable();
-		
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "<-------------------------------------->");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("§c" + PrisonCore.getInstance().getDescription().getName() + " Enabled.");
-		Bukkit.getConsoleSender().sendMessage("§c" + PrisonCore.getInstance().getDescription().getName() + " made by Xwy.");
-		Bukkit.getConsoleSender().sendMessage("§cCurrent Version: " + ChatColor.GRAY + PrisonCore.getInstance().getDescription().getVersion());
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "<-------------------------------------->");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		
 		loadCommands();
 	}
 	
@@ -96,10 +84,6 @@ public class PrisonCore extends JavaPlugin {
 		
 	}
 	
-	public static PrisonCore getInstance() {
-		return instance;
-	}
-	
 	public void loadCommands() {
 		new RankupCommand();
 		new SetCommand();
@@ -115,21 +99,6 @@ public class PrisonCore extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		configurationHandler.onDisable();
-		
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "<-------------------------------------->");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("§c" + getDescription().getName() + " Disabled.");
-		Bukkit.getConsoleSender().sendMessage("§c" + getDescription().getName() + " made by Xwy.");
-		Bukkit.getConsoleSender().sendMessage("§cCurrent Version: " + ChatColor.GRAY + getDescription().getVersion());
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "<-------------------------------------->");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		Bukkit.getConsoleSender().sendMessage("");
-		
 	}
 	
 	

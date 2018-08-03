@@ -5,16 +5,19 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import pw.xwy.prison_core.utility.Mine;
 
 public class BlockMinedEvent extends Event {
 	private static final HandlerList handlers = new HandlerList();
 	private Block block;
 	private Player player;
+	private Mine mine;
 	private boolean isOriginal;
 	
-	public BlockMinedEvent(Block block, Player player, boolean isOriginal) {
+	public BlockMinedEvent(Block block, Player player, Mine mine, boolean isOriginal) {
 		this.block = block;
 		this.player = player;
+		this.mine = mine;
 		this.isOriginal = isOriginal;
 	}
 	
@@ -22,8 +25,8 @@ public class BlockMinedEvent extends Event {
 		return handlers;
 	}
 	
-	public static void call(Block block, Player player, boolean isOriginal) {
-		Bukkit.getPluginManager().callEvent(new BlockMinedEvent(block, player, isOriginal));
+	public static void call(Block block, Player player, Mine mine, boolean isOriginal) {
+		Bukkit.getPluginManager().callEvent(new BlockMinedEvent(block, player, mine, isOriginal));
 	}
 	
 	@Override
