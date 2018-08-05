@@ -2,6 +2,7 @@ package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import pw.xwy.prison_core.CrateManager;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
@@ -16,12 +17,13 @@ import static pw.xwy.prison_core.PrisonCore.telegramIntegration;
 public class ConfigurationHandler {
 	
 	public static HashMap<UUID, PlayerConfig> playerConfigs = new HashMap<>();
-	private static Config mainConfiguration;
-	private static Config mineConfiguration;
-	private static Config rankInfoConfiguration;
 	private static Config scoreboardConfiguration;
-	private static Config prestigeConfiguration;
-	private static Config normalWarpsData;
+	private Config mainConfiguration;
+	private Config mineConfiguration;
+	private Config rankInfoConfiguration;
+	private Config prestigeConfiguration;
+	private Config normalWarpsData;
+	private Config miscData;
 	
 	public ConfigurationHandler(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
@@ -29,7 +31,8 @@ public class ConfigurationHandler {
 		mineConfiguration = new Config(core.getDataFolder(), "mines");
 		scoreboardConfiguration = new Config(core.getDataFolder(), "scoreboard");
 		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
-		normalWarpsData = new Config(core.getDataFolder(), "warps");
+		normalWarpsData = new Config(core.getDataFolder(), "warps-data");
+		miscData = new Config(core.getDataFolder(), "misc-data");
 		loadConfig();
 	}
 	
@@ -40,6 +43,7 @@ public class ConfigurationHandler {
 		loadMines();
 		loadPrestiges();
 		loadNormalWarps();
+		loadMisc();
 		new ScoreboardsManager();
 	}
 	
@@ -127,6 +131,28 @@ public class ConfigurationHandler {
 		RanksManager.usePreviousPrestigeMultipliers = prestigeConfiguration.getBoolean("Multiply-Rankup-Price-Multiplier");
 	}
 	
+	private void loadNormalWarps() {
+		if (normalWarpsData.getInt("ver") != 1) {
+			normalWarpsData.set("ver", 1);
+			for (NormalWarps warp : NormalWarps.values()) {
+				warp.save(normalWarpsData);
+			}
+			normalWarpsData.saveConfig();
+		}
+		for (NormalWarps warp : NormalWarps.values()) {
+			warp.loadLocationFromConfig(normalWarpsData);
+		}
+	}
+	
+	private void loadMisc() {
+		if (miscData.getInt("ver") != 2) {
+			miscData.set("ver", 2);
+			miscData.set("Locations.Crate", "unset");
+			miscData.saveConfig();
+		}
+		new CrateManager(miscData.getString("Locations.Crate"));
+	}
+	
 	public void saveMines() {
 		for (Rank rank : Rank.values()) {
 			Mine mine = MineManager.mines.get(rank);
@@ -146,54 +172,34 @@ public class ConfigurationHandler {
 		return scoreboardConfiguration;
 	}
 	
-	public static Config getMainConfiguration() {
-		return mainConfiguration;
-	}
-	
-	public static Config getRankInfoConfiguration() {
-		return rankInfoConfiguration;
-	}
-	
-	public static Config getMineConfiguration() {
-		return mineConfiguration;
-	}
-	
 	public static void unloadPlayer(UUID id) {
 		playerConfigs.get(id).saveData();
 		playerConfigs.remove(id);
-	}
-	
-	private void loadNormalWarps() {
-		if (normalWarpsData.getInt("ver") != 1) {
-			normalWarpsData.set("ver", 1);
-			for (NormalWarps warp : NormalWarps.values()) {
-				warp.save(normalWarpsData);
-			}
-			normalWarpsData.saveConfig();
-		}
-		for (NormalWarps warp : NormalWarps.values()) {
-			warp.loadLocationFromConfig(normalWarpsData);
-		}
-	}
-	
-	private void saveNormalWarps() {
-		for (NormalWarps warp: NormalWarps.values()) {
-			warp.save(normalWarpsData);
-		}
-		normalWarpsData.saveConfig();
 	}
 	
 	public void onDisable() {
 		saveNormalWarps();
 		saveMines();
 		savePlayerData();
+		saveMiscData();
 	}
 	
-	public void savePlayerData() {
+	private void saveNormalWarps() {
+		for (NormalWarps warp : NormalWarps.values()) {
+			warp.save(normalWarpsData);
+		}
+		normalWarpsData.saveConfig();
+	}
+	
+	private void savePlayerData() {
 		for (UUID id : playerConfigs.keySet()) {
 			PlayerConfig config = playerConfigs.get(id);
 			config.saveData();
 		}
+	}
+	
+	private void saveMiscData() {
+		miscData.set("Locations.Crate", CrateManager.crateString());
 	}
 	
 }

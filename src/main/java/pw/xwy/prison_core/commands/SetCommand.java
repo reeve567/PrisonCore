@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pw.xwy.prison_core.CrateManager;
 import pw.xwy.prison_core.utility.NormalWarps;
 
 public class SetCommand implements CommandExecutor {
@@ -15,7 +16,7 @@ public class SetCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
 		if (command.getLabel().equalsIgnoreCase("set")) {
-			if (!commandSender.hasPermission("xwy.set")) {
+			if (!commandSender.hasPermission("xwy.admin.set")) {
 				return true;
 			}
 			
@@ -41,9 +42,13 @@ public class SetCommand implements CommandExecutor {
 						commandSender.sendMessage("must be run as player");
 					}
 				}
+			} else if (args[0].equalsIgnoreCase("crate")) {
+				if (commandSender instanceof Player) {
+					return CrateManager.setCrate((Player) commandSender);
+				} else {
+					commandSender.sendMessage("must be run as player");
+				}
 			}
-			
-			
 		}
 		return false;
 	}
