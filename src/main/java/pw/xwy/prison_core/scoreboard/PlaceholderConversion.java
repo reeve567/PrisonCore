@@ -2,7 +2,7 @@ package pw.xwy.prison_core.scoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.PlayerData;
+import pw.xwy.prison_core.utility.PlayerData;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.Rank;
 import pw.xwy.prison_core.utility.ReadableNumbers;

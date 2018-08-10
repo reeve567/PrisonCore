@@ -1,8 +1,4 @@
-package pw.xwy.prison_core;
-
-import pw.xwy.prison_core.utility.Rank;
-import pw.xwy.prison_core.utility.RanksManager;
-import pw.xwy.prison_core.utility.ReadableNumbers;
+package pw.xwy.prison_core.utility;
 
 import java.util.UUID;
 
@@ -59,6 +55,10 @@ public class PlayerData {
 	
 	public void setPrestige(int prestige) {
 		this.prestige = prestige;
+	}
+	
+	public double getSellMultuplier() {
+		return RanksManager.getSellPriceMult(prestige);
 	}
 	
 	public int percentProgress() {

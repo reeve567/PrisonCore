@@ -6,7 +6,6 @@ import pw.xwy.prison_core.CrateManager;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
@@ -82,7 +81,6 @@ public class ConfigurationHandler {
 			for (String s : RanksManager.rankNames) {
 				rankInfoConfiguration.set(s + ".Rankup-Cost", 1);
 				rankInfoConfiguration.set(s + ".Chat-Prefix", "§8[§6" + s + "§8]");
-				rankInfoConfiguration.set(s + ".Shop", new ArrayList<String>());
 			}
 			rankInfoConfiguration.saveConfig();
 		}
@@ -111,6 +109,7 @@ public class ConfigurationHandler {
 			mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
 			mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
 			mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
+			mine.setShop(mineConfiguration.getString(rank.toString() + ".shop"));
 		}
 	}
 	
@@ -160,6 +159,7 @@ public class ConfigurationHandler {
 			mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
 			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
 			mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
+			mineConfiguration.set(rank.toString() + ".shop", mine.shopString());
 		}
 		mineConfiguration.saveConfig();
 	}

@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import pw.xwy.prison_core.PlayerData;
+import pw.xwy.prison_core.utility.PlayerData;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 
 public class ChatListener implements Listener {

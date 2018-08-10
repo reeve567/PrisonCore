@@ -91,6 +91,7 @@ public class PrisonCore extends JavaPlugin {
 		new ChatstopCommand();
 		new ChatclearCommand();
 		new WorkbenchCommand();
+		new SellAllCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

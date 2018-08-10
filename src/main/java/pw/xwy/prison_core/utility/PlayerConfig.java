@@ -1,6 +1,5 @@
 package pw.xwy.prison_core.utility;
 
-import pw.xwy.prison_core.PlayerData;
 import pw.xwy.prison_core.PrisonCore;
 
 import java.io.File;
@@ -36,6 +35,7 @@ public class PlayerConfig extends Config {
 		if (getVersion() != ver) {
 			//unique player
 			firstJoin = true;
+			setVersion();
 			set("prison-data.rank", Rank.A.toString());
 			set("prison-data.prestige", 0);
 			set("general-data.balance", startingMoney);

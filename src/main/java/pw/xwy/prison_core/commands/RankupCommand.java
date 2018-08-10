@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.PlayerData;
+import pw.xwy.prison_core.utility.PlayerData;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 
 public class RankupCommand implements CommandExecutor {

@@ -36,3 +36,7 @@ commands:
     aliases: [wb]
     permission: xwy.perks.commands.workbench
     permission-message: §cYou do not have permission to do this!
+  sellall:
+    aliases: [sa]
+    permission: xwy.perks.commands.sellall
+    permission-message: §cYou do not have permission to do this!

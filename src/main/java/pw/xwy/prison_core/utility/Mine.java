@@ -16,6 +16,7 @@ import java.util.Random;
 public class Mine implements Listener {
 	
 	public HashMap<Material, Integer> materials = new HashMap<>();
+	public HashMap<MineMaterial, Double> shop = new HashMap<MineMaterial, Double>();
 	public Task task = new Task();
 	private String name;
 	private Random random = new Random();
@@ -56,6 +57,87 @@ public class Mine implements Listener {
 		return total;
 	}
 	
+	public void addToShop(Material material, Double price) {
+		
+		switch (material) {
+			case DIAMOND_BLOCK:
+				addToShop(Material.DIAMOND, price / 9.0);
+				addToShop(Material.DIAMOND_ORE, price / 10.0);
+				break;
+			case GOLD_BLOCK:
+				addToShop(Material.GOLD_INGOT, price / 9.0);
+				addToShop(Material.GOLD_ORE, price / 10.0);
+				break;
+			case IRON_BLOCK:
+				addToShop(Material.IRON_INGOT, price / 9.0);
+				addToShop(Material.IRON_ORE, price / 10.0);
+				break;
+			case EMERALD_BLOCK:
+				addToShop(Material.EMERALD, price / 9.0);
+				addToShop(Material.EMERALD_ORE, price / 10.0);
+				break;
+			case COAL_BLOCK:
+				addToShop(Material.COAL, price / 9.0);
+				addToShop(Material.COAL_ORE, price / 10.0);
+				break;
+			case REDSTONE_BLOCK:
+				addToShop(Material.REDSTONE, price / 9.0);
+				addToShop(Material.REDSTONE_ORE, price / 10.0);
+				break;
+			case LAPIS_BLOCK:
+				addToShop(Material.INK_SACK, price / 9.0, (short) 4);
+				addToShop(Material.LAPIS_ORE, price / 10.0);
+				break;
+		}
+		shop.put(get(material), price);
+	}
+	
+	public void removeFromShop(Material material, short durability) {
+		shop.remove(get(material, durability));
+	}
+	
+	public void removeFromShop(Material material) {
+		switch (material) {
+			case DIAMOND_BLOCK:
+				removeFromShop(Material.DIAMOND);
+				removeFromShop(Material.DIAMOND_ORE);
+				break;
+			case GOLD_BLOCK:
+				removeFromShop(Material.GOLD_INGOT);
+				removeFromShop(Material.GOLD_ORE);
+				break;
+			case IRON_BLOCK:
+				removeFromShop(Material.IRON_INGOT);
+				removeFromShop(Material.IRON_ORE);
+				break;
+			case EMERALD_BLOCK:
+				removeFromShop(Material.EMERALD);
+				removeFromShop(Material.EMERALD_ORE);
+				break;
+			case COAL_BLOCK:
+				removeFromShop(Material.COAL);
+				removeFromShop(Material.COAL_ORE);
+				break;
+			case REDSTONE_BLOCK:
+				removeFromShop(Material.REDSTONE);
+				removeFromShop(Material.REDSTONE_ORE);
+				break;
+			case LAPIS_BLOCK:
+				removeFromShop(Material.INK_SACK, (short) 4);
+				removeFromShop(Material.LAPIS_ORE);
+				break;
+		}
+		shop.remove(get(material));
+	}
+	
+	public void addToShop(Material material, Double price, short durability) {
+		shop.put(get(material, durability), price);
+	}
+	
+	private MineMaterial get(Material material) {
+		return new MineMaterial(material);
+	}
+	
 	public void setProgressSign(Block sign) {
 		progressSign = sign;
 	}
@@ -78,6 +160,20 @@ public class Mine implements Listener {
 		} else {
 			return area.toStrings();
 		}
+	}
+	
+	public boolean shopContains(Material material, short durability) {
+		for (MineMaterial m : shop.keySet()) {
+			if (m.getMaterial() == material && m.getDurability() == durability) return true;
+		}
+		return false;
+	}
+	
+	public double shopPriceFor(Material material, short durability) {
+		for (MineMaterial m : shop.keySet()) {
+			if (m.getMaterial() == material && m.getDurability() == durability) return shop.get(m);
+		}
+		return 0;
 	}
 	
 	public int airCheck() {
@@ -219,10 +315,54 @@ public class Mine implements Listener {
 		return s;
 	}
 	
+	public String shopString() {
+		String s = "";
+		for (MineMaterial m : shop.keySet()) {
+			s += m.material.toString() + ":" + m.durability + ":" + shop.get(m) + ";";
+		}
+		return s;
+	}
+	
+	public void setShop(String shop) {
+		while (shop.contains(";")) {
+			String temp = shop.substring(0, shop.indexOf(";") + 1);
+			this.shop.put(get(Material.valueOf(temp.substring(0, temp.indexOf(":"))), Short.valueOf(temp.substring(temp.indexOf(":") + 1, temp.lastIndexOf(":")))), Double.valueOf(temp.substring(temp.lastIndexOf(":") + 1, temp.indexOf(";"))));
+			shop = shop.replaceFirst(temp, "");
+		}
+	}
+	
+	private MineMaterial get(Material material, short durability) {
+		return new MineMaterial(material, durability);
+	}
+	
 	public void setComposition(String composition) {
 		while (composition.contains(";")) {
 			materials.put(Material.valueOf(composition.substring(0, composition.indexOf(":"))), Integer.valueOf(composition.substring(composition.indexOf(":") + 1, composition.indexOf(";"))));
 			composition = composition.substring(composition.indexOf(";") + 1);
+		}
+	}
+	
+	private class MineMaterial {
+		private Material material;
+		private short durability;
+		
+		
+		private MineMaterial(Material material, short durability) {
+			this.material = material;
+			this.durability = durability;
+		}
+		
+		private MineMaterial(Material material) {
+			this.material = material;
+			this.durability = 0;
+		}
+		
+		public Material getMaterial() {
+			return material;
+		}
+		
+		public short getDurability() {
+			return durability;
 		}
 	}
 	

@@ -3,6 +3,7 @@ package pw.xwy.prison_core.commands;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.Mine;
 import pw.xwy.prison_core.utility.MineManager;
 import pw.xwy.prison_core.utility.Rank;
@@ -16,6 +17,35 @@ public class MineCommand {
 				if (args.length == 2) {
 					MineManager.mines.get(Rank.valueOf(args[1].toUpperCase())).setRectangle(MineManager.locationOneHashMap.getOrDefault(player.getUniqueId(), null), MineManager.locationTwoHashMap.getOrDefault(player.getUniqueId(), null));
 					player.sendMessage("set area");
+				}
+			}
+			if (args[0].equalsIgnoreCase("shop")) {
+				if (args.length > 1) {
+					if (args[1].equalsIgnoreCase("set")) {
+						if (args.length == 4) {
+							Mine mine = MineManager.mines.get(Rank.valueOf(args[2]));
+							ItemStack stack = player.getItemInHand();
+							if (stack.getType() == Material.INK_SACK) {
+								mine.addToShop(stack.getType(), Double.valueOf(args[3]), stack.getDurability());
+							} else {
+								mine.addToShop(stack.getType(), Double.valueOf(args[3]));
+							}
+							//send a message
+						}
+					} else if (args[1].equalsIgnoreCase("remove")) {
+						if (args.length == 3) {
+							Mine mine = MineManager.mines.get(Rank.valueOf(args[2]));
+							ItemStack stack = player.getItemInHand();
+							if (stack.getType() == Material.INK_SACK) {
+								mine.removeFromShop(stack.getType(), stack.getDurability());
+							} else {
+								mine.removeFromShop(stack.getType());
+							}
+							//send a message
+						}
+					} else if (args[1].equalsIgnoreCase("list")) {
+					
+					}
 				}
 			}
 			if (args[0].equalsIgnoreCase("setBlock")) {
