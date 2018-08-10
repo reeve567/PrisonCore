@@ -7,7 +7,7 @@
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-package pw.xwy.prison_core.custom_enchants.utilities;
+package pw.xwy.prison_core.utility;
 // made by reeve
 // on 10:45 PM
 

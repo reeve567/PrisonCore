@@ -11,6 +11,7 @@ package pw.xwy.prison_core.custom_enchants.enums;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.Config;
 
 public enum CEnchant {
@@ -151,4 +152,9 @@ public enum CEnchant {
 	public boolean isEnabled() {
 		return enabled;
 	}
+	
+	public static boolean hasEnchant(ItemStack stack, CEnchant enchant) {
+		return stack != null && stack.hasItemMeta() && stack.getItemMeta().hasLore() && stack.getItemMeta().getLore().contains(enchant.getName());
+	}
+	
 }

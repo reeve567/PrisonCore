@@ -121,7 +121,26 @@ public class Rect3D {
 	 * @return true if the given point is within this Cuboid, false otherwise
 	 */
 	public boolean contains(int x, int y, int z) {
-		return x >= x1 && x <= x2 && y >= y1 && y <= y2 && z >= z1 && z <= z2;
+		boolean xCheck;
+		boolean yCheck;
+		boolean zCheck;
+		
+		if (x1 <= x2) {
+			xCheck = x >= x1 && x <= x2;
+		} else {
+			xCheck = x >= x2 && x <= x1;
+		}
+		if (y1 <= y2) {
+			yCheck = y >= y1 && y <= y2;
+		} else {
+			yCheck = y >= y2 && y <= y1;
+		}
+		if (z1 <= z2) {
+			zCheck = z >= z1 && z <= z2;
+		} else {
+			zCheck = z >= z2 && z <= z1;
+		}
+		return xCheck && yCheck && zCheck;
 	}
 	
 	/**

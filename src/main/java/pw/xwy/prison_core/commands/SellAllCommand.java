@@ -7,7 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.*;
 
 public class SellAllCommand implements CommandExecutor {
@@ -45,9 +44,6 @@ public class SellAllCommand implements CommandExecutor {
 		Double total = 0.0;
 		int amount = 0;
 		Inventory inventory = player.getInventory();
-		for (ItemStack i : inventory) {
-		
-		}
 		for (int i = 0; i < inventory.getSize(); i++) {
 			if (inventory.getContents()[i] != null) {
 				if (mine.shopContains(inventory.getContents()[i].getType(), inventory.getContents()[i].getDurability())) {

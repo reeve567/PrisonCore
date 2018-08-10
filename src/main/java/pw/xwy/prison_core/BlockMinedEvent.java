@@ -45,4 +45,8 @@ public class BlockMinedEvent extends Event {
 	public Block getBlock() {
 		return block;
 	}
+	
+	public Mine getMine() {
+		return mine;
+	}
 }
