@@ -3,7 +3,6 @@ package pw.xwy.prison_core.listeners;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
@@ -11,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.BlockMinedEvent;
+import pw.xwy.prison_core.commands.AutosellCommand;
 import pw.xwy.prison_core.custom_enchants.enums.CEnchant;
 import pw.xwy.prison_core.custom_enchants.listeners.EnchantDrop;
 import pw.xwy.prison_core.utility.*;
@@ -59,8 +59,27 @@ public class BlockListener implements Listener {
 		}
 		ArrayList<ItemStack> drops = new ArrayList<>(getDrop(e.getBlock(), hasSmelt, fortune != 0, fortune, e.getBlock().getData(), tool));
 		e.getBlock().setType(Material.AIR);
-		for (ItemStack i : drops) {
-			e.getPlayer().getInventory().addItem(i);
+		
+		if (AutosellCommand.toggled.contains(e.getPlayer().getUniqueId())) {
+			//if toggled autosell
+			Double total = 0.0;
+			for (int i = 0; i < drops.size(); i++) {
+				if (drops.get(i) != null) {
+					if (e.getMine().shopContains(drops.get(i).getType(), drops.get(i).getDurability())) {
+						total += e.getMine().shopPriceFor(drops.get(i).getType(), drops.get(i).getDurability()) * drops.get(i).getAmount();
+						drops.set(i, new CustomItem(drops.get(i)).setCusomType(Material.AIR));
+					}
+				}
+				
+			}
+			PlayerData config = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
+			ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData().addBalance(total * config.getSellMultuplier());
+			
+		} else {
+			//if no autosell
+			for (ItemStack i : drops) {
+				e.getPlayer().getInventory().addItem(i);
+			}
 		}
 		
 		
@@ -80,8 +99,7 @@ public class BlockListener implements Listener {
 			}
 			
 			//explosive handle
-			if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICK)) {
-				//break
+			if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKI)) {
 				for (int i = -1; i <= 1; i++) {
 					for (int j = -1; j <= 1; j++) {
 						for (int k = -1; k <= 1; k++) {
@@ -99,6 +117,46 @@ public class BlockListener implements Listener {
 					}
 				}
 			}
+			else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKII)) {
+				for (int i = -2; i <= 2; i++) {
+					for (int j = -2; j <= 2; j++) {
+						for (int k = -2; k <= 2; k++) {
+							
+							Location temp = e.getBlock().getLocation();
+							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
+							Mine mine = null;
+							if (e.getMine().getArea().contains(location)) {
+								mine = e.getMine();
+							}
+							if (!(i == 0 && j == 0 && k == 0)) {
+								BlockMinedEvent.call(location.getBlock(), e.getPlayer(), mine, false);
+							}
+						}
+					}
+				}
+			} else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKIII)) {
+				for (int i = -3; i <= 3; i++) {
+					for (int j = -3; j <= 3; j++) {
+						for (int k = -3; k <= 3; k++) {
+							
+							Location temp = e.getBlock().getLocation();
+							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
+							Mine mine = null;
+							if (e.getMine().getArea().contains(location)) {
+								mine = e.getMine();
+							}
+							if (!(i == 0 && j == 0 && k == 0)) {
+								BlockMinedEvent.call(location.getBlock(), e.getPlayer(), mine, false);
+							}
+						}
+					}
+				}
+			}
+			
+			
+			
+			
+			
 		} else {
 			e.getBlock().getLocation().getWorld().playEffect(e.getBlock().getLocation(), Effect.STEP_SOUND, e.getBlock().getTypeId());
 		}

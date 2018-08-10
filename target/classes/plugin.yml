@@ -40,3 +40,7 @@ commands:
     aliases: [sa]
     permission: xwy.perks.commands.sellall
     permission-message: §cYou do not have permission to do this!
+  autosell:
+    aliases: [as]
+    permission: xwy.perks.commands.autosell
+    permission-message: §cYou do not have permission to do this!
