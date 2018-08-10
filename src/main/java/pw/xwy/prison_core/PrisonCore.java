@@ -90,6 +90,7 @@ public class PrisonCore extends JavaPlugin {
 		new SpawnCommand();
 		new ChatstopCommand();
 		new ChatclearCommand();
+		new WorkbenchCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

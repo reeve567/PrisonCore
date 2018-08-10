@@ -1,6 +1,9 @@
 pw\xwy\prison_core\custom_enchants\commands\admin\CeOrganize$1.class
+pw\xwy\prison_core\CrateManager.class
 pw\xwy\prison_core\commands\SetCommand.class
+pw\xwy\prison_core\listeners\CrateListener.class
 pw\xwy\prison_core\custom_enchants\commands\admin\CeOrganize.class
+pw\xwy\prison_core\CrateManager$CrateType.class
 pw\xwy\prison_core\listeners\BlockListener.class
 pw\xwy\prison_core\commands\ChatclearCommand.class
 pw\xwy\prison_core\commands\WorkbenchCommand.class
