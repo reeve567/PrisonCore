@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.PlayerConfig;
 import pw.xwy.prison_core.utility.PlayerData;
+import pw.xwy.prison_core.utility.VoucherUtility;
 
 public class BalanceCommand {
 	
@@ -15,7 +16,18 @@ public class BalanceCommand {
 				ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(Double.parseDouble(args[1]));
 			else if (args[0].equalsIgnoreCase("withdraw") || args[0].equalsIgnoreCase("w")) {
 				PlayerData data = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
-				double amount = args[1];
+				if (args[1].equalsIgnoreCase("all")) {
+					double amount = data.getBalance();
+					data.setBalance(0);
+					player.getInventory().addItem(VoucherUtility.getMoneyVoucher(player, amount));
+				} else {
+					double amount = Double.parseDouble(args[1]);
+					
+					if (data.getBalance() >= amount) {
+						data.addBalance(-amount);
+						player.getInventory().addItem(VoucherUtility.getMoneyVoucher(player, amount));
+					}
+				}
 				
 			}
 		} else if (args.length == 1) {

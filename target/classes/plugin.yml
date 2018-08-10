@@ -44,3 +44,11 @@ commands:
     aliases: [as]
     permission: xwy.perks.commands.autosell
     permission-message: §cYou do not have permission to do this!
+  enderchest:
+    aliases: [ec]
+    permission: xwy.perks.commands.enderchest
+    permission-message: §cYou do not have permission to do this!
+  hat:
+    aliases: []
+    permission: xwy.perks.commands.hat
+    permission-message: §cYou do not have permission to do this!
