@@ -16,10 +16,32 @@ public class MineManager implements Listener {
 	public static HashMap<Rank, Mine> mines = new HashMap<>();
 	public static HashMap<UUID, Location> locationOneHashMap = new HashMap<>();
 	public static HashMap<UUID, Location> locationTwoHashMap = new HashMap<>();
+	public static HashMap<ExtraRank, Mine> extraMines = new HashMap<>();
 	
 	public MineManager() {
 		for (Rank rank : Rank.values()) {
 			mines.put(rank, new Mine(rank.toString()));
+		}
+		for (ExtraRank rank : ExtraRank.values()) {
+			extraMines.put(rank, new Mine(rank.toString()));
+		}
+	}
+	
+	public static boolean isNormalMine(String s) {
+		try {
+			Rank.valueOf(s);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public static boolean isDonorMine(String s) {
+		try {
+			ExtraRank.valueOf(s);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 	

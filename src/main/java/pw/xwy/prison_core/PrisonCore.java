@@ -82,6 +82,8 @@ public class PrisonCore extends JavaPlugin {
 		registerEvents(new LeaveListener());
 		registerEvents(new BlockListener());
 		registerEvents(new VoucherListener());
+		registerEvents(new SignListener());
+		registerEvents(new CrateListener());
 		
 	}
 	
@@ -96,6 +98,7 @@ public class PrisonCore extends JavaPlugin {
 		new AutosellCommand();
 		new EnderchestCommand();
 		new HatCommand();
+		new KeyCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

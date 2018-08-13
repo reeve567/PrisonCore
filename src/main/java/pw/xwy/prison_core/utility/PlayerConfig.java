@@ -3,6 +3,7 @@ package pw.xwy.prison_core.utility;
 import pw.xwy.prison_core.PrisonCore;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
@@ -20,6 +21,7 @@ public class PlayerConfig extends Config {
 		super(new File(PrisonCore.getInstance().getDataFolder(), "Players"), name.toString());
 		setDefaults();
 		data = new PlayerData(name, getDouble("general-data.balance"), Rank.valueOf(getString("prison-data.rank")), getInt("prison-data.prestige"));
+		if (!getString("prison-data.active-tag").equalsIgnoreCase("unset")) data.setActiveTag(Tag.valueOf(getString("prison-data.active-tag")));
 		lastUsed.put("god-tools", new Date(getLong("cool-downs.god-tools")));
 		lastUsed.put("god-axe", new Date(getLong("cool-downs.god-axe")));
 		lastUsed.put("pvp", new Date(getLong("cool-downs.pvp")));
@@ -38,6 +40,8 @@ public class PlayerConfig extends Config {
 			setVersion();
 			set("prison-data.rank", Rank.A.toString());
 			set("prison-data.prestige", 0);
+			set("prison-data.tags", new ArrayList<>());
+			set("prison-data.active-tag", "unset");
 			set("general-data.balance", startingMoney);
 			set("cool-downs.god-tools", 0L);
 			set("cool-downs.god-axe", 0L);
@@ -55,16 +59,16 @@ public class PlayerConfig extends Config {
 		return getInt("ver");
 	}
 	
+	public void setVersion() {
+		set("ver", ver);
+	}
+	
 	public PlayerData getData() {
 		return data;
 	}
 	
 	public boolean isFirstJoin() {
 		return firstJoin;
-	}
-	
-	public void setVersion() {
-		set("ver", ver);
 	}
 	
 	public Date getLastUsed(String s) {
@@ -79,6 +83,8 @@ public class PlayerConfig extends Config {
 		set("prison-data.rank", data.getRank().toString());
 		set("prison-data.prestige", data.getPrestige());
 		set("general-data.balance", data.getBalance());
+		set("prison-data.tags", data.getTagStrings());
+		set("prison-data.active-tag", data.getActiveTag() != null ? data.getActiveTag().toString() : "unset");
 		saveConfig();
 	}
 }

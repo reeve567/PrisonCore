@@ -44,6 +44,7 @@ public class SetCommand implements CommandExecutor {
 				}
 			} else if (args[0].equalsIgnoreCase("crate")) {
 				if (commandSender instanceof Player) {
+					commandSender.sendMessage("tried to set");
 					return CrateManager.setCrate((Player) commandSender);
 				} else {
 					commandSender.sendMessage("must be run as player");

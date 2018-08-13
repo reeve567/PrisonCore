@@ -3,10 +3,12 @@ name: PrisonCore
 version: RELEASE
 author: Xwy
 authors: [Xaq]
-depend: [Citizens]
+depend: [Citizens,PermissionsEx]
 commands:
   feed:
+    aliases: []
   mine:
+    aliases: []
     permission: xwy.admin.mine
     permission-message: §cYou do not have permission to do this!
   bal:
@@ -20,7 +22,9 @@ commands:
   rankup:
     aliases: [ru]
   kit:
+    aliases: []
   set:
+    aliases: []
     permission: xwy.admin.set
     permission-message: §cYou do not have permission to do this!
   spawn:
@@ -51,4 +55,8 @@ commands:
   hat:
     aliases: []
     permission: xwy.perks.commands.hat
+    permission-message: §cYou do not have permission to do this!
+  key:
+    aliases: []
+    permission: xwy.admin.key
     permission-message: §cYou do not have permission to do this!

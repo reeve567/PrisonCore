@@ -46,14 +46,8 @@ public class CustomItem extends ItemStack {
 	}
 	
 	public CustomItem setCustomAmount(int amount) {
-		setAmount(amount);
-		return this;
-	}
-	
-	@Deprecated
-	@Override
-	public void setAmount(int amount) {
 		super.setAmount(amount);
+		return this;
 	}
 	
 	public CustomItem addLore(String s) {

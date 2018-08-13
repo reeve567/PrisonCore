@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import pw.xwy.prison_core.utility.*;
 
+import static pw.xwy.prison_core.utility.SellUtility.sell;
+
 public class SellAllCommand implements CommandExecutor {
 	
 	public SellAllCommand() {
@@ -33,35 +35,23 @@ public class SellAllCommand implements CommandExecutor {
 				}
 				
 			}
+			ExtraRank[] ranks1 = ExtraRank.values();
+			for (ExtraRank rank1 : ranks1) {
+				if (MineManager.extraMines.get(rank1).getArea() != null) {
+					if (MineManager.extraMines.get(rank1).getArea().contains(player.getLocation())) {
+						sell(player, rank1);
+						return true;
+					}
+				}
+			}
+			
 			sell(player, rank);
 			return true;
 		}
 		return false;
 	}
 	
-	private void sell(Player player, Rank rank) {
-		Mine mine = MineManager.mines.get(rank);
-		Double total = 0.0;
-		int amount = 0;
-		Inventory inventory = player.getInventory();
-		for (int i = 0; i < inventory.getSize(); i++) {
-			if (inventory.getContents()[i] != null) {
-				if (mine.shopContains(inventory.getContents()[i].getType(), inventory.getContents()[i].getDurability())) {
-					amount += inventory.getContents()[i].getAmount();
-					total += mine.shopPriceFor(inventory.getContents()[i].getType(), inventory.getContents()[i].getDurability()) * inventory.getContents()[i].getAmount();
-					inventory.setItem(i, new CustomItem(inventory.getItem(i)).setCusomType(Material.AIR));
-				}
-			}
-			
-		}
-		
-		
-		player.getInventory().setContents(inventory.getContents());
-		PlayerData config = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
-		player.sendMessage("mine : " + rank.toString());
-		player.sendMessage("amount sold : " + amount);
-		player.sendMessage("multiplier : " + config.getSellMultuplier());
-		player.sendMessage("total price : " + total * config.getSellMultuplier());
-		ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(total * config.getSellMultuplier());
-	}
+	
+	
+	
 }

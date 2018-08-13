@@ -1,5 +1,7 @@
 package pw.xwy.prison_core.utility;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class PlayerData {
@@ -7,6 +9,8 @@ public class PlayerData {
 	private double balance;
 	private Rank rank;
 	private int prestige;
+	private ArrayList<Tag> tags = new ArrayList<>();
+	private Tag activeTag = null;
 	
 	public PlayerData(UUID uuid, double balance, Rank rank, int prestige) {
 		this.uuid = uuid;
@@ -97,4 +101,23 @@ public class PlayerData {
 		return getBalance() >= getRankupPriceMultiplied();
 	}
 	
+	public ArrayList<Tag> getTags() {
+		return tags;
+	}
+	
+	public Tag getActiveTag() {
+		return activeTag;
+	}
+	
+	public void setActiveTag(Tag activeTag) {
+		this.activeTag = activeTag;
+	}
+	
+	public List<String> getTagStrings() {
+		ArrayList<String> strings = new ArrayList<>();
+		for (Tag tag : tags) {
+			strings.add(tag.toString());
+		}
+		return strings;
+	}
 }
