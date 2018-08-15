@@ -24,7 +24,7 @@ public class SellAllCommand implements CommandExecutor {
 				return false;
 			}
 			Player player = (Player) sender;
-			Rank rank = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().getRank();
+			Rank rank = PlayerManager.getXPlayer(player).getData().getRank();
 			Rank[] ranks = Rank.values();
 			for (int i = 0; i <= rank.ordinal(); i++) {
 				if (MineManager.mines.get(ranks[i]).getArea() != null) {

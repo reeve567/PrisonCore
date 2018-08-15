@@ -99,6 +99,7 @@ public class PrisonCore extends JavaPlugin {
 		new EnderchestCommand();
 		new HatCommand();
 		new KeyCommand();
+		new PermissionsCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

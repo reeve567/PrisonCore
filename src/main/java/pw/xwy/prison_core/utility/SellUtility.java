@@ -23,12 +23,12 @@ public class SellUtility {
 		}
 		
 		player.getInventory().setContents(inventory.getContents());
-		PlayerData config = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
+		XPlayerData config = PlayerManager.getXPlayer(player).getData();
 		player.sendMessage("mine : " + rank.toString());
 		player.sendMessage("amount sold : " + amount);
 		player.sendMessage("multiplier : " + config.getSellMultuplier());
 		player.sendMessage("total price : " + total * config.getSellMultuplier());
-		ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(total * config.getSellMultuplier());
+		PlayerManager.getXPlayer(player).getData().addBalance(total * config.getSellMultuplier());
 	}
 	
 	public static void sell(Player player, Rank rank) {
@@ -48,12 +48,12 @@ public class SellUtility {
 		}
 		
 		player.getInventory().setContents(inventory.getContents());
-		PlayerData config = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
+		XPlayerData config = PlayerManager.getXPlayer(player).getData();
 		player.sendMessage("mine : " + rank.toString());
 		player.sendMessage("amount sold : " + amount);
 		player.sendMessage("multiplier : " + config.getSellMultuplier());
 		player.sendMessage("total price : " + total * config.getSellMultuplier());
-		ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(total * config.getSellMultuplier());
+		PlayerManager.getXPlayer(player).getData().addBalance(total * config.getSellMultuplier());
 	}
 	
 }

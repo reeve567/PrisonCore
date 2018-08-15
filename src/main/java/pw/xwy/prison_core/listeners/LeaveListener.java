@@ -4,12 +4,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
+import pw.xwy.prison_core.utility.PlayerManager;
 
 public class LeaveListener implements Listener {
 	
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e) {
-		ConfigurationHandler.unloadPlayer(e.getPlayer().getUniqueId());
+		PlayerManager.unloadPlayer(e.getPlayer().getUniqueId());
 	}
 	
 	

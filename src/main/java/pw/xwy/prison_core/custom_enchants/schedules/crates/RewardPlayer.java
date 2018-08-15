@@ -25,6 +25,7 @@ import pw.xwy.prison_core.custom_enchants.enums.Souls;
 import pw.xwy.prison_core.custom_enchants.listeners.EnchantDrop;
 import pw.xwy.prison_core.custom_enchants.utilities.MainUtility;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
+import pw.xwy.prison_core.utility.PlayerManager;
 
 import java.util.ArrayList;
 
@@ -273,6 +274,6 @@ public class RewardPlayer extends BukkitRunnable {
 	
 	public void depositPlayer(Player player, double amount) {
 		
-		ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(amount);
+		PlayerManager.getXPlayer(player).getData().addBalance(amount);
 	}
 }

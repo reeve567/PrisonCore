@@ -1,43 +1,57 @@
 package pw.xwy.prison_core.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import pw.xwy.prison_core.utility.PlayerData;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
+import pw.xwy.prison_core.Permissions;
+import pw.xwy.prison_core.utility.PlayerManager;
+import pw.xwy.prison_core.utility.XPlayer;
 
 public class ChatListener implements Listener {
 	
 	public static final String prefix = "§a§lBilly §8§l»» §7";
+	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish", "lionfish"};
+	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
+	private static final String[] groupsListTitle = {"§3Guppy", "§6Mud§bKip", "§1Shark", "§9§lWhale", "§d§lJellyfish", "§4§lLion§6§lFish"};
+	private static final String[] extraGroupsTitle = {"§eHelper", "§5Mod", "§cAdmin", "§6Owner", "§4Dev"};
 	public static boolean stopped = false;
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
-		e.setCancelled(true);
-		String message = e.getMessage();
+		XPlayer data = PlayerManager.getXPlayer(e.getPlayer());
+		
+		String firstTitle = "";
+		String secondTitle = "";
+		
+		for (int i = 0; i < groupsList.length; i++) {
+			if (data.hasGroup(groupsList[i])) {
+				secondTitle = "§8[" + groupsListTitle[i] + "§8] ";
+			}
+		}
+		
+		for (int i = 0; i < extraGroups.length; i++) {
+			if (data.hasGroup(extraGroups[i])) {
+				firstTitle = "§8[" + extraGroupsTitle[i] + "§8] ";
+			}
+		}
+		
 		if (stopped) {
-			if (!e.getPlayer().hasPermission("xwy.admin.chatstop")) {
+			if (!e.getPlayer().hasPermission(Permissions.CHATSTOP_COMMAND.toString())) {
+				e.setCancelled(true);
 				e.getPlayer().sendMessage("§cYou cannot chat while chat is still stopped.");
 			} else {
-				PlayerData data = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
-				Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+				e.setFormat(firstTitle + secondTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 			}
 			return;
 		}
-		if (message.contains("hello") && message.contains("billy")) {
-			e.getPlayer().sendMessage(prefix + "Hello Im Billy your personal assistant and prostitute. Ask any questions that start with a what and address me somewhere in the question and i will answer");
-		} else if (message.contains("what") && message.contains("billy")) {
-			e.getPlayer().sendMessage(prefix + "A dolphin can have up to 8 orgasms in 10 mins");
-		} else {
-			PlayerData data = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
-			Bukkit.broadcastMessage("§8[§c" + data.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+		if (data.hasGroup(extraGroups[4])) {
+			e.setFormat(firstTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+			return;
 		}
+		
+		e.setFormat(firstTitle + secondTitle + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 	}
 	
-	public String convert(String message) {
-		return ChatColor.translateAlternateColorCodes('&', message);
-	}
 	
 }

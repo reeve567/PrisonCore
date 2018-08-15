@@ -10,10 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.custom_enchants.utilities.InventoryUtility;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.CustomItem;
-import pw.xwy.prison_core.utility.PlayerConfig;
-import pw.xwy.prison_core.utility.TimeFormatting;
+import pw.xwy.prison_core.utility.*;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -29,7 +26,7 @@ public class KitGUI implements Listener {
 	private final Player player;
 	private Inventory inventory;
 	private ArrayList<Slot> items = new ArrayList<>();
-	private PlayerConfig data;
+	private XPlayer data;
 	
 	
 	public KitGUI(Player player) {
@@ -37,7 +34,7 @@ public class KitGUI implements Listener {
 		if (player != null) {
 			inventory = Bukkit.createInventory(player, 45, "§6Kits");
 			InventoryUtility.setBackground(inventory, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(15).setName(" "));
-			data = ConfigurationHandler.playerConfigs.get(player.getUniqueId());
+			data = PlayerManager.getXPlayer(player);
 			
 			items.add(new Slot(10, 0, "§6God Tools", names[0]));
 			items.add(new Slot(12, 4, "§6God Axe", names[1]));
@@ -106,7 +103,7 @@ public class KitGUI implements Listener {
 			return;
 		}
 		Player player = (Player) e.getWhoClicked();
-		PlayerConfig config = ConfigurationHandler.playerConfigs.get(player.getUniqueId());
+		XPlayer config = PlayerManager.getXPlayer(player);
 		
 		switch (e.getRawSlot()) {
 			case 10:

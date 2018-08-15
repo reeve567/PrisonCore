@@ -8,7 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.PlayerData;
+import pw.xwy.prison_core.utility.PlayerManager;
+import pw.xwy.prison_core.utility.XPlayerData;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.CustomItem;
 
@@ -52,8 +53,8 @@ public class DonorShopGUI implements Listener {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null) {
 				Player player = (Player) e.getWhoClicked();
-				PlayerData data = ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData();
-				;
+				XPlayerData data = PlayerManager.getXPlayer(player).getData();
+
 				
 				switch (e.getCurrentItem().getType()) {
 					case GLOWSTONE_DUST:

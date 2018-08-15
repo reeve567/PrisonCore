@@ -2,15 +2,15 @@ package pw.xwy.prison_core.scoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.PlayerData;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.Rank;
-import pw.xwy.prison_core.utility.ReadableNumbers;
+import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.utility.*;
 
 public class PlaceholderConversion {
 	
 	public static String convert(Player p, String s) {
-		PlayerData data = ConfigurationHandler.playerConfigs.get(p.getUniqueId()).getData();
+		
+		
+		XPlayerData data = PlayerManager.getXPlayer(p).getData();
 		s = s.replaceAll("<players-online>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		s = s.replaceAll("<player-username>", p.getName());
 		s = s.replaceAll("<player-displayname>", p.getDisplayName());

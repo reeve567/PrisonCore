@@ -72,8 +72,8 @@ public class BlockListener implements Listener {
 				}
 				
 			}
-			PlayerData config = ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData();
-			ConfigurationHandler.playerConfigs.get(e.getPlayer().getUniqueId()).getData().addBalance(total * config.getSellMultuplier());
+			XPlayerData config = PlayerManager.getXPlayer(e.getPlayer()).getData();
+			PlayerManager.getXPlayer(e.getPlayer()).getData().addBalance(total * config.getSellMultuplier());
 			
 		} else {
 			//if no autosell
@@ -116,8 +116,7 @@ public class BlockListener implements Listener {
 						}
 					}
 				}
-			}
-			else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKII)) {
+			} else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKII)) {
 				for (int i = -2; i <= 2; i++) {
 					for (int j = -2; j <= 2; j++) {
 						for (int k = -2; k <= 2; k++) {
@@ -152,9 +151,6 @@ public class BlockListener implements Listener {
 					}
 				}
 			}
-			
-			
-			
 			
 			
 		} else {

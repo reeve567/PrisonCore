@@ -6,11 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.CustomItem;
+import pw.xwy.prison_core.utility.PlayerManager;
 import pw.xwy.prison_core.utility.ReadableNumbers;
 import pw.xwy.prison_core.utility.Tag;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CrateManager {
 	
@@ -220,7 +219,7 @@ public class CrateManager {
 			} else {
 				player.sendMessage(getBackupMessage());
 			}
-			ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().addBalance(getValue());
+			PlayerManager.getXPlayer(player).getData().addBalance(getValue());
 		}
 		
 		public String getBackupMessage() {
@@ -259,7 +258,7 @@ public class CrateManager {
 				MoneyPrize prize = new MoneyPrize(getBackupReward(), false);
 				prize.givePrize(player);
 			} else {
-				PermissionsEx.getUser(player).addTimedPermission(getValue(), null, Integer.MAX_VALUE);
+				PlayerManager.addPermission(player, getValue());
 			}
 		}
 	}
@@ -272,11 +271,11 @@ public class CrateManager {
 		@Override
 		public void givePrize(Player player) {
 			player.sendMessage(getMessage());
-			if (PermissionsEx.getUser(player).inGroup(getValue())) {
+			if (PlayerManager.hasGroup(player, getValue())) {
 				MoneyPrize prize = new MoneyPrize(getBackupReward(), false);
 				prize.givePrize(player);
 			} else {
-				PermissionsEx.getUser(player).addGroup(getValue(), null, Long.MAX_VALUE);
+				PlayerManager.addGroup(player, getValue());
 			}
 		}
 	}
@@ -289,11 +288,11 @@ public class CrateManager {
 		@Override
 		public void givePrize(Player player) {
 			player.sendMessage(getMessage());
-			if (ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().getTags().contains(getValue())) {
+			if (PlayerManager.getXPlayer(player).getData().getTags().contains(getValue())) {
 				MoneyPrize prize = new MoneyPrize(getBackupReward(), false);
 				prize.givePrize(player);
 			} else {
-				ConfigurationHandler.playerConfigs.get(player.getUniqueId()).getData().getTags().add(getValue());
+				PlayerManager.getXPlayer(player).getData().getTags().add(getValue());
 			}
 		}
 	}
@@ -309,8 +308,7 @@ public class CrateManager {
 			boolean found = false;
 			for (int i = 1; i <= getValue(); i++)
 				if (!player.hasPermission("plots.plot." + i)) {
-					PermissionsEx.getUser(player).addTimedPermission("plots.plot." + i, null, Integer.MAX_VALUE);
-					PermissionsEx.getUser(player).save();
+					PlayerManager.addPermission(player, "plots.plot." + i);
 					found = true;
 					break;
 				}

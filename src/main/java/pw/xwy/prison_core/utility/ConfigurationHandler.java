@@ -1,21 +1,19 @@
 package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import pw.xwy.prison_core.CrateManager;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.listeners.JoinListener;
 import pw.xwy.prison_core.scoreboard.ScoreboardsManager;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.UUID;
 
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 import static pw.xwy.prison_core.PrisonCore.telegramIntegration;
+import static pw.xwy.prison_core.utility.PlayerManager.savePlayerData;
 
 public class ConfigurationHandler {
 	
-	public static HashMap<UUID, PlayerConfig> playerConfigs = new HashMap<>();
 	private static Config scoreboardConfiguration;
 	private Config mainConfiguration;
 	private Config mineConfiguration;
@@ -38,7 +36,7 @@ public class ConfigurationHandler {
 	private void loadConfig() {
 		loadMain();
 		loadRankPrices();
-		loadPlayerData();
+		new PlayerManager();
 		loadMines();
 		loadPrestiges();
 		loadNormalWarps();
@@ -70,8 +68,8 @@ public class ConfigurationHandler {
 			new TelegramIntegration(mainConfiguration.getString("Telegram-Integration.Bot-ID"), mainConfiguration.getString("Telegram-Integration.Chat-ID")).runTaskTimer(PrisonCore.getInstance(), 0, 5);
 			TelegramIntegration.messages.add("Integration Enabled!");
 		}
-		PlayerConfig.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
-		PlayerConfig.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
+		XPlayerConfig.moneySymbol = mainConfiguration.getString("General.Money-Symbol");
+		XPlayerConfig.startingMoney = mainConfiguration.getDouble("General.Starting-Money");
 		RanksManager.maxPrestige = mainConfiguration.getInt("General.Max-Prestige");
 	}
 	
@@ -88,12 +86,6 @@ public class ConfigurationHandler {
 		for (String s : RanksManager.rankNames) {
 			Rank.valueOf(s).setRankPrefix(rankInfoConfiguration.getString(s + ".Chat-Prefix"));
 			Rank.valueOf(s).setRankupCost(rankInfoConfiguration.getInt(s + ".Rankup-Cost"));
-		}
-	}
-	
-	public void loadPlayerData() {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			playerConfigs.put(p.getUniqueId(), new PlayerConfig(p.getUniqueId()));
 		}
 	}
 	
@@ -155,6 +147,7 @@ public class ConfigurationHandler {
 		if (miscData.getInt("ver") != 2) {
 			miscData.set("ver", 2);
 			miscData.set("Locations.Crate", "unset");
+			miscData.set("Unique-Players", Bukkit.getOnlinePlayers().length);
 			miscData.saveConfig();
 		}
 		new CrateManager(miscData.getString("Locations.Crate"));
@@ -180,17 +173,9 @@ public class ConfigurationHandler {
 		mineConfiguration.saveConfig();
 	}
 	
-	public static boolean isUniquePlayer(Player player) {
-		return playerConfigs.get(player.getUniqueId()).isFirstJoin();
-	}
 	
 	public static Config getScoreboardConfiguration() {
 		return scoreboardConfiguration;
-	}
-	
-	public static void unloadPlayer(UUID id) {
-		playerConfigs.get(id).saveData();
-		playerConfigs.remove(id);
 	}
 	
 	public void onDisable() {
@@ -207,15 +192,10 @@ public class ConfigurationHandler {
 		normalWarpsData.saveConfig();
 	}
 	
-	private void savePlayerData() {
-		for (UUID id : playerConfigs.keySet()) {
-			PlayerConfig config = playerConfigs.get(id);
-			config.saveData();
-		}
-	}
 	
 	private void saveMiscData() {
 		miscData.set("Locations.Crate", CrateManager.crateString());
+		miscData.set("Unique-Players", JoinListener.UniquePlayers);
 	}
 	
 }

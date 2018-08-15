@@ -3,10 +3,12 @@ name: PrisonCore
 version: RELEASE
 author: Xwy
 authors: [Xaq]
-depend: [Citizens,PermissionsEx]
+depend: []
 commands:
   feed:
     aliases: []
+    permission: xwy.perks.commands.feed
+    permission-message: §cYou do not have permission to do this!
   mine:
     aliases: []
     permission: xwy.admin.mine
@@ -59,4 +61,8 @@ commands:
   key:
     aliases: []
     permission: xwy.admin.key
+    permission-message: §cYou do not have permission to do this!
+  permissions:
+    aliases: [perms]
+    permission: xwy.admin.permissions
     permission-message: §cYou do not have permission to do this!

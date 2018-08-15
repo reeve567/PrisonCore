@@ -4,18 +4,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pw.xwy.prison_core.PrisonCore;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.PlayerConfig;
+import pw.xwy.prison_core.utility.PlayerManager;
 
 public class JoinListener implements Listener {
 	public static int UniquePlayers;
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		ConfigurationHandler.playerConfigs.put(e.getPlayer().getUniqueId(), new PlayerConfig(e.getPlayer().getUniqueId()));
+		PlayerManager.getXPlayer(e.getPlayer());
 		
-		if (ConfigurationHandler.isUniquePlayer(e.getPlayer())) {
+		if (PlayerManager.isUniquePlayer(e.getPlayer())) {
 			Bukkit.broadcastMessage("§7Welcome §6" + e.getPlayer().getName() + " §7to the server");
 			Bukkit.broadcastMessage("§6" + ++UniquePlayers + " §7unique players have joined");
 		}

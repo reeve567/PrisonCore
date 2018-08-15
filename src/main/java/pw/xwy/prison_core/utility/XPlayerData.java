@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PlayerData {
+public class XPlayerData {
 	private UUID uuid;
 	private double balance;
 	private Rank rank;
@@ -12,7 +12,7 @@ public class PlayerData {
 	private ArrayList<Tag> tags = new ArrayList<>();
 	private Tag activeTag = null;
 	
-	public PlayerData(UUID uuid, double balance, Rank rank, int prestige) {
+	public XPlayerData(UUID uuid, double balance, Rank rank, int prestige) {
 		this.uuid = uuid;
 		this.balance = balance;
 		this.rank = rank;
