@@ -12,7 +12,7 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		PlayerManager.getXPlayer(e.getPlayer());
-		
+		e.getPlayer().setAllowFlight(false);
 		if (PlayerManager.isUniquePlayer(e.getPlayer())) {
 			Bukkit.broadcastMessage("§7Welcome §6" + e.getPlayer().getName() + " §7to the server");
 			Bukkit.broadcastMessage("§6" + ++UniquePlayers + " §7unique players have joined");

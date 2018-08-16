@@ -4,6 +4,7 @@ pw\xwy\prison_core\custom_enchants\listeners\SprintListener.class
 pw\xwy\prison_core\custom_enchants\schedules\JumpBoost.class
 pw\xwy\prison_core\custom_enchants\listeners\DeathListener.class
 pw\xwy\prison_core\commands\FeedCommand.class
+pw\xwy\prison_core\listeners\DamageListener.class
 pw\xwy\prison_core\commands\HatCommand.class
 pw\xwy\prison_core\custom_enchants\schedules\crates\RewardPlayer.class
 pw\xwy\prison_core\scoreboard\ScoreboardTask.class
@@ -65,6 +66,7 @@ pw\xwy\prison_core\CrateManager$Prize.class
 pw\xwy\prison_core\custom_enchants\menus\PickMenu.class
 pw\xwy\prison_core\PrisonCore.class
 pw\xwy\prison_core\commands\BalanceCommand.class
+pw\xwy\prison_core\commands\TagCommand.class
 pw\xwy\prison_core\custom_enchants\commands\player\Conv.class
 pw\xwy\prison_core\utility\TimeFormatting.class
 pw\xwy\prison_core\custom_enchants\listeners\NPCClick.class
@@ -83,10 +85,12 @@ pw\xwy\prison_core\utility\Rank.class
 pw\xwy\prison_core\CrateManager$TagPrize.class
 pw\xwy\prison_core\listeners\BlockListener.class
 pw\xwy\prison_core\custom_enchants\listeners\ArmorListener.class
+pw\xwy\prison_core\commands\FlyCommand.class
 pw\xwy\prison_core\custom_enchants\commands\CECommandHandler.class
 pw\xwy\prison_core\custom_enchants\commands\admin\CeGive.class
 pw\xwy\prison_core\commands\ChatclearCommand.class
 pw\xwy\prison_core\custom_enchants\enums\Souls.class
+pw\xwy\prison_core\listeners\TagGUI.class
 pw\xwy\prison_core\utility\NormalWarps.class
 pw\xwy\prison_core\custom_enchants\enums\MenuItem.class
 pw\xwy\prison_core\custom_enchants\schedules\WaterBreathing.class

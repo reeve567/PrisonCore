@@ -9,16 +9,11 @@
 
 package pw.xwy.prison_core.custom_enchants.listeners;
 
-import net.citizensnpcs.api.event.NPCClickEvent;
-import net.citizensnpcs.api.event.NPCLeftClickEvent;
-import net.citizensnpcs.api.event.NPCRightClickEvent;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import pw.xwy.prison_core.custom_enchants.menus.MainMenu;
 
 public class NPCClick implements Listener {
 	
-	@EventHandler
+	/*@EventHandler
 	public void onRightClick(NPCRightClickEvent e) {
 		onClick(e);
 	}
@@ -34,6 +29,6 @@ public class NPCClick implements Listener {
 	@EventHandler
 	public void onLeftClick(NPCLeftClickEvent e) {
 		onClick(e);
-	}
+	}*/
 	
 }

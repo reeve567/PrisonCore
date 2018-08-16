@@ -1,5 +1,6 @@
 package pw.xwy.prison_core.utility;
 
+import org.bukkit.Bukkit;
 import org.bukkit.permissions.PermissionAttachment;
 import pw.xwy.prison_core.Permissions;
 import pw.xwy.prison_core.PrisonCore;
@@ -8,36 +9,44 @@ import java.io.File;
 import java.util.*;
 
 public class XPlayerConfig extends Config {
-	public static final ArrayList<String> defaults = new ArrayList<>(Arrays.asList("plots.use", "plots.info", "plots.claim"
+	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish"};
+	public static final double[] multiplier = {0.2, 0.4, 0.6, 1, 1.4};
+	public static final int[] pvs = {0, 0, 2, 10, 20};
+	public static final boolean[] colorChat = {false, false, true, true, true};
+	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
+	private static final ArrayList<String> defaults = new ArrayList<>(Arrays.asList("plots.use", "plots.info", "plots.claim"
 			, "plots.auto", "plots.home", "plots.clear", "plots.delete", "plots.list", "plots.list.mine"
 			, "plots.list.shared", "plots.set", "plots.visit", "plots.visit.owned", "plots.visit.shared"
 			, "plots.set.flag", "plots.flag.add", "plots.flag.remove", "plots.flag.list", "plots.flag.info"
 			, "plots.flag", "plots.confirm", "plots.toggle", "plots.toggle.titles", "plots.set.biome", "plots.set.home"
 			, "plots.denied", "plots.remove", "plots.untrust", "plots.undeny", "plots.kick", "plots.done", "plots.save"
 			, "plots.continue"));
-	public static final ArrayList<String> guppyPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(),
-			Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.guppy"));
-	public static final ArrayList<String> mudkipPerms = new ArrayList<>(Arrays.asList());
-	
-	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish", "lionfish"};
-	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
+	private static final ArrayList<String> guppyPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.guppy"));
+	private static final ArrayList<String> mudkipPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.mudkip"));
+	private static final ArrayList<String> sharkPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.shark"));
+	private static final ArrayList<String> whalePerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.whale"));
+	private static final ArrayList<String> jellyfishPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.jellyfish", "xwy.perks.commands.fly"));
 	public static double startingMoney;
 	public static String moneySymbol;
 	private final int ver = 1;
 	public boolean youtuber;
 	public boolean twitcher;
+	private HashSet<String> customPermissions = new HashSet<>();
 	private boolean firstJoin = false;
 	private XPlayerData data;
 	private boolean chatSpy;
 	private HashMap<String, Date> lastUsed = new HashMap<>();
 	private HashSet<String> groups = new HashSet<>();
+	private PermissionAttachment attachmentInfo;
 	
-	public XPlayerConfig(UUID name, XPlayer player) {
+	public XPlayerConfig(UUID name) {
 		super(new File(PrisonCore.getInstance().getDataFolder(), "Players"), name.toString());
+		attachmentInfo = Bukkit.getPlayer(name).addAttachment(PrisonCore.getInstance());
 		setDefaults();
 		data = new XPlayerData(name, getDouble("general-data.balance"), Rank.valueOf(getString("prison-data.rank")), getInt("prison-data.prestige"));
 		if (!getString("prison-data.active-tag").equalsIgnoreCase("unset"))
 			data.setActiveTag(Tag.valueOf(getString("prison-data.active-tag")));
+		data.setTagToggle(getBoolean("prison-data.tag-toggle"));
 		lastUsed.put("god-tools", new Date(getLong("cool-downs.god-tools")));
 		lastUsed.put("god-axe", new Date(getLong("cool-downs.god-axe")));
 		lastUsed.put("pvp", new Date(getLong("cool-downs.pvp")));
@@ -51,10 +60,10 @@ public class XPlayerConfig extends Config {
 		chatSpy = getBoolean("general-data.chat-spy");
 		ArrayList<String> permissions = (ArrayList<String>) getStringList("permissions");
 		for (String s : permissions) {
-			player.addPermission(s);
+			addPermission(s);
 		}
 		for (String s : defaults) {
-			player.addPermission(s);
+			attachmentInfo.setPermission(s, true);
 		}
 		ArrayList<String> groups = (ArrayList<String>) getStringList("groups");
 		for (String s : groups) {
@@ -62,15 +71,15 @@ public class XPlayerConfig extends Config {
 		}
 	}
 	
-	public void setDefaults() {
+	private void setDefaults() {
 		if (getVersion() != ver) {
 			//unique player
 			firstJoin = true;
 			setVersion();
 			set("prison-data.rank", Rank.A.toString());
 			set("prison-data.prestige", 0);
-			set("prison-data.tags", new ArrayList<>());
 			set("prison-data.active-tag", "unset");
+			set("prison-data.tag-toggle", true);
 			set("general-data.balance", startingMoney);
 			set("general-data.chat-spy", false);
 			set("cool-downs.god-tools", 0L);
@@ -89,17 +98,45 @@ public class XPlayerConfig extends Config {
 		}
 	}
 	
+	public void addPermission(String s) {
+		attachmentInfo.setPermission(s, true);
+		customPermissions.add(s);
+	}
+	
 	public void addRank(String rank) {
 		rank = rank.toLowerCase();
 		groups.add(rank);
+		ArrayList<String> perms = getPermissionsList(rank);
+		if (perms != null) {
+			for (String s : perms) {
+				attachmentInfo.setPermission(s, true);
+			}
+		}
 	}
 	
-	public int getVersion() {
+	
+	private int getVersion() {
 		return getInt("ver");
 	}
 	
-	public void setVersion() {
+	private void setVersion() {
 		set("ver", ver);
+	}
+	
+	private ArrayList<String> getPermissionsList(String s) {
+		switch (s) {
+			case "guppy":
+				return guppyPerms;
+			case "mudkip":
+				return mudkipPerms;
+			case "shark":
+				return sharkPerms;
+			case "whale":
+				return whalePerms;
+			case "jellyfish":
+				return jellyfishPerms;
+		}
+		return null;
 	}
 	
 	public XPlayerData getData() {
@@ -121,6 +158,16 @@ public class XPlayerConfig extends Config {
 	public void removeRank(String rank) {
 		rank = rank.toLowerCase();
 		groups.remove(rank);
+		ArrayList<String> perms = getPermissionsList(rank);
+		if (perms != null) {
+			for (String s : perms) {
+				attachmentInfo.unsetPermission(s);
+			}
+		}
+	}
+	
+	public void removePermission(String s) {
+		attachmentInfo.unsetPermission(s);
 	}
 	
 	public boolean hasGroup(String s) {
@@ -147,14 +194,14 @@ public class XPlayerConfig extends Config {
 		return groupsListTemp.contains(s);
 	}
 	
-	public void saveData(PermissionAttachment attachmentInfo, boolean chatSpy) {
+	public void saveData(boolean chatSpy) {
 		set("prison-data.rank", data.getRank().toString());
 		set("prison-data.prestige", data.getPrestige());
 		set("general-data.balance", data.getBalance());
-		set("prison-data.tags", data.getTagStrings());
 		set("prison-data.active-tag", data.getActiveTag() != null ? data.getActiveTag().toString() : "unset");
+		set("prison-data.tag-toggle", data.isTagToggle());
 		ArrayList<String> permissions = new ArrayList<>();
-		for (String s : attachmentInfo.getPermissions().keySet()) {
+		for (String s : customPermissions) {
 			if (attachmentInfo.getPermissions().get(s) && !defaults.contains(s)) {
 				permissions.add(s);
 			}
@@ -163,6 +210,7 @@ public class XPlayerConfig extends Config {
 		set("groups", groups.toArray(new String[0]));
 		set("general-data.chat-spy", chatSpy);
 		saveConfig();
+		attachmentInfo.remove();
 	}
 	
 	public boolean isChatSpy() {

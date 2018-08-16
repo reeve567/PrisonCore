@@ -1,4 +1,4 @@
-package pw.xwy.prison_core.listeners;
+package pw.xwy.prison_core.listeners.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

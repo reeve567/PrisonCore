@@ -11,15 +11,9 @@ package pw.xwy.prison_core.custom_enchants.listeners;
 // made by reeve
 // on 8:18 PM
 
-import net.citizensnpcs.api.event.NPCRightClickEvent;
-import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
-import pw.xwy.prison_core.custom_enchants.enums.Messages;
-import pw.xwy.prison_core.custom_enchants.enums.Rarity;
-import pw.xwy.prison_core.custom_enchants.enums.Souls;
 import pw.xwy.prison_core.custom_enchants.soulcrates.*;
 import pw.xwy.prison_core.custom_enchants.utilities.CratesUtility;
 
@@ -33,7 +27,7 @@ public class GorixClick implements Listener {
 		this.main = main;
 	}
 	
-	@EventHandler
+	/*@EventHandler
 	public void onClick(NPCRightClickEvent e) {
 		
 		if (e.getNPC().getName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&4&lRubix"))) {
@@ -144,7 +138,7 @@ public class GorixClick implements Listener {
 				e.getClicker().sendMessage(Messages.noSoul.get());
 			}
 		}
-	}
+	}*/
 	
 	static Inventory openCommon() {
 		Inventory inv = CommonSC.get().getBaseInventory();

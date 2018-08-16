@@ -11,9 +11,9 @@ import pw.xwy.prison_core.utility.XPlayer;
 public class ChatListener implements Listener {
 	
 	public static final String prefix = "§a§lBilly §8§l»» §7";
-	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish", "lionfish"};
+	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish"};
 	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
-	private static final String[] groupsListTitle = {"§3Guppy", "§6Mud§bKip", "§1Shark", "§9§lWhale", "§d§lJellyfish", "§4§lLion§6§lFish"};
+	private static final String[] groupsListTitle = {"§3Guppy", "§6Mud§bKip", "§1Shark", "§9§lWhale", "§d§lJellyfish"/*, "§4§lLion§6§lFish"*/};
 	private static final String[] extraGroupsTitle = {"§eHelper", "§5Mod", "§cAdmin", "§6Owner", "§4Dev"};
 	public static boolean stopped = false;
 	
@@ -23,6 +23,7 @@ public class ChatListener implements Listener {
 		
 		String firstTitle = "";
 		String secondTitle = "";
+		String tag = "";
 		
 		for (int i = 0; i < groupsList.length; i++) {
 			if (data.hasGroup(groupsList[i])) {
@@ -36,12 +37,16 @@ public class ChatListener implements Listener {
 			}
 		}
 		
+		if (data.getData().getActiveTag() != null && data.getData().isTagToggle()) {
+			tag = " §8[" + data.getData().getActiveTag().getDisplay() + "§8]";
+		}
+		
 		if (stopped) {
 			if (!e.getPlayer().hasPermission(Permissions.CHATSTOP_COMMAND.toString())) {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage("§cYou cannot chat while chat is still stopped.");
 			} else {
-				e.setFormat(firstTitle + secondTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+				e.setFormat(firstTitle + secondTitle + "§6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
 			}
 			return;
 		}
@@ -50,7 +55,7 @@ public class ChatListener implements Listener {
 			return;
 		}
 		
-		e.setFormat(firstTitle + secondTitle + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+		e.setFormat(firstTitle + secondTitle + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
 	}
 	
 	

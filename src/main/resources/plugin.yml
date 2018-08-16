@@ -30,6 +30,7 @@ commands:
     permission: xwy.admin.set
     permission-message: §cYou do not have permission to do this!
   spawn:
+    aliases: []
   chatstop:
     aliases: [cs,sc,stopchat]
     permission: xwy.admin.chatstop
@@ -66,3 +67,9 @@ commands:
     aliases: [perms]
     permission: xwy.admin.permissions
     permission-message: §cYou do not have permission to do this!
+  fly:
+    aliases: []
+    permission: xwy.perks.commands.fly
+    permission-message: §cYou do not have permission to do this!
+  tags:
+    aliases: [tag]

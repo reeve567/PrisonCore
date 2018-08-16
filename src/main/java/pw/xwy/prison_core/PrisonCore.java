@@ -9,6 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.prison_core.commands.*;
 import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
 import pw.xwy.prison_core.listeners.*;
+import pw.xwy.prison_core.listeners.gui.DonorShopGUI;
+import pw.xwy.prison_core.listeners.gui.KitGUI;
+import pw.xwy.prison_core.listeners.gui.TagGUI;
 import pw.xwy.prison_core.utility.ConfigurationHandler;
 import pw.xwy.prison_core.utility.DiscordIntegration;
 import pw.xwy.prison_core.utility.MineManager;
@@ -79,15 +82,15 @@ public class PrisonCore extends JavaPlugin {
 		registerEvents(new DrugsListener());
 		registerEvents(new DonorShopGUI(null));
 		registerEvents(new KitGUI(null));
+		registerEvents(new TagGUI(null));
 		registerEvents(new LeaveListener());
 		registerEvents(new BlockListener());
 		registerEvents(new VoucherListener());
 		registerEvents(new SignListener());
 		registerEvents(new CrateListener());
-		
 	}
 	
-	public void loadCommands() {
+	private void loadCommands() {
 		new RankupCommand();
 		new SetCommand();
 		new SpawnCommand();
@@ -100,6 +103,8 @@ public class PrisonCore extends JavaPlugin {
 		new HatCommand();
 		new KeyCommand();
 		new PermissionsCommand();
+		new FlyCommand();
+		new TagCommand();
 	}
 	
 	public static void registerEvents(Listener listener) {

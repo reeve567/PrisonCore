@@ -288,11 +288,11 @@ public class CrateManager {
 		@Override
 		public void givePrize(Player player) {
 			player.sendMessage(getMessage());
-			if (PlayerManager.getXPlayer(player).getData().getTags().contains(getValue())) {
+			if (player.hasPermission("xwy.tag." + getValue().toString().toLowerCase())) {
 				MoneyPrize prize = new MoneyPrize(getBackupReward(), false);
 				prize.givePrize(player);
 			} else {
-				PlayerManager.getXPlayer(player).getData().getTags().add(getValue());
+				PlayerManager.getXPlayer(player).addPermission("xwy.tag." + getValue().toString().toLowerCase());
 			}
 		}
 	}

@@ -2,8 +2,6 @@ package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachment;
-import pw.xwy.prison_core.PrisonCore;
 
 import java.util.Date;
 import java.util.UUID;
@@ -12,15 +10,14 @@ public class XPlayer {
 	
 	private XPlayerConfig config;
 	private boolean chatSpy = false;
-	private PermissionAttachment attachmentInfo; //TODO MOVE TO XPLAYERCONFIG cv
+	//TODO MOVE TO XPLAYERCONFIG cv
 	
 	public XPlayer(UUID player) {
 		this(Bukkit.getPlayer(player));
 	}
 	
 	public XPlayer(Player player) {
-		attachmentInfo = player.addAttachment(PrisonCore.getInstance());
-		config = new XPlayerConfig(player.getUniqueId(), this);
+		config = new XPlayerConfig(player.getUniqueId());
 		
 		initChatspy();
 	}
@@ -34,8 +31,7 @@ public class XPlayer {
 	}
 	
 	public void save() {
-		config.saveData(attachmentInfo, chatSpy);
-		attachmentInfo.remove();
+		config.saveData(chatSpy);
 	}
 	
 	public boolean isFirstJoin() {
@@ -43,11 +39,11 @@ public class XPlayer {
 	}
 	
 	public void addPermission(String s) {
-		attachmentInfo.setPermission(s, true);
+		config.addPermission(s);
 	}
 	
 	public void removePermission(String s) {
-		attachmentInfo.unsetPermission(s);
+		config.removePermission(s);
 	}
 	
 	public boolean hasGroup(String s) {
