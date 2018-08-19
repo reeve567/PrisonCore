@@ -186,8 +186,6 @@ public class BowListener implements Listener {
 		if (e.getEntity() instanceof Player) {
 			if (e.getBow().hasItemMeta()) {
 				if (e.getBow().getItemMeta().hasLore()) {
-					System.out.println(CEnchant.SHOTGUN.getName());
-					System.out.println(e.getBow().getItemMeta().getLore());
 					if (e.getBow().getItemMeta().getLore().contains(CEnchant.SHOTGUN.getName())) {
 						ItemStack i = e.getBow();
 						if (i.getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Default")) {

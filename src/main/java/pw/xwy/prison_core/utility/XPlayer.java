@@ -1,12 +1,14 @@
 package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class XPlayer {
+public class XPlayer extends CraftPlayer {
 	
 	private XPlayerConfig config;
 	private boolean chatSpy = false;
@@ -17,6 +19,7 @@ public class XPlayer {
 	}
 	
 	public XPlayer(Player player) {
+		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) player).getHandle());
 		config = new XPlayerConfig(player.getUniqueId());
 		
 		initChatspy();

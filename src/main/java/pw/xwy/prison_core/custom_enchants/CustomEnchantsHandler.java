@@ -92,7 +92,7 @@ public class CustomEnchantsHandler {
 		}
 		config.saveConfig();
 		
-		if (Bukkit.getOnlinePlayers().length > 0) {
+		if (Bukkit.getOnlinePlayers().size() > 0) {
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (p.hasPermission("Xwy.ce.notify")) {
 					p.sendMessage(ChatColor.GRAY + "" + ChatColor.BOLD + "«" + ChatColor.STRIKETHROUGH + "------------------------------" + ChatColor.GRAY + "" + ChatColor.BOLD + "»");

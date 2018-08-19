@@ -11,7 +11,7 @@ public class PlaceholderConversion {
 		
 		
 		XPlayerData data = PlayerManager.getXPlayer(p).getData();
-		s = s.replaceAll("<players-online>", String.valueOf(Bukkit.getOnlinePlayers().length));
+		s = s.replaceAll("<players-online>", String.valueOf(Bukkit.getOnlinePlayers().size()));
 		s = s.replaceAll("<player-username>", p.getName());
 		s = s.replaceAll("<player-displayname>", p.getDisplayName());
 		s = s.replaceAll("<player-level>", String.valueOf(p.getLevel()));

@@ -38,9 +38,9 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.7.10-SNAPSHOT-b1657</version>
+      <version>1.8.8</version>
       <scope>system</scope>
-      <systemPath>${pom.basedir}/lib/spigot-1.7.10-SNAPSHOT-b1657.jar</systemPath>
+      <systemPath>${pom.basedir}/lib/craftbukkit-1.8.8.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

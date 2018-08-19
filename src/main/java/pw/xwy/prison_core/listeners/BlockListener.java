@@ -1,6 +1,7 @@
 package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Effect;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.BlockMinedEvent;
 import pw.xwy.prison_core.commands.AutosellCommand;
 import pw.xwy.prison_core.custom_enchants.enums.CEnchant;
-import pw.xwy.prison_core.custom_enchants.listeners.EnchantDrop;
 import pw.xwy.prison_core.utility.*;
 
 import java.util.ArrayList;
@@ -35,9 +35,13 @@ public class BlockListener implements Listener {
 			}
 			if (mi == null) {
 				if (NormalWarps.SPAWN.getLocation() == null) {
-					e.setCancelled(true);
+					if (!(e.getPlayer().getGameMode() == GameMode.CREATIVE)) {
+						e.setCancelled(true);
+					}
 				} else if (e.getBlock().getWorld().getName().equalsIgnoreCase(NormalWarps.SPAWN.getLocation().getWorld().getName())) {
-					e.setCancelled(true);
+					if (!(e.getPlayer().getGameMode() == GameMode.CREATIVE)) {
+						e.setCancelled(true);
+					}
 				}
 				return;
 			}
@@ -67,7 +71,7 @@ public class BlockListener implements Listener {
 				if (drops.get(i) != null) {
 					if (e.getMine().shopContains(drops.get(i).getType(), drops.get(i).getDurability())) {
 						total += e.getMine().shopPriceFor(drops.get(i).getType(), drops.get(i).getDurability()) * drops.get(i).getAmount();
-						drops.set(i, new CustomItem(drops.get(i)).setCusomType(Material.AIR));
+						drops.set(i, new CustomItem(drops.get(i)).setCusomType(Material.AIR).setDurability((int) drops.get(i).getDurability()));
 					}
 				}
 				
@@ -78,6 +82,9 @@ public class BlockListener implements Listener {
 		} else {
 			//if no autosell
 			for (ItemStack i : drops) {
+				if (i.getType() == Material.INK_SACK) {
+					e.getPlayer().getInventory().addItem(new CustomItem(i).setCusomType(Material.AIR).setDurability((int) i.getDurability()));
+				}
 				e.getPlayer().getInventory().addItem(i);
 			}
 		}
@@ -85,19 +92,9 @@ public class BlockListener implements Listener {
 		
 		if (e.isOriginal()) {
 			//harded handle
-			if (CEnchant.hasEnchant(tool, CEnchant.HARDENED)) {
-				int n = EnchantDrop.getRandomNumberFrom(1, 100);
-				if (!(n <= 25)) {
-					tool.setDurability((short) (tool.getDurability() + 1));
-				}
-			} else if (tool != null) {
-				tool.setDurability((short) (tool.getDurability() + 1));
-			}
-			
 			if (e.getPlayer().getInventory().firstEmpty() == -1) {
 				e.getPlayer().sendMessage("§cInventory is full!");
 			}
-			
 			//explosive handle
 			if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKI)) {
 				for (int i = -1; i <= 1; i++) {
@@ -163,19 +160,19 @@ public class BlockListener implements Listener {
 	private List<ItemStack> getDrop(Block b, boolean smelt, boolean fortune, int lvl, byte data, ItemStack it) {
 		
 		Material type = b.getType();
-		List<ItemStack> drops = new ArrayList<ItemStack>();
+		List<ItemStack> drops = new ArrayList<>();
 		if (shouldAdd(b.getType(), it)) {
 			if (smelt) {
 				if (type.equals(Material.GOLD_ORE) || type.equals(Material.IRON_ORE) || type.equals(Material.COBBLESTONE)) {
 					drops.add(smelting(type, getAmount(fortune, lvl, b.getType())));
 				} else {
 					for (ItemStack j : b.getDrops()) {
-						drops.add(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data));
+						drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 					}
 				}
 			} else {
 				for (ItemStack j : b.getDrops()) {
-					drops.add(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data));
+					drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 				}
 			}
 		}

@@ -22,10 +22,10 @@ public class XPlayerConfig extends Config {
 			, "plots.denied", "plots.remove", "plots.untrust", "plots.undeny", "plots.kick", "plots.done", "plots.save"
 			, "plots.continue"));
 	private static final ArrayList<String> guppyPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.guppy"));
-	private static final ArrayList<String> mudkipPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.mudkip"));
-	private static final ArrayList<String> sharkPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.shark"));
-	private static final ArrayList<String> whalePerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.whale"));
-	private static final ArrayList<String> jellyfishPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.jellyfish", "xwy.perks.commands.fly"));
+	private static final ArrayList<String> mudkipPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.mudkip", "xwy.mine.mudkip"));
+	private static final ArrayList<String> sharkPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.shark", "xwy.mine.shark"));
+	private static final ArrayList<String> whalePerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.whale", "xwy.mine.whale"));
+	private static final ArrayList<String> jellyfishPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.jellyfish", "xwy.perks.commands.fly", "xwy.mine.jellyfish"));
 	public static double startingMoney;
 	public static String moneySymbol;
 	private final int ver = 1;
@@ -43,7 +43,7 @@ public class XPlayerConfig extends Config {
 		super(new File(PrisonCore.getInstance().getDataFolder(), "Players"), name.toString());
 		attachmentInfo = Bukkit.getPlayer(name).addAttachment(PrisonCore.getInstance());
 		setDefaults();
-		data = new XPlayerData(name, getDouble("general-data.balance"), Rank.valueOf(getString("prison-data.rank")), getInt("prison-data.prestige"));
+		data = new XPlayerData(getDouble("general-data.balance"), Rank.valueOf(getString("prison-data.rank")), getInt("prison-data.prestige"));
 		if (!getString("prison-data.active-tag").equalsIgnoreCase("unset"))
 			data.setActiveTag(Tag.valueOf(getString("prison-data.active-tag")));
 		data.setTagToggle(getBoolean("prison-data.tag-toggle"));

@@ -45,28 +45,43 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.7.10-SNAPSHOT-b1657</version>
+			<version>1.8.8</version>
 			<scope>system</scope>
-			<systemPath>${pom.basedir}/lib/spigot-1.7.10-SNAPSHOT-b1657.jar</systemPath>
+			<systemPath>${pom.basedir}/lib/craftbukkit-1.8.8.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.github.MrPowerGamerBR</groupId>
 			<artifactId>TemmieWebhook</artifactId>
 			<version>master-59de40c3b6-1</version>
 		</dependency>
-<!--		<dependency>
-			<groupId>net.citizensnpcs</groupId>
-			<artifactId>citizens</artifactId>
-			<version>2.0.13-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>system</scope>
-			<systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
-		</dependency>-->
+		<!--		<dependency>
+					<groupId>net.citizensnpcs</groupId>
+					<artifactId>citizens</artifactId>
+					<version>2.0.13-SNAPSHOT</version>
+					<type>jar</type>
+					<scope>system</scope>
+					<systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
+				</dependency>-->
 		<dependency>
 			<groupId>com.github.pengrad</groupId>
 			<artifactId>java-telegram-bot-api</artifactId>
 			<version>3.6.0</version>
 		</dependency>
+		<!--<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client-jetty</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-sheets</artifactId>
+			<version>v4-rev516-1.23.0</version>
+		</dependency>-->
 	</dependencies>
 
 </project>

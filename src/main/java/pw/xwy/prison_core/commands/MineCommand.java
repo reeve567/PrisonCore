@@ -9,6 +9,8 @@ import pw.xwy.prison_core.utility.Mine;
 import pw.xwy.prison_core.utility.MineManager;
 import pw.xwy.prison_core.utility.Rank;
 
+import java.util.HashSet;
+
 public class MineCommand {
 	
 	public static void run(Player player, String[] args) {
@@ -86,8 +88,8 @@ public class MineCommand {
 						} else {
 							return;
 						}
-						if (mine.canSet(Integer.parseInt(args[2]), player.getItemInHand().getType())) {
-							mine.materials.put(player.getItemInHand().getType(), Integer.valueOf(args[2]));
+						if (mine.canSet(Integer.parseInt(args[2]), player.getItemInHand().getType(),player.getItemInHand().getDurability())) {
+							mine.addMaterial(player.getItemInHand().getType(), player.getItemInHand().getDurability(), Integer.valueOf(args[2]));
 							player.sendMessage("set, total : " + mine.total());
 						} else {
 							player.sendMessage("cant set " + mine.airCheck() + " space left");
@@ -116,7 +118,7 @@ public class MineCommand {
 			}
 			if (args[0].equalsIgnoreCase("setProgressSign")) {
 				if (args.length == 2) {
-					if (player.getTargetBlock(null, 5).getState() instanceof Sign) {
+					if (player.getTargetBlock((HashSet<Byte>) null, 5).getState() instanceof Sign) {
 						Mine mine;
 						String sRank = args[1].toUpperCase();
 						if (MineManager.isNormalMine(sRank)) {
@@ -126,7 +128,7 @@ public class MineCommand {
 						} else {
 							return;
 						}
-						mine.setProgressSign(player.getTargetBlock(null, 5));
+						mine.setProgressSign(player.getTargetBlock((HashSet<Byte>) null, 5));
 						player.sendMessage("Sign set");
 					}
 					

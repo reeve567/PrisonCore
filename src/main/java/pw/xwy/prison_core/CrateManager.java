@@ -11,6 +11,8 @@ import pw.xwy.prison_core.utility.PlayerManager;
 import pw.xwy.prison_core.utility.ReadableNumbers;
 import pw.xwy.prison_core.utility.Tag;
 
+import java.util.HashSet;
+
 public class CrateManager {
 	
 	private static Location location = null;
@@ -37,8 +39,8 @@ public class CrateManager {
 	}
 	
 	public static boolean setCrate(Player player) {
-		if (player.getTargetBlock(null, 5).getType() == Material.ENDER_CHEST) {
-			location = player.getTargetBlock(null, 5).getLocation();
+		if (player.getTargetBlock((HashSet<Byte>) null, 5).getType() == Material.ENDER_CHEST) {
+			location = player.getTargetBlock((HashSet<Byte>) null, 5).getLocation();
 			player.sendMessage("set crate");
 			return true;
 		}

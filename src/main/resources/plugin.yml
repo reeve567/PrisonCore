@@ -73,3 +73,5 @@ commands:
     permission-message: §cYou do not have permission to do this!
   tags:
     aliases: [tag]
+  warp:
+    aliases: [warps]

@@ -31,7 +31,6 @@ public class CEListenerHandler {
 				//new ExplosionListener(),
 				new DeathListener(),
 				new BowListener(main),
-				new ArmorListener(),
 				new RespawnListener(),
 				new SprintListener(),
 				new JoinListener(crateOpen, main),

@@ -15,8 +15,8 @@ import java.util.Random;
 
 public class Mine implements Listener {
 	
-	public HashMap<Material, Integer> materials = new HashMap<>();
-	public HashMap<MineMaterial, Double> shop = new HashMap<MineMaterial, Double>();
+	public HashMap<MineMaterial, Integer> materials = new HashMap<>();
+	public HashMap<MineMaterial, Double> shop = new HashMap<>();
 	public Task task = new Task();
 	private String name;
 	private Random random = new Random();
@@ -31,26 +31,14 @@ public class Mine implements Listener {
 		Bukkit.getPluginManager().registerEvents(this, PrisonCore.getInstance());
 	}
 	
-	public boolean canSet(int amount) {
-		return total() + amount <= 1000;
+	public boolean canSet(int amount, Material material, short durability) {
+		return totalWithout(material, durability) + amount <= 1000;
 	}
 	
-	public int total() {
+	public int totalWithout(Material material, int data) {
 		int total = 0;
-		for (Material m : materials.keySet()) {
-			total += materials.get(m);
-		}
-		return total;
-	}
-	
-	public boolean canSet(int amount, Material material) {
-		return totalWithout(material) + amount <= 1000;
-	}
-	
-	public int totalWithout(Material material) {
-		int total = 0;
-		for (Material m : materials.keySet()) {
-			if (m != material) {
+		for (MineMaterial m : materials.keySet()) {
+			if (m.getMaterial() != material && m.getDurability() != data) {
 				total += materials.get(m);
 			}
 		}
@@ -180,6 +168,14 @@ public class Mine implements Listener {
 		return 1000 - total();
 	}
 	
+	public int total() {
+		int total = 0;
+		for (MineMaterial m : materials.keySet()) {
+			total += materials.get(m);
+		}
+		return total;
+	}
+	
 	public boolean setRectangle(Location location1, Location location2) {
 		if (location1 != null && location2 != null)
 			if (location1.getWorld().equals(location2.getWorld())) {
@@ -208,17 +204,19 @@ public class Mine implements Listener {
 			}
 			//then actually clean
 			for (Block b : area.getBlocks()) {
-				b.setType(randomMaterial());
+				MineMaterial mineMaterial = randomMaterial();
+				b.setType(mineMaterial.getMaterial());
+				b.setData((byte) mineMaterial.getDurability());
 			}
 			calculatePercentLeft();
 		}
 	}
 	
-	public Material randomMaterial() {
+	public MineMaterial randomMaterial() {
 		int i = random.nextInt(999) + 1;
 		int total = 0;
-		Material material = null;
-		for (Material m : materials.keySet()) {
+		MineMaterial material = null;
+		for (MineMaterial m : materials.keySet()) {
 			if (material == null) {
 				total += materials.get(m);
 				if (i < total) {
@@ -227,7 +225,7 @@ public class Mine implements Listener {
 			}
 		}
 		if (material == null) {
-			material = Material.AIR;
+			material = new MineMaterial(Material.AIR);
 		}
 		return material;
 	}
@@ -250,15 +248,18 @@ public class Mine implements Listener {
 	}
 	
 	public void setProgressSign(String[] s) {
-		if (s.length >= 1) {
-			if (s[0].equalsIgnoreCase("unset")) {
-				progressSign = null;
+		if (s != null) {
+			if (s.length >= 1) {
+				if (s[0].equalsIgnoreCase("unset")) {
+					progressSign = null;
+				} else {
+					progressSign = locationFromString(s[0], s[1]).getBlock();
+				}
 			} else {
-				progressSign = locationFromString(s[0], s[1]).getBlock();
+				progressSign = null;
 			}
-		} else {
+		} else
 			progressSign = null;
-		}
 	}
 	
 	private Location locationFromString(String string, String world) {
@@ -298,10 +299,6 @@ public class Mine implements Listener {
 		return new Location(Bukkit.getWorld(world), x, y, z, (float) pi, (float) ya);
 	}
 	
-	public void setWarp(Location location) {
-		warp = location;
-	}
-	
 	public String[] getWarpStrings() {
 		if (warp == null) return new String[]{"unset"};
 		return new String[]{warp.getX() + ":" + warp.getY() + ":" + warp.getZ() + ":" + warp.getPitch() + ":" + warp.getYaw(), warp.getWorld().getName()};
@@ -309,8 +306,8 @@ public class Mine implements Listener {
 	
 	public String compositionString() {
 		String s = "";
-		for (Material m : materials.keySet()) {
-			s += m.toString() + ":" + materials.get(m) + ";";
+		for (MineMaterial m : materials.keySet()) {
+			s += m.material.toString() + ":" + m.durability + ":" + materials.get(m) + ";";
 		}
 		return s;
 	}
@@ -324,10 +321,12 @@ public class Mine implements Listener {
 	}
 	
 	public void setShop(String shop) {
-		while (shop.contains(";")) {
-			String temp = shop.substring(0, shop.indexOf(";") + 1);
-			this.shop.put(get(Material.valueOf(temp.substring(0, temp.indexOf(":"))), Short.valueOf(temp.substring(temp.indexOf(":") + 1, temp.lastIndexOf(":")))), Double.valueOf(temp.substring(temp.lastIndexOf(":") + 1, temp.indexOf(";"))));
-			shop = shop.replaceFirst(temp, "");
+		if (shop != null) {
+			while (shop.contains(";")) {
+				String temp = shop.substring(0, shop.indexOf(";") + 1);
+				this.shop.put(get(Material.valueOf(temp.substring(0, temp.indexOf(":"))), Short.valueOf(temp.substring(temp.indexOf(":") + 1, temp.lastIndexOf(":")))), Double.valueOf(temp.substring(temp.lastIndexOf(":") + 1, temp.indexOf(";"))));
+				shop = shop.replaceFirst(temp, "");
+			}
 		}
 	}
 	
@@ -335,11 +334,39 @@ public class Mine implements Listener {
 		return new MineMaterial(material, durability);
 	}
 	
-	public void setComposition(String composition) {
-		while (composition.contains(";")) {
-			materials.put(Material.valueOf(composition.substring(0, composition.indexOf(":"))), Integer.valueOf(composition.substring(composition.indexOf(":") + 1, composition.indexOf(";"))));
-			composition = composition.substring(composition.indexOf(";") + 1);
+	public void addMaterial(Material material, int durability, int amount) {
+		MineMaterial mineMaterial = null;
+		for (MineMaterial m : materials.keySet()) {
+			if (m.getMaterial() == material && m.getDurability() == durability) {
+				mineMaterial = m;
+				break;
+			}
 		}
+		if (mineMaterial != null) {
+			if (amount == 0)
+				materials.remove(mineMaterial);
+			else
+				materials.put(mineMaterial, amount);
+		} else
+			materials.put(new MineMaterial(material, (short) durability), amount);
+	}
+	
+	public void setComposition(String composition) {
+		if (composition != null) {
+			while (composition.contains(";")) {
+				String temp = composition.substring(0, composition.indexOf(";") + 1);
+				materials.put(get(Material.valueOf(temp.substring(0, temp.indexOf(":"))), Short.valueOf(temp.substring(temp.indexOf(":") + 1, temp.lastIndexOf(":")))), Integer.valueOf(temp.substring(temp.lastIndexOf(":") + 1, temp.indexOf(";"))));
+				composition = composition.replaceFirst(temp, "");
+			}
+		}
+	}
+	
+	public Location getWarp() {
+		return warp;
+	}
+	
+	public void setWarp(Location location) {
+		warp = location;
 	}
 	
 	private class MineMaterial {
@@ -370,7 +397,7 @@ public class Mine implements Listener {
 		
 		boolean clean = false;
 		int amount = 0;
-		int timeDelay = 10;
+		int timeDelay = 600;
 		private TimeFormatting.Time time = TimeFormatting.getTime(timeDelay - amount);
 		
 		@Override
@@ -409,5 +436,4 @@ public class Mine implements Listener {
 			}
 		}
 	}
-	
 }

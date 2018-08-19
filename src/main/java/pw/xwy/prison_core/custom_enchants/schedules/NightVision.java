@@ -31,7 +31,7 @@ public class NightVision implements Runnable {
 	public void run() {
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
-			if (Bukkit.getOnlinePlayers().length > 0) {
+			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet())) {
 						if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {

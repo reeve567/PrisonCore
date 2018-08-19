@@ -34,7 +34,7 @@ public class Speed implements Runnable {
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
 			
-			if (Bukkit.getOnlinePlayers().length > 0) {
+			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots()) == 1) {
 						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 45, 0));

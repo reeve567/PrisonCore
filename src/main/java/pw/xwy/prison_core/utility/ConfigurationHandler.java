@@ -147,7 +147,7 @@ public class ConfigurationHandler {
 		if (miscData.getInt("ver") != 2) {
 			miscData.set("ver", 2);
 			miscData.set("Locations.Crate", "unset");
-			miscData.set("Unique-Players", Bukkit.getOnlinePlayers().length);
+			miscData.set("Unique-Players", Bukkit.getOnlinePlayers().size());
 			miscData.saveConfig();
 		}
 		new CrateManager(miscData.getString("Locations.Crate"));

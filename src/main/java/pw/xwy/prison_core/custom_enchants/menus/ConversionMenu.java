@@ -32,11 +32,11 @@ public class ConversionMenu implements Listener {
 	
 	public ConversionMenu() {
 		InventoryUtility.setBackground(inventory, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(15).setName(" "));
-		inventory.setItem(9, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(5).setName(ChatColor.DARK_GREEN + "Convert 15 levels into an enchant").setLore("&7Common"));
-		inventory.setItem(11, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(13).setName(ChatColor.GREEN + "Convert 25 levels into an enchant").setLore("&7Uncommon"));
-		inventory.setItem(13, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(11).setName(ChatColor.BLUE + "Convert 35 levels into an enchant").setLore("&7Rare"));
-		inventory.setItem(15, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(10).setName(ChatColor.DARK_PURPLE + "Convert 45 levels into an enchant").setLore("&7Mystical"));
-		inventory.setItem(17, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(1).setName(ChatColor.GOLD + "Convert 50 levels into an enchant").setLore("&7Legendary"));
+		inventory.setItem(9, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(5).setName(ChatColor.DARK_GREEN + "Convert 400 XP into an enchant").setLore("&7Common"));
+		inventory.setItem(11, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(13).setName(ChatColor.GREEN + "Convert 800 XP into an enchant").setLore("&7Uncommon"));
+		inventory.setItem(13, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(11).setName(ChatColor.BLUE + "Convert 2000 XP into an enchant").setLore("&7Rare"));
+		inventory.setItem(15, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(10).setName(ChatColor.DARK_PURPLE + "Convert 4500 XP into an enchant").setLore("&7Mystical"));
+		inventory.setItem(17, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(1).setName(ChatColor.GOLD + "Convert 10000 XP into an enchant").setLore("&7Legendary"));
 	}
 	
 	@EventHandler
@@ -46,25 +46,25 @@ public class ConversionMenu implements Listener {
 				e.setCancelled(true);
 				Player player = (Player) e.getWhoClicked();
 				if (e.getRawSlot() == 9) {
-					onClick(player, Rarity.COMMON, 15);
+					onClick(player, Rarity.COMMON, 400);
 				} else if (e.getRawSlot() == 11) {
-					onClick(player, Rarity.UNCOMMON, 25);
+					onClick(player, Rarity.UNCOMMON, 800);
 				} else if (e.getRawSlot() == 13) {
-					onClick(player, Rarity.RARE, 35);
+					onClick(player, Rarity.RARE, 2000);
 				} else if (e.getRawSlot() == 15) {
-					onClick(player, Rarity.MYSTICAL, 45);
+					onClick(player, Rarity.MYSTICAL, 4500);
 				} else if (e.getRawSlot() == 17) {
-					onClick(player, Rarity.HYDRO, 50);
+					onClick(player, Rarity.HYDRO, 10000);
 				}
 			}
 		}
 	}
 	
-	private void onClick(Player player, Rarity rarity, int level) {
+	private void onClick(Player player, Rarity rarity, int xp) {
 		if (player.getInventory().firstEmpty() != -1) {
-			if (player.getLevel() >= level) {
+			if (player.getExp() >= xp) {
 				player.getInventory().addItem(getBook(CustomEnchant.getRandomEnchant(rarity)));
-				player.setLevel(player.getLevel() - level);
+				player.setExp(player.getExp() - xp);
 			}
 		} else {
 			player.sendMessage(Messages.fullInventory.get());

@@ -21,7 +21,7 @@ public class ChatclearCommand implements CommandExecutor {
 					p.sendMessage(new String[200]);
 			}
 			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage("§9Chat has been &ccleared &9by &8" + commandSender.getName() + "§9.");
+			Bukkit.broadcastMessage("§9Chat has been §ccleared §9by §8" + commandSender.getName() + "§9.");
 			Bukkit.broadcastMessage("");
 			return true;
 		}

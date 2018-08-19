@@ -4,7 +4,21 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.ArrayList;
+
 public class SellUtility {
+	private static final String bar = "§6§l§m«§8§m-------------------§6§l§m»";
+	public static final String[] message = {
+			bar,
+			"§6Mud§bKip §7Sell All",
+			"",
+			"§7Shop: §6@shop@",
+			"§7Items Sold: §6@amount@",
+			"§7Amount: §6$@price@",
+			"§7Multiplier: §6@multiplier@",
+			bar
+		
+	};
 	
 	public static void sell(Player player, ExtraRank rank) {
 		Mine mine = MineManager.extraMines.get(rank);
@@ -24,11 +38,24 @@ public class SellUtility {
 		
 		player.getInventory().setContents(inventory.getContents());
 		XPlayerData config = PlayerManager.getXPlayer(player).getData();
-		player.sendMessage("mine : " + rank.toString());
-		player.sendMessage("amount sold : " + amount);
-		player.sendMessage("multiplier : " + config.getSellMultuplier());
-		player.sendMessage("total price : " + total * config.getSellMultuplier());
+		
+		ArrayList<String> strings = new ArrayList<>();
+		
+		sendMessage(total, amount, config, strings, rank.toString());
+		player.sendMessage(strings.toArray(new String[0]));
+		
 		PlayerManager.getXPlayer(player).getData().addBalance(total * config.getSellMultuplier());
+	}
+	
+	private static void sendMessage(Double total, int amount, XPlayerData config, ArrayList<String> strings, String string) {
+		String st = String.valueOf(total * config.getSellMultuplier());
+		for (String s : message) {
+			s = s.replaceAll("@shop@", string);
+			s = s.replaceAll("@amount@", String.valueOf(amount));
+			s = s.replaceAll("@price@", st);
+			s = s.replaceAll("@multiplier@", String.valueOf(config.getSellMultuplier()));
+			strings.add(s);
+		}
 	}
 	
 	public static void sell(Player player, Rank rank) {
@@ -49,10 +76,11 @@ public class SellUtility {
 		
 		player.getInventory().setContents(inventory.getContents());
 		XPlayerData config = PlayerManager.getXPlayer(player).getData();
-		player.sendMessage("mine : " + rank.toString());
-		player.sendMessage("amount sold : " + amount);
-		player.sendMessage("multiplier : " + config.getSellMultuplier());
-		player.sendMessage("total price : " + total * config.getSellMultuplier());
+		ArrayList<String> strings = new ArrayList<>();
+		
+		sendMessage(total, amount, config, strings, rank.toString());
+		player.sendMessage(strings.toArray(new String[0]));
+		
 		PlayerManager.getXPlayer(player).getData().addBalance(total * config.getSellMultuplier());
 	}
 	

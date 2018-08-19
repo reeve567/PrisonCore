@@ -1,24 +1,16 @@
 package pw.xwy.prison_core.utility;
 
-import java.util.UUID;
-
 public class XPlayerData {
-	private UUID uuid;
 	private double balance;
 	private Rank rank;
 	private int prestige;
 	private Tag activeTag = null;
 	private boolean tagToggle = true;
 	
-	public XPlayerData(UUID uuid, double balance, Rank rank, int prestige) {
-		this.uuid = uuid;
+	public XPlayerData(double balance, Rank rank, int prestige) {
 		this.balance = balance;
 		this.rank = rank;
 		this.prestige = prestige;
-	}
-	
-	public UUID getUuid() {
-		return uuid;
 	}
 	
 	public Rank getRank() {

@@ -103,7 +103,6 @@ public class PermissionsCommand implements CommandExecutor, TabCompleter {
 			}
 			return players;
 		} else if (args.length == 3 && args[0].startsWith("g")) {
-			System.out.println(Arrays.toString(args));
 			ArrayList<String> groups = new ArrayList<>(Arrays.asList(XPlayerConfig.groupsList));
 			groups.addAll(Arrays.asList(XPlayerConfig.extraGroups));
 			return groups;
