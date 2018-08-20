@@ -1,19 +1,22 @@
 package pw.xwy.prison_core.listeners;
 
-import org.bukkit.Effect;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.BlockMinedEvent;
 import pw.xwy.prison_core.commands.AutosellCommand;
-import pw.xwy.prison_core.custom_enchants.enums.CEnchant;
-import pw.xwy.prison_core.utility.*;
+import pw.xwy.prison_core.events.BlockMinedEvent;
+import pw.xwy.prison_core.utility.FortuneCalc;
+import pw.xwy.prison_core.utility.enums.*;
+import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.mine.Mine;
+import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,19 @@ public class BlockListener implements Listener {
 				}
 			}
 			if (mi == null) {
+				for (ExtraRank rank : MineManager.extraMines.keySet()) {
+					Mine mine = MineManager.extraMines.get(rank);
+					if (mine.getArea() != null) {
+						if (mine.getArea().contains(e.getBlock())) {
+							mi = mine;
+							break;
+						}
+					}
+				}
+			}
+			
+			
+			if (mi == null) {
 				if (NormalWarps.SPAWN.getLocation() == null) {
 					if (!(e.getPlayer().getGameMode() == GameMode.CREATIVE)) {
 						e.setCancelled(true);
@@ -51,6 +67,97 @@ public class BlockListener implements Listener {
 	}
 	
 	@EventHandler
+	public void onLogBreak(BlockBreakEvent e) {
+		
+		if (ItemSets.AXE.setContains(e.getPlayer().getItemInHand().getType())) {
+			
+			if (!e.getPlayer().getItemInHand().hasItemMeta() || !e.getPlayer().getItemInHand().getItemMeta().hasLore()) {
+				return;
+			}
+			
+			Player player = e.getPlayer();
+			
+			if (player.getGameMode() == GameMode.CREATIVE) return;
+			
+			if (!shouldAdd(e.getBlock().getType(), player.getItemInHand())) return;
+			
+			e.setCancelled(true);
+			if (player.getItemInHand() != null && player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
+				ItemStack i = player.getItemInHand();
+				if (ItemSets.AXE.setContains(i.getType()) && i.getItemMeta().getLore().contains(CEnchant.LUMBERJACK.getName()) && e.getBlock().getType().equals(Material.LOG)) {
+					List<ItemStack> drops = new ArrayList<>();
+					
+					int y = 0;
+					Location loc = e.getBlock().getLocation();
+					while (hasWood(loc.getBlockX(), loc.getBlockY() + y, loc.getBlockZ(), loc.getWorld())) {
+						for (int x = -2; x <= 2; x++) {
+							for (int z = -2; z <= 2; z++) {
+								if (loc.getWorld().getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z).getType().equals(Material.LOG)) {
+									Block b = loc.getWorld().getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z);
+									drops.addAll(b.getDrops());
+									b.setType(Material.AIR);
+								}
+							}
+						}
+						y++;
+					}
+					e.getBlock().setType(Material.AIR);
+					for (ItemStack it : drops) {
+						loc.getWorld().dropItemNaturally(loc, it);
+					}
+				}
+			} else {
+				e.getBlock().setType(Material.AIR);
+			}
+		}
+	}
+	
+	private boolean shouldAdd(Material mat, ItemStack is) {
+		
+		if (mat == Material.BEDROCK || mat == Material.COMMAND || mat == Material.ENDER_PORTAL || mat == Material.ENDER_PORTAL_FRAME || mat == Material.LAVA || mat == Material.STATIONARY_LAVA || mat == Material.WATER || mat == Material.STATIONARY_WATER) {
+			return false;
+		} else if (mat == Material.OBSIDIAN) {
+			return (is != null) && is.getType() == Material.DIAMOND_PICKAXE;
+		} else if (mat == Material.ENDER_CHEST || mat == Material.ANVIL || mat == Material.COAL_BLOCK
+				|| mat == Material.REDSTONE_BLOCK || mat == Material.ENCHANTMENT_TABLE ||
+				mat == Material.IRON_BARDING || mat == Material.IRON_DOOR_BLOCK || mat == Material.MOB_SPAWNER ||
+				mat == Material.DISPENSER || mat == Material.DROPPER || mat == Material.COAL_ORE ||
+				mat == Material.ENDER_STONE || mat == Material.HOPPER || mat == Material.QUARTZ_ORE ||
+				mat == Material.BRICK_STAIRS || mat == Material.BRICK || mat == Material.CAULDRON ||
+				mat == Material.COBBLESTONE || mat == Material.COBBLESTONE_STAIRS || mat == Material.COBBLE_WALL ||
+				mat == Material.MOSSY_COBBLESTONE || mat == Material.NETHER_BRICK || mat == Material.NETHER_BRICK_STAIRS
+				|| mat == Material.STONE_PLATE || (mat.getId() == 43 || mat.getId() == 44) || mat == Material.STONE ||
+				(mat.getId() == 94 || mat.getId() == 109) || (mat.getId() == 159 || mat.getId() == 172) ||
+				mat == Material.QUARTZ_BLOCK || mat == Material.SANDSTONE || mat == Material.SANDSTONE_STAIRS ||
+				mat == Material.NETHERRACK) {
+			return (is != null) && (is.getType() == Material.WOOD_PICKAXE || is.getType() == Material.STONE_PICKAXE ||
+					is.getType() == Material.IRON_PICKAXE || is.getType() == Material.DIAMOND_PICKAXE);
+		} else if (mat == Material.IRON_BLOCK || mat == Material.IRON_ORE || mat == Material.LAPIS_BLOCK || mat ==
+				Material.LAPIS_ORE) {
+			return (is != null) && (is.getType() == Material.STONE_PICKAXE || is.getType() == Material.IRON_PICKAXE || is.getType() ==
+					Material.DIAMOND_PICKAXE);
+		} else if (mat == Material.DIAMOND_ORE || mat == Material.EMERALD_ORE || mat == Material.GOLD_ORE || mat ==
+				Material.REDSTONE_ORE || mat == Material.GLOWING_REDSTONE_ORE) {
+			return (is != null) && (is.getType() == Material.IRON_PICKAXE || is.getType() == Material.DIAMOND_PICKAXE);
+		}
+		return true;
+	}
+	
+	private boolean hasWood(int x, int y, int z, World world) {
+		
+		Location loc = new Location(world, x, y, z);
+		for (int xi = -2; xi <= 2; xi++) {
+			for (int zi = -2; zi <= 2; zi++) {
+				if (loc.getWorld().getBlockAt(new Location(world, loc.getBlockX() + xi, loc.getBlockY(), loc.getBlockZ() + zi)).getType().equals(Material.LOG)) {
+					return true;
+				}
+			}
+			
+		}
+		return false;
+	}
+	
+	@EventHandler
 	public void onSpecialEvent(BlockMinedEvent e) {
 		if (e.getMine() == null || e.getBlock().getType() == Material.BEDROCK || e.getBlock().getType() == Material.AIR) {
 			return;
@@ -62,6 +169,7 @@ public class BlockListener implements Listener {
 			fortune = tool.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
 		}
 		ArrayList<ItemStack> drops = new ArrayList<>(getDrop(e.getBlock(), hasSmelt, fortune != 0, fortune, e.getBlock().getData(), tool));
+		XPlayer player = PlayerManager.getXPlayer(e.getPlayer());
 		e.getBlock().setType(Material.AIR);
 		
 		if (AutosellCommand.toggled.contains(e.getPlayer().getUniqueId())) {
@@ -76,8 +184,7 @@ public class BlockListener implements Listener {
 				}
 				
 			}
-			XPlayerData config = PlayerManager.getXPlayer(e.getPlayer()).getData();
-			PlayerManager.getXPlayer(e.getPlayer()).getData().addBalance(total * config.getSellMultuplier());
+			player.getData().addBalance(total * player.getSellMultuplier());
 			
 		} else {
 			//if no autosell
@@ -100,7 +207,6 @@ public class BlockListener implements Listener {
 				for (int i = -1; i <= 1; i++) {
 					for (int j = -1; j <= 1; j++) {
 						for (int k = -1; k <= 1; k++) {
-							
 							Location temp = e.getBlock().getLocation();
 							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
 							Mine mine = null;
@@ -177,37 +283,6 @@ public class BlockListener implements Listener {
 			}
 		}
 		return drops;
-	}
-	
-	private boolean shouldAdd(Material mat, ItemStack is) {
-		
-		if (mat == Material.BEDROCK || mat == Material.COMMAND || mat == Material.ENDER_PORTAL || mat == Material.ENDER_PORTAL_FRAME || mat == Material.LAVA || mat == Material.STATIONARY_LAVA || mat == Material.WATER || mat == Material.STATIONARY_WATER) {
-			return false;
-		} else if (mat == Material.OBSIDIAN) {
-			return (is != null) && is.getType() == Material.DIAMOND_PICKAXE;
-		} else if (mat == Material.ENDER_CHEST || mat == Material.ANVIL || mat == Material.COAL_BLOCK
-				|| mat == Material.REDSTONE_BLOCK || mat == Material.ENCHANTMENT_TABLE ||
-				mat == Material.IRON_BARDING || mat == Material.IRON_DOOR_BLOCK || mat == Material.MOB_SPAWNER ||
-				mat == Material.DISPENSER || mat == Material.DROPPER || mat == Material.COAL_ORE ||
-				mat == Material.ENDER_STONE || mat == Material.HOPPER || mat == Material.QUARTZ_ORE ||
-				mat == Material.BRICK_STAIRS || mat == Material.BRICK || mat == Material.CAULDRON ||
-				mat == Material.COBBLESTONE || mat == Material.COBBLESTONE_STAIRS || mat == Material.COBBLE_WALL ||
-				mat == Material.MOSSY_COBBLESTONE || mat == Material.NETHER_BRICK || mat == Material.NETHER_BRICK_STAIRS
-				|| mat == Material.STONE_PLATE || (mat.getId() == 43 || mat.getId() == 44) || mat == Material.STONE ||
-				(mat.getId() == 94 || mat.getId() == 109) || (mat.getId() == 159 || mat.getId() == 172) ||
-				mat == Material.QUARTZ_BLOCK || mat == Material.SANDSTONE || mat == Material.SANDSTONE_STAIRS ||
-				mat == Material.NETHERRACK) {
-			return (is != null) && (is.getType() == Material.WOOD_PICKAXE || is.getType() == Material.STONE_PICKAXE ||
-					is.getType() == Material.IRON_PICKAXE || is.getType() == Material.DIAMOND_PICKAXE);
-		} else if (mat == Material.IRON_BLOCK || mat == Material.IRON_ORE || mat == Material.LAPIS_BLOCK || mat ==
-				Material.LAPIS_ORE) {
-			return (is != null) && (is.getType() == Material.STONE_PICKAXE || is.getType() == Material.IRON_PICKAXE || is.getType() ==
-					Material.DIAMOND_PICKAXE);
-		} else if (mat == Material.DIAMOND_ORE || mat == Material.EMERALD_ORE || mat == Material.GOLD_ORE || mat ==
-				Material.REDSTONE_ORE || mat == Material.GLOWING_REDSTONE_ORE) {
-			return (is != null) && (is.getType() == Material.IRON_PICKAXE || is.getType() == Material.DIAMOND_PICKAXE);
-		}
-		return true;
 	}
 	
 	private ItemStack smelting(Material type, int amount) {

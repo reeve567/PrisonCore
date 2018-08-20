@@ -5,12 +5,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.ExtraRank;
-import pw.xwy.prison_core.utility.MineManager;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.Rank;
+import pw.xwy.prison_core.utility.enums.ExtraRank;
+import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.enums.Rank;
 
-import static pw.xwy.prison_core.utility.SellUtility.sell;
+import static pw.xwy.prison_core.utility.mine.SellUtility.sell;
 
 public class SellAllCommand implements CommandExecutor {
 	

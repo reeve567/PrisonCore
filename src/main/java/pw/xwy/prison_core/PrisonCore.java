@@ -7,16 +7,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.prison_core.commands.*;
-import pw.xwy.prison_core.custom_enchants.CustomEnchantsHandler;
+import pw.xwy.prison_core.commands.ce.CECommandHandler;
 import pw.xwy.prison_core.listeners.*;
 import pw.xwy.prison_core.listeners.gui.DonorShopGUI;
 import pw.xwy.prison_core.listeners.gui.KitGUI;
-import pw.xwy.prison_core.listeners.gui.TagGUI;
 import pw.xwy.prison_core.listeners.gui.WarpGUI;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.DiscordIntegration;
-import pw.xwy.prison_core.utility.MineManager;
-import pw.xwy.prison_core.utility.TelegramIntegration;
+import pw.xwy.prison_core.listeners.gui.ce.MainMenu;
+import pw.xwy.prison_core.tasks.HologramAnimationTask;
+import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
+import pw.xwy.prison_core.utility.config.ConfigurationManager;
+import pw.xwy.prison_core.utility.integration.DiscordIntegration;
+import pw.xwy.prison_core.utility.integration.TelegramIntegration;
+import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.misc_managers.HologramsManager;
+import pw.xwy.prison_core.utility.scoreboard.ScoreboardsManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +31,7 @@ public class PrisonCore extends JavaPlugin {
 	public static boolean telegramIntegration = false;
 	private static Logger logger;
 	private static PrisonCore instance;
-	private ConfigurationHandler configurationHandler;
+	private ConfigurationManager configurationManager;
 	
 	public static void log(String message) {
 		logger.log(Level.INFO, message);
@@ -67,29 +71,46 @@ public class PrisonCore extends JavaPlugin {
 		instance = this;
 		logger = Bukkit.getLogger();
 		stageOneListeners();
-		configurationHandler = new ConfigurationHandler(this);
+		configurationManager = new ConfigurationManager(this);
+		loadManagers();
 		stageTwoListeners();
-		new CustomEnchantsHandler().onEnable();
 		loadCommands();
+		loadTasks();
 	}
 	
 	private void stageOneListeners() {
 		registerEvents(new MineManager());
 	}
 	
+	private void loadManagers() {
+		new ScoreboardsManager();
+		new HologramsManager();
+		new CustomEnchantsManager().onEnable();
+		
+	}
+	
 	private void stageTwoListeners() {
-		registerEvents(new JoinListener());
-		registerEvents(new ChatListener());
-		registerEvents(new DrugsListener());
-		registerEvents(new DonorShopGUI(null));
-		registerEvents(new KitGUI(null));
-		registerEvents(new TagGUI(null));
-		registerEvents(new WarpGUI(null,0));
-		registerEvents(new LeaveListener());
-		registerEvents(new BlockListener());
-		registerEvents(new VoucherListener());
-		registerEvents(new SignListener());
-		registerEvents(new CrateListener());
+		registerEvents(
+				new JoinListener(),
+				new CrateListener(),
+				new DrugsListener(),
+				new DonorShopGUI(null),
+				new KitGUI(null),
+				new WarpGUI(null, 0),
+				new MainMenu(null),
+				new LeaveListener(),
+				new BlockListener(),
+				new VoucherListener(),
+				new NPCListener(),
+				new VoteListener(),
+				new DamageListener(),
+				new EnchantDrop(),
+				new FeedListener(),
+				new DeathListener(),
+				new BowListener(),
+				new RespawnListener()
+		);
+		
 	}
 	
 	private void loadCommands() {
@@ -108,15 +129,28 @@ public class PrisonCore extends JavaPlugin {
 		new FlyCommand();
 		new TagCommand();
 		new WarpCommand();
+		new ToggleCommand();
+		new CECommandHandler();
+	}
+	
+	private void loadTasks() {
+		new HologramAnimationTask().runTaskTimer(this, 5, 5);
 	}
 	
 	public static void registerEvents(Listener listener) {
 		Bukkit.getPluginManager().registerEvents(listener, instance);
 	}
 	
+	private void registerEvents(Listener... listeners) {
+		for (Listener l : listeners) {
+			PrisonCore.registerEvents(l);
+		}
+	}
+	
 	@Override
 	public void onDisable() {
-		configurationHandler.onDisable();
+		configurationManager.onDisable();
+		HologramsManager.disable();
 	}
 	
 	

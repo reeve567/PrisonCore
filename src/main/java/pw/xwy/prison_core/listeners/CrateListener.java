@@ -1,12 +1,14 @@
 package pw.xwy.prison_core.listeners;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.CrateManager;
+import pw.xwy.prison_core.utility.misc_managers.CrateManager;
+import pw.xwy.prison_core.utility.item.CustomItem;
 
 import java.util.Random;
 
@@ -25,6 +27,14 @@ public class CrateListener implements Listener {
 						int i = r.nextInt(100);
 						int total = 0;
 						
+						
+						if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
+							if (stack.getAmount() == 1) {
+								e.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+							} else {
+								e.getPlayer().setItemInHand(new CustomItem(stack).setCustomAmount(stack.getAmount() - 1));
+							}
+						}
 						if (name.contains(CrateManager.CrateType.VOTE.getName())) {
 							for (CrateManager.VotePrizes prize : CrateManager.VotePrizes.values()) {
 								total += prize.getChance();
@@ -66,6 +76,4 @@ public class CrateListener implements Listener {
 			}
 		}
 	}
-	
-	
 }

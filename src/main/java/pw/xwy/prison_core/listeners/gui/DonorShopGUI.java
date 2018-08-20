@@ -8,10 +8,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.XPlayerData;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.CustomItem;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayerData;
+import pw.xwy.prison_core.utility.item.CustomItem;
 
 public class DonorShopGUI implements Listener {
 	

@@ -9,8 +9,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.custom_enchants.utilities.InventoryUtility;
+import pw.xwy.prison_core.utility.InventoryUtility;
 import pw.xwy.prison_core.utility.*;
+import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

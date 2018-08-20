@@ -33,6 +33,10 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+    <repository>
+      <id>citizens-repo</id>
+      <url>http://repo.citizensnpcs.co/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -41,6 +45,13 @@
       <version>1.8.8</version>
       <scope>system</scope>
       <systemPath>${pom.basedir}/lib/craftbukkit-1.8.8.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.vexsoftware</groupId>
+      <artifactId>votifier</artifactId>
+      <version>1.9</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/lib/votifier-1.9.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

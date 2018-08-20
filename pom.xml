@@ -39,6 +39,10 @@
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
+		<repository>
+			<id>citizens-repo</id>
+			<url>http://repo.citizensnpcs.co/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -54,18 +58,24 @@
 			<artifactId>TemmieWebhook</artifactId>
 			<version>master-59de40c3b6-1</version>
 		</dependency>
-		<!--		<dependency>
-					<groupId>net.citizensnpcs</groupId>
-					<artifactId>citizens</artifactId>
-					<version>2.0.13-SNAPSHOT</version>
-					<type>jar</type>
-					<scope>system</scope>
-					<systemPath>${pom.basedir}/lib/citizens-2.0.13-SNAPSHOT.jar</systemPath>
-				</dependency>-->
+		<dependency>
+			<groupId>net.citizensnpcs</groupId>
+			<artifactId>citizens</artifactId>
+			<version>2.0.16-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.github.pengrad</groupId>
 			<artifactId>java-telegram-bot-api</artifactId>
 			<version>3.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vexsoftware</groupId>
+			<artifactId>votifier</artifactId>
+			<version>1.9</version>
+			<scope>system</scope>
+			<systemPath>${pom.basedir}/lib/votifier-1.9.jar</systemPath>
 		</dependency>
 		<!--<dependency>
 			<groupId>com.google.api-client</groupId>

@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.ExtraRank;
-import pw.xwy.prison_core.utility.Mine;
-import pw.xwy.prison_core.utility.MineManager;
-import pw.xwy.prison_core.utility.Rank;
+import pw.xwy.prison_core.utility.enums.ExtraRank;
+import pw.xwy.prison_core.utility.mine.Mine;
+import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.enums.Rank;
 
 import java.util.HashSet;
 

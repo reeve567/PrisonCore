@@ -6,9 +6,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.XPlayer;
-import pw.xwy.prison_core.utility.XPlayerConfig;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayer;
+import pw.xwy.prison_core.utility.player.XPlayerConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;

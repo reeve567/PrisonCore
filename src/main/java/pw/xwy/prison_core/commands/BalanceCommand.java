@@ -1,10 +1,10 @@
 package pw.xwy.prison_core.commands;
 
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.VoucherUtility;
-import pw.xwy.prison_core.utility.XPlayerConfig;
-import pw.xwy.prison_core.utility.XPlayerData;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.item.VoucherUtility;
+import pw.xwy.prison_core.utility.player.XPlayerConfig;
+import pw.xwy.prison_core.utility.player.XPlayerData;
 
 public class BalanceCommand {
 	

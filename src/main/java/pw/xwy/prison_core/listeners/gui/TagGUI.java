@@ -8,11 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import pw.xwy.prison_core.custom_enchants.utilities.InventoryUtility;
-import pw.xwy.prison_core.utility.CustomItem;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.Tag;
-import pw.xwy.prison_core.utility.XPlayer;
+import pw.xwy.prison_core.utility.InventoryUtility;
+import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.enums.Tag;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class TagGUI implements Listener {
 	

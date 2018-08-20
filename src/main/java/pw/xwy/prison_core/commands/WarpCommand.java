@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.listeners.gui.WarpGUI;
-import pw.xwy.prison_core.utility.MineManager;
-import pw.xwy.prison_core.utility.Rank;
+import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.enums.Rank;
 
 import java.util.List;
 

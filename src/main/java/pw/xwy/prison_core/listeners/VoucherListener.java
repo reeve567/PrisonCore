@@ -5,10 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import pw.xwy.prison_core.utility.ConfigurationHandler;
-import pw.xwy.prison_core.utility.CustomItem;
-import pw.xwy.prison_core.utility.PlayerManager;
-import pw.xwy.prison_core.utility.XPlayerData;
+import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayerData;
 
 public class VoucherListener implements Listener {
 	
