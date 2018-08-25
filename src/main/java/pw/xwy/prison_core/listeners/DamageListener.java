@@ -1,8 +1,10 @@
 package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
@@ -13,6 +15,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.commands.EventCommand;
+import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 
@@ -21,16 +25,19 @@ public class DamageListener implements Listener {
 	static Player summoner = null;
 	static boolean playerMadeExplosion = false;
 	private Player explodee = null;
-
-	//TODO do this
-	@EventHandler
+	private Rect3D safeArea = new Rect3D(new Location(Bukkit.getWorld("world"), -42, 90, -328), new Location(Bukkit.getWorld("world"), -27, 76, -357));
+	private Rect3D pvpArea = new Rect3D(new Location(Bukkit.getWorld("world"), -56, 40, -239), new Location(Bukkit.getWorld("world"), 80, 139, -359));
+	
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onDamage(EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
+			if (EventCommand.oneVersusOne.getArea().contains(e.getEntity().getLocation())) return;
+			if (pvpArea.contains(e.getEntity().getLocation()) && !safeArea.contains(e.getEntity().getLocation())) return;
 			e.setCancelled(true);
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void EnvHit(EntityDamageEvent e) {
 		
 		if (e.getEntity() instanceof Player) {

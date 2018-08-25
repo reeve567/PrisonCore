@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.commands.AutosellCommand;
 import pw.xwy.prison_core.events.BlockMinedEvent;
@@ -15,11 +16,13 @@ import pw.xwy.prison_core.utility.enums.*;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.mine.Mine;
 import pw.xwy.prison_core.utility.mine.MineManager;
+import pw.xwy.prison_core.utility.misc_managers.ExperienceManager;
 import pw.xwy.prison_core.utility.player.PlayerManager;
 import pw.xwy.prison_core.utility.player.XPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BlockListener implements Listener {
 	
@@ -170,6 +173,30 @@ public class BlockListener implements Listener {
 		}
 		ArrayList<ItemStack> drops = new ArrayList<>(getDrop(e.getBlock(), hasSmelt, fortune != 0, fortune, e.getBlock().getData(), tool));
 		XPlayer player = PlayerManager.getXPlayer(e.getPlayer());
+		
+		if (e.getBlock().getType() == Material.COAL_ORE || e.getBlock().getType() == Material.REDSTONE_ORE || e.getBlock().getType() == Material.LAPIS_ORE || e.getBlock().getType() == Material.DIAMOND_ORE) {
+			int xp = 0;
+			Random random = new Random();
+			switch (e.getBlock().getType()) {
+				case DIAMOND_ORE:
+				case EMERALD_ORE:
+					xp = random.nextInt(5) + 3;
+					break;
+				case COAL_ORE:
+					xp = random.nextInt(3);
+					break;
+				case LAPIS_ORE:
+				case QUARTZ_ORE:
+					xp = random.nextInt(4) + 2;
+					break;
+				case REDSTONE_ORE:
+					xp = random.nextInt(5) + 1;
+					break;
+			}
+			ExperienceManager experienceManager = new ExperienceManager(player);
+			experienceManager.setTotalExperience(experienceManager.getTotalExperience() + xp + 1);
+		}
+		
 		e.getBlock().setType(Material.AIR);
 		
 		if (AutosellCommand.toggled.contains(e.getPlayer().getUniqueId())) {
@@ -303,15 +330,22 @@ public class BlockListener implements Listener {
 	}
 	
 	
-	/*@EventHandler
+	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		if (!e.isCancelled()) {
 			//TODO: add support for cells
 			if (NormalWarps.SPAWN.getLocation() == null) {
+				for (Mine mine : MineManager.mines.values()) {
+					if (mine.getArea().contains(e.getBlockPlaced())) {
+						return;
+					}
+				}
 				e.setCancelled(true);
+				
+				
 			} else if (e.getBlock().getWorld().getName().equalsIgnoreCase(NormalWarps.SPAWN.getLocation().getWorld().getName())) {
 				e.setCancelled(true);
 			}
 		}
-	}*/
+	}
 }

@@ -7,7 +7,7 @@
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-package pw.xwy.prison_core.utility.ce;
+package pw.xwy.prison_core.listeners.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,12 +18,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.utility.InventoryUtility;
+import pw.xwy.prison_core.utility.ce.EnchantUtility;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.CustomEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Rarity;
-import pw.xwy.prison_core.utility.InventoryUtility;
 import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.misc_managers.ExperienceManager;
 
 public class ConversionMenu implements Listener {
 	
@@ -61,9 +63,10 @@ public class ConversionMenu implements Listener {
 	
 	private void onClick(Player player, Rarity rarity, int xp) {
 		if (player.getInventory().firstEmpty() != -1) {
-			if (player.getExp() >= xp) {
+			ExperienceManager manager = new ExperienceManager(player);
+			if (manager.getTotalExperience() >= xp) {
+				manager.setTotalExperience(manager.getTotalExperience() - xp);
 				player.getInventory().addItem(getBook(CustomEnchant.getRandomEnchant(rarity)));
-				player.setExp(player.getExp() - xp);
 			}
 		} else {
 			player.sendMessage(Messages.fullInventory.get());

@@ -43,24 +43,13 @@ public class CustomEnchant {
 		this.amount = itemSets.getAmount();
 	}
 	
-	public CustomEnchant(CEnchant enchant, String name, String commandLabel, Rarity rarity, ItemSets itemSets) {
+	public CustomEnchant(CEnchant enchant, String name, Rarity rarity, ItemSets itemSets, int amount) {
 		realName = enchant.toString();
 		this.enchant = enchant;
 		this.name = name;
 		this.sets = itemSets;
 		this.rarity = rarity;
-		this.commandLabel = commandLabel;
-		this.loreLabel = itemSets.getName();
-		this.amount = itemSets.getAmount();
-	}
-	
-	public CustomEnchant(CEnchant enchant, String name, String commandLabel, Rarity rarity, ItemSets itemSets, int amount) {
-		realName = enchant.toString();
-		this.enchant = enchant;
-		this.name = name;
-		this.sets = itemSets;
-		this.rarity = rarity;
-		this.commandLabel = commandLabel;
+		this.commandLabel = name.replaceAll(" ", "");
 		this.loreLabel = itemSets.getName();
 		this.amount = amount;
 	}

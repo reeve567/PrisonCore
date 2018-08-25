@@ -27,6 +27,9 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
 		if (strings.length == 0) {
 			((Player) commandSender).openInventory(new WarpGUI((Player) commandSender, WarpGUI.MAIN_MENU).inventory);
 		} else {
+			if ()
+			
+			
 			try {
 				((Player) commandSender).teleport(MineManager.mines.get(Rank.valueOf(strings[0].toUpperCase())).getWarp());
 			} catch (Exception e) {

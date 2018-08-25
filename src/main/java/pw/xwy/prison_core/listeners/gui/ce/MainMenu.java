@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.listeners.gui.ConversionMenu;
 import pw.xwy.prison_core.utility.ce.*;
 import pw.xwy.prison_core.utility.enums.Rarity;
 import pw.xwy.prison_core.utility.item.CustomItem;

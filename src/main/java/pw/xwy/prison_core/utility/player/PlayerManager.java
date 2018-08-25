@@ -1,8 +1,6 @@
 package pw.xwy.prison_core.utility.player;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.player.XPlayer;
 
 import java.util.HashMap;
 import java.util.UUID;

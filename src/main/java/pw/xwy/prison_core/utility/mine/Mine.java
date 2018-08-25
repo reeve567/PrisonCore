@@ -4,14 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.TimeFormatting;
+import pw.xwy.prison_core.utility.misc_managers.HologramsManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class Mine implements Listener {
 	private Random random = new Random();
 	private Rect3D area = null;
 	private int percentLeft;
-	private Block progressSign = null;
+	private ArrayList<HologramsManager.TextHologram> hologram = null;
 	private Location warp = null;
 	
 	public Mine(String name) {
@@ -128,14 +129,19 @@ public class Mine implements Listener {
 		return new MineMaterial(material);
 	}
 	
-	public void setProgressSign(Block sign) {
-		progressSign = sign;
+	public void setHologram(Location location) {
+		if (hologram != null) {
+			for (HologramsManager.TextHologram t : hologram) {
+				t.disable();
+			}
+		}
+		hologram = HologramsManager.addMultilineTextHologram(location, "", "", "", "");
 	}
 	
-	public String[] getProgressSignStrings() {
-		if (progressSign != null) {
-			Location l = progressSign.getLocation();
-			return new String[]{l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ(), l.getWorld().getName()};
+	public String[] getHologramString() {
+		if (hologram != null) {
+			Location l = hologram.get(0).getLocation();
+			return new String[]{l.getX() + ":" + l.getY() + ":" + l.getZ(), l.getWorld().getName()};
 		}
 		return new String[]{"unset"};
 	}
@@ -245,35 +251,6 @@ public class Mine implements Listener {
 		} else percentLeft = 100;
 	}
 	
-	public Block getProgressSign() {
-		return progressSign;
-	}
-	
-	public void setProgressSign(String[] s) {
-		if (s != null) {
-			if (s.length >= 1) {
-				if (s[0].equalsIgnoreCase("unset")) {
-					progressSign = null;
-				} else {
-					progressSign = locationFromString(s[0], s[1]).getBlock();
-				}
-			} else {
-				progressSign = null;
-			}
-		} else
-			progressSign = null;
-	}
-	
-	private Location locationFromString(String string, String world) {
-		int x, y, z;
-		x = Integer.parseInt(string.substring(0, string.indexOf(":")));
-		string = string.substring(string.indexOf(":") + 1);
-		y = Integer.parseInt(string.substring(0, string.indexOf(":")));
-		string = string.substring(string.indexOf(":") + 1);
-		z = Integer.parseInt(string);
-		return new Location(Bukkit.getWorld(world), x, y, z);
-	}
-	
 	public void setWarp(String[] strings) {
 		if (strings.length >= 1) {
 			if (strings[0].equalsIgnoreCase("unset")) {
@@ -371,6 +348,35 @@ public class Mine implements Listener {
 		warp = location;
 	}
 	
+	private ArrayList<HologramsManager.TextHologram> getHologram() {
+		return hologram;
+	}
+	
+	public void setHologram(String[] s) {
+		if (s != null) {
+			if (s.length >= 1) {
+				if (s[0].equalsIgnoreCase("unset")) {
+					hologram = null;
+				} else {
+					hologram = HologramsManager.addMultilineTextHologram(locationFromString(s[0], s[1]), "", "", "", "");
+				}
+			} else {
+				hologram = null;
+			}
+		} else
+			hologram = null;
+	}
+	
+	private Location locationFromString(String string, String world) {
+		double x, y, z;
+		x = Double.parseDouble(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		y = Double.parseDouble(string.substring(0, string.indexOf(":")));
+		string = string.substring(string.indexOf(":") + 1);
+		z = Double.parseDouble(string);
+		return new Location(Bukkit.getWorld(world), x, y, z);
+	}
+	
 	private class MineMaterial {
 		private Material material;
 		private short durability;
@@ -404,15 +410,12 @@ public class Mine implements Listener {
 		
 		@Override
 		public void run() {
-			if (getProgressSign() != null && getProgressSign().getState() instanceof Sign) {
+			if (getHologram() != null) {
 				time.update(timeDelay - amount);
-				Sign sign = (Sign) getProgressSign().getState();
-				
-				sign.setLine(0, "§lReset Time:");
-				sign.setLine(1, TimeFormatting.signFormat(time));
-				sign.setLine(2, "§lBlocks left:");
-				sign.setLine(3, "§l" + percentLeft + "%");
-				sign.update(true);
+				hologram.get(0).setContent("§lReset Time:");
+				hologram.get(1).setContent(TimeFormatting.signFormat(time));
+				hologram.get(2).setContent("§lBlocks left:");
+				hologram.get(3).setContent("§l" + percentLeft + "%");
 			}
 			
 			if (amount % 3 == 0 && amount != 0) {

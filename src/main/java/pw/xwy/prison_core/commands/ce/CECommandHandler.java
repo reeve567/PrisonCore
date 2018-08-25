@@ -13,7 +13,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.commands.ce.admin.CeGive;
 import pw.xwy.prison_core.commands.ce.admin.CeOrganize;
 import pw.xwy.prison_core.commands.ce.player.CeMenu;
@@ -28,6 +30,8 @@ public class CECommandHandler implements CommandExecutor {
 	
 	public CECommandHandler() {
 		Bukkit.getServer().getPluginCommand("ce").setExecutor(this);
+		Bukkit.getServer().getPluginCommand("conv").setExecutor(this);
+		Init();
 	}
 	
 	public void Init() {
@@ -46,6 +50,18 @@ public class CECommandHandler implements CommandExecutor {
 					sender.sendMessage(ChangeLog.getStrings().toArray(new String[0]));
 				} else if (args[0].equalsIgnoreCase("organize")) {
 					ceOrganize.run(sender);
+				} else if (args[0].equalsIgnoreCase("enchant")) {
+					if (sender.hasPermission("xwy.ce.admin")) {
+						if (sender instanceof Player) {
+							ItemStack stack = ((Player) sender).getItemInHand();
+							stack.addUnsafeEnchantment(Enchantment.getByName(args[1]), Integer.parseInt(args[2]));
+							((Player) sender).setItemInHand(stack);
+							((Player) sender).updateInventory();
+						}
+						
+					}
+					
+					
 				}
 			} else ceMenu.run(sender);
 		} else if (command.getLabel().equalsIgnoreCase("conv")) {

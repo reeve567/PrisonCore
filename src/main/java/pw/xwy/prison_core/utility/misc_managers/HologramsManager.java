@@ -69,6 +69,10 @@ public class HologramsManager {
 		public void disable() {
 			stand.remove();
 		}
+		
+		public Location getLocation() {
+			return location;
+		}
 	}
 	
 }

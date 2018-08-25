@@ -14,5 +14,9 @@ public class VoucherUtility {
 		return voucher;
 	}
 	
+	public static CustomItem getScroll() {
+		return new CustomItem(Material.PAPER).setName("§f§lScroll").addLore("§7Protection against one destroy");
+	}
+	
 	
 }

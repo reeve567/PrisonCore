@@ -15,6 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.listeners.gui.ConversionMenu;
 import pw.xwy.prison_core.tasks.*;
 import pw.xwy.prison_core.utility.config.Config;
 import pw.xwy.prison_core.utility.enums.CEnchant;

@@ -24,7 +24,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pw.xwy.prison_core.utility.enums.CEnchant;
+import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
+import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.item.VoucherUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +109,33 @@ public class EnchantDrop implements Listener {
 					} else if (ret == CAN_ENCHANT) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
 					}
+				} else if (itemOnCursor.getType().equals(Material.PAPER)) {
+					CustomItem scroll = VoucherUtility.getScroll();
+					
+					if (itemOnCursor.hasItemMeta() && itemOnCursor.getItemMeta().hasDisplayName() && itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(scroll.getItemMeta().getDisplayName())) {
+						if (ItemSets.EVERYTHING.setContains(itemInteractedWith.getType())) {
+							
+							if (itemOnCursor.getAmount() != 1) {
+								player.setItemOnCursor(new CustomItem(itemOnCursor).setCustomAmount(itemOnCursor.getAmount() - 1));
+							} else {
+								player.setItemOnCursor(null);
+							}
+							if (itemInteractedWith.hasItemMeta() && itemInteractedWith.getItemMeta().hasLore()) {
+								List<String> strings = itemInteractedWith.getItemMeta().getLore();
+								strings.add("§f§lScroll");
+								ItemMeta meta = itemInteractedWith.getItemMeta();
+								meta.setLore(strings);
+								itemInteractedWith.setItemMeta(meta);
+							} else {
+								List<String> strings = new ArrayList<>();
+								strings.add("§f§lScroll");
+								ItemMeta meta = itemInteractedWith.getItemMeta();
+								meta.setLore(strings);
+								itemInteractedWith.setItemMeta(meta);
+							}
+						}
+					}
+					
 				}
 			}
 		}
@@ -139,7 +169,14 @@ public class EnchantDrop implements Listener {
 				//see if there can be conflicts
 				
 				List<String> meta = item.getItemMeta().getLore();
-				String ench = book.getItemMeta().getDisplayName();
+				
+				System.out.println(meta);
+				for (int i = 0; i < meta.size(); i++) {
+					meta.set(0, ChatColor.stripColor(meta.get(0)));
+				}
+				System.out.println(meta);
+				
+				String ench = ChatColor.stripColor(book.getItemMeta().getDisplayName());
 				if (meta.contains(ench)) {
 					return HAS_SAME;
 				}
@@ -259,9 +296,7 @@ public class EnchantDrop implements Listener {
 						ItemMeta meta = itemInteractedWith.getItemMeta();
 						if (removeOld) {
 							List<String> l = meta.getLore();
-							if (l.contains(old)) {
-								l.remove(old);
-							}
+							l.remove(old);
 							meta.setLore(l);
 						}
 						itemInteractedWith.setItemMeta(meta);
@@ -288,9 +323,17 @@ public class EnchantDrop implements Listener {
 								
 								player.sendMessage(Messages.itemBroke.get());
 								
-								removeItemFromSlot(player, e.getSlot());
-								
-								player.closeInventory();
+								if (itemInteractedWith.hasItemMeta() && itemInteractedWith.getItemMeta().hasLore() && itemInteractedWith.getItemMeta().getLore().contains(VoucherUtility.getScroll().getItemMeta().getDisplayName())) {
+									ArrayList<String> strings = (ArrayList<String>) itemInteractedWith.getItemMeta().getLore();
+									strings.remove(VoucherUtility.getScroll().getItemMeta().getDisplayName());
+									ItemMeta meta = itemInteractedWith.getItemMeta();
+									meta.setLore(strings);
+									itemInteractedWith.setItemMeta(meta);
+									
+									player.sendMessage(Messages.prefix.get() + "§7Your scroll prevented your item from breaking and was removed from your item.");
+								} else {
+									removeItemFromSlot(player, e.getSlot());
+								}
 							} else {
 								e.setCancelled(true);
 								player.setItemOnCursor(null);

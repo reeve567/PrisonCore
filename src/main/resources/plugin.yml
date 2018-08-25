@@ -21,6 +21,8 @@ commands:
     aliases: [sbt,sbtoggle]
   ce:
     aliases: customenchants
+  conv:
+    aliases: []
   ds:
     aliases: [donorshop]
   rankup:
@@ -77,3 +79,5 @@ commands:
     aliases: [tag]
   warp:
     aliases: [warps]
+  event:
+    aliases: [ev,events]

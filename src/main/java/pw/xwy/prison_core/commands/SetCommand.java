@@ -5,8 +5,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.misc_managers.CrateManager;
 import pw.xwy.prison_core.utility.enums.NormalWarps;
+import pw.xwy.prison_core.utility.misc_managers.CrateManager;
+import pw.xwy.prison_core.utility.player.PlayerManager;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class SetCommand implements CommandExecutor {
 	public SetCommand() {
@@ -41,6 +43,10 @@ public class SetCommand implements CommandExecutor {
 					} else {
 						commandSender.sendMessage("must be run as player");
 					}
+				} else if (args[0].equalsIgnoreCase("youtuber")) {
+					Player player = Bukkit.getPlayer(args[1]);
+					XPlayer player1 = PlayerManager.getXPlayer(player);
+					player1.setYouber(!player1.isYoutuber());
 				}
 			} else if (args[0].equalsIgnoreCase("crate")) {
 				if (commandSender instanceof Player) {

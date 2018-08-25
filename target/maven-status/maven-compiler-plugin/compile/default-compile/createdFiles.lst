@@ -30,6 +30,7 @@ pw\xwy\prison_core\utility\enums\ChangeLog.class
 pw\xwy\prison_core\listeners\JoinListener.class
 pw\xwy\prison_core\commands\RankupCommand.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager$1.class
+pw\xwy\prison_core\listeners\BlockListener$1.class
 pw\xwy\prison_core\listeners\CrateListener.class
 pw\xwy\prison_core\utility\enums\MenuItem.class
 pw\xwy\prison_core\listeners\gui\WarpGUI.class
@@ -66,13 +67,15 @@ pw\xwy\prison_core\utility\config\Config.class
 pw\xwy\prison_core\commands\TagCommand.class
 pw\xwy\prison_core\utility\TimeFormatting.class
 pw\xwy\prison_core\listeners\gui\ce\MainMenu.class
-pw\xwy\prison_core\utility\enums\Gorix.class
 pw\xwy\prison_core\utility\enums\Rarity.class
+pw\xwy\prison_core\utility\enums\Gorix.class
 pw\xwy\prison_core\utility\misc_managers\HologramsManager.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager.class
 pw\xwy\prison_core\listeners\DeathListener.class
+pw\xwy\prison_core\listeners\gui\ConversionMenu.class
 pw\xwy\prison_core\utility\TimeFormatting$1.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager$Prestige.class
+pw\xwy\prison_core\utility\misc_managers\ExperienceManager.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager.class
 pw\xwy\prison_core\utility\ce\HelmMenu.class
 pw\xwy\prison_core\utility\InventoryUtility.class
@@ -83,7 +86,6 @@ pw\xwy\prison_core\tasks\HologramAnimationTask.class
 pw\xwy\prison_core\commands\ce\admin\CeOrganize$1.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$TagPrize.class
 pw\xwy\prison_core\commands\ChatclearCommand.class
-pw\xwy\prison_core\utility\ce\ConversionMenu.class
 pw\xwy\prison_core\utility\enums\NormalWarps.class
 pw\xwy\prison_core\utility\scoreboard\PlaceholderConversion.class
 pw\xwy\prison_core\utility\player\PlayerManager.class
@@ -133,6 +135,8 @@ pw\xwy\prison_core\utility\enums\ItemSets.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$RankPrize.class
 pw\xwy\prison_core\utility\SpecialBlockResolver.class
 pw\xwy\prison_core\utility\integration\DiscordIntegration.class
+pw\xwy\prison_core\prison_events\OneVersusOne.class
 pw\xwy\prison_core\tasks\ValorCheck.class
+pw\xwy\prison_core\commands\EventCommand.class
 pw\xwy\prison_core\utility\mine\Mine$1.class
 pw\xwy\prison_core\commands\SpawnCommand.class

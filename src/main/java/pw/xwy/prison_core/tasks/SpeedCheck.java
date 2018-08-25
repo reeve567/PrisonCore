@@ -1,15 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/24/18 6:47 PM                             /
-//                                                                             /
-// Copyright (c) 2018.                                                         /
-// All code here is made by Xwy (greys#0001) unless otherwise noted.           /
-//                                                                             /
-//                                                                             /
-////////////////////////////////////////////////////////////////////////////////
-
 package pw.xwy.prison_core.tasks;
-// made by reeve
-// on 10:36 PM
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,20 +9,20 @@ import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 
 public class SpeedCheck implements Runnable {
-	
+
 	private JavaPlugin main;
-	
+
 	public SpeedCheck(JavaPlugin main) {
-		
+
 		this.main = main;
 		run();
 	}
-	
+
 	@Override
 	public void run() {
-		
+
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
-			
+
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots()) == 1) {
@@ -51,9 +40,9 @@ public class SpeedCheck implements Runnable {
 			}
 		}, 0, 40);
 	}
-	
+
 	int ItemCheck(ItemStack i) {
-		
+
 		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.WINDSSPEEDI.getName())) {
 			return 1;
 		} else if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.WINDSSPEEDII.getName())) {
@@ -61,5 +50,5 @@ public class SpeedCheck implements Runnable {
 		}
 		return 0;
 	}
-	
+
 }

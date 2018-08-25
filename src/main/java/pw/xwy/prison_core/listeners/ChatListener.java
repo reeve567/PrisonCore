@@ -20,6 +20,7 @@ public class ChatListener implements Listener {
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 		XPlayer data = PlayerManager.getXPlayer(e.getPlayer());
+		e.setMessage(e.getMessage().replaceAll("%",""));
 		
 		String firstTitle = "";
 		String secondTitle = "";
@@ -50,12 +51,14 @@ public class ChatListener implements Listener {
 			}
 			return;
 		}
-		if (data.hasGroup(extraGroups[4])) {
+		if (data.hasGroup(extraGroups[4]) || data.hasGroup(extraGroups[3])) {
 			e.setFormat(firstTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 			return;
 		}
 		
-		e.setFormat(firstTitle + secondTitle + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
+		String youtube = data.isYoutuber() ? "§8[§cYou§fTube§8] " : secondTitle;
+		
+		e.setFormat(firstTitle + youtube + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
 	}
 	
 	

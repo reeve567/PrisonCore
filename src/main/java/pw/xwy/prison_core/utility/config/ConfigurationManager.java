@@ -111,7 +111,7 @@ public class ConfigurationManager {
 			Mine mine = MineManager.mines.get(rank);
 			mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
 			mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
-			mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
+			mine.setHologram(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
 			mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
 			mine.setShop(mineConfiguration.getString(rank.toString() + ".shop"));
 		}
@@ -119,7 +119,7 @@ public class ConfigurationManager {
 			Mine mine = MineManager.extraMines.get(rank);
 			mine.setComposition(mineConfiguration.getString(rank.toString() + ".composition"));
 			mine.setRectangle(mineConfiguration.getStringList(rank.toString() + ".location").toArray(new String[0]));
-			mine.setProgressSign(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
+			mine.setHologram(mineConfiguration.getStringList(rank.toString() + ".progressSign").toArray(new String[0]));
 			mine.setWarp(mineConfiguration.getStringList(rank.toString() + ".warpLocation").toArray(new String[0]));
 			mine.setShop(mineConfiguration.getString(rank.toString() + ".shop"));
 		}
@@ -197,7 +197,7 @@ public class ConfigurationManager {
 			Mine mine = MineManager.mines.get(rank);
 			mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
 			mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
-			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
+			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getHologramString()));
 			mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
 			mineConfiguration.set(rank.toString() + ".shop", mine.shopString());
 		}
@@ -205,7 +205,7 @@ public class ConfigurationManager {
 			Mine mine = MineManager.extraMines.get(rank);
 			mineConfiguration.set(rank.toString() + ".location", Arrays.asList(mine.areaStrings()));
 			mineConfiguration.set(rank.toString() + ".composition", mine.compositionString());
-			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getProgressSignStrings()));
+			mineConfiguration.set(rank.toString() + ".progressSign", Arrays.asList(mine.getHologramString()));
 			mineConfiguration.set(rank.toString() + ".warpLocation", Arrays.asList(mine.getWarpStrings()));
 			mineConfiguration.set(rank.toString() + ".shop", mine.shopString());
 		}
@@ -217,10 +217,26 @@ public class ConfigurationManager {
 	}
 	
 	public void onDisable() {
-		saveNormalWarps();
-		saveMines();
-		savePlayerData();
-		saveMiscData();
+		try {
+			saveNormalWarps();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		try {
+			saveMines();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		try {
+			savePlayerData();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		try {
+			saveMiscData();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 	
 	private void saveNormalWarps() {

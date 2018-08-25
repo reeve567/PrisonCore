@@ -27,9 +27,9 @@ public class XPlayerData {
 	}
 	
 	public void prestige() {
+		addBalance(-getRankupPriceMultiplied());
 		setPrestige(getPrestige() + 1);
 		setRank(Rank.A);
-		addBalance(-getRankupPriceMultiplied());
 	}
 	
 	public int getPrestige() {
@@ -84,8 +84,8 @@ public class XPlayerData {
 	
 	public void rankup() {
 		int i = rank.ordinal();
-		setRank(Rank.values()[i + 1]);
 		addBalance(-getRankupPriceMultiplied());
+		setRank(Rank.values()[i + 1]);
 	}
 	
 	public boolean canPrestige() {

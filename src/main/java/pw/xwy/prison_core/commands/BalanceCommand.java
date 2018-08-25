@@ -12,7 +12,7 @@ public class BalanceCommand {
 		if (args.length == 0) {
 			player.sendMessage("§6Balance §8§l»» §7" + XPlayerConfig.moneySymbol + PlayerManager.getXPlayer(player).getData().getBalance());
 		} else if (args.length == 2) {
-			if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("give"))
+			if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("give") && player.hasPermission("xwy.giveMoney"))
 				PlayerManager.getXPlayer(player).getData().addBalance(Double.parseDouble(args[1]));
 			else if (args[0].equalsIgnoreCase("withdraw") || args[0].equalsIgnoreCase("w")) {
 				XPlayerData data = PlayerManager.getXPlayer(player).getData();

@@ -10,7 +10,7 @@
 package pw.xwy.prison_core.commands.ce.player;
 
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.ce.ConversionMenu;
+import pw.xwy.prison_core.listeners.gui.ConversionMenu;
 
 public class Conv {
 	

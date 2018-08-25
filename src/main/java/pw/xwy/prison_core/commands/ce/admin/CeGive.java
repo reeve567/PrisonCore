@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Souls;
+import pw.xwy.prison_core.utility.item.VoucherUtility;
 
 import static pw.xwy.prison_core.utility.ce.EnchantUtility.bookGive;
 import static pw.xwy.prison_core.utility.ce.EnchantUtility.cmdCheck;
@@ -52,51 +53,61 @@ public class CeGive {
 						}
 					}
 					if (target != null) {
-						boolean found = false;
-						
-						for (CEnchant e : CEnchant.values()) {
-							if (cmdCheck(e.getLabel(), args[1])) {
-								found = true;
-								target.getInventory().addItem(bookGive(args[1], false));
-								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + e.getName() + ChatColor.GRAY + " to " +
-										ChatColor.RED + target.getName());
+						if (args[1].equalsIgnoreCase("scroll")) {
+							target.getInventory().addItem(VoucherUtility.getScroll());
+							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given a scroll to " + target.getName());
+						} else {
+							boolean found = false;
+							
+							for (CEnchant e : CEnchant.values()) {
+								if (cmdCheck(e.getLabel(), args[1])) {
+									found = true;
+									target.getInventory().addItem(bookGive(args[1], false));
+									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + e.getName() + ChatColor.GRAY + " to " +
+											ChatColor.RED + target.getName());
+								}
 							}
-						}
-						for (Souls s : Souls.values()) {
-							if (cmdCheck(s.getCommandLabel(), args[1])) {
-								found = true;
-								target.getInventory().addItem(s.getItem());
-								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
-										ChatColor.RED + target.getName());
+							for (Souls s : Souls.values()) {
+								if (cmdCheck(s.getCommandLabel(), args[1])) {
+									found = true;
+									target.getInventory().addItem(s.getItem());
+									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
+											ChatColor.RED + target.getName());
+								}
 							}
-						}
-						
-						if (!found) {
-							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment: " + args[1]);
+							
+							if (!found) {
+								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment: " + args[1]);
+							}
 						}
 					} else
 						sender.sendMessage(ChatColor.RED + "Player " + ChatColor.AQUA + args[2] + " not found.");
 				}
 			} else if (args.length == 2) {
 				if (sender instanceof Player) {
-					boolean found = false;
-					for (CEnchant e : CEnchant.values()) {
-						if (cmdCheck(e.getLabel(), args[1])) {
-							found = true;
-							((Player) sender).getInventory().addItem(bookGive(args[1], false));
-							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + e.getName());
+					if (args[1].equalsIgnoreCase("scroll")) {
+						((Player) sender).getInventory().addItem(VoucherUtility.getScroll());
+						sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received a scroll");
+					} else {
+						boolean found = false;
+						for (CEnchant e : CEnchant.values()) {
+							if (cmdCheck(e.getLabel(), args[1])) {
+								found = true;
+								((Player) sender).getInventory().addItem(bookGive(args[1], false));
+								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + e.getName());
+							}
 						}
-					}
-					for (Souls s : Souls.values()) {
-						if (cmdCheck(s.getCommandLabel(), args[1])) {
-							found = true;
-							((Player) sender).getInventory().addItem(s.getItem());
-							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + s.getName());
+						for (Souls s : Souls.values()) {
+							if (cmdCheck(s.getCommandLabel(), args[1])) {
+								found = true;
+								((Player) sender).getInventory().addItem(s.getItem());
+								sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + s.getName());
+							}
 						}
-					}
-					
-					if (!found) {
-						sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/key: " + args[1]);
+						
+						if (!found) {
+							sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/key: " + args[1]);
+						}
 					}
 				} else {
 					sender.sendMessage(Messages.senderIsConsole.get());

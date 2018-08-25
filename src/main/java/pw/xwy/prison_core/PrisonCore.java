@@ -71,6 +71,7 @@ public class PrisonCore extends JavaPlugin {
 		instance = this;
 		logger = Bukkit.getLogger();
 		stageOneListeners();
+		new HologramsManager();
 		configurationManager = new ConfigurationManager(this);
 		loadManagers();
 		stageTwoListeners();
@@ -84,7 +85,6 @@ public class PrisonCore extends JavaPlugin {
 	
 	private void loadManagers() {
 		new ScoreboardsManager();
-		new HologramsManager();
 		new CustomEnchantsManager().onEnable();
 		
 	}
@@ -100,6 +100,7 @@ public class PrisonCore extends JavaPlugin {
 				new MainMenu(null),
 				new LeaveListener(),
 				new BlockListener(),
+				new ChatListener(),
 				new VoucherListener(),
 				new NPCListener(),
 				new VoteListener(),
@@ -131,6 +132,7 @@ public class PrisonCore extends JavaPlugin {
 		new WarpCommand();
 		new ToggleCommand();
 		new CECommandHandler();
+		new EventCommand();
 	}
 	
 	private void loadTasks() {

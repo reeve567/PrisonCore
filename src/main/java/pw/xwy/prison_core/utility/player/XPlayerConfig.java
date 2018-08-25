@@ -117,7 +117,6 @@ public class XPlayerConfig extends Config {
 		}
 	}
 	
-	
 	private int getVersion() {
 		return getInt("ver");
 	}
@@ -140,6 +139,14 @@ public class XPlayerConfig extends Config {
 				return jellyfishPerms;
 		}
 		return null;
+	}
+	
+	public void setYouber(boolean bool) {
+		youtuber = bool;
+	}
+	
+	public boolean isYoutuber() {
+		return youtuber;
 	}
 	
 	public XPlayerData getData() {
@@ -186,7 +193,7 @@ public class XPlayerConfig extends Config {
 			}
 		}
 		set("permissions", permissions);
-		set("groups", groups.toArray(new String[0]));
+		set("groups", groups);
 		set("general-data.chat-spy", chatSpy);
 		saveConfig();
 		attachmentInfo.remove();
@@ -224,6 +231,10 @@ public class XPlayerConfig extends Config {
 	public boolean hasGroup(String s) {
 		HashSet<String> groupsListTemp = new HashSet<>();
 		s = s.toLowerCase();
+		
+		if (youtuber) {
+			groupsListTemp.addAll(Arrays.asList(groupsList));
+		}
 		
 		for (String st : groups) {
 			int k = -1;

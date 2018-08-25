@@ -29,6 +29,14 @@ public class XPlayer extends CraftPlayer {
 		chatSpy = config.isChatSpy();
 	}
 	
+	public void setYouber(boolean bool) {
+		config.setYouber(bool);
+	}
+	
+	public boolean isYoutuber() {
+		return config.isYoutuber();
+	}
+	
 	public XPlayerData getData() {
 		return config.getData();
 	}
