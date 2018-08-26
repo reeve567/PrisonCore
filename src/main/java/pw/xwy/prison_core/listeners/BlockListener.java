@@ -174,11 +174,13 @@ public class BlockListener implements Listener {
 		ArrayList<ItemStack> drops = new ArrayList<>(getDrop(e.getBlock(), hasSmelt, fortune != 0, fortune, e.getBlock().getData(), tool));
 		XPlayer player = PlayerManager.getXPlayer(e.getPlayer());
 		
-		if (e.getBlock().getType() == Material.COAL_ORE || e.getBlock().getType() == Material.REDSTONE_ORE || e.getBlock().getType() == Material.LAPIS_ORE || e.getBlock().getType() == Material.DIAMOND_ORE) {
+		if (e.getBlock().getType() == Material.COAL_ORE || e.getBlock().getType() == Material.REDSTONE_ORE || e.getBlock().getType() == Material.LAPIS_ORE || e.getBlock().getType() == Material.DIAMOND_ORE || e.getBlock().getType() == Material.EMERALD_ORE) {
 			int xp = 0;
 			Random random = new Random();
 			switch (e.getBlock().getType()) {
 				case DIAMOND_ORE:
+					xp = random.nextInt(5) + 3;
+					break;
 				case EMERALD_ORE:
 					xp = random.nextInt(5) + 3;
 					break;
@@ -186,6 +188,8 @@ public class BlockListener implements Listener {
 					xp = random.nextInt(3);
 					break;
 				case LAPIS_ORE:
+					xp = random.nextInt(4) + 2;
+					break;
 				case QUARTZ_ORE:
 					xp = random.nextInt(4) + 2;
 					break;
@@ -299,11 +303,15 @@ public class BlockListener implements Listener {
 				if (type.equals(Material.GOLD_ORE) || type.equals(Material.IRON_ORE) || type.equals(Material.COBBLESTONE)) {
 					drops.add(smelting(type, getAmount(fortune, lvl, b.getType())));
 				} else {
+					if (b.getType() == Material.LAPIS_ORE) data = 4;
+					
 					for (ItemStack j : b.getDrops()) {
 						drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 					}
 				}
 			} else {
+				if (b.getType() == Material.LAPIS_ORE) data = 4;
+				
 				for (ItemStack j : b.getDrops()) {
 					drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 				}

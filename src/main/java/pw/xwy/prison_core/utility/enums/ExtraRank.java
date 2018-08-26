@@ -1,7 +1,7 @@
 package pw.xwy.prison_core.utility.enums;
 
 public enum ExtraRank {
-	GUPPY, MUDKIP, SHARK, WHALE, JELLYFISH, EMERALD_MINE, EXP_MINE, RESOURCES1, RESOURCES2;
+	GUPPY, MUDKIP, SHARK, WHALE, JELLYFISH, EXP_MINE, RESOURCES1, RESOURCES2;
 	
 	@Override
 	public String toString() {

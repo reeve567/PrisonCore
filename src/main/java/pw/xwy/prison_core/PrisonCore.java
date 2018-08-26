@@ -11,6 +11,7 @@ import pw.xwy.prison_core.commands.ce.CECommandHandler;
 import pw.xwy.prison_core.listeners.*;
 import pw.xwy.prison_core.listeners.gui.DonorShopGUI;
 import pw.xwy.prison_core.listeners.gui.KitGUI;
+import pw.xwy.prison_core.listeners.gui.TagGUI;
 import pw.xwy.prison_core.listeners.gui.WarpGUI;
 import pw.xwy.prison_core.listeners.gui.ce.MainMenu;
 import pw.xwy.prison_core.tasks.HologramAnimationTask;
@@ -98,6 +99,7 @@ public class PrisonCore extends JavaPlugin {
 				new KitGUI(null),
 				new WarpGUI(null, 0),
 				new MainMenu(null),
+				new TagGUI(null),
 				new LeaveListener(),
 				new BlockListener(),
 				new ChatListener(),

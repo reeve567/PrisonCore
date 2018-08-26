@@ -69,7 +69,6 @@ public class WarpGUI implements Listener {
 				String warp = "§7Click here to teleport.";
 				//Items
 				ItemStack xpMine = new CustomItem(Material.EXP_BOTTLE).setName("§6EXP Mine").setLore(player.hasPermission("xwy.mine.exp-mine") ? warp : no_permission);
-				ItemStack emeraldMine = new CustomItem(Material.EMERALD_BLOCK).setName("§6Emerald Mine").setLore(player.hasPermission("xwy.mine.emerald-mine") ? warp : no_permission);
 				
 				ItemStack mudkip = new CustomItem(Material.WOOL).setName("§6Mudkip Mine").setDurability(1).setLore(player.hasGroup("mudkip") ? warp : not_in_group);
 				
@@ -80,7 +79,6 @@ public class WarpGUI implements Listener {
 				ItemStack jellyfish = new CustomItem(Material.WOOL).setName("§6Jellyfish Mine").setDurability(2).setLore(player.hasGroup("jellyfish") ? warp : not_in_group);
 				//Setting Slots
 				inventory.setItem(10, xpMine);
-				inventory.setItem(11, emeraldMine);
 				
 				inventory.setItem(13, mudkip);
 				inventory.setItem(14, shark);
@@ -229,10 +227,6 @@ public class WarpGUI implements Listener {
 					case 10:
 						if (player.hasPermission("xwy.mine.exp-mine"))
 							rank = ExtraRank.EXP_MINE;
-						break;
-					case 11:
-						if (player.hasPermission("xwy.mine.exp-mine"))
-							rank = ExtraRank.EMERALD_MINE;
 						break;
 					case 13:
 						if (player.hasGroup("mudkip"))

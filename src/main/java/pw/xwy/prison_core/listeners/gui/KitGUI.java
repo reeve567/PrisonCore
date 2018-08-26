@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.InventoryUtility;
-import pw.xwy.prison_core.utility.*;
+import pw.xwy.prison_core.utility.TimeFormatting;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.player.PlayerManager;
 import pw.xwy.prison_core.utility.player.XPlayer;
@@ -19,17 +19,16 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class KitGUI implements Listener {
 	
 	private static String[] names = {"god-tools", "god-axe", "pvp", "guppy", "mudkip", "shark", "whale", "jellyfish"};
-	private final String ready = "§7Ready!";
 	private final Player player;
 	private Inventory inventory;
-	private ArrayList<Slot> items = new ArrayList<>();
-	private XPlayer data;
+	private XPlayer player1;
 	
 	
 	public KitGUI(Player player) {
@@ -37,8 +36,9 @@ public class KitGUI implements Listener {
 		if (player != null) {
 			inventory = Bukkit.createInventory(player, 45, "§6Kits");
 			InventoryUtility.setBackground(inventory, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(15).setName(" "));
-			data = PlayerManager.getXPlayer(player);
+			player1 = PlayerManager.getXPlayer(player);
 			
+			ArrayList<Slot> items = new ArrayList<>();
 			items.add(new Slot(10, 0, "§6God Tools", names[0]));
 			items.add(new Slot(12, 4, "§6God Axe", names[1]));
 			items.add(new Slot(14, 10, "§6PvP", names[2]));
@@ -50,14 +50,11 @@ public class KitGUI implements Listener {
 			
 			for (Slot s : items) {
 				if (player.hasPermission("kits." + s.mapName)) {
-					if (!player.hasPermission("kits.no-cool-downs")) {
-						s.lore = ready;
+					if (s.ready) {
+						s.lore = "§7Ready!";
 					} else {
-						if (s.ready) {
-							s.lore = ready;
-						} else {
-							s.lore = "§7You do not have this kit for another++" + TimeFormatting.kitFormat(TimeFormatting.getTime((int) getDateDiff(data.getLastUsed(s.mapName), new Date(), TimeUnit.SECONDS)));
-						}
+						s.durability = 14;
+						s.lore = "§7You do not have this kit for another++" + TimeFormatting.kitFormat(TimeFormatting.getTime((int) getDateDiff(player1.getLastUsed(s.mapName), new Date(), TimeUnit.SECONDS)));
 					}
 				} else {
 					s.durability = 14;
@@ -75,7 +72,7 @@ public class KitGUI implements Listener {
 	
 	private ArrayList<String> conv(String desc) {
 		if (!desc.contains("++")) {
-			return new ArrayList<>(Arrays.asList(desc));
+			return new ArrayList<>(Collections.singletonList(desc));
 		}
 		ArrayList<String> de = new ArrayList<>();
 		while (desc.contains("++")) {
@@ -85,8 +82,7 @@ public class KitGUI implements Listener {
 	}
 	
 	private boolean isIn24Hours(Date date) {
-		Instant now = Instant.now();
-		return (!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now));
+		return Date.from(Instant.now()).getTime() - date.getTime() < 86400;
 	}
 	
 	@EventHandler
@@ -266,7 +262,9 @@ public class KitGUI implements Listener {
 			this.durability = durability;
 			this.name = name;
 			this.mapName = mapName;
-			ready = !isIn24Hours(data.getLastUsed(mapName));
+			ready = !isIn24Hours(player1.getLastUsed(mapName));
+			System.out.println(ready);
+			System.out.println(player1.getLastUsed(mapName));
 		}
 	}
 	

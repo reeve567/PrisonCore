@@ -3,9 +3,6 @@ name: PrisonCore
 version: RELEASE
 author: Xwy
 depend: [Votifier,Citizens]
-
-# https://mctools.org/motd-creator?text=%266%26lMud%26b%26lKip+%266Prison%0D%0A%267Release+on+%26f8%267%2F%26f25
-
 commands:
   feed:
     aliases: []

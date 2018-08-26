@@ -9,6 +9,7 @@ import pw.xwy.prison_core.utility.enums.Rank;
 import pw.xwy.prison_core.utility.enums.Tag;
 
 import java.io.File;
+import java.time.Instant;
 import java.util.*;
 
 public class XPlayerConfig extends Config {
@@ -162,7 +163,7 @@ public class XPlayerConfig extends Config {
 	}
 	
 	public void setLastUsed(String s) {
-		lastUsed.put(s, new Date());
+		lastUsed.put(s, Date.from(Instant.now()));
 	}
 	
 	public void removeRank(String rank) {
@@ -186,6 +187,11 @@ public class XPlayerConfig extends Config {
 		set("general-data.balance", data.getBalance());
 		set("prison-data.active-tag", data.getActiveTag() != null ? data.getActiveTag().toString() : "unset");
 		set("prison-data.tag-toggle", data.isTagToggle());
+		
+		for (String s : lastUsed.keySet()) {
+			set("cool-downs." + s, lastUsed.get(s).getTime());
+		}
+		
 		ArrayList<String> permissions = new ArrayList<>();
 		for (String s : customPermissions) {
 			if (attachmentInfo.getPermissions().get(s) && !defaults.contains(s)) {
@@ -193,6 +199,7 @@ public class XPlayerConfig extends Config {
 			}
 		}
 		set("permissions", permissions);
+		ArrayList<String> groups = new ArrayList<>(this.groups);
 		set("groups", groups);
 		set("general-data.chat-spy", chatSpy);
 		saveConfig();
