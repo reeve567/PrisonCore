@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.utility.enums.NormalWarps;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.player.PlayerManager;
@@ -21,6 +22,8 @@ public class JoinListener implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
+		e.setJoinMessage("§6§lSystem §8§l»» §6" + e.getPlayer().getName() + "§7 has joined the server");
+		PrisonCore.log(e.getPlayer().getName() + " has joined -- " + e.getPlayer().getAddress().toString().substring(1),2);
 		PlayerManager.getXPlayer(e.getPlayer());
 		if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
 			e.getPlayer().setAllowFlight(false);

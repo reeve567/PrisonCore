@@ -13,9 +13,7 @@ public class DiscordIntegration extends BukkitRunnable {
 	private static final String icon = "https://camo.githubusercontent.com/a4e336d9971686ae5698d2a39011e8e499a82475/68747470733a2f2f6a6172692e6c6f6c2f5a6e4e305451654d6d692e706e67";
 	private static String title;
 	private static TemmieWebhook temmie;
-	private static String info = "[INFO] ";
 	private static String name;
-	private static String date;
 	
 	public DiscordIntegration(String botTitle, String webhook, String serverName) {
 		messages.add("Started DiscordIntegration");
@@ -33,8 +31,13 @@ public class DiscordIntegration extends BukkitRunnable {
 	
 	public static void instantBroadcast(String message) {
 		Date dateS = new Date();
-		date = "[" + dateS.getHours() + ":" + dateS.getMinutes() + ":" + dateS.getSeconds() + "]";
-		DiscordMessage message1 = new DiscordMessage(title, info + date + " [" + name + "] " + message, icon);
+		String date = "[" + dateS.getHours() + ":" + dateS.getMinutes() + ":" + dateS.getSeconds() + "] ";
+		String s = "";
+		if (name != null && !name.equalsIgnoreCase("")) {
+			s = "[" + name + "] ";
+		}
+		String info = "[INFO] ";
+		DiscordMessage message1 = new DiscordMessage(title, info + date + s + message, icon);
 		temmie.sendMessage(message1);
 		message1 = null;
 	}

@@ -34,15 +34,17 @@ public class PrisonCore extends JavaPlugin {
 	private static PrisonCore instance;
 	private ConfigurationManager configurationManager;
 	
-	public static void log(String message) {
-		logger.log(Level.INFO, message);
-		//add discord message stuff
-		if (discordIntegration) {
+	public static void log(String message, int level) {
+		if (level == 1 && discordIntegration) {
 			DiscordIntegration.messages.add(message);
 		}
-		if (telegramIntegration) {
+		if (level == 2 && telegramIntegration) {
 			TelegramIntegration.messages.add(message);
 		}
+	}
+	
+	public static void log(String message) {
+		logger.log(Level.INFO, message);
 	}
 	
 	public static PrisonCore getInstance() {

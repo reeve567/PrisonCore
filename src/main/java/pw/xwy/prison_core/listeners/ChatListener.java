@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.utility.enums.Permissions;
 import pw.xwy.prison_core.utility.player.PlayerManager;
 import pw.xwy.prison_core.utility.player.XPlayer;
@@ -20,7 +21,7 @@ public class ChatListener implements Listener {
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 		XPlayer data = PlayerManager.getXPlayer(e.getPlayer());
-		e.setMessage(e.getMessage().replaceAll("%",""));
+		e.setMessage(e.getMessage().replaceAll("%", "%%"));
 		
 		String firstTitle = "";
 		String secondTitle = "";
@@ -47,18 +48,21 @@ public class ChatListener implements Listener {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage("§cYou cannot chat while chat is still stopped.");
 			} else {
-				e.setFormat(firstTitle + secondTitle + "§6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
+				e.setFormat(firstTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+				PrisonCore.log(e.getPlayer().getName() + " » " + e.getMessage(), 1);
 			}
 			return;
 		}
 		if (data.hasGroup(extraGroups[4]) || data.hasGroup(extraGroups[3])) {
 			e.setFormat(firstTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
+			PrisonCore.log(e.getPlayer().getName() + " » " + e.getMessage(), 1);
 			return;
 		}
 		
 		String youtube = data.isYoutuber() ? "§8[§cYou§fTube§8] " : secondTitle;
 		
 		e.setFormat(firstTitle + youtube + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
+		PrisonCore.log(e.getPlayer().getAddress().toString().substring(1) + " - " + e.getPlayer().getName() + " » " + e.getMessage(), 1);
 	}
 	
 	

@@ -62,6 +62,7 @@ public class ConfigurationManager {
 			mainConfiguration.setComment("Discord-Integration", "This is for logging everything to do with the plugin to discord, if enabled.", "The webhook url you get from being an admin on a discord channel and right clicking on the text channel.", "Server identifier isn't anything special, it's purely cosmetic.");
 			mainConfiguration.set("Discord-Integration.Enabled", false);
 			mainConfiguration.set("Discord-Integration.Webhook-URL", "discord webhook url here");
+			mainConfiguration.set("Discord-Integration.Server-Identifier", "");
 			mainConfiguration.set("Telegram-Integration.Enabled", false);
 			mainConfiguration.set("Telegram-Integration.Bot-ID", "");
 			mainConfiguration.set("Telegram-Integration.Chat-ID", "");
