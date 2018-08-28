@@ -88,7 +88,18 @@ public enum MenuItem {
 	HOSTILEDAMAGE("This enchantment doubles damage to++hostile mobs.", Material.SKULL_ITEM, 2),
 	STORMCALLER("Hitting an enemy has a chance to++smite them with lightning.", Material.NETHER_STAR),
 	PARALYZE("Hitting a mob has a chance to slow++it's movement speed.", Material.ROTTEN_FLESH),
-	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF);
+	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF),
+	EFFICIENCYI("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),
+	EFFICIENCYII("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),
+	EFFICIENCYIII("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),
+	EFFICIENCYIV("Makes your pickaxe mine faster", Material.STONE_PICKAXE),
+	EFFICIENCYV("Makes your pickaxe mine faster", Material.STONE_PICKAXE),
+	EFFICIENCYVI("Makes your pickaxe mine faster", Material.IRON_PICKAXE),
+	EFFICIENCYVII("Makes your pickaxe mine faster", Material.IRON_PICKAXE),
+	EFFICIENCYVIII("Makes your pickaxe mine faster", Material.DIAMOND_PICKAXE),
+	EFFICIENCYIX("Makes your pickaxe mine faster", Material.DIAMOND_PICKAXE),
+	EFFICIENCYX("Makes your pickaxe mine faster", Material.GOLD_PICKAXE)
+	;
 	
 	private final CEnchant customEnchant;
 	private final List<String> desc;

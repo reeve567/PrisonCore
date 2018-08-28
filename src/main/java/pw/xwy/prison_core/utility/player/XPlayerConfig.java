@@ -18,7 +18,7 @@ public class XPlayerConfig extends Config {
 	public static final int[] pvs = {0, 0, 2, 10, 20};
 	public static final boolean[] colorChat = {false, false, true, true, true};
 	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
-	private static final ArrayList<String> defaults = new ArrayList<>(Arrays.asList("plots.use", "plots.info", "plots.claim"
+	private static final ArrayList<String> defaults = new ArrayList<>(Arrays.asList("plots.use", "plots.trust", "plots.info", "plots.claim"
 			, "plots.auto", "plots.home", "plots.clear", "plots.delete", "plots.list", "plots.list.mine"
 			, "plots.list.shared", "plots.set", "plots.visit", "plots.visit.owned", "plots.visit.shared"
 			, "plots.set.flag", "plots.flag.add", "plots.flag.remove", "plots.flag.list", "plots.flag.info"
@@ -27,9 +27,9 @@ public class XPlayerConfig extends Config {
 			, "plots.continue"));
 	private static final ArrayList<String> guppyPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.guppy"));
 	private static final ArrayList<String> mudkipPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.mudkip", "xwy.mine.mudkip"));
-	private static final ArrayList<String> sharkPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.shark", "xwy.mine.shark"));
-	private static final ArrayList<String> whalePerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.whale", "xwy.mine.whale"));
-	private static final ArrayList<String> jellyfishPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.jellyfish", "xwy.perks.commands.fly", "xwy.mine.jellyfish"));
+	private static final ArrayList<String> sharkPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.shark", "xwy.mine.shark", "xwy.perks.commands.sellall"));
+	private static final ArrayList<String> whalePerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.whale", "xwy.mine.whale", "xwy.perks.commands.sellall"));
+	private static final ArrayList<String> jellyfishPerms = new ArrayList<>(Arrays.asList(Permissions.FEED_COMMAND.toString(), Permissions.ENDERCHEST_COMMAND.toString(), Permissions.HAT_COMMAND.toString(), Permissions.WORKBENCH_COMMAND.toString(), "kits.jellyfish", "xwy.perks.commands.fly", "xwy.mine.jellyfish", "xwy.perks.commands.autosell", "xwy.perks.commands.sellall"));
 	public static double startingMoney;
 	public static String moneySymbol;
 	private final int ver = 1;

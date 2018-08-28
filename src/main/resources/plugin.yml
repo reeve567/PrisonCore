@@ -78,3 +78,4 @@ commands:
     aliases: [warps]
   event:
     aliases: [ev,events]
+  vote:

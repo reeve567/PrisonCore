@@ -57,7 +57,11 @@ public class CustomEnchant {
 	public static CEnchant getRandomEnchant(Rarity rarity) {
 		switch (rarity) {
 			case HYDRO:
-				return hydro.get(new Random().nextInt(hydro.size()));
+				CEnchant enchant = hydro.get(new Random().nextInt(hydro.size()));
+				while (enchant == CEnchant.EXPLOSIVEPICKII || enchant == CEnchant.EXPLOSIVEPICKIII) {
+					enchant = hydro.get(new Random().nextInt(hydro.size()));
+				}
+				return enchant;
 			case MYSTICAL:
 				return mystical.get(new Random().nextInt(mystical.size()));
 			case RARE:

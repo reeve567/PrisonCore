@@ -16,9 +16,7 @@ import pw.xwy.prison_core.utility.player.PlayerManager;
 import pw.xwy.prison_core.utility.player.XPlayer;
 
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -82,7 +80,7 @@ public class KitGUI implements Listener {
 	}
 	
 	private boolean isIn24Hours(Date date) {
-		return Date.from(Instant.now()).getTime() - date.getTime() < 86400;
+		return Date.from(Instant.now()).getTime() - date.getTime() < 86400 * 1000;
 	}
 	
 	@EventHandler
@@ -263,8 +261,6 @@ public class KitGUI implements Listener {
 			this.name = name;
 			this.mapName = mapName;
 			ready = !isIn24Hours(player1.getLastUsed(mapName));
-			System.out.println(ready);
-			System.out.println(player1.getLastUsed(mapName));
 		}
 	}
 	

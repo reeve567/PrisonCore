@@ -90,6 +90,17 @@ public enum CEnchant {
 	LUMBERJACK("Lumberjack", Rarity.RARE, ItemSets.AXE),
 	MINERI("Miner I", Rarity.MYSTICAL, ItemSets.PICK),
 	MINERII("Miner II", Rarity.MYSTICAL, 0, ItemSets.PICK),
+	EFFICIENCYI("Efficiency I", Rarity.COMMON, ItemSets.PICK),
+	EFFICIENCYII("Efficiency II", Rarity.COMMON, 0, ItemSets.PICK),
+	EFFICIENCYIII("Efficiency III", Rarity.COMMON, 0, ItemSets.PICK),
+	EFFICIENCYIV("Efficiency IV", Rarity.UNCOMMON, 0, ItemSets.PICK),
+	EFFICIENCYV("Efficiency V", Rarity.UNCOMMON, 0, ItemSets.PICK),
+	EFFICIENCYVI("Efficiency VI", Rarity.UNCOMMON, 0, ItemSets.PICK),
+	EFFICIENCYVII("Efficiency VII", Rarity.RARE, 0, ItemSets.PICK),
+	EFFICIENCYVIII("Efficiency VIII", Rarity.RARE, 0, ItemSets.PICK),
+	EFFICIENCYIX("Efficiency IX", Rarity.MYSTICAL, 0, ItemSets.PICK),
+	EFFICIENCYX("Efficiency X", Rarity.MYSTICAL, 0, ItemSets.PICK),
+	
 	
 	XWY("God", Rarity.ADMIN, 0, ItemSets.BOOTS),;
 	

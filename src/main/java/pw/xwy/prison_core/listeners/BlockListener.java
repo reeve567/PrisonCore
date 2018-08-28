@@ -342,6 +342,10 @@ public class BlockListener implements Listener {
 	public void onPlace(BlockPlaceEvent e) {
 		if (!e.isCancelled()) {
 			//TODO: add support for cells
+			if (e.getPlayer().getGameMode() == GameMode.CREATIVE) {
+				return;
+			}
+			
 			if (NormalWarps.SPAWN.getLocation() == null) {
 				for (Mine mine : MineManager.mines.values()) {
 					if (mine.getArea().contains(e.getBlockPlaced())) {

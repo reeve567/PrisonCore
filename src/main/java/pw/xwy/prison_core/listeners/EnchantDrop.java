@@ -155,7 +155,6 @@ public class EnchantDrop implements Listener {
 				}
 			}
 			if (ce == null) {
-				System.out.println("Enchant not found " + book.getItemMeta().getDisplayName());
 				return CANT_ENCHANT;
 			}
 			
@@ -170,11 +169,9 @@ public class EnchantDrop implements Listener {
 				
 				List<String> meta = item.getItemMeta().getLore();
 				
-				System.out.println(meta);
 				for (int i = 0; i < meta.size(); i++) {
 					meta.set(0, ChatColor.stripColor(meta.get(0)));
 				}
-				System.out.println(meta);
 				
 				String ench = ChatColor.stripColor(book.getItemMeta().getDisplayName());
 				if (meta.contains(ench)) {
@@ -302,10 +299,34 @@ public class EnchantDrop implements Listener {
 						itemInteractedWith.setItemMeta(meta);
 						
 						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.FORTUNEV.getName())) {
+							if (itemInteractedWith.getItemMeta().hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
+								if (itemInteractedWith.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) == 5)
+									return;
+							}
 							itemInteractedWith.removeEnchantment(Enchantment.LOOT_BONUS_BLOCKS);
 							itemInteractedWith.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
 							player.setItemOnCursor(null);
 							player.sendMessage(Messages.itemSuccess.get());
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYI.getName())) {
+							effEnch(player,itemInteractedWith,1);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYII.getName())) {
+							effEnch(player,itemInteractedWith,2);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIII.getName())) {
+							effEnch(player,itemInteractedWith,3);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIV.getName())) {
+							effEnch(player,itemInteractedWith,4);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYV.getName())) {
+							effEnch(player,itemInteractedWith,5);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVI.getName())) {
+							effEnch(player,itemInteractedWith,6);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVII.getName())) {
+							effEnch(player,itemInteractedWith,7);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVIII.getName())) {
+							effEnch(player,itemInteractedWith,8);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIX.getName())) {
+							effEnch(player,itemInteractedWith,9);
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYX.getName())) {
+							effEnch(player,itemInteractedWith,10);
 						} else if (enchant(itemOnCursor, itemInteractedWith)) {
 							player.setItemOnCursor(null);
 							player.sendMessage(Messages.itemSuccess.get());
@@ -399,5 +420,16 @@ public class EnchantDrop implements Listener {
 	private void removeItemFromSlot(Player player, int slot) {
 		
 		player.getInventory().setItem(slot, new ItemStack(Material.AIR));
+	}
+	
+	public void effEnch(Player player, ItemStack pick, int i) {
+		if (pick.getItemMeta().hasEnchant(Enchantment.DIG_SPEED)) {
+			if (pick.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED) <= i)
+				return;
+		}
+		pick.removeEnchantment(Enchantment.DIG_SPEED);
+		pick.addUnsafeEnchantment(Enchantment.DIG_SPEED,i);
+		player.sendMessage(Messages.itemSuccess.get());
+		player.setItemOnCursor(null);
 	}
 }

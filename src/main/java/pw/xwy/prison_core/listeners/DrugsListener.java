@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -27,7 +28,7 @@ public class DrugsListener implements Listener {
 				if (e.getItemInHand().getAmount() > 1)
 					e.getItemInHand().setAmount(e.getItemInHand().getAmount() - 1);
 				else
-					e.getItemInHand().setType(Material.AIR);
+					e.setItemInHand(new ItemStack(Material.AIR));
 				e.getPlayer().sendMessage(prefix + "You snorted cocaine");
 			}
 			if (e.getItemInHand().getType() == Material.SULPHUR && e.isSneaking()) {
@@ -39,7 +40,7 @@ public class DrugsListener implements Listener {
 				if (e.getItemInHand().getAmount() > 1)
 					e.getItemInHand().setAmount(e.getItemInHand().getAmount() - 1);
 				else
-					e.getItemInHand().setType(Material.AIR);
+					e.setItemInHand(new ItemStack(Material.AIR));
 				e.getPlayer().sendMessage(prefix + "You took steroids");
 				
 			}
@@ -60,7 +61,7 @@ public class DrugsListener implements Listener {
 				if (e.getItemInHand().getAmount() > 1)
 					e.getItemInHand().setAmount(e.getItemInHand().getAmount() - 1);
 				else
-					e.getItemInHand().setType(Material.AIR);
+					e.setItemInHand(new ItemStack(Material.AIR));
 			}
 			
 		}

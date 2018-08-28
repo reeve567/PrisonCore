@@ -135,6 +135,7 @@ public class PrisonCore extends JavaPlugin {
 		new ToggleCommand();
 		new CECommandHandler();
 		new EventCommand();
+		new VoteCommand();
 	}
 	
 	private void loadTasks() {
