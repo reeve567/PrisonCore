@@ -18,7 +18,9 @@ import pw.xwy.prison_core.utility.player.XPlayerConfig;
 import pw.xwy.prison_core.utility.scoreboard.ScoreboardObj;
 import pw.xwy.prison_core.utility.scoreboard.ScoreboardsManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 import static pw.xwy.prison_core.PrisonCore.discordIntegration;
 import static pw.xwy.prison_core.PrisonCore.telegramIntegration;
@@ -33,6 +35,7 @@ public class ConfigurationManager {
 	private Config prestigeConfiguration;
 	private Config normalWarpsData;
 	private Config miscData;
+	private Config nameData;
 	
 	public ConfigurationManager(PrisonCore core) {
 		mainConfiguration = new Config(core.getDataFolder(), "config");
@@ -42,6 +45,7 @@ public class ConfigurationManager {
 		prestigeConfiguration = new Config(core.getDataFolder(), "prestiges");
 		normalWarpsData = new Config(core.getDataFolder(), "warps-data");
 		miscData = new Config(core.getDataFolder(), "misc-data");
+		nameData = new Config(core.getDataFolder(), "name-data");
 		loadConfig();
 	}
 	
@@ -54,6 +58,7 @@ public class ConfigurationManager {
 		loadNormalWarps();
 		loadMisc();
 		loadScoreboard();
+		loadNameData();
 	}
 	
 	private void loadMain() {
@@ -193,6 +198,17 @@ public class ConfigurationManager {
 		ScoreboardsManager.startTask();
 	}
 	
+	private void loadNameData() {
+		if (nameData.getInt("ver") != 1) {
+			nameData.set("ver", 1);
+			nameData.set("players", new ArrayList<>());
+			nameData.saveConfig();
+		}
+		for (String s : nameData.getStringList("players")) {
+			PlayerManager.updatePlayer(s.substring(0, s.indexOf(":")), UUID.fromString(s.substring(s.indexOf(":") + 1)));
+		}
+	}
+	
 	public void saveMines() {
 		for (Rank rank : Rank.values()) {
 			Mine mine = MineManager.mines.get(rank);
@@ -238,6 +254,11 @@ public class ConfigurationManager {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
+		try {
+			saveNameData();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 	
 	private void saveNormalWarps() {
@@ -247,11 +268,15 @@ public class ConfigurationManager {
 		normalWarpsData.saveConfig();
 	}
 	
-	
 	private void saveMiscData() {
 		miscData.set("Locations.Crate", CrateManager.crateString());
 		miscData.set("Unique-Players", JoinListener.UniquePlayers);
 		miscData.saveConfig();
+	}
+	
+	private void saveNameData() {
+		nameData.set("players", PlayerManager.getPlayerStrings());
+		nameData.saveConfig();
 	}
 	
 }

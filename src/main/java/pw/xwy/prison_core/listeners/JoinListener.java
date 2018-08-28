@@ -23,8 +23,9 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		e.setJoinMessage("§6§lSystem §8§l»» §6" + e.getPlayer().getName() + "§7 has joined the server");
-		PrisonCore.log(e.getPlayer().getName() + " has joined -- " + e.getPlayer().getAddress().toString().substring(1),2);
+		PrisonCore.log(e.getPlayer().getName() + " has joined -- " + e.getPlayer().getAddress().toString().substring(1), 2);
 		PlayerManager.getXPlayer(e.getPlayer());
+		PlayerManager.updatePlayer(e.getPlayer().getName(), e.getPlayer().getUniqueId());
 		if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
 			e.getPlayer().setAllowFlight(false);
 		}

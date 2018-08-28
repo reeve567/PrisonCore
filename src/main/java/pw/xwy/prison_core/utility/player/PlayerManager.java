@@ -2,12 +2,14 @@ package pw.xwy.prison_core.utility.player;
 
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class PlayerManager {
 	
 	private static HashMap<UUID, XPlayer> playerHashMap = new HashMap<>();
+	private static HashMap<String, UUID> nameToUUID = new HashMap<>();
 	
 	public static void addPermission(Player player, String s) {
 		getXPlayer(player).addPermission(s);
@@ -33,6 +35,22 @@ public class PlayerManager {
 	
 	public static boolean isUniquePlayer(Player player) {
 		return getXPlayer(player).isFirstJoin();
+	}
+	
+	public static UUID getPlayer(String name) {
+		return nameToUUID.get(name);
+	}
+	
+	public static void updatePlayer(String name, UUID uuid) {
+		nameToUUID.put(name, uuid);
+	}
+	
+	public static ArrayList<String> getPlayerStrings() {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : nameToUUID.keySet()) {
+			temp.add(s + ":" + nameToUUID.get(s));
+		}
+		return temp;
 	}
 	
 	public static void unloadPlayer(UUID id) {

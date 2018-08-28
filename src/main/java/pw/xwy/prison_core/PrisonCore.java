@@ -35,7 +35,7 @@ public class PrisonCore extends JavaPlugin {
 	private ConfigurationManager configurationManager;
 	
 	public static void log(String message, int level) {
-		if (level == 1 && discordIntegration) {
+		if (level >= 1 && discordIntegration) {
 			DiscordIntegration.messages.add(message);
 		}
 		if (level == 2 && telegramIntegration) {
