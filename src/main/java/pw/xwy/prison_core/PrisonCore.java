@@ -115,7 +115,8 @@ public class PrisonCore extends JavaPlugin {
 				new BowListener(),
 				new RespawnListener(),
 				new SignListener(),
-				new HologramsManager()
+				new HologramsManager(),
+				new NoFlyListener()
 		);
 		
 	}

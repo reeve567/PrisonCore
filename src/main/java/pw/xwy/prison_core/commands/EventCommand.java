@@ -6,10 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pw.xwy.prison_core.prison_events.OneVersusOne;
+import pw.xwy.prison_core.prison_events.ParkourMaze;
 
 public class EventCommand implements CommandExecutor {
 	
 	public static OneVersusOne oneVersusOne = new OneVersusOne();
+	public static ParkourMaze parkourMaze = new ParkourMaze();
+	
+	public final int active = 2;
 	
 	public EventCommand() {
 		Bukkit.getPluginCommand("event").setExecutor(this);
@@ -22,7 +26,10 @@ public class EventCommand implements CommandExecutor {
 		}
 		
 		if (strings.length == 0) {
-			((Player) commandSender).teleport(oneVersusOne.getSpec());
+			if (active == 1)
+				((Player) commandSender).teleport(oneVersusOne.getSpec());
+			else if (active == 2)
+				((Player) commandSender).teleport(parkourMaze.getSpawn());
 			return true;
 		} else if (commandSender.hasPermission("xwy.events.admin")) {
 			if (strings.length == 1) {

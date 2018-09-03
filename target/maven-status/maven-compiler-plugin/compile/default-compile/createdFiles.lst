@@ -22,6 +22,7 @@ pw\xwy\prison_core\commands\SetCommand.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$TagPrizes.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$CrateType.class
 pw\xwy\prison_core\utility\item\Glow.class
+pw\xwy\prison_core\prison_events\ParkourMaze.class
 pw\xwy\prison_core\commands\KitCommand.class
 pw\xwy\prison_core\commands\ce\admin\CeOrganize.class
 pw\xwy\prison_core\commands\VoteCommand.class
@@ -79,6 +80,7 @@ pw\xwy\prison_core\utility\misc_managers\RanksManager$Prestige.class
 pw\xwy\prison_core\utility\misc_managers\ExperienceManager.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager.class
 pw\xwy\prison_core\utility\ce\HelmMenu.class
+pw\xwy\prison_core\listeners\NoFlyListener.class
 pw\xwy\prison_core\listeners\BlockListener.class
 pw\xwy\prison_core\utility\InventoryUtility.class
 pw\xwy\prison_core\commands\FlyCommand.class

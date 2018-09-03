@@ -1,6 +1,7 @@
 package pw.xwy.prison_core.utility;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -13,6 +14,7 @@ public class Rect3D {
 	private int x1, y1, z1;
 	private int x2, y2, z2;
 	private Block[] blocks;
+	public ArrayList<Chunk> chunks = new ArrayList<>();
 	
 	public Rect3D(String[] strings) {
 		Location loc1 = locationFromString(strings[0], strings[2]);
@@ -26,9 +28,9 @@ public class Rect3D {
 		z2 = loc2.getBlockZ();
 		ArrayList<Block> blocks = new ArrayList<>();
 		if (x1 < x2) {
-			addBlocks(blocks, x1, x2);
+			addBlocks(blocks, chunks, x1, x2);
 		} else {
-			addBlocks(blocks, x2, x1);
+			addBlocks(blocks, chunks, x2, x1);
 		}
 		this.blocks = blocks.toArray(new Block[0]);
 	}
@@ -43,26 +45,32 @@ public class Rect3D {
 		return new Location(Bukkit.getWorld(world), x, y, z);
 	}
 	
-	private void addBlocks(ArrayList<Block> blocks, int x1, int x2) {
+	private void addBlocks(ArrayList<Block> blocks, ArrayList<Chunk> chunks, int x1, int x2) {
 		for (int i = x1; i <= x2; i++) {
 			if (y1 < y2) {
-				addBlocks2(blocks, i, y1, y2);
+				addBlocks2(blocks, chunks, i, y1, y2);
 			} else {
-				addBlocks2(blocks, i, y2, y1);
+				addBlocks2(blocks, chunks, i, y2, y1);
 			}
 		}
 	}
 	
-	private void addBlocks2(ArrayList<Block> blocks, int i, int y1, int y2) {
+	private void addBlocks2(ArrayList<Block> blocks, ArrayList<Chunk> chunks, int i, int y1, int y2) {
 		for (int j = y1; j <= y2; j++) {
 			if (z1 < z2) {
-				for (int k = z1; k <= z2; k++) {
-					blocks.add(getWorld().getBlockAt(i, j, k));
-				}
+				addBlocks3(blocks, chunks, i, j, z1, z2);
 			} else {
-				for (int k = z2; k <= z1; k++) {
-					blocks.add(getWorld().getBlockAt(i, j, k));
-				}
+				addBlocks3(blocks, chunks, i, j, z2, z1);
+			}
+		}
+	}
+	
+	private void addBlocks3(ArrayList<Block> blocks, ArrayList<Chunk> chunks, int i, int j, int z2, int z1) {
+		for (int k = z2; k <= z1; k++) {
+			blocks.add(getWorld().getBlockAt(i, j, k));
+			if (!chunks.contains(getWorld().getBlockAt(i, j, k).getChunk())) {
+				getWorld().getBlockAt(i,j,k).getChunk().load();
+				chunks.add(getWorld().getBlockAt(i, j, k).getChunk());
 			}
 		}
 	}
@@ -84,10 +92,11 @@ public class Rect3D {
 		y2 = loc2.getBlockY();
 		z2 = loc2.getBlockZ();
 		ArrayList<Block> blocks = new ArrayList<>();
+		ArrayList<Chunk> chunks = new ArrayList<>();
 		if (x1 < x2) {
-			addBlocks(blocks, x1, x2);
+			addBlocks(blocks, chunks, x1, x2);
 		} else {
-			addBlocks(blocks, x2, x1);
+			addBlocks(blocks, chunks, x2, x1);
 		}
 		this.blocks = blocks.toArray(new Block[0]);
 	}

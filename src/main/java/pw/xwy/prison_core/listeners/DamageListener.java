@@ -20,6 +20,9 @@ import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class DamageListener implements Listener {
 	
 	static Player summoner = null;
@@ -27,12 +30,15 @@ public class DamageListener implements Listener {
 	private Player explodee = null;
 	private Rect3D safeArea = new Rect3D(new Location(Bukkit.getWorld("world"), -42, 90, -328), new Location(Bukkit.getWorld("world"), -27, 76, -357));
 	private Rect3D pvpArea = new Rect3D(new Location(Bukkit.getWorld("world"), -56, 40, -239), new Location(Bukkit.getWorld("world"), 80, 139, -359));
+	public static HashMap<UUID, Integer> combatTag = new HashMap<>();
+	
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onDamage(EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
 			if (EventCommand.oneVersusOne.getArea().contains(e.getEntity().getLocation())) return;
-			if (pvpArea.contains(e.getEntity().getLocation()) && !safeArea.contains(e.getEntity().getLocation())) return;
+			if (pvpArea.contains(e.getEntity().getLocation()) && !safeArea.contains(e.getEntity().getLocation()))
+				return;
 			e.setCancelled(true);
 		}
 	}
@@ -134,7 +140,14 @@ public class DamageListener implements Listener {
 		return false;
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
+	public void combatTag(EntityDamageEvent e) {
+		if (!e.isCancelled() && e.getEntity() instanceof Player) {
+			combatTag.put(e.getEntity().getUniqueId(), 0);
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void Hit(final EntityDamageByEntityEvent e) {
 		
 		if (!e.isCancelled()) {

@@ -5,7 +5,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.utility.Rect3D;
@@ -375,6 +377,13 @@ public class Mine implements Listener {
 		string = string.substring(string.indexOf(":") + 1);
 		z = Double.parseDouble(string);
 		return new Location(Bukkit.getWorld(world), x, y, z);
+	}
+	
+	@EventHandler
+	public void onUnload(ChunkUnloadEvent e) {
+		if (area != null && area.chunks.contains(e.getChunk())) {
+			e.setCancelled(true);
+		}
 	}
 	
 	private class MineMaterial {

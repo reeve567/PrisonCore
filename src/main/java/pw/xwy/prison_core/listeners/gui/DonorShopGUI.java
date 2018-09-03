@@ -28,7 +28,7 @@ public class DonorShopGUI implements Listener {
 			inventory.setItem(13, new CustomItem(Material.SUGAR_CANE).setName("§6Sugar Cane").setCustomAmount(1).setLore("§71 for $2k"));
 			inventory.setItem(14, new CustomItem(Material.SOUL_SAND).setName("§6Soul Sand").setCustomAmount(4).setLore("§74 for $8k"));
 			inventory.setItem(15, new CustomItem(Material.LEATHER).setName("§6Leather").setCustomAmount(1).setLore("§71 for $7.5k"));
-			inventory.setItem(16, new CustomItem(Material.CARROT).setName("§6Carrot").setCustomAmount(1).setLore("§71 for $2k"));
+			inventory.setItem(16, new CustomItem(Material.CARROT_ITEM).setName("§6Carrot").setCustomAmount(1).setLore("§71 for $2k"));
 			inventory.setItem(17, new CustomItem(Material.BLAZE_ROD).setName("§6Blaze Rod").setCustomAmount(1).setLore("§71 for $2k"));
 		}
 	}
