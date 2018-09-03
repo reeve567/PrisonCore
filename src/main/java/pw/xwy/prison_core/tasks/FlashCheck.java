@@ -24,15 +24,13 @@ public class FlashCheck implements Runnable {
 	private JavaPlugin main;
 	
 	public FlashCheck(JavaPlugin main) {
-		
 		this.main = main;
+		run();
 	}
 	
 	@Override
 	public void run() {
-		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
-			
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet()) &&
@@ -46,15 +44,11 @@ public class FlashCheck implements Runnable {
 					}
 				}
 			}
-		}, 0, 40);
+		}, 0, 35);
 	}
 	
-	boolean ItemCheck(ItemStack i) {
-		
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.FLASH.getName())) {
-			return true;
-		}
-		return false;
+	private boolean ItemCheck(ItemStack i) {
+		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.FLASH.getName());
 	}
 	
 }

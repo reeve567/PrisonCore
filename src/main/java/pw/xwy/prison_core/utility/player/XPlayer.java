@@ -1,32 +1,22 @@
 package pw.xwy.prison_core.utility.player;
 
-import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import pw.xwy.prison_core.utility.enums.Rank;
+import pw.xwy.prison_core.utility.enums.Tag;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class XPlayer extends CraftPlayer {
+public class XPlayer {
 	
 	private XPlayerConfig config;
-	private boolean chatSpy = false;
-	//TODO MOVE TO XPLAYERCONFIG cv
 	
 	public XPlayer(UUID player) {
-		this(Bukkit.getPlayer(player));
+		config = new XPlayerConfig(player);
 	}
 	
 	public XPlayer(Player player) {
-		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) player).getHandle());
 		config = new XPlayerConfig(player.getUniqueId());
-		
-		initChatspy();
-	}
-	
-	public void initChatspy() {
-		chatSpy = config.isChatSpy();
 	}
 	
 	public void setYouber(boolean bool) {
@@ -37,12 +27,8 @@ public class XPlayer extends CraftPlayer {
 		return config.isYoutuber();
 	}
 	
-	public XPlayerData getData() {
-		return config.getData();
-	}
-	
 	public void save() {
-		config.saveData(chatSpy);
+		config.saveData();
 	}
 	
 	public double getSellMultuplier() {
@@ -81,4 +67,67 @@ public class XPlayer extends CraftPlayer {
 		return config.getLastUsed(s);
 	}
 	
+	public void setActiveTag(Tag ded) {
+		config.setActiveTag(ded);
+	}
+	
+	public void setTagToggle(boolean b) {
+		config.setTagToggle(b);
+	}
+	
+	public Tag getActiveTag() {
+		return config.getActiveTag();
+	}
+	
+	public boolean isTagToggle() {
+		return config.isTagToggle();
+	}
+	
+	public boolean canPrestige() {
+		return config.canPrestige();
+	}
+	
+	public void prestige() {
+		config.prestige();
+	}
+	
+	public boolean canRankup() {
+		return config.canRankup();
+	}
+	
+	public void rankup() {
+		config.rankup();
+	}
+	
+	public double getBalance() {
+		return config.getBalance();
+	}
+	
+	public void addBalance(double v) {
+		config.addBalance(v);
+	}
+	
+	public Rank getRank() {
+		return config.getRank();
+	}
+	
+	public int getPrestige() {
+		return config.getPrestige();
+	}
+	
+	public void setBalance(double i) {
+		config.setBalance(i);
+	}
+	
+	public String getBalanceReadable() {
+		return config.getBalanceReadable();
+	}
+	
+	public int percentProgress() {
+		return config.percentProgress();
+	}
+	
+	public double getRankupPriceMultiplied() {
+		return config.getRankupPriceMultiplied();
+	}
 }

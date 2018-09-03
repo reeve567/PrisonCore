@@ -47,9 +47,9 @@ public class SellUtility {
 		ArrayList<String> strings = new ArrayList<>();
 		
 		sendMessage(total, amount, player, strings, rank.toString());
-		player.sendMessage(strings.toArray(new String[0]));
+		pl.sendMessage(strings.toArray(new String[0]));
 		
-		PlayerManager.getXPlayer(player).getData().addBalance(total * player.getSellMultuplier());
+		PlayerManager.getXPlayer(pl).addBalance(total * player.getSellMultuplier());
 	}
 	
 	private static void sendMessage(Double total, int amount, XPlayer player, ArrayList<String> strings, String string) {
@@ -85,7 +85,7 @@ public class SellUtility {
 		sendMessage(total, amount, player, strings, rank.toString());
 		pl.sendMessage(strings.toArray(new String[0]));
 		
-		PlayerManager.getXPlayer(pl).getData().addBalance(total * player.getSellMultuplier());
+		PlayerManager.getXPlayer(pl).addBalance(total * player.getSellMultuplier());
 	}
 	
 }

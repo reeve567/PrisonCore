@@ -32,7 +32,7 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
 			XPlayer player = PlayerManager.getXPlayer((Player) commandSender);
 			
 			try {
-				if (player.getData().getRank().isHigherOrEqual(player.getData().getRank(), Rank.valueOf(strings[0].toUpperCase())))
+				if (player.getRank().isHigherOrEqual(player.getRank(), Rank.valueOf(strings[0].toUpperCase())))
 					((Player) commandSender).teleport(MineManager.mines.get(Rank.valueOf(strings[0].toUpperCase())).getWarp());
 			} catch (Exception e) {
 				((Player) commandSender).openInventory(new WarpGUI((Player) commandSender, WarpGUI.MAIN_MENU).inventory);

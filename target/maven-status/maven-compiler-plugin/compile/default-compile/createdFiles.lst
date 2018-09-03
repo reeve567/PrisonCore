@@ -24,10 +24,10 @@ pw\xwy\prison_core\utility\misc_managers\CrateManager$CrateType.class
 pw\xwy\prison_core\utility\item\Glow.class
 pw\xwy\prison_core\commands\KitCommand.class
 pw\xwy\prison_core\commands\ce\admin\CeOrganize.class
-pw\xwy\prison_core\commands\PermissionsCommand.class
 pw\xwy\prison_core\commands\VoteCommand.class
-pw\xwy\prison_core\utility\enums\ChangeLog.class
+pw\xwy\prison_core\commands\PermissionsCommand.class
 pw\xwy\prison_core\utility\enums\ExtraRank.class
+pw\xwy\prison_core\utility\enums\ChangeLog.class
 pw\xwy\prison_core\listeners\JoinListener.class
 pw\xwy\prison_core\commands\RankupCommand.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager$1.class
@@ -61,15 +61,15 @@ pw\xwy\prison_core\utility\scoreboard\ScoreboardObj.class
 pw\xwy\prison_core\utility\enums\Souls.class
 pw\xwy\prison_core\commands\ToggleCommand.class
 pw\xwy\prison_core\utility\enums\CEnchant.class
-pw\xwy\prison_core\PrisonCore.class
 pw\xwy\prison_core\utility\mine\Mine$Task.class
+pw\xwy\prison_core\PrisonCore.class
 pw\xwy\prison_core\commands\BalanceCommand.class
 pw\xwy\prison_core\commands\TagCommand.class
 pw\xwy\prison_core\utility\config\Config.class
 pw\xwy\prison_core\listeners\gui\ce\MainMenu.class
 pw\xwy\prison_core\utility\TimeFormatting.class
-pw\xwy\prison_core\utility\enums\Gorix.class
 pw\xwy\prison_core\utility\enums\Rarity.class
+pw\xwy\prison_core\utility\enums\Gorix.class
 pw\xwy\prison_core\utility\misc_managers\HologramsManager.class
 pw\xwy\prison_core\listeners\DeathListener.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager.class
@@ -109,7 +109,6 @@ pw\xwy\prison_core\listeners\VoteListener.class
 pw\xwy\prison_core\utility\config\ConfigurationManager.class
 pw\xwy\prison_core\commands\SellAllCommand.class
 pw\xwy\prison_core\utility\ce\SwordMenu.class
-pw\xwy\prison_core\utility\player\XPlayerData.class
 pw\xwy\prison_core\listeners\BowListener.class
 pw\xwy\prison_core\tasks\SpeedCheck.class
 pw\xwy\prison_core\listeners\gui\DonorShopGUI$1.class
@@ -135,6 +134,7 @@ pw\xwy\prison_core\utility\item\PlayerSkull.class
 pw\xwy\prison_core\utility\enums\ItemSets.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$RankPrize.class
 pw\xwy\prison_core\utility\SpecialBlockResolver.class
+pw\xwy\prison_core\listeners\SignListener.class
 pw\xwy\prison_core\prison_events\OneVersusOne.class
 pw\xwy\prison_core\utility\integration\DiscordIntegration.class
 pw\xwy\prison_core\tasks\ValorCheck.class

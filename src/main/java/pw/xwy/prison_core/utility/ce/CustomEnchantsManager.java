@@ -32,7 +32,6 @@ public class CustomEnchantsManager {
 		registerGlow();
 		
 		new MessagesFunctions();
-		startTasks();
 		Config config = new Config(PrisonCore.getInstance().getDataFolder(), "custom-enchants");
 		int ce = 0;
 		
@@ -92,6 +91,7 @@ public class CustomEnchantsManager {
 				}
 			}
 		}
+		startTasks();
 		loadMenus();
 		Bukkit.getPluginManager().registerEvents(new ConversionMenu(), PrisonCore.getInstance());
 	}
@@ -116,14 +116,13 @@ public class CustomEnchantsManager {
 	}
 	
 	private void startTasks() {
-		if (CEnchant.SCUBADIVER.isEnabled()) new WaterBreathingCheck(PrisonCore.getInstance());
-		if (CEnchant.GLOWING.isEnabled()) new NightVisionCheck(PrisonCore.getInstance());
-		if (CEnchant.HEARTBOOST.isEnabled()) new HeartCheck(PrisonCore.getInstance());
-		if (CEnchant.VALOR.isEnabled()) new ValorCheck(PrisonCore.getInstance());
-		if (CEnchant.FLASH.isEnabled()) new FlashCheck(PrisonCore.getInstance());
-		if (CEnchant.MOONGRAVITY.isEnabled()) new JumpBoostCheck(PrisonCore.getInstance());
-		if (CEnchant.WINDSSPEEDI.isEnabled() || CEnchant.WINDSSPEEDII.isEnabled())
-			new SpeedCheck(PrisonCore.getInstance());
+		new WaterBreathingCheck(PrisonCore.getInstance());
+		new NightVisionCheck(PrisonCore.getInstance());
+		new HeartCheck(PrisonCore.getInstance());
+		new ValorCheck(PrisonCore.getInstance());
+		new FlashCheck(PrisonCore.getInstance());
+		new JumpBoostCheck(PrisonCore.getInstance());
+		new SpeedCheck(PrisonCore.getInstance());
 	}
 	
 	private void loadMenus() {

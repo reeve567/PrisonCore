@@ -1,12 +1,15 @@
 package pw.xwy.prison_core.utility.player;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.utility.ReadableNumbers;
 import pw.xwy.prison_core.utility.config.Config;
 import pw.xwy.prison_core.utility.enums.Permissions;
 import pw.xwy.prison_core.utility.enums.Rank;
 import pw.xwy.prison_core.utility.enums.Tag;
+import pw.xwy.prison_core.utility.misc_managers.RanksManager;
 
 import java.io.File;
 import java.time.Instant;
@@ -20,7 +23,7 @@ public class XPlayerConfig extends Config {
 	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
 	private static final ArrayList<String> defaults = new ArrayList<>(Arrays.asList("plots.use", "plots.trust", "plots.info", "plots.claim"
 			, "plots.auto", "plots.home", "plots.clear", "plots.delete", "plots.list", "plots.list.mine"
-			, "plots.list.shared", "plots.set", "plots.visit", "plots.visit.owned", "plots.visit.shared"
+			, "plots.list.shared", "plots.set", "plots.visit", "plots.visit.owned", "plots.visit.shared", "plots.visit.other"
 			, "plots.set.flag", "plots.flag.add", "plots.flag.remove", "plots.flag.list", "plots.flag.info"
 			, "plots.flag", "plots.confirm", "plots.toggle", "plots.toggle.titles", "plots.set.biome", "plots.set.home"
 			, "plots.denied", "plots.remove", "plots.untrust", "plots.undeny", "plots.kick", "plots.done", "plots.save"
@@ -37,20 +40,30 @@ public class XPlayerConfig extends Config {
 	public boolean twitcher;
 	private HashSet<String> customPermissions = new HashSet<>();
 	private boolean firstJoin = false;
-	private XPlayerData data;
 	private boolean chatSpy;
 	private HashMap<String, Date> lastUsed = new HashMap<>();
 	private HashSet<String> groups = new HashSet<>();
-	private PermissionAttachment attachmentInfo;
+	private PermissionAttachment attachmentInfo = null;
+	private double balance;
+	private Rank rank;
+	private int prestige;
+	private Tag activeTag = null;
+	private boolean tagToggle = true;
 	
 	public XPlayerConfig(UUID name) {
 		super(new File(PrisonCore.getInstance().getDataFolder(), "Players"), name.toString());
-		attachmentInfo = Bukkit.getPlayer(name).addAttachment(PrisonCore.getInstance());
+		Player player = Bukkit.getPlayer(name);
+		if (player != null) {
+			attachmentInfo = player.addAttachment(PrisonCore.getInstance());
+		}
 		setDefaults();
-		data = new XPlayerData(getDouble("general-data.balance"), Rank.valueOf(getString("prison-data.rank")), getInt("prison-data.prestige"));
+		balance = getDouble("general-data.balance");
+		rank = Rank.valueOf(getString("prison-data.rank"));
+		prestige = getInt("prison-data.prestige");
+		
 		if (!getString("prison-data.active-tag").equalsIgnoreCase("unset"))
-			data.setActiveTag(Tag.valueOf(getString("prison-data.active-tag")));
-		data.setTagToggle(getBoolean("prison-data.tag-toggle"));
+			setActiveTag(Tag.valueOf(getString("prison-data.active-tag")));
+		setTagToggle(getBoolean("prison-data.tag-toggle"));
 		lastUsed.put("god-tools", new Date(getLong("cool-downs.god-tools")));
 		lastUsed.put("god-axe", new Date(getLong("cool-downs.god-axe")));
 		lastUsed.put("pvp", new Date(getLong("cool-downs.pvp")));
@@ -62,16 +75,19 @@ public class XPlayerConfig extends Config {
 		youtuber = getBoolean("youtuber");
 		twitcher = getBoolean("twitcher");
 		chatSpy = getBoolean("general-data.chat-spy");
-		ArrayList<String> permissions = (ArrayList<String>) getStringList("permissions");
-		for (String s : permissions) {
-			addPermission(s);
-		}
-		for (String s : defaults) {
-			attachmentInfo.setPermission(s, true);
-		}
-		ArrayList<String> groups = (ArrayList<String>) getStringList("groups");
-		for (String s : groups) {
-			addRank(s);
+		
+		if (attachmentInfo != null) {
+			ArrayList<String> permissions = (ArrayList<String>) getStringList("permissions");
+			for (String s : permissions) {
+				addPermission(s);
+			}
+			for (String s : defaults) {
+				attachmentInfo.setPermission(s, true);
+			}
+			ArrayList<String> groups = (ArrayList<String>) getStringList("groups");
+			for (String s : groups) {
+				addRank(s);
+			}
 		}
 	}
 	
@@ -150,10 +166,6 @@ public class XPlayerConfig extends Config {
 		return youtuber;
 	}
 	
-	public XPlayerData getData() {
-		return data;
-	}
-	
 	public boolean isFirstJoin() {
 		return firstJoin;
 	}
@@ -181,33 +193,35 @@ public class XPlayerConfig extends Config {
 		attachmentInfo.unsetPermission(s);
 	}
 	
-	public void saveData(boolean chatSpy) {
-		set("prison-data.rank", data.getRank().toString());
-		set("prison-data.prestige", data.getPrestige());
-		set("general-data.balance", data.getBalance());
-		set("prison-data.active-tag", data.getActiveTag() != null ? data.getActiveTag().toString() : "unset");
-		set("prison-data.tag-toggle", data.isTagToggle());
+	public void saveData() {
+		set("prison-data.rank", getRank().toString());
+		set("prison-data.prestige", getPrestige());
+		set("general-data.balance", getBalance());
+		set("prison-data.active-tag", getActiveTag() != null ? getActiveTag().toString() : "unset");
+		set("prison-data.tag-toggle", isTagToggle());
 		
 		for (String s : lastUsed.keySet()) {
 			set("cool-downs." + s, lastUsed.get(s).getTime());
 		}
-		
-		ArrayList<String> permissions = new ArrayList<>();
-		for (String s : customPermissions) {
-			if (attachmentInfo.getPermissions().get(s) && !defaults.contains(s)) {
-				permissions.add(s);
+		if (attachmentInfo != null) {
+			ArrayList<String> permissions = new ArrayList<>();
+			for (String s : customPermissions) {
+				if (attachmentInfo.getPermissions().get(s) && !defaults.contains(s)) {
+					permissions.add(s);
+				}
 			}
+			set("permissions", permissions);
+			attachmentInfo.remove();
 		}
-		set("permissions", permissions);
 		ArrayList<String> groups = new ArrayList<>(this.groups);
 		set("groups", groups);
 		set("general-data.chat-spy", chatSpy);
 		saveConfig();
-		attachmentInfo.remove();
+		
 	}
 	
 	public double getSellMultuplier() {
-		return data.getSellMultuplier() + groupSellMultiplier();
+		return RanksManager.getSellPriceMult(prestige) + groupSellMultiplier();
 	}
 	
 	private double groupSellMultiplier() {
@@ -261,6 +275,97 @@ public class XPlayerConfig extends Config {
 		}
 		
 		return groupsListTemp.contains(s);
+	}
+	
+	public Rank getRank() {
+		return rank;
+	}
+	
+	public void setRank(Rank rank) {
+		this.rank = rank;
+	}
+	
+	public void prestige() {
+		addBalance(-getRankupPriceMultiplied());
+		setPrestige(getPrestige() + 1);
+		setRank(Rank.A);
+	}
+	
+	public int getPrestige() {
+		return prestige;
+	}
+	
+	public void addBalance(double balance) {
+		this.balance += balance;
+	}
+	
+	public double getRankupPriceMultiplied() {
+		return getRankupPrice() * getRankupMultiplier();
+	}
+	
+	public double getRankupPrice() {
+		return rank.getCostToRankup();
+	}
+	
+	public double getRankupMultiplier() {
+		return RanksManager.getCostMult(getPrestige());
+	}
+	
+	public void setPrestige(int prestige) {
+		this.prestige = prestige;
+	}
+	
+	
+	public int percentProgress() {
+		if (getBalance() == 0) {
+			return 0;
+		} else if (getBalance() >= getRankupPriceMultiplied()) {
+			return 100;
+		} else {
+			return (int) ((getBalance() / getRankupPriceMultiplied()) * 100);
+		}
+	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	public String getBalanceReadable() {
+		return ReadableNumbers.coolFormat(getBalance(), 0);
+	}
+	
+	public void rankup() {
+		int i = rank.ordinal();
+		addBalance(-getRankupPriceMultiplied());
+		setRank(Rank.values()[i + 1]);
+	}
+	
+	public boolean canPrestige() {
+		return rank == Rank.Z && canRankup();
+	}
+	
+	public boolean canRankup() {
+		return getBalance() >= getRankupPriceMultiplied();
+	}
+	
+	public Tag getActiveTag() {
+		return activeTag;
+	}
+	
+	public void setActiveTag(Tag activeTag) {
+		this.activeTag = activeTag;
+	}
+	
+	public boolean isTagToggle() {
+		return tagToggle;
+	}
+	
+	public void setTagToggle(boolean tagToggle) {
+		this.tagToggle = tagToggle;
 	}
 	
 	public boolean isChatSpy() {

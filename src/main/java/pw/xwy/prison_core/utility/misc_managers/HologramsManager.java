@@ -5,21 +5,27 @@ import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkUnloadEvent;
 
 import java.util.ArrayList;
 
-public class HologramsManager {
+public class HologramsManager implements Listener {
 	
 	private static ArrayList<TextHologram> textHolograms = new ArrayList<>();
+	private static boolean loaded = false;
 	
 	public HologramsManager() {
-		for (Entity e : Bukkit.getWorld("world").getEntities()) {
-			if (e instanceof ArmorStand)
-				e.remove();
+		if (!loaded) {
+			loaded = true;
+			for (Entity e : Bukkit.getWorld("world").getEntities()) {
+				if (e instanceof ArmorStand)
+					e.remove();
+			}
+			
+			new TextHologram(new Location(Bukkit.getWorld("world"), 667.5, 95, -215.5), "§6Crates");
 		}
-		
-		new TextHologram(new Location(Bukkit.getWorld("world"), 667.5, 95, -215.5), "§6Crates");
-		
 	}
 	
 	public static ArrayList<TextHologram> addMultilineTextHologram(Location location, String... content) {
@@ -45,6 +51,17 @@ public class HologramsManager {
 		for (TextHologram hologram : textHolograms) {
 			hologram.disable();
 		}
+	}
+	
+	@EventHandler
+	public void onUnload(ChunkUnloadEvent e) {
+		for (TextHologram t : textHolograms) {
+			if (t.location.getChunk() == e.getChunk()) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+		
 	}
 	
 	public static class TextHologram {

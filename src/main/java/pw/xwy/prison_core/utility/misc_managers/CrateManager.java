@@ -221,7 +221,7 @@ public class CrateManager {
 			} else {
 				player.sendMessage(getBackupMessage());
 			}
-			PlayerManager.getXPlayer(player).getData().addBalance(getValue());
+			PlayerManager.getXPlayer(player).addBalance(getValue());
 		}
 		
 		public String getBackupMessage() {

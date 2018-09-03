@@ -22,7 +22,7 @@ public class CustomItem extends ItemStack {
 	
 	public CustomItem addGlow() {
 		ItemMeta meta = meta();
-		meta.addEnchant(Enchantment.getByName("Glow"), 1, true);
+		meta.addEnchant(Enchantment.getByName("glow"), 1, true);
 		setMeta(meta);
 		return this;
 	}
@@ -31,8 +31,9 @@ public class CustomItem extends ItemStack {
 		return getItemMeta();
 	}
 	
-	private void setMeta(ItemMeta meta) {
+	public CustomItem setMeta(ItemMeta meta) {
 		setItemMeta(meta);
+		return this;
 	}
 	
 	public CustomItem setCusomType(Material material) {

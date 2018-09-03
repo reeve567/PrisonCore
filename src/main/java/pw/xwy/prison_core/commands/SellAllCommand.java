@@ -25,7 +25,7 @@ public class SellAllCommand implements CommandExecutor {
 				return false;
 			}
 			Player player = (Player) sender;
-			Rank rank = PlayerManager.getXPlayer(player).getData().getRank();
+			Rank rank = PlayerManager.getXPlayer(player).getRank();
 			Rank[] ranks = Rank.values();
 			
 			

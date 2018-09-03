@@ -113,7 +113,9 @@ public class PrisonCore extends JavaPlugin {
 				new FeedListener(),
 				new DeathListener(),
 				new BowListener(),
-				new RespawnListener()
+				new RespawnListener(),
+				new SignListener(),
+				new HologramsManager()
 		);
 		
 	}

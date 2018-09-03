@@ -20,7 +20,7 @@ public class ChatListener implements Listener {
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
-		XPlayer data = PlayerManager.getXPlayer(e.getPlayer());
+		XPlayer player = PlayerManager.getXPlayer(e.getPlayer());
 		e.setMessage(e.getMessage().replaceAll("%", "%%"));
 		
 		String firstTitle = "";
@@ -28,19 +28,19 @@ public class ChatListener implements Listener {
 		String tag = "";
 		
 		for (int i = 0; i < groupsList.length; i++) {
-			if (data.hasGroup(groupsList[i])) {
+			if (player.hasGroup(groupsList[i])) {
 				secondTitle = "§8[" + groupsListTitle[i] + "§8] ";
 			}
 		}
 		
 		for (int i = 0; i < extraGroups.length; i++) {
-			if (data.hasGroup(extraGroups[i])) {
+			if (player.hasGroup(extraGroups[i])) {
 				firstTitle = "§8[" + extraGroupsTitle[i] + "§8] ";
 			}
 		}
 		
-		if (data.getData().getActiveTag() != null && data.getData().isTagToggle()) {
-			tag = " §8[" + data.getData().getActiveTag().getDisplay() + "§8]";
+		if (player.getActiveTag() != null && player.isTagToggle()) {
+			tag = " §8[" + player.getActiveTag().getDisplay() + "§8]";
 		}
 		
 		if (stopped) {
@@ -53,15 +53,15 @@ public class ChatListener implements Listener {
 			}
 			return;
 		}
-		if (data.hasGroup(extraGroups[4]) || data.hasGroup(extraGroups[3])) {
+		if (player.hasGroup(extraGroups[4]) || player.hasGroup(extraGroups[3])) {
 			e.setFormat(firstTitle + "§6" + e.getPlayer().getName() + " §8§l» §7" + e.getMessage());
 			PrisonCore.log(e.getPlayer().getName() + " » " + e.getMessage(), 1);
 			return;
 		}
 		
-		String youtube = data.isYoutuber() ? "§8[§cYou§fTube§8] " : secondTitle;
+		String youtube = player.isYoutuber() ? "§8[§cYou§fTube§8] " : secondTitle;
 		
-		e.setFormat(firstTitle + youtube + "§8[§c" + data.getData().getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', data.getData().getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
+		e.setFormat(firstTitle + youtube + "§8[§c" + player.getPrestige() + "§8] " + ChatColor.translateAlternateColorCodes('&', player.getRank().getChatPrefix()) + " §6" + e.getPlayer().getName() + tag + " §8§l» §7" + e.getMessage());
 		PrisonCore.log(e.getPlayer().getAddress().toString().substring(1) + " - " + e.getPlayer().getName() + " » " + e.getMessage(), 1);
 	}
 	

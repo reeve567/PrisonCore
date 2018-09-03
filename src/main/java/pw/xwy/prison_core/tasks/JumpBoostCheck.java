@@ -29,7 +29,6 @@ public class JumpBoostCheck implements Runnable {
 	
 	@Override
 	public void run() {
-		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
@@ -40,15 +39,11 @@ public class JumpBoostCheck implements Runnable {
 					}
 				}
 			}
-		}, 0, 40);
+		}, 0, 35);
 	}
 	
 	private boolean ItemCheck(ItemStack i) {
-		
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.MOONGRAVITY.getName())) {
-			return true;
-		}
-		return false;
+		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.MOONGRAVITY.getName());
 	}
 	
 }

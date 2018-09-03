@@ -40,7 +40,7 @@ public class NPCListener implements Listener {
 				ExtraRank.valueOf(sRank);
 				sell(clicker, ExtraRank.valueOf(sRank));
 			} catch (Exception ignored) {
-				sell(clicker, PlayerManager.getXPlayer(clicker).getData().getRank());
+				sell(clicker, PlayerManager.getXPlayer(clicker).getRank());
 			}
 		}
 	}

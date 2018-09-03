@@ -9,8 +9,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.player.PlayerManager;
-import pw.xwy.prison_core.utility.player.XPlayerData;
 import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class DonorShopGUI implements Listener {
 	
@@ -52,62 +52,62 @@ public class DonorShopGUI implements Listener {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null) {
 				Player player = (Player) e.getWhoClicked();
-				XPlayerData data = PlayerManager.getXPlayer(player).getData();
+				XPlayer xPlayer = PlayerManager.getXPlayer(player);
 
 				
 				switch (e.getCurrentItem().getType()) {
 					case GLOWSTONE_DUST:
-						if (data.getBalance() >= 5000) {
+						if (xPlayer.getBalance() >= 5000) {
 							player.getInventory().addItem(new ItemStack(Material.GLOWSTONE_DUST, 16));
-							data.addBalance(-5000);
+							xPlayer.addBalance(-5000);
 						}
 						break;
 					case ENDER_PEARL:
-						if (data.getBalance() >= 10000) {
+						if (xPlayer.getBalance() >= 10000) {
 							player.getInventory().addItem(new ItemStack(Material.ENDER_PEARL, 4));
-							data.addBalance(-10000);
+							xPlayer.addBalance(-10000);
 						}
 						break;
 					case MELON:
-						if (data.getBalance() >= 2000) {
+						if (xPlayer.getBalance() >= 2000) {
 							player.getInventory().addItem(new ItemStack(Material.MELON));
-							data.addBalance(-2000);
+							xPlayer.addBalance(-2000);
 						}
 						break;
 					case NETHER_STALK:
-						if (data.getBalance() >= 10000) {
+						if (xPlayer.getBalance() >= 10000) {
 							player.getInventory().addItem(new ItemStack(Material.NETHER_STALK, 8));
-							data.addBalance(-10000);
+							xPlayer.addBalance(-10000);
 						}
 						break;
 					case SUGAR_CANE:
-						if (data.getBalance() >= 2000) {
+						if (xPlayer.getBalance() >= 2000) {
 							player.getInventory().addItem(new ItemStack(Material.SUGAR_CANE));
-							data.addBalance(-2000);
+							xPlayer.addBalance(-2000);
 						}
 						break;
 					case SOUL_SAND:
-						if (data.getBalance() >= 8000) {
+						if (xPlayer.getBalance() >= 8000) {
 							player.getInventory().addItem(new ItemStack(Material.SOUL_SAND, 4));
-							data.addBalance(-8000);
+							xPlayer.addBalance(-8000);
 						}
 						break;
 					case LEATHER:
-						if (data.getBalance() >= 7500) {
+						if (xPlayer.getBalance() >= 7500) {
 							player.getInventory().addItem(new ItemStack(Material.LEATHER));
-							data.addBalance(-7500);
+							xPlayer.addBalance(-7500);
 						}
 						break;
 					case CARROT:
-						if (data.getBalance() >= 2000) {
+						if (xPlayer.getBalance() >= 2000) {
 							player.getInventory().addItem(new ItemStack(Material.CARROT));
-							data.addBalance(-2000);
+							xPlayer.addBalance(-2000);
 						}
 						break;
 					case BLAZE_ROD:
-						if (data.getBalance() >= 2000) {
+						if (xPlayer.getBalance() >= 2000) {
 							player.getInventory().addItem(new ItemStack(Material.BLAZE_ROD));
-							data.addBalance(-2000);
+							xPlayer.addBalance(-2000);
 						}
 						break;
 				}

@@ -197,7 +197,7 @@ public class BlockListener implements Listener {
 					xp = random.nextInt(5) + 1;
 					break;
 			}
-			ExperienceManager experienceManager = new ExperienceManager(player);
+			ExperienceManager experienceManager = new ExperienceManager(e.getPlayer());
 			experienceManager.setTotalExperience(experienceManager.getTotalExperience() + xp + 1);
 		}
 		
@@ -215,7 +215,7 @@ public class BlockListener implements Listener {
 				}
 				
 			}
-			player.getData().addBalance(total * player.getSellMultuplier());
+			player.addBalance(total * player.getSellMultuplier());
 			
 		} else {
 			//if no autosell

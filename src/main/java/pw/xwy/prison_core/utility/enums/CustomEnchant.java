@@ -38,7 +38,7 @@ public class CustomEnchant {
 		this.name = name;
 		this.sets = itemSets;
 		this.rarity = rarity;
-		this.commandLabel = name;
+		this.commandLabel = name.replaceAll(" ", "").replaceAll("&7", "").replaceAll("'", "");
 		this.loreLabel = itemSets.getName();
 		this.amount = itemSets.getAmount();
 	}
@@ -49,7 +49,7 @@ public class CustomEnchant {
 		this.name = name;
 		this.sets = itemSets;
 		this.rarity = rarity;
-		this.commandLabel = name.replaceAll(" ", "");
+		this.commandLabel = name.replaceAll(" ", "").replaceAll("&7", "").replaceAll("'", "");
 		this.loreLabel = itemSets.getName();
 		this.amount = amount;
 	}

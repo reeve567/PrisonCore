@@ -68,7 +68,7 @@ public class WarpGUI implements Listener {
 				String not_in_group = "§7You are not in the required group to go here.";
 				String warp = "§7Click here to teleport.";
 				//Items
-				ItemStack xpMine = new CustomItem(Material.EXP_BOTTLE).setName("§6EXP Mine").setLore(player.hasPermission("xwy.mine.exp-mine") ? warp : no_permission);
+				ItemStack xpMine = new CustomItem(Material.EXP_BOTTLE).setName("§6EXP Mine").setLore(pl.hasPermission("xwy.mine.exp-mine") ? warp : no_permission);
 				
 				ItemStack mudkip = new CustomItem(Material.WOOL).setName("§6Mudkip Mine").setDurability(1).setLore(player.hasGroup("mudkip") ? warp : not_in_group);
 				
@@ -168,7 +168,7 @@ public class WarpGUI implements Listener {
 	private ItemStack getMineStack(XPlayer player, Rank rank, Material material, int durability) {
 		String rank_up = "§7You need to rank up.";
 		String warp = "§7Click here to teleport.";
-		return new CustomItem(material).setName("§6" + rank.toString() + " Mine").setDurability(durability).setLore(player.getData().getRank().ordinal() >= rank.ordinal() ? warp : rank_up);
+		return new CustomItem(material).setName("§6" + rank.toString() + " Mine").setDurability(durability).setLore(player.getRank().ordinal() >= rank.ordinal() ? warp : rank_up);
 	}
 	
 	@EventHandler
@@ -225,7 +225,7 @@ public class WarpGUI implements Listener {
 				XPlayer player = PlayerManager.getXPlayer((Player) e.getWhoClicked());
 				switch (i) {
 					case 10:
-						if (player.hasPermission("xwy.mine.exp-mine"))
+						if (e.getWhoClicked().hasPermission("xwy.mine.exp-mine"))
 							rank = ExtraRank.EXP_MINE;
 						break;
 					case 13:
@@ -247,9 +247,9 @@ public class WarpGUI implements Listener {
 				}
 				if (rank != null) {
 					if (MineManager.extraMines.get(rank).getWarp() != null)
-						player.teleport(MineManager.extraMines.get(rank).getWarp());
+						e.getWhoClicked().teleport(MineManager.extraMines.get(rank).getWarp());
 					else
-						player.sendMessage("§cWarp not set!");
+						e.getWhoClicked().sendMessage("§cWarp not set!");
 				}
 			}
 			
@@ -341,9 +341,9 @@ public class WarpGUI implements Listener {
 				}
 				if (r != null) {
 					XPlayer player = PlayerManager.getXPlayer((Player) e.getWhoClicked());
-					if (player.getData().getRank().ordinal() >= r.ordinal()) {
+					if (player.getRank().ordinal() >= r.ordinal()) {
 						if (MineManager.mines.get(r).getWarp() != null)
-							player.teleport(MineManager.mines.get(r).getWarp());
+							e.getWhoClicked().teleport(MineManager.mines.get(r).getWarp());
 					}
 				}
 				

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Maven: org.spigotmc:spigot-api:1.8.8">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/craftbukkit-1.8.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: com.github.MrPowerGamerBR:TemmieWebhook:master-59de40c3b6-1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.kevinsawicki:http-request:6.0" level="project" />
+    <orderEntry type="library" name="Maven: net.citizensnpcs:citizens:2.0.16-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.github.pengrad:java-telegram-bot-api:3.6.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:logging-interceptor:3.9.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.vexsoftware:votifier:1.9">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/votifier-1.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

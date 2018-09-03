@@ -44,11 +44,7 @@ public class HeartCheck implements Runnable {
 		}, 0, 20);
 	}
 	
-	boolean ItemCheck(ItemStack i) {
-		
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.HEARTBOOST.getName())) {
-			return true;
-		}
-		return false;
+	private boolean ItemCheck(ItemStack i) {
+		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.HEARTBOOST.getName());
 	}
 }

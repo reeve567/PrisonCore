@@ -9,5 +9,8 @@
         <module name="PrisonCore" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PrisonCore" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

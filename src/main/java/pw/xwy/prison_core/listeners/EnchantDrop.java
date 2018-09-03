@@ -178,7 +178,7 @@ public class EnchantDrop implements Listener {
 					return HAS_SAME;
 				}
 				
-				if (ce.getAmount() == 0 || ce.getName().charAt(ce.getName().length() - 1) == 'I') {
+				if (ce.getName().charAt(ce.getName().length() - 1) == 'I') {
 					String slvl = ench.substring(ench.indexOf('I'), ench.length());
 					int nlvl = 0;
 					
@@ -424,7 +424,7 @@ public class EnchantDrop implements Listener {
 	
 	public void effEnch(Player player, ItemStack pick, int i) {
 		if (pick.getItemMeta().hasEnchant(Enchantment.DIG_SPEED)) {
-			if (pick.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED) <= i)
+			if (pick.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED) >= i)
 				return;
 		}
 		pick.removeEnchantment(Enchantment.DIG_SPEED);

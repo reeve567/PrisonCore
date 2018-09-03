@@ -9,9 +9,9 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import pw.xwy.prison_core.utility.InventoryUtility;
+import pw.xwy.prison_core.utility.enums.Tag;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.player.PlayerManager;
-import pw.xwy.prison_core.utility.enums.Tag;
 import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class TagGUI implements Listener {
@@ -28,7 +28,7 @@ public class TagGUI implements Listener {
 				} else if (i == 16) i = 20;
 				else if (i == 25) i = 29;
 				boolean has = player.hasPermission("xwy.tag." + t.toString().toLowerCase());
-				boolean active = player1.getData().getActiveTag() == t;
+				boolean active = player1.getActiveTag() == t;
 				
 				if (has) {
 					if (active) {
@@ -46,7 +46,7 @@ public class TagGUI implements Listener {
 			int j = 18;
 			int k = 26;
 			
-			if (player1.getData().isTagToggle()) {
+			if (player1.isTagToggle()) {
 				CustomItem temp = new CustomItem(Material.STAINED_GLASS).setDurability(5).setName("§aTag ON");
 				inventory.setItem(j, temp);
 				inventory.setItem(k, temp);
@@ -70,9 +70,9 @@ public class TagGUI implements Listener {
 					XPlayer player = PlayerManager.getXPlayer((Player) e.getWhoClicked());
 					if (i == 18 || i == 26) {
 						if (e.getCurrentItem().getDurability() == 14) {
-							player.getData().setTagToggle(true);
+							player.setTagToggle(true);
 						} else if (e.getCurrentItem().getDurability() == 5) {
-							player.getData().setTagToggle(false);
+							player.setTagToggle(false);
 						}
 						new TagGUI((Player) e.getWhoClicked());
 					}
@@ -84,43 +84,43 @@ public class TagGUI implements Listener {
 					
 					switch (i) {
 						case 11:
-							player.getData().setActiveTag(Tag.HIGHROLLER);
+							player.setActiveTag(Tag.HIGHROLLER);
 							break;
 						case 12:
-							player.getData().setActiveTag(Tag.XWY);
+							player.setActiveTag(Tag.XWY);
 							break;
 						case 14:
-							player.getData().setActiveTag(Tag.GAMBLER);
+							player.setActiveTag(Tag.GAMBLER);
 							break;
 						case 15:
-							player.getData().setActiveTag(Tag.HACKER);
+							player.setActiveTag(Tag.HACKER);
 							break;
 						case 20:
-							player.getData().setActiveTag(Tag.MUDKIP);
+							player.setActiveTag(Tag.MUDKIP);
 							break;
 						case 21:
-							player.getData().setActiveTag(Tag.NERD);
+							player.setActiveTag(Tag.NERD);
 							break;
 						case 22:
-							player.getData().setActiveTag(Tag.PVP);
+							player.setActiveTag(Tag.PVP);
 							break;
 						case 23:
-							player.getData().setActiveTag(Tag.MUDKIPPER);
+							player.setActiveTag(Tag.MUDKIPPER);
 							break;
 						case 24:
-							player.getData().setActiveTag(Tag.SALTY);
+							player.setActiveTag(Tag.SALTY);
 							break;
 						case 29:
-							player.getData().setActiveTag(Tag.NEWB);
+							player.setActiveTag(Tag.NEWB);
 							break;
 						case 30:
-							player.getData().setActiveTag(Tag.MLG);
+							player.setActiveTag(Tag.MLG);
 							break;
 						case 32:
-							player.getData().setActiveTag(Tag.MAXED);
+							player.setActiveTag(Tag.MAXED);
 							break;
 						case 33:
-							player.getData().setActiveTag(Tag.DED);
+							player.setActiveTag(Tag.DED);
 							break;
 						
 					}

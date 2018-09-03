@@ -5,14 +5,14 @@ import org.bukkit.entity.Player;
 import pw.xwy.prison_core.utility.*;
 import pw.xwy.prison_core.utility.enums.Rank;
 import pw.xwy.prison_core.utility.player.PlayerManager;
-import pw.xwy.prison_core.utility.player.XPlayerData;
+import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class PlaceholderConversion {
 	
 	public static String convert(Player p, String s) {
 		
 		
-		XPlayerData data = PlayerManager.getXPlayer(p).getData();
+		XPlayer data = PlayerManager.getXPlayer(p);
 		s = s.replaceAll("<players-online>", String.valueOf(Bukkit.getOnlinePlayers().size()));
 		s = s.replaceAll("<player-username>", p.getName());
 		s = s.replaceAll("<player-displayname>", p.getDisplayName());
