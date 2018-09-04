@@ -17,9 +17,9 @@ commands:
   scoreboardtoggle:
     aliases: [sbt,sbtoggle]
   ce:
-    aliases: customenchants
+    aliases: [customenchants]
   conv:
-    aliases: []
+    aliases: [convert]
   ds:
     aliases: [donorshop]
   rankup:

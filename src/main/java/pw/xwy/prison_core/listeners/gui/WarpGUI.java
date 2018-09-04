@@ -68,7 +68,7 @@ public class WarpGUI implements Listener {
 				String not_in_group = "§7You are not in the required group to go here.";
 				String warp = "§7Click here to teleport.";
 				//Items
-				ItemStack xpMine = new CustomItem(Material.EXP_BOTTLE).setName("§6EXP Mine").setLore(pl.hasPermission("xwy.mine.exp-mine") ? warp : no_permission);
+				ItemStack xpMine = new CustomItem(Material.EXP_BOTTLE).setName("§6EXP Mine").setLore(pl.hasPermission("xwy.mine.expmine") ? warp : no_permission);
 				
 				ItemStack mudkip = new CustomItem(Material.WOOL).setName("§6Mudkip Mine").setDurability(1).setLore(player.hasGroup("mudkip") ? warp : not_in_group);
 				
@@ -225,7 +225,7 @@ public class WarpGUI implements Listener {
 				XPlayer player = PlayerManager.getXPlayer((Player) e.getWhoClicked());
 				switch (i) {
 					case 10:
-						if (e.getWhoClicked().hasPermission("xwy.mine.exp-mine"))
+						if (e.getWhoClicked().hasPermission("xwy.mine.expmine"))
 							rank = ExtraRank.EXP_MINE;
 						break;
 					case 13:

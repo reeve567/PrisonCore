@@ -7,13 +7,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.prison_core.commands.*;
-import pw.xwy.prison_core.commands.ce.CECommandHandler;
 import pw.xwy.prison_core.listeners.*;
 import pw.xwy.prison_core.listeners.gui.DonorShopGUI;
 import pw.xwy.prison_core.listeners.gui.KitGUI;
 import pw.xwy.prison_core.listeners.gui.TagGUI;
 import pw.xwy.prison_core.listeners.gui.WarpGUI;
 import pw.xwy.prison_core.listeners.gui.ce.MainMenu;
+import pw.xwy.prison_core.tasks.CombatTagTask;
 import pw.xwy.prison_core.tasks.HologramAnimationTask;
 import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.config.ConfigurationManager;
@@ -138,13 +138,14 @@ public class PrisonCore extends JavaPlugin {
 		new TagCommand();
 		new WarpCommand();
 		new ToggleCommand();
-		new CECommandHandler();
+		new CustomEnchantsCommand();
 		new EventCommand();
 		new VoteCommand();
 	}
 	
 	private void loadTasks() {
 		new HologramAnimationTask().runTaskTimer(this, 5, 5);
+		new CombatTagTask().runTaskTimer(this, 5, 20);
 	}
 	
 	public static void registerEvents(Listener listener) {

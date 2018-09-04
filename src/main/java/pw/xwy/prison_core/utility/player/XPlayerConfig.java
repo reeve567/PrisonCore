@@ -17,7 +17,7 @@ import java.util.*;
 
 public class XPlayerConfig extends Config {
 	public static final String[] groupsList = {"guppy", "mudkip", "shark", "whale", "jellyfish"};
-	public static final double[] multiplier = {0.1, 0.2, 0.3, 0.4, 0.6};
+	private static final double[] multiplier = {0.1, 0.2, 0.3, 0.4, 0.6};
 	public static final int[] pvs = {0, 0, 2, 10, 20};
 	public static final boolean[] colorChat = {false, false, true, true, true};
 	public static final String[] extraGroups = {"helper", "moderator", "admin", "owner", "developer"};
@@ -36,8 +36,8 @@ public class XPlayerConfig extends Config {
 	public static double startingMoney;
 	public static String moneySymbol;
 	private final int ver = 1;
-	public boolean youtuber;
-	public boolean twitcher;
+	private boolean youtuber;
+	private boolean twitcher;
 	private HashSet<String> customPermissions = new HashSet<>();
 	private boolean firstJoin = false;
 	private boolean chatSpy;
@@ -217,7 +217,6 @@ public class XPlayerConfig extends Config {
 		set("groups", groups);
 		set("general-data.chat-spy", chatSpy);
 		saveConfig();
-		
 	}
 	
 	public double getSellMultuplier() {
@@ -370,5 +369,13 @@ public class XPlayerConfig extends Config {
 	
 	public boolean isChatSpy() {
 		return chatSpy;
+	}
+	
+	public boolean isTwitcher() {
+		return twitcher;
+	}
+	
+	public void setTwitcher(boolean twitcher) {
+		this.twitcher = twitcher;
 	}
 }

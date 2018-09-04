@@ -8,7 +8,6 @@ pw\xwy\prison_core\commands\HatCommand.class
 pw\xwy\prison_core\listeners\gui\KitGUI$Slot.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$PermissionPrize.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$ElitePrizes.class
-pw\xwy\prison_core\commands\ce\admin\CeGive.class
 pw\xwy\prison_core\utility\enums\Rank.class
 pw\xwy\prison_core\utility\mine\Mine.class
 pw\xwy\prison_core\listeners\LeaveListener.class
@@ -24,7 +23,6 @@ pw\xwy\prison_core\utility\misc_managers\CrateManager$CrateType.class
 pw\xwy\prison_core\utility\item\Glow.class
 pw\xwy\prison_core\prison_events\ParkourMaze.class
 pw\xwy\prison_core\commands\KitCommand.class
-pw\xwy\prison_core\commands\ce\admin\CeOrganize.class
 pw\xwy\prison_core\commands\VoteCommand.class
 pw\xwy\prison_core\commands\PermissionsCommand.class
 pw\xwy\prison_core\utility\enums\ExtraRank.class
@@ -51,7 +49,6 @@ pw\xwy\prison_core\utility\misc_managers\CrateManager$PlotPrize.class
 pw\xwy\prison_core\utility\ce\BowMenu.class
 pw\xwy\prison_core\utility\enums\Permissions.class
 pw\xwy\prison_core\utility\scoreboard\ScoreboardTask.class
-pw\xwy\prison_core\commands\ce\player\CeMenu.class
 pw\xwy\prison_core\commands\AutosellCommand.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$Prize.class
 pw\xwy\prison_core\listeners\VoucherListener.class
@@ -86,7 +83,6 @@ pw\xwy\prison_core\utility\InventoryUtility.class
 pw\xwy\prison_core\commands\FlyCommand.class
 pw\xwy\prison_core\utility\ce\MessagesFunctions.class
 pw\xwy\prison_core\tasks\HologramAnimationTask.class
-pw\xwy\prison_core\commands\ce\admin\CeOrganize$1.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$TagPrize.class
 pw\xwy\prison_core\commands\ChatclearCommand.class
 pw\xwy\prison_core\utility\enums\NormalWarps.class
@@ -104,11 +100,13 @@ pw\xwy\prison_core\utility\ce\PickMenu.class
 pw\xwy\prison_core\utility\mine\MineManager.class
 pw\xwy\prison_core\utility\mine\Mine$MineMaterial.class
 pw\xwy\prison_core\utility\ce\EnchantUtility.class
+pw\xwy\prison_core\tasks\CombatTagTask.class
 pw\xwy\prison_core\utility\enums\CustomEnchant$1.class
 pw\xwy\prison_core\utility\item\CustomItem.class
 pw\xwy\prison_core\commands\WarpCommand.class
 pw\xwy\prison_core\listeners\VoteListener.class
 pw\xwy\prison_core\utility\config\ConfigurationManager.class
+pw\xwy\prison_core\commands\CustomEnchantsCommand$1.class
 pw\xwy\prison_core\commands\SellAllCommand.class
 pw\xwy\prison_core\utility\ce\SwordMenu.class
 pw\xwy\prison_core\listeners\BowListener.class
@@ -127,9 +125,7 @@ pw\xwy\prison_core\commands\ChatstopCommand.class
 pw\xwy\prison_core\utility\ce\Menu.class
 pw\xwy\prison_core\utility\ce\CustomEnchantsManager.class
 pw\xwy\prison_core\events\BlockMinedEvent.class
-pw\xwy\prison_core\commands\ce\CECommandHandler.class
 pw\xwy\prison_core\utility\misc_managers\CrateManager$MoneyPrize.class
-pw\xwy\prison_core\commands\ce\player\Conv.class
 pw\xwy\prison_core\commands\MineCommand.class
 pw\xwy\prison_core\utility\ce\LeggingsMenu.class
 pw\xwy\prison_core\utility\item\PlayerSkull.class
@@ -143,3 +139,4 @@ pw\xwy\prison_core\tasks\ValorCheck.class
 pw\xwy\prison_core\commands\EventCommand.class
 pw\xwy\prison_core\utility\mine\Mine$1.class
 pw\xwy\prison_core\commands\SpawnCommand.class
+pw\xwy\prison_core\commands\CustomEnchantsCommand.class
