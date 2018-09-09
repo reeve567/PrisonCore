@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KitGUI implements Listener {
 	
-	private static String[] names = {"god-tools", "god-axe", "pvp", "guppy", "mudkip", "shark", "whale", "jellyfish"};
+	private static String[] names = {"godtools", "godaxe", "pvp", "guppy", "mudkip", "shark", "whale", "jellyfish"};
 	private final Player player;
 	private Inventory inventory;
 	private XPlayer player1;
