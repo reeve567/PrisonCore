@@ -1,0 +1,25 @@
+package pw.xwy.prison_core.custom_enchants;
+
+public enum RealName {
+	ArmorDestructor,
+	CURSED,
+	DECAPITATE,
+	DEMONSWEAKNESSI,
+	DEMONSWEAKNESSII,
+	FLASH,
+	LUMBERJACK,
+	REKT,
+	SELFHEALER,
+	SMOKESCREENI,
+	SMOKESCREENII,
+	SMOKESCREENIII,
+	SOULBOUND,
+	THOR,
+
+
+	//TODO: Move to correct place
+	EXPLOSIVEPICKI,
+	EXPLOSIVEPICKII,
+	EXPLOSIVEPICKIII
+
+}

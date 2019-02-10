@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.MenuItem;
 import pw.xwy.prison_core.utility.enums.Rarity;
@@ -43,18 +44,19 @@ public class Menu {
 		int nextRare = 19;
 		int nextUncommon = 28;
 		int nextCommon = 37;
-		for (MenuItem mi : MenuItem.values()) {
-			if (mi.getCustomEnchant().isEnabled() && mi.getCustomEnchant().containsSet(type)) {
-				if (mi.getCustomEnchant().getRarity().equals(Rarity.HYDRO)) {
-					setItem(mi.getCustomEnchant().getName(), mi.getType(), mi.getDurability(), mi.getDesc(), nextHydro++, inventory);
-				} else if (mi.getCustomEnchant().getRarity().equals(Rarity.MYSTICAL)) {
-					setItem(mi.getCustomEnchant().getName(), mi.getType(), mi.getDurability(), mi.getDesc(), nextMystical++, inventory);
-				} else if (mi.getCustomEnchant().getRarity().equals(Rarity.RARE)) {
-					setItem(mi.getCustomEnchant().getName(), mi.getType(), mi.getDurability(), mi.getDesc(), nextRare++, inventory);
-				} else if (mi.getCustomEnchant().getRarity().equals(Rarity.UNCOMMON)) {
-					setItem(mi.getCustomEnchant().getName(), mi.getType(), mi.getDurability(), mi.getDesc(), nextUncommon++, inventory);
-				} else if (mi.getCustomEnchant().getRarity().equals(Rarity.COMMON)) {
-					setItem(mi.getCustomEnchant().getName(), mi.getType(), mi.getDurability(), mi.getDesc(), nextCommon++, inventory);
+
+		for (CustomEnchant customEnchant : CustomEnchantsManager.manager.getEnchantsByName().values()) {
+			if (customEnchant.isEnabled() && customEnchant.containsSet(type)) {
+				if (customEnchant.getRarity().equals(Rarity.HYDRO)) {
+					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextHydro++, inventory);
+				} else if (customEnchant.getRarity().equals(Rarity.MYSTICAL)) {
+					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextMystical++, inventory);
+				} else if (customEnchant.getRarity().equals(Rarity.RARE)) {
+					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextRare++, inventory);
+				} else if (customEnchant.getRarity().equals(Rarity.UNCOMMON)) {
+					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextUncommon++, inventory);
+				} else if (customEnchant.getRarity().equals(Rarity.COMMON)) {
+					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextCommon++, inventory);
 				}
 			}
 		}

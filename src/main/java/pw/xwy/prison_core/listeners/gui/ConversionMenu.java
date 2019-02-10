@@ -18,19 +18,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.InventoryUtility;
+import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.ce.EnchantUtility;
-import pw.xwy.prison_core.utility.enums.CEnchant;
-import pw.xwy.prison_core.utility.enums.CustomEnchantList;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Rarity;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.misc_managers.ExperienceManager;
 
 public class ConversionMenu implements Listener {
-	
+
 	private Inventory inventory = Bukkit.createInventory(null, 27, "§0Convert XP to Enchants");
-	
+
 	public ConversionMenu() {
 		InventoryUtility.setBackground(inventory, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(15).setName(" "));
 		inventory.setItem(9, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(5).setName(ChatColor.DARK_GREEN + "Convert 400 XP into an enchant").setLore("&7Common"));
@@ -39,7 +39,11 @@ public class ConversionMenu implements Listener {
 		inventory.setItem(15, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(10).setName(ChatColor.DARK_PURPLE + "Convert 4500 XP into an enchant").setLore("&7Mystical"));
 		inventory.setItem(17, new CustomItem(Material.STAINED_GLASS_PANE).setDurability(1).setName(ChatColor.GOLD + "Convert 10000 XP into an enchant").setLore("&7Legendary"));
 	}
-	
+
+	public static ItemStack getBook(CustomEnchant e) {
+		return EnchantUtility.bookGive(e.getCommandLabel(), false);
+	}
+
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 		if (e.getRawSlot() != -1) {
@@ -60,26 +64,22 @@ public class ConversionMenu implements Listener {
 			}
 		}
 	}
-	
+
 	private void onClick(Player player, Rarity rarity, int xp) {
 		if (player.getInventory().firstEmpty() != -1) {
 			ExperienceManager manager = new ExperienceManager(player);
 			if (manager.getTotalExperience() >= xp) {
 				manager.setTotalExperience(manager.getTotalExperience() - xp);
-				player.getInventory().addItem(getBook(CustomEnchantList.getRandomEnchant(rarity)));
+				player.getInventory().addItem(getBook(CustomEnchantsManager.manager.getRandomEnchant(rarity)));
 			}
 		} else {
 			player.sendMessage(Messages.fullInventory.get());
 		}
-		
+
 	}
-	
-	public static ItemStack getBook(CEnchant e) {
-		return EnchantUtility.bookGive(e.getLabel(), false);
-	}
-	
+
 	public void openInventory(Player player) {
 		player.openInventory(inventory);
 	}
-	
+
 }

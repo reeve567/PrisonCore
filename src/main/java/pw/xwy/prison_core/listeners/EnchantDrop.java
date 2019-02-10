@@ -23,7 +23,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pw.xwy.prison_core.utility.enums.CEnchant;
+import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.item.CustomItem;
@@ -378,14 +378,7 @@ public class EnchantDrop implements Listener {
 	private boolean checkCan(String name, Material type) {
 
 		if (name != null) {
-			for (CEnchant e : CEnchant.values()) {
-				if (e.getName().equalsIgnoreCase(name)) {
-					if (e.checkSets(type)) {
-						return true;
-					}
-				}
-			}
-
+			return CustomEnchantsManager.manager.getEnchantsByName().get(name).checkSets(type);
 		}
 		return false;
 	}

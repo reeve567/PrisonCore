@@ -21,7 +21,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pw.xwy.prison_core.listeners.gui.ConversionMenu;
 import pw.xwy.prison_core.listeners.gui.ce.MainMenu;
-import pw.xwy.prison_core.utility.enums.CEnchant;
+import pw.xwy.prison_core.utility.CustomEnchant;
+import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.enums.ChangeLog;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Souls;
@@ -35,12 +36,12 @@ import static pw.xwy.prison_core.utility.ce.EnchantUtility.bookGive;
 import static pw.xwy.prison_core.utility.ce.EnchantUtility.cmdCheck;
 
 public class CustomEnchantsCommand implements CommandExecutor {
-	
+
 	public CustomEnchantsCommand() {
 		Bukkit.getServer().getPluginCommand("ce").setExecutor(this);
 		Bukkit.getServer().getPluginCommand("conv").setExecutor(this);
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getLabel().equalsIgnoreCase("ce")) {
@@ -49,21 +50,15 @@ public class CustomEnchantsCommand implements CommandExecutor {
 					if (sender.hasPermission("ce.admin") || sender.getName().equalsIgnoreCase("Xwy")) {
 						if (args.length >= 3) {
 							if (args[2].equalsIgnoreCase("true")) {
-								
-								boolean found = false;
-								
-								for (CEnchant e : CEnchant.values()) {
-									if (cmdCheck(e.getLabel(), args[1])) {
-										found = true;
-										((Player) sender).getInventory().addItem(bookGive(args[1], true));
-										sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + e.getName());
-										break;
-									}
-								}
-								
-								if (!found) {
-									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/key: " + args[1]);
-								}
+
+								CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+
+								if (customEnchant != null) {
+									((Player) sender).getInventory().addItem(bookGive(args[1], true));
+									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + customEnchant.getName());
+								} else
+									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/soul: " + args[1]);
+
 							} else {
 								Player target = null;
 								for (Player p : Bukkit.getOnlinePlayers()) {
@@ -77,26 +72,25 @@ public class CustomEnchantsCommand implements CommandExecutor {
 										sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given a scroll to " + target.getName());
 									} else {
 										boolean found = false;
-										
-										for (CEnchant e : CEnchant.values()) {
-											if (cmdCheck(e.getLabel(), args[1])) {
-												found = true;
-												target.getInventory().addItem(bookGive(args[1], false));
-												sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + e.getName() + ChatColor.GRAY + " to " +
-														ChatColor.RED + target.getName());
+
+										CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+
+										if (customEnchant != null) {
+											((Player) sender).getInventory().addItem(bookGive(args[1], false));
+											sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + customEnchant.getName() + ChatColor.GRAY + " to " + ChatColor.RED + target.getName());
+										} else {
+											for (Souls s : Souls.values()) {
+												if (cmdCheck(s.getCommandLabel(), args[1])) {
+													found = true;
+													target.getInventory().addItem(s.getItem());
+													sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
+															ChatColor.RED + target.getName());
+												}
 											}
 										}
-										for (Souls s : Souls.values()) {
-											if (cmdCheck(s.getCommandLabel(), args[1])) {
-												found = true;
-												target.getInventory().addItem(s.getItem());
-												sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have given " + s.getName() + ChatColor.GRAY + " to " +
-														ChatColor.RED + target.getName());
-											}
-										}
-										
-										if (!found) {
-											sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment: " + args[1]);
+
+										if (!found && customEnchant == null) {
+											sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/soul: " + args[1]);
 										}
 									}
 								} else
@@ -109,23 +103,24 @@ public class CustomEnchantsCommand implements CommandExecutor {
 									sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received a scroll");
 								} else {
 									boolean found = false;
-									for (CEnchant e : CEnchant.values()) {
-										if (cmdCheck(e.getLabel(), args[1])) {
-											found = true;
-											((Player) sender).getInventory().addItem(bookGive(args[1], false));
-											sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + e.getName());
+
+									CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+
+									if (customEnchant != null) {
+										((Player) sender).getInventory().addItem(bookGive(args[1], false));
+										sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + customEnchant.getName());
+									} else {
+										for (Souls s : Souls.values()) {
+											if (cmdCheck(s.getCommandLabel(), args[1])) {
+												found = true;
+												((Player) sender).getInventory().addItem(s.getItem());
+												sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + s.getName());
+											}
 										}
 									}
-									for (Souls s : Souls.values()) {
-										if (cmdCheck(s.getCommandLabel(), args[1])) {
-											found = true;
-											((Player) sender).getInventory().addItem(s.getItem());
-											sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You have received: " + s.getName());
-										}
-									}
-									
-									if (!found) {
-										sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/key: " + args[1]);
+
+									if (!found && customEnchant == null) {
+										sender.sendMessage(Messages.prefix.get() + ChatColor.GRAY + "Unknown enchantment/soul: " + args[1]);
 									}
 								}
 							} else {
@@ -149,7 +144,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 						Player player = (Player) sender;
 						ItemMeta meta = player.getItemInHand().getItemMeta();
 						List<String> lore = meta.getLore();
-						
+
 						List<String> common = new ArrayList<>();
 						List<String> uncommon = new ArrayList<>();
 						List<String> rare = new ArrayList<>();
@@ -157,10 +152,10 @@ public class CustomEnchantsCommand implements CommandExecutor {
 						List<String> legendary = new ArrayList<>();
 						List<String> admin = new ArrayList<>();
 						List<String> other = new ArrayList<>();
-						
+
 						for (String s : lore) {
 							boolean found = false;
-							for (CEnchant ce : CEnchant.values()) {
+							for (CustomEnchant ce : CustomEnchantsManager.manager.getEnchantsByName().values()) {
 								if (ce.getName().equalsIgnoreCase(s)) {
 									found = true;
 									switch (ce.getRarity()) {
@@ -196,7 +191,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 						sortStrings(mystical);
 						sortStrings(legendary);
 						sortStrings(admin);
-						
+
 						ArrayList<String> lores = new ArrayList<>();
 						lores.addAll(common);
 						lores.addAll(uncommon);
@@ -205,7 +200,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 						lores.addAll(legendary);
 						lores.addAll(admin);
 						lores.addAll(other);
-						
+
 						meta.setLore(lores);
 						player.getItemInHand().setItemMeta(meta);
 					}
@@ -217,10 +212,10 @@ public class CustomEnchantsCommand implements CommandExecutor {
 							((Player) sender).setItemInHand(stack);
 							((Player) sender).updateInventory();
 						}
-						
+
 					}
-					
-					
+
+
 				}
 			} else {
 				if (sender instanceof Player) {
@@ -235,11 +230,11 @@ public class CustomEnchantsCommand implements CommandExecutor {
 		}
 		return true;
 	}
-	
+
 	public void sortStrings(List<String> strings) {
 		strings.sort(Collator.getInstance());
 	}
-	
+
 	private boolean argCheck(String sent) {
 		return "give".equalsIgnoreCase(sent);
 	}

@@ -17,8 +17,9 @@ import org.bukkit.entity.Player;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.listeners.gui.ConversionMenu;
 import pw.xwy.prison_core.tasks.*;
+import pw.xwy.prison_core.utility.CustomEnchant;
+import pw.xwy.prison_core.utility.CustomEnchantManager;
 import pw.xwy.prison_core.utility.config.Config;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.item.Glow;
 
@@ -27,7 +28,8 @@ import java.lang.reflect.Field;
 public class CustomEnchantsManager {
 	
 	public static int ceCount;
-	
+	public static CustomEnchantManager manager = new CustomEnchantManager();
+
 	public void onEnable() {
 		registerGlow();
 		
@@ -50,17 +52,16 @@ public class CustomEnchantsManager {
 			config.set("ver", 1);
 			config.saveConfig();
 		}
-		for (CEnchant c : CEnchant.values()) {
-			
-			
-			if (newf) {
-				c.customEnchantList.saveDefault(config);
-			}
-			c.getCustomStuff(config);
-			
-			
-			if (c.isEnabled() && c.getAmount() > 0) {
-				ce += c.getAmount();
+
+		manager = new CustomEnchantManager();
+
+		for (CustomEnchant c: manager.getEnchantsByName().values()) {
+			if (newf)
+				c.saveDefault(config);
+			else
+				c.setCustomStuff(config);
+
+			if (c.isEnabled()) {
 				if (c.checkSets(Material.DIAMOND_SWORD)) sword++;
 				if (c.checkSets(Material.DIAMOND_AXE)) axe++;
 				if (c.checkSets(Material.DIAMOND_PICKAXE)) pick++;

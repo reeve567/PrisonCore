@@ -1,6 +1,6 @@
 main: pw.xwy.prison_core.PrisonCore
 name: PrisonCore
-version: RELEASE
+version: DEV
 author: Xwy
 depend: [Votifier,Citizens]
 commands:
