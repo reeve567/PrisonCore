@@ -11,7 +11,7 @@ import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.misc_managers.CrateManager;
 
 public class VoteListener implements Listener {
-	
+
 	@EventHandler
 	public void voteMade(VotifierEvent e) {
 		PrisonCore.log(e.getVote().getUsername() + " voted on " + e.getVote().getServiceName() + " -- " + e.getVote().getAddress(), 2);
@@ -22,5 +22,5 @@ public class VoteListener implements Listener {
 			player.getInventory().addItem(new CustomItem(Material.COOKED_BEEF).setCustomAmount(16));
 		}
 	}
-	
+
 }

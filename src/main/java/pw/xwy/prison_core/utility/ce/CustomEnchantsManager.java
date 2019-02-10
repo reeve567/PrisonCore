@@ -54,7 +54,7 @@ public class CustomEnchantsManager {
 			
 			
 			if (newf) {
-				c.customEnchant.saveDefault(config);
+				c.customEnchantList.saveDefault(config);
 			}
 			c.getCustomStuff(config);
 			

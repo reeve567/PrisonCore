@@ -21,7 +21,7 @@ import pw.xwy.prison_core.utility.enums.CEnchant;
 import java.util.List;
 
 public class FeedListener implements Listener {
-	
+
 	@EventHandler
 	public void onFoodChange(FoodLevelChangeEvent e) {
 		if (e.getEntity() instanceof Player) {
@@ -39,5 +39,5 @@ public class FeedListener implements Listener {
 			}
 		}
 	}
-	
+
 }

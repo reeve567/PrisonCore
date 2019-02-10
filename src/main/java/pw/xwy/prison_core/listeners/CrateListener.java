@@ -7,13 +7,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.misc_managers.CrateManager;
 import pw.xwy.prison_core.utility.item.CustomItem;
+import pw.xwy.prison_core.utility.misc_managers.CrateManager;
 
 import java.util.Random;
 
 public class CrateListener implements Listener {
-	
+
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -26,8 +26,8 @@ public class CrateListener implements Listener {
 						Random r = new Random();
 						int i = r.nextInt(100);
 						int total = 0;
-						
-						
+
+
 						if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
 							if (stack.getAmount() == 1) {
 								e.getPlayer().setItemInHand(new ItemStack(Material.AIR));
@@ -43,7 +43,7 @@ public class CrateListener implements Listener {
 									break;
 								}
 							}
-							
+
 							return;
 						} else if (name.contains(CrateManager.CrateType.RARE.getName())) {
 							for (CrateManager.RarePrizes prize : CrateManager.RarePrizes.values()) {
@@ -71,7 +71,7 @@ public class CrateListener implements Listener {
 					}
 					//TODO: use a key! message change
 					e.getPlayer().sendMessage("§cYou need a key in your hand to use this!");
-					
+
 				}
 			}
 		}

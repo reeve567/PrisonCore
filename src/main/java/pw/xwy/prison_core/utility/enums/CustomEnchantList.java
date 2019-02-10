@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CustomEnchant {
+public class CustomEnchantList {
 	
 	public static List<CEnchant> hydro = new ArrayList<>();
 	public static List<CEnchant> mystical = new ArrayList<>();
@@ -32,7 +32,7 @@ public class CustomEnchant {
 	private Rarity rarity;
 	private int amount;
 	
-	public CustomEnchant(CEnchant enchant, String name, Rarity rarity, ItemSets itemSets) {
+	public CustomEnchantList(CEnchant enchant, String name, Rarity rarity, ItemSets itemSets) {
 		realName = enchant.toString();
 		this.enchant = enchant;
 		this.name = name;
@@ -43,7 +43,7 @@ public class CustomEnchant {
 		this.amount = itemSets.getAmount();
 	}
 	
-	public CustomEnchant(CEnchant enchant, String name, Rarity rarity, ItemSets itemSets, int amount) {
+	public CustomEnchantList(CEnchant enchant, String name, Rarity rarity, ItemSets itemSets, int amount) {
 		realName = enchant.toString();
 		this.enchant = enchant;
 		this.name = name;

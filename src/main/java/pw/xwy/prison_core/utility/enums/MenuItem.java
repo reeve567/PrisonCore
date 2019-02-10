@@ -17,18 +17,36 @@ import java.util.List;
 public enum MenuItem {
 	DEMONSWEAKNESSI("Has a chance to give the opponent++weakness for 2 seconds.", Material.EYE_OF_ENDER),
 	DEMONSWEAKNESSII("Has a chance to give the opponent++weakness for 4 seconds.", Material.EYE_OF_ENDER),
+
+
+
+
+
 	SMOKESCREENI("Has a chance to give the opponent++blindness for 2 seconds.", Material.COAL, 1),
 	SMOKESCREENII("Has a chance to give the opponent++blindness for 4 seconds.", Material.COAL, 1),
 	SMOKESCREENIII("Has a chance to give the opponent++blindness for 5 seconds.", Material.COAL, 1),
+
+
+
+
 	CURSED("Has a chance to give the opponent++Mining Fatigue for 8 seconds.", Material.WOOD_PICKAXE),
+
 	SOULBOUND("Dying with this enchant on an item++has a chance of keeping it on respawn.", Material.GOLDEN_APPLE, 1),
+
 	REKT("Has a chance to deal double damage.", Material.DIAMOND_PICKAXE),
+
 	DECAPITATE("This enchant ensures you salvage++an enemy player's head.", Material.SKULL_ITEM, 3),
+
 	LUMBERJACK("Mining the bottom log in a tree++will drop all the wood.", Material.LOG),
+
 	ARMORDESTRUCTOR("Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
-	THOR("Has a chance to smite the opponent when you hit them.", Material.GOLD_AXE),
+
+	THOR("Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
+
 	SELFHEALER("This enchant will give you 4++seconds of regeneration when you get below 3 hearts.", Material.RED_MUSHROOM),
+
 	FLASH("This enchant gives you haste if++you have the enchant on all pieces of armor.", Material.GOLD_PICKAXE),
+
 	VALOR("This enchant gives you resistance if++you have the enchant on all pieces of armor.", Material.BEACON),
 	AUTOFEEDER("This enchant prevents you from losing hunger.", Material.COOKIE),
 	//UNSTABLEI("This enchant decreases the speed at which armor durability decreases.", Material.DIAMOND),
@@ -110,7 +128,7 @@ public enum MenuItem {
 		customEnchant = CEnchant.valueOf(toString());
 		this.desc = conv(desc);
 		this.type = type;
-		customEnchant.customEnchant.setDescription(getDesc());
+		customEnchant.customEnchantList.setDescription(getDesc());
 	}
 	
 	private ArrayList<String> conv(String desc) {
@@ -133,7 +151,7 @@ public enum MenuItem {
 		durability = (byte) dur;
 		this.desc = conv(desc);
 		this.type = type;
-		customEnchant.customEnchant.setDescription(this.desc);
+		customEnchant.customEnchantList.setDescription(this.desc);
 	}
 	
 	public CEnchant getCustomEnchant() {

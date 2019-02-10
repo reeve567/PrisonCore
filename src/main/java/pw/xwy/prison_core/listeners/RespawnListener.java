@@ -15,21 +15,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.listeners.DeathListener;
 
 public class RespawnListener implements Listener {
-	
-	
+
+
 	@EventHandler
 	public void respawn(PlayerRespawnEvent e) {
 		if (DeathListener.keptItems.get(e.getPlayer()) != null) {
-			
+
 			for (ItemStack i : DeathListener.keptItems.get(e.getPlayer())) {
 				e.getPlayer().getInventory().addItem(i);
 			}
 			DeathListener.keptItems.remove(e.getPlayer());
 		}
 	}
-	
-	
+
+
 }

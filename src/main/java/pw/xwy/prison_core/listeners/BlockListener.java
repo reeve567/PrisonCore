@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockListener implements Listener {
-	
+
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		if (!e.isCancelled()) {
@@ -50,8 +50,8 @@ public class BlockListener implements Listener {
 					}
 				}
 			}
-			
-			
+
+
 			if (mi == null) {
 				if (NormalWarps.SPAWN.getLocation() == null) {
 					if (!(e.getPlayer().getGameMode() == GameMode.CREATIVE)) {
@@ -68,55 +68,36 @@ public class BlockListener implements Listener {
 			BlockMinedEvent.call(e.getBlock(), e.getPlayer(), mi, true);
 		}
 	}
-	
+
 	@EventHandler
 	public void onLogBreak(BlockBreakEvent e) {
-		
+
 		if (ItemSets.AXE.setContains(e.getPlayer().getItemInHand().getType())) {
-			
+
 			if (!e.getPlayer().getItemInHand().hasItemMeta() || !e.getPlayer().getItemInHand().getItemMeta().hasLore()) {
 				return;
 			}
-			
+
 			Player player = e.getPlayer();
-			
+
 			if (player.getGameMode() == GameMode.CREATIVE) return;
-			
+
 			if (!shouldAdd(e.getBlock().getType(), player.getItemInHand())) return;
-			
+
 			e.setCancelled(true);
 			if (player.getItemInHand() != null && player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
 				ItemStack i = player.getItemInHand();
 				if (ItemSets.AXE.setContains(i.getType()) && i.getItemMeta().getLore().contains(CEnchant.LUMBERJACK.getName()) && e.getBlock().getType().equals(Material.LOG)) {
-					List<ItemStack> drops = new ArrayList<>();
-					
-					int y = 0;
-					Location loc = e.getBlock().getLocation();
-					while (hasWood(loc.getBlockX(), loc.getBlockY() + y, loc.getBlockZ(), loc.getWorld())) {
-						for (int x = -2; x <= 2; x++) {
-							for (int z = -2; z <= 2; z++) {
-								if (loc.getWorld().getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z).getType().equals(Material.LOG)) {
-									Block b = loc.getWorld().getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z);
-									drops.addAll(b.getDrops());
-									b.setType(Material.AIR);
-								}
-							}
-						}
-						y++;
-					}
-					e.getBlock().setType(Material.AIR);
-					for (ItemStack it : drops) {
-						loc.getWorld().dropItemNaturally(loc, it);
-					}
+					//TODO: Run Lumberjack
 				}
 			} else {
 				e.getBlock().setType(Material.AIR);
 			}
 		}
 	}
-	
+
 	private boolean shouldAdd(Material mat, ItemStack is) {
-		
+
 		if (mat == Material.BEDROCK || mat == Material.COMMAND || mat == Material.ENDER_PORTAL || mat == Material.ENDER_PORTAL_FRAME || mat == Material.LAVA || mat == Material.STATIONARY_LAVA || mat == Material.WATER || mat == Material.STATIONARY_WATER) {
 			return false;
 		} else if (mat == Material.OBSIDIAN) {
@@ -145,21 +126,7 @@ public class BlockListener implements Listener {
 		}
 		return true;
 	}
-	
-	private boolean hasWood(int x, int y, int z, World world) {
-		
-		Location loc = new Location(world, x, y, z);
-		for (int xi = -2; xi <= 2; xi++) {
-			for (int zi = -2; zi <= 2; zi++) {
-				if (loc.getWorld().getBlockAt(new Location(world, loc.getBlockX() + xi, loc.getBlockY(), loc.getBlockZ() + zi)).getType().equals(Material.LOG)) {
-					return true;
-				}
-			}
-			
-		}
-		return false;
-	}
-	
+
 	@EventHandler
 	public void onSpecialEvent(BlockMinedEvent e) {
 		if (e.getMine() == null || e.getBlock().getType() == Material.BEDROCK || e.getBlock().getType() == Material.AIR) {
@@ -173,7 +140,7 @@ public class BlockListener implements Listener {
 		}
 		ArrayList<ItemStack> drops = new ArrayList<>(getDrop(e.getBlock(), hasSmelt, fortune != 0, fortune, e.getBlock().getData(), tool));
 		XPlayer player = PlayerManager.getXPlayer(e.getPlayer());
-		
+
 		if (e.getBlock().getType() == Material.COAL_ORE || e.getBlock().getType() == Material.REDSTONE_ORE || e.getBlock().getType() == Material.LAPIS_ORE || e.getBlock().getType() == Material.DIAMOND_ORE || e.getBlock().getType() == Material.EMERALD_ORE) {
 			int xp = 0;
 			Random random = new Random();
@@ -200,9 +167,9 @@ public class BlockListener implements Listener {
 			ExperienceManager experienceManager = new ExperienceManager(e.getPlayer());
 			experienceManager.setTotalExperience(experienceManager.getTotalExperience() + xp + 1);
 		}
-		
+
 		e.getBlock().setType(Material.AIR);
-		
+
 		if (AutosellCommand.toggled.contains(e.getPlayer().getUniqueId())) {
 			//if toggled autosell
 			Double total = 0.0;
@@ -213,10 +180,10 @@ public class BlockListener implements Listener {
 						drops.set(i, new CustomItem(drops.get(i)).setCusomType(Material.AIR).setDurability((int) drops.get(i).getDurability()));
 					}
 				}
-				
+
 			}
 			player.addBalance(total * player.getSellMultuplier());
-			
+
 		} else {
 			//if no autosell
 			for (ItemStack i : drops) {
@@ -226,8 +193,8 @@ public class BlockListener implements Listener {
 				e.getPlayer().getInventory().addItem(i);
 			}
 		}
-		
-		
+
+
 		if (e.isOriginal()) {
 			//harded handle
 			if (e.getPlayer().getInventory().firstEmpty() == -1) {
@@ -254,7 +221,7 @@ public class BlockListener implements Listener {
 				for (int i = -2; i <= 2; i++) {
 					for (int j = -2; j <= 2; j++) {
 						for (int k = -2; k <= 2; k++) {
-							
+
 							Location temp = e.getBlock().getLocation();
 							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
 							Mine mine = null;
@@ -271,7 +238,7 @@ public class BlockListener implements Listener {
 				for (int i = -3; i <= 3; i++) {
 					for (int j = -3; j <= 3; j++) {
 						for (int k = -3; k <= 3; k++) {
-							
+
 							Location temp = e.getBlock().getLocation();
 							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
 							Mine mine = null;
@@ -285,17 +252,17 @@ public class BlockListener implements Listener {
 					}
 				}
 			}
-			
-			
+
+
 		} else {
 			e.getBlock().getLocation().getWorld().playEffect(e.getBlock().getLocation(), Effect.STEP_SOUND, e.getBlock().getTypeId());
 		}
 		e.getPlayer().updateInventory();
-		
+
 	}
-	
+
 	private List<ItemStack> getDrop(Block b, boolean smelt, boolean fortune, int lvl, byte data, ItemStack it) {
-		
+
 		Material type = b.getType();
 		List<ItemStack> drops = new ArrayList<>();
 		if (shouldAdd(b.getType(), it)) {
@@ -304,14 +271,14 @@ public class BlockListener implements Listener {
 					drops.add(smelting(type, getAmount(fortune, lvl, b.getType())));
 				} else {
 					if (b.getType() == Material.LAPIS_ORE) data = 4;
-					
+
 					for (ItemStack j : b.getDrops()) {
 						drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 					}
 				}
 			} else {
 				if (b.getType() == Material.LAPIS_ORE) data = 4;
-				
+
 				for (ItemStack j : b.getDrops()) {
 					drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
 				}
@@ -319,9 +286,9 @@ public class BlockListener implements Listener {
 		}
 		return drops;
 	}
-	
+
 	private ItemStack smelting(Material type, int amount) {
-		
+
 		if (type.equals(Material.GOLD_ORE)) {
 			return new ItemStack(Material.GOLD_INGOT, amount);
 		} else if (type.equals(Material.IRON_ORE)) {
@@ -331,13 +298,13 @@ public class BlockListener implements Listener {
 		}
 		return new ItemStack(Material.AIR);
 	}
-	
+
 	private int getAmount(boolean fortune, int forLevel, Material type) {
 		if (fortune) return FortuneCalc.numDroppedFromFortune(forLevel, type, 1);
 		return 1;
 	}
-	
-	
+
+
 	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		if (!e.isCancelled()) {
@@ -345,7 +312,7 @@ public class BlockListener implements Listener {
 			if (e.getPlayer().getGameMode() == GameMode.CREATIVE) {
 				return;
 			}
-			
+
 			if (NormalWarps.SPAWN.getLocation() == null) {
 				for (Mine mine : MineManager.mines.values()) {
 					if (mine.getArea().contains(e.getBlockPlaced())) {
@@ -353,8 +320,8 @@ public class BlockListener implements Listener {
 					}
 				}
 				e.setCancelled(true);
-				
-				
+
+
 			} else if (e.getBlock().getWorld().getName().equalsIgnoreCase(NormalWarps.SPAWN.getLocation().getWorld().getName())) {
 				e.setCancelled(true);
 			}

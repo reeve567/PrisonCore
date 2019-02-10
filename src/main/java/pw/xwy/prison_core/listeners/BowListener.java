@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BowListener implements Listener {
-	
+
 	static List<String> freezerlist = new ArrayList<>();
 	static List<String> smiteList = new ArrayList<>();
 	static List<String> poisonList = new ArrayList<>();
@@ -46,25 +46,25 @@ public class BowListener implements Listener {
 	private static List<String> cantShoot = new ArrayList<>();
 	private static List<String> cantFire = new ArrayList<>();
 	private List<String> fired = new ArrayList<>();
-	
+
 	static boolean shootChk(String player) {
-		
+
 		return cantShoot.contains(player);
 	}
-	
+
 	@EventHandler
 	public void click(final PlayerInteractEvent e) {
-		
+
 		if (e.getItem() != null) {
 			if (e.getItem().getType().equals(Material.BOW)) {
 				if (e.getAction().equals(Action.LEFT_CLICK_AIR)) {
 					if (e.getItem().hasItemMeta()) {
 						if (e.getItem().getItemMeta().hasLore()) {
-							
+
 							boolean hasGrapple = false;
 							boolean hasShotgun = false;
 							boolean hasRifle = false;
-							
+
 							for (String s : e.getItem().getItemMeta().getLore()) {
 								if (!s.contains("Mode")) {
 									if (s.contains("GrapplingBow")) {
@@ -78,7 +78,7 @@ public class BowListener implements Listener {
 									}
 								}
 							}
-							
+
 							for (String s : e.getItem().getItemMeta().getLore()) {
 								if (s.contains("Mode")) {
 									List<String> l = e.getItem().getItemMeta().getLore();
@@ -99,18 +99,18 @@ public class BowListener implements Listener {
 									e.getItem().setItemMeta(m);
 								}
 							}
-							
+
 						}
 					}
 				} else if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 					if (e.getItem() != null && e.getItem().hasItemMeta() && e.getItem().getItemMeta().hasLore() && e.getItem().getItemMeta().getLore().contains(CEnchant.RIFLE.getName())) {
-						
+
 						if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle") ||
 								(e.getPlayer().getInventory().getBoots() != null && e.getPlayer().getInventory().getBoots().hasItemMeta() && e.getPlayer
 										().getInventory().getBoots().getItemMeta().hasLore() && e.getPlayer().getInventory().getBoots().getItemMeta().getLore().contains(CEnchant.XWY.getName()))) {
 							if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle")) {
 								if (e.getPlayer().getInventory().contains(Material.ARROW)) {
-									
+
 									if (!cantFire.contains(e.getPlayer().getName())) {
 										cantFire.add(e.getPlayer().getName());
 										e.setCancelled(true);
@@ -121,9 +121,9 @@ public class BowListener implements Listener {
 										Vector v = e.getPlayer().getLocation().getDirection().multiply(3);
 										arrow.setVelocity(v);
 										e.getPlayer().updateInventory();
-										
+
 										Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> cantFire.remove(e.getPlayer().getName()), 100L);
-										
+
 									} else {
 										e.setCancelled(true);
 										e.getPlayer().sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You may only do this every 5 seconds.");
@@ -145,9 +145,9 @@ public class BowListener implements Listener {
 			}
 		}
 	}
-	
+
 	private String nextMode(boolean hasGrappling, boolean hasRifle, boolean hasShotgun, String currentMode, Player p) {
-		
+
 		if (currentMode.equalsIgnoreCase("Default")) {
 			if (hasGrappling) {
 				p.sendMessage(MessagesFunctions.modeChanged("Grappling"));
@@ -174,7 +174,7 @@ public class BowListener implements Listener {
 			return "sad";
 		}
 	}
-	
+
 	@EventHandler
 	public void shoot(EntityShootBowEvent e) {
 		if (e.getEntity() instanceof Player) {
@@ -184,10 +184,10 @@ public class BowListener implements Listener {
 						ItemStack i = e.getBow();
 						if (i.getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Default")) {
 							if (((Player) e.getEntity()).getInventory().contains(Material.ARROW, 4)) {
-								
+
 								e.getProjectile().remove();
 								((Player) e.getEntity()).getInventory().addItem(new ItemStack(Material.ARROW, 1));
-								
+
 								e.getBow().setDurability((short) (e.getBow().getDurability() - 1));
 								for (int r = 1; r <= 4; r++) {
 									((Player) e.getEntity()).getInventory().removeItem(new ItemStack(Material.ARROW, 1));
@@ -209,16 +209,16 @@ public class BowListener implements Listener {
 			}
 		}
 	}
-	
+
 	private float Vec() {
-		
+
 		float spread = (float) .2;
 		return -spread + (float) (Math.random() * ((spread + spread)));
 	}
-	
+
 	@EventHandler
 	public void onFire(ProjectileLaunchEvent e) {
-		
+
 		if (e.getEntity().getShooter() instanceof Player) {
 			if (e.getEntity() instanceof Arrow) {
 				final Player p = (Player) e.getEntity().getShooter();
@@ -229,7 +229,7 @@ public class BowListener implements Listener {
 							if (s.equalsIgnoreCase(ChatColor.GRAY + "Mode: Grappling")) {
 								for (String k : i.getItemMeta().getLore()) {
 									if (k.equalsIgnoreCase(CEnchant.GRAPPLINGBOW.getName())) {
-										
+
 										ItemStack boots = p.getInventory().getBoots();
 										if (boots != null && boots.getItemMeta().getLore().contains(CEnchant.XWY.getName())) {
 											fired.add(p.getName());
@@ -278,15 +278,15 @@ public class BowListener implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onLand(ProjectileHitEvent e) {
-		
+
 		if (e.getEntity() instanceof Arrow) {
 			Arrow a = (Arrow) e.getEntity();
 			if (a.getShooter() instanceof Player) {
 				Player p = (Player) a.getShooter();
-				
+
 				if (fired != null) {
 					int i = 0;
 					while (i < fired.size()) {
@@ -295,28 +295,28 @@ public class BowListener implements Listener {
 							//vector force and whatnot
 							Location aLoc = a.getLocation();
 							Location pLoc = p.getLocation();
-							
+
 							Double x = aLoc.getX() - pLoc.getX();
 							Double y = aLoc.getY() - pLoc.getY();
 							Double z = aLoc.getZ() - pLoc.getZ();
-							
+
 							Vector v = new Vector();
-							
+
 							v.setX(x / 3);
 							v.setY(y / 9);
 							v.setZ(z / 3);
-							
+
 							p.setVelocity(v);
-							
+
 							p.sendMessage(Messages.launched.get());
-							
+
 							fired.remove(p.getName());
 						}
 						i++;
 					}
-					
+
 				}
-				
+
 				if (rpgList != null) {
 					if (BowListener.rpgList.contains(p.getName())) {
 						BowListener.rpgList.remove(p.getName());
@@ -328,10 +328,10 @@ public class BowListener implements Listener {
 						}
 					}
 				}
-				
-				
+
+
 			}
 		}
 	}
-	
+
 }

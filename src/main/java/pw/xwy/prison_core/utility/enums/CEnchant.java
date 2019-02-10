@@ -31,11 +31,15 @@ public enum CEnchant {
 	HOSTILEDAMAGE("Hostile Damage", Rarity.UNCOMMON, ItemSets.SWORD),
 	VAMPIRE("Vampire", Rarity.HYDRO, ItemSets.SWORD),
 	GRAPPLINGBOW("Grappling Bow", Rarity.HYDRO, ItemSets.BOW),
+
 	CURSED("Cursed", Rarity.HYDRO, ItemSets.AXE),
+
 	DIZZY("Dizzy", Rarity.MYSTICAL, ItemSets.SWORD),
+
 	SMOKESCREENI("Smoke Screen I", Rarity.MYSTICAL, ItemSets.SWORDAXE),
 	SMOKESCREENII("Smoke Screen II", Rarity.MYSTICAL, 0, ItemSets.SWORDAXE),
 	SMOKESCREENIII("Smoke Screen III", Rarity.HYDRO, 0, ItemSets.SWORDAXE),
+
 	POISONOUSARROW("PoisonousArrow", Rarity.UNCOMMON, ItemSets.BOW),
 	ANIMALCOOKER("Animal Cooker", Rarity.COMMON, ItemSets.SWORD),
 	FURNACE("Furnace", Rarity.COMMON, ItemSets.BOW),
@@ -55,6 +59,8 @@ public enum CEnchant {
 	//DETONATE("Detonate", "Chestplate", Rarity.MYSTICAL, ItemSets.CHEST),
 	DEMONSWEAKNESSI("Demon's Weakness I", Rarity.HYDRO, ItemSets.SWORDAXE),
 	DEMONSWEAKNESSII("Demon's Weakness II", Rarity.HYDRO, 0, ItemSets.SWORDAXE),
+
+
 	PARALYZE("Paralyze", Rarity.MYSTICAL, ItemSets.SWORD),
 	WITHERI("Wither I", Rarity.HYDRO, ItemSets.SWORD),
 	WITHERII("Wither II", Rarity.HYDRO, 0, ItemSets.SWORD),
@@ -104,15 +110,15 @@ public enum CEnchant {
 	
 	XWY("God", Rarity.ADMIN, 0, ItemSets.BOOTS),;
 	
-	public CustomEnchant customEnchant;
+	public CustomEnchantList customEnchantList;
 	private boolean enabled = true;
 	
 	CEnchant(String inGameName, Rarity rarity, int am, ItemSets a) {
-		customEnchant = new CustomEnchant(this, inGameName, rarity, a, am);
+		customEnchantList = new CustomEnchantList(this, inGameName, rarity, a, am);
 	}
 	
 	CEnchant(String inGameName, Rarity rarity, ItemSets a) {
-		customEnchant = new CustomEnchant(this, inGameName, rarity, a);
+		customEnchantList = new CustomEnchantList(this, inGameName, rarity, a);
 	}
 	
 	public static boolean hasEnchant(ItemStack stack, CEnchant enchant) {
@@ -121,7 +127,7 @@ public enum CEnchant {
 	
 	public String getName() {
 		
-		return conv(customEnchant.getName());
+		return conv(customEnchantList.getName());
 	}
 	
 	private String conv(String name) {
@@ -129,34 +135,34 @@ public enum CEnchant {
 	}
 	
 	public boolean checkSets(Material m) {
-		return customEnchant.getSets().setContains(m);
+		return customEnchantList.getSets().setContains(m);
 	}
 	
 	public boolean containsSet(ItemSets set) {
-		return customEnchant.getSets().getSets().contains(set);
+		return customEnchantList.getSets().getSets().contains(set);
 	}
 	
 	public int getAmount() {
-		return customEnchant.getAmount();
+		return customEnchantList.getAmount();
 	}
 	
 	public String getLabel() {
 		
-		return customEnchant.getCommandLabel();
+		return customEnchantList.getCommandLabel();
 	}
 	
 	public String getLoreLbl() {
 		
-		return conv(customEnchant.getLoreLabel());
+		return conv(customEnchantList.getLoreLabel());
 	}
 	
 	public Rarity getRarity() {
 		
-		return customEnchant.getRarity();
+		return customEnchantList.getRarity();
 	}
 	
 	public void getCustomStuff(Config config) {
-		customEnchant.setCustomStuff(config);
+		customEnchantList.setCustomStuff(config);
 	}
 	
 	public void disable() {

@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.InventoryUtility;
 import pw.xwy.prison_core.utility.ce.EnchantUtility;
 import pw.xwy.prison_core.utility.enums.CEnchant;
-import pw.xwy.prison_core.utility.enums.CustomEnchant;
+import pw.xwy.prison_core.utility.enums.CustomEnchantList;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Rarity;
 import pw.xwy.prison_core.utility.item.CustomItem;
@@ -66,7 +66,7 @@ public class ConversionMenu implements Listener {
 			ExperienceManager manager = new ExperienceManager(player);
 			if (manager.getTotalExperience() >= xp) {
 				manager.setTotalExperience(manager.getTotalExperience() - xp);
-				player.getInventory().addItem(getBook(CustomEnchant.getRandomEnchant(rarity)));
+				player.getInventory().addItem(getBook(CustomEnchantList.getRandomEnchant(rarity)));
 			}
 		} else {
 			player.sendMessage(Messages.fullInventory.get());

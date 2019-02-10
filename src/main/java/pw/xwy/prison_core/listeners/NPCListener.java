@@ -18,7 +18,7 @@ public class NPCListener implements Listener {
 	public void onRightClick(NPCRightClickEvent e) {
 		onClick(e);
 	}
-	
+
 	private void onClick(NPCClickEvent e) {
 		if (e.getNPC().getName().contains("CE Menu") || e.getNPC().getName().contains("CustomEnchants")) {
 			if (e.getClicker() != null) {
@@ -29,7 +29,7 @@ public class NPCListener implements Listener {
 			npcSell(sRank, e.getClicker());
 		}
 	}
-	
+
 	private void npcSell(String sRank, Player clicker) {
 		sRank = sRank.toUpperCase();
 		try {
@@ -44,10 +44,10 @@ public class NPCListener implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onLeftClick(NPCLeftClickEvent e) {
 		onClick(e);
 	}
-	
+
 }

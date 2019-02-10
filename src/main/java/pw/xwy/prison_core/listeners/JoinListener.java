@@ -14,12 +14,12 @@ import pw.xwy.prison_core.utility.player.PlayerManager;
 
 public class JoinListener implements Listener {
 	public static int UniquePlayers;
-	
+
 	public final ItemStack[] starterKit = new ItemStack[]{
 			new CustomItem(Material.BREAD).setCustomAmount(64),
 			new CustomItem(Material.IRON_PICKAXE)
 	};
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		e.setJoinMessage("§6§lSystem §8§l»» §6" + e.getPlayer().getName() + "§7 has joined the server");
@@ -40,5 +40,5 @@ public class JoinListener implements Listener {
 		}
 		e.getPlayer().sendMessage("§7Welcome to §6Mud§6kip §8Prison§7!");
 	}
-	
+
 }

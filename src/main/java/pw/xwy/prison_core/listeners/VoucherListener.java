@@ -10,7 +10,7 @@ import pw.xwy.prison_core.utility.player.PlayerManager;
 import pw.xwy.prison_core.utility.player.XPlayer;
 
 public class VoucherListener implements Listener {
-	
+
 	@EventHandler
 	public void onClick(PlayerInteractEvent e) {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
@@ -21,12 +21,12 @@ public class VoucherListener implements Listener {
 					e.getPlayer().setItemInHand(new CustomItem(e.getPlayer().getItemInHand()).setCustomAmount(e.getItem().getAmount() - 1));
 				} else {
 					e.getPlayer().setItemInHand(new CustomItem(e.getPlayer().getItemInHand()).setCusomType(Material.AIR));
-					
+
 				}
-				
-				
+
+
 			}
 		}
 	}
-	
+
 }

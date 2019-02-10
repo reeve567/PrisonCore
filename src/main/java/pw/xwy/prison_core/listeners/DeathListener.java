@@ -21,18 +21,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import pw.xwy.prison_core.utility.enums.CEnchant;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class DeathListener implements Listener {
-	
-	static HashMap<Player, List<ItemStack>> keptItems = new HashMap<Player, List<ItemStack>>();
-	
+
+	static HashMap<Player, List<ItemStack>> keptItems = new HashMap<>();
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
-		
+
 		Player p = e.getEntity();
 		Player k = p.getKiller();
 		if (k != null) {
@@ -40,42 +38,24 @@ public class DeathListener implements Listener {
 				if (k.getItemInHand().getItemMeta().hasLore()) {
 					for (String s : k.getItemInHand().getItemMeta().getLore()) {
 						if (s.equalsIgnoreCase(CEnchant.DECAPITATE.getName())) {
-							ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-							SkullMeta meta = (SkullMeta) head.getItemMeta();
-							meta.setOwner(p.getName());
-							head.setItemMeta(meta);
-							List<ItemStack> drops = e.getDrops();
-							drops.add(head);
+							// TODO: Run Decapitate
 						}
 					}
 				}
 			}
 		}
-		List<ItemStack> keeps = new ArrayList<ItemStack>();
-		List<ItemStack> drops = e.getDrops();
-		Iterator<ItemStack> iter = drops.iterator();
-		while (iter.hasNext()) {
-			ItemStack i = iter.next();
-			if (i.hasItemMeta() && i.getItemMeta().hasLore()) {
-				if (i.getItemMeta().getLore().contains(CEnchant.SOULBOUND.getName())) {
-					int r = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (r <= 10) {
-						keeps.add(i);
-						iter.remove();
-					}
-				}
-			}
-		}
-		keptItems.put(p, keeps);
+
+		// TODO: Run Soulbound
+
 	}
-	
+
 	@EventHandler
 	public void entityKill(EntityDeathEvent e) {
-		
+
 		if (e.getEntity() != null && !(e.getEntity() instanceof Player) && e.getEntity().getKiller() != null) {
 			Player p = e.getEntity().getKiller();
 			ItemStack i = p.getItemInHand();
-			
+
 			if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore()) {
 				if (i.getItemMeta().getLore().contains(CEnchant.MOBSLAYERI.getName())) {
 					e.setDroppedExp(e.getDroppedExp() * 2);
@@ -92,9 +72,9 @@ public class DeathListener implements Listener {
 			}
 		}
 	}
-	
+
 	private void changeDrops(EntityDeathEvent e) {
-		
+
 		for (ItemStack it : e.getDrops()) {
 			if (it.getType().equals(Material.RAW_BEEF)) {
 				it.setType(Material.COOKED_BEEF);
