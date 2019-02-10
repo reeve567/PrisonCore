@@ -16,7 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 
 import java.util.List;
 

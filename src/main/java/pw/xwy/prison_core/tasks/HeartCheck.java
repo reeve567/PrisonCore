@@ -15,7 +15,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 
 public class HeartCheck implements Runnable {
 	

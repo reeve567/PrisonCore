@@ -1,6 +1,7 @@
 package pw.xwy.prison_core.utility;
 
 import org.bukkit.Material;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.config.Config;
 import pw.xwy.prison_core.utility.enums.ItemSets;
@@ -10,7 +11,7 @@ import pw.xwy.prison_core.utility.item.CustomItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomEnchant {
+public abstract class CustomEnchant {
 
 	private String name;
 	private String realName;
@@ -36,6 +37,8 @@ public class CustomEnchant {
 		this.description = conv(description);
 		this.displayItem = new CustomItem(displayItem).setDurability(durability);
 	}
+
+	public abstract void event(Event e);
 
 	public void saveDefault(Config config) {
 		String base = "CustomEnchants." + realName + ".";

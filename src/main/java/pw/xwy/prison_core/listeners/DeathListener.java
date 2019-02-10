@@ -18,8 +18,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 
 import java.util.HashMap;
 import java.util.List;

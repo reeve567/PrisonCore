@@ -16,8 +16,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.commands.EventCommand;
+import pw.xwy.prison_core.custom_enchants.RealName;
 import pw.xwy.prison_core.utility.Rect3D;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 
 import java.util.HashMap;
@@ -45,11 +45,13 @@ public class DamageListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void EnvHit(EntityDamageEvent e) {
 
+		//TODO: Get rid of all the extra code, dim it down to looping lists with conditions for molten and the like
+
 		if (e.getEntity() instanceof Player) {
 			Player player = (Player) e.getEntity();
 			ItemStack boots = player.getInventory().getBoots();
-			if (boots != null && boots.hasItemMeta() && boots.getItemMeta().hasLore() && boots.getItemMeta().getLore().contains(CEnchant.XWY.getName())) {
-				e.setCancelled(true);
+			if (boots != null && boots.hasItemMeta() && boots.getItemMeta().hasLore() && boots.getItemMeta().getLore().contains(RealName.XWY.getEnchant().getName())) {
+				RealName.XWY.getEnchant().event(e);
 			}
 		}
 

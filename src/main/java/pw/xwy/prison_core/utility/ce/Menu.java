@@ -15,7 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
-import pw.xwy.prison_core.utility.enums.MenuItem;
 import pw.xwy.prison_core.utility.enums.Rarity;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class Menu {
 		int nextUncommon = 28;
 		int nextCommon = 37;
 
-		for (CustomEnchant customEnchant : CustomEnchantsManager.manager.getEnchantsByName().values()) {
+		for (CustomEnchant customEnchant : CustomEnchantsManager.manager.getEnchantsByRealName().values()) {
 			if (customEnchant.isEnabled() && customEnchant.containsSet(type)) {
 				if (customEnchant.getRarity().equals(Rarity.HYDRO)) {
 					setItem(customEnchant.getName(), customEnchant.getDisplayItem().getType(), customEnchant.getDisplayItem().getDurability(), customEnchant.getDescription(), nextHydro++, inventory);

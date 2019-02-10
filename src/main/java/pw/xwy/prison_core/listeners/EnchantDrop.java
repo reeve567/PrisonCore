@@ -23,6 +23,9 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.utility.CustomEnchant;
+import pw.xwy.prison_core.utility.CustomEnchantManager;
 import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -91,7 +94,7 @@ public class EnchantDrop implements Listener {
 					if (ret == ADMIN_ENCHANT) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
 						if (itemInteractedWith.hasItemMeta() && itemInteractedWith.getItemMeta().hasLore()) {
-							if (itemInteractedWith.getItemMeta().getLore().contains(CEnchant.XWY.getName())) {
+							if (itemInteractedWith.getItemMeta().getLore().contains(CEnchant.XWY.getEnchant().getName())) {
 								ItemMeta meta = itemInteractedWith.getItemMeta();
 								meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&3&l«&9&l&kk&3&l» &6&lXwy's Boots &3&l«&9&l&kf&3&l»"));
 								itemInteractedWith.setItemMeta(meta);
@@ -152,18 +155,13 @@ public class EnchantDrop implements Listener {
 		}
 		if (book.hasItemMeta() && book.getItemMeta().hasLore() && book.getItemMeta().hasDisplayName() && checkCan(book.getItemMeta().getDisplayName(), item.getType())) {
 			//find custom enchant
-			CEnchant ce = null;
-			for (CEnchant c : CEnchant.values()) {
-				if (book.getItemMeta().getDisplayName().equalsIgnoreCase(c.getName())) {
-					ce = c;
-					break;
-				}
-			}
-			if (ce == null) {
+			CustomEnchant customEnchant = CustomEnchantManager.getInstance().getEnchantsByLore().get(book.getItemMeta().getDisplayName());
+
+			if (customEnchant == null) {
 				return CANT_ENCHANT;
 			}
 
-			if (ce == CEnchant.XWY) {
+			if (customEnchant == RealName.XWY.getEnchant()) {
 				return ADMIN_ENCHANT;
 			}
 
@@ -184,7 +182,7 @@ public class EnchantDrop implements Listener {
 				}
 
 				if (ce.getName().charAt(ce.getName().length() - 1) == 'I') {
-					String slvl = ench.substring(ench.indexOf('I'), ench.length());
+					String slvl = ench.substring(ench.indexOf('I'));
 					int nlvl = 0;
 
 					if (slvl.equalsIgnoreCase("I")) {
@@ -303,7 +301,7 @@ public class EnchantDrop implements Listener {
 						}
 						itemInteractedWith.setItemMeta(meta);
 
-						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.FORTUNEV.getName())) {
+						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.FORTUNEV.getName())) {
 							if (itemInteractedWith.getItemMeta().hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
 								if (itemInteractedWith.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) == 5)
 									return;
@@ -312,25 +310,25 @@ public class EnchantDrop implements Listener {
 							itemInteractedWith.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
 							player.setItemOnCursor(null);
 							player.sendMessage(Messages.itemSuccess.get());
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYI.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYI.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 1);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYII.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYII.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 2);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIII.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIII.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 3);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIV.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIV.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 4);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYV.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYV.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 5);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVI.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVI.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 6);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVII.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVII.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 7);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYVIII.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVIII.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 8);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYIX.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIX.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 9);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(CEnchant.EFFICIENCYX.getName())) {
+						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYX.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 10);
 						} else if (enchant(itemOnCursor, itemInteractedWith)) {
 							player.setItemOnCursor(null);
@@ -378,7 +376,7 @@ public class EnchantDrop implements Listener {
 	private boolean checkCan(String name, Material type) {
 
 		if (name != null) {
-			return CustomEnchantsManager.manager.getEnchantsByName().get(name).checkSets(type);
+			return CustomEnchantsManager.manager.getEnchantsByRealName().get(name).checkSets(type);
 		}
 		return false;
 	}

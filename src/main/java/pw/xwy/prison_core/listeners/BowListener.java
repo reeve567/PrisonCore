@@ -29,7 +29,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.utility.ce.MessagesFunctions;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.Messages;
 
 import java.util.ArrayList;

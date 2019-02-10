@@ -55,7 +55,7 @@ public class CustomEnchantsManager {
 
 		manager = new CustomEnchantManager();
 
-		for (CustomEnchant c: manager.getEnchantsByName().values()) {
+		for (CustomEnchant c: manager.getEnchantsByRealName().values()) {
 			if (newf)
 				c.saveDefault(config);
 			else

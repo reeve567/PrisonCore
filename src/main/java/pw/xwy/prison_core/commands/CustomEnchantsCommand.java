@@ -155,7 +155,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 
 						for (String s : lore) {
 							boolean found = false;
-							for (CustomEnchant ce : CustomEnchantsManager.manager.getEnchantsByName().values()) {
+							for (CustomEnchant ce : CustomEnchantsManager.manager.getEnchantsByRealName().values()) {
 								if (ce.getName().equalsIgnoreCase(s)) {
 									found = true;
 									switch (ce.getRarity()) {

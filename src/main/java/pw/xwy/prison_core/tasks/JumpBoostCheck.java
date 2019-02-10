@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 
 public class JumpBoostCheck implements Runnable {
 	private JavaPlugin main;

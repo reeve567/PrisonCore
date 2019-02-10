@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 
 public class FlashCheck implements Runnable {
 	
@@ -46,7 +45,7 @@ public class FlashCheck implements Runnable {
 			}
 		}, 0, 35);
 	}
-	
+
 	private boolean ItemCheck(ItemStack i) {
 		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.FLASH.getName());
 	}

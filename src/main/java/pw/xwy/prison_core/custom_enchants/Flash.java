@@ -6,7 +6,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.utility.CustomTaskEnchant;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Rarity;
 

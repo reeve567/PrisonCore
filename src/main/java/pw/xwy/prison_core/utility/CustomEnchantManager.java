@@ -12,7 +12,9 @@ import java.util.Random;
 
 public class CustomEnchantManager {
 
+	private static CustomEnchantManager instance;
 	private HashMap<Rarity, List<CustomEnchant>> enchantsByRarity = new HashMap<>();
+	private HashMap<String, CustomEnchant> enchantsByRealName = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByName = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByLore = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByLabel = new HashMap<>();
@@ -22,7 +24,7 @@ public class CustomEnchantManager {
 	private List<CustomTaskEnchant> taskEnchants = new ArrayList<>();
 
 	public CustomEnchantManager() {
-
+		instance = this;
 		// Setup list
 		for (Rarity r : Rarity.values()) {
 			enchantsByRarity.put(r, new ArrayList<>());
@@ -43,18 +45,23 @@ public class CustomEnchantManager {
 				new SmokeScreen2(),
 				new SmokeScreen3(),
 				new Soulbound("Soulbound", ItemSets.EVERYTHING, Rarity.HYDRO, "Dying with this enchant on an item++has a chance of keeping it on respawn.", Material.GOLDEN_APPLE, 1),
-				new Thor("Thor", ItemSets.AXE, Rarity.COMMON, "Has a chance to smite the opponent when you hit them.", Material.IRON_AXE)
+				new Thor("Thor", ItemSets.AXE, Rarity.COMMON, "Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
+				new Xwy("Xwy", ItemSets.BOOTS, Rarity.ADMIN, "OOF", Material.DIAMOND_BOOTS)
 		);
 
 
+	}
+
+	public static CustomEnchantManager getInstance() {
+		return instance;
 	}
 
 	public HashMap<Rarity, List<CustomEnchant>> getEnchantsByRarity() {
 		return enchantsByRarity;
 	}
 
-	public HashMap<String, CustomEnchant> getEnchantsByName() {
-		return enchantsByName;
+	public HashMap<String, CustomEnchant> getEnchantsByRealName() {
+		return enchantsByRealName;
 	}
 
 	public HashMap<String, CustomEnchant> getEnchantsByLore() {
@@ -92,9 +99,9 @@ public class CustomEnchantManager {
 			List<CustomEnchant> add = enchantsByRarity.get(ce.getRarity());
 			add.add(ce);
 			enchantsByRarity.put(ce.getRarity(), add);
-			enchantsByName.put(ce.getRealName(), ce);
+			enchantsByRealName.put(ce.getRealName(), ce);
 			enchantsByLore.put(ce.getName(), ce);
-			enchantsByLabel.put(ce.getCommandLabel(),ce);
+			enchantsByLabel.put(ce.getCommandLabel(), ce);
 		}
 
 

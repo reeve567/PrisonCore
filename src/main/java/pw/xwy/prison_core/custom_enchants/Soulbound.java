@@ -6,7 +6,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.listeners.EnchantDrop;
 import pw.xwy.prison_core.utility.CustomDeathEnchant;
-import pw.xwy.prison_core.utility.enums.CEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Rarity;
 
