@@ -33,6 +33,9 @@ public class CustomEnchantManager {
 
 		// START ENCHANTS
 		init(
+				new Antiknockback1("Antiknockback I", ItemSets.LEGGINGS, Rarity.UNCOMMON, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
+				new Antiknockback2("Antiknockback II", ItemSets.LEGGINGS, Rarity.RARE, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
+				new Antiknockback3("Antiknockback III", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
 				new ArmorDestructor("Armor Destructor", ItemSets.AXE, Rarity.RARE, "Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
 				new BurnShield("Burn Shield", ItemSets.ARMOR, Rarity.COMMON, "This enchant allows the wearer++to swim in lava and fire if you have++the enchant on all pieces of armor.", Material.POTION, 8259),
 				new Cursed(),
@@ -48,6 +51,7 @@ public class CustomEnchantManager {
 				new Flash("Flash", ItemSets.ARMOR, Rarity.HYDRO, "This enchant gives you haste if++you have the enchant on all pieces of armor.", Material.GOLD_PICKAXE),
 				new Lumberjack("Lumberjack", ItemSets.AXE, Rarity.RARE, "Mining the bottom log in a tree++will drop all the wood.", Material.LOG),
 				new Medicine("Medicine", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to poison.", Material.BROWN_MUSHROOM),
+				new Molten("Molten", ItemSets.ARMOR, Rarity.COMMON, "This enchant will set an attacker on fire if they hit the wearer.", Material.LAVA_BUCKET),
 				new Reinforced("Reinforced", ItemSets.CHEST, Rarity.HYDRO, "This enchant will give you 4 seconds of++resistance when you get below 3 hearts.", Material.GOLDEN_APPLE),
 				new Rekt("Rekt", ItemSets.AXE, Rarity.RARE, "Has a chance to deal double damage.", Material.DIAMOND_PICKAXE),
 				new SelfHealer("Self Healer", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchant will give you 4++seconds of regeneration when you get below 3 hearts.", Material.RED_MUSHROOM),
@@ -55,6 +59,9 @@ public class CustomEnchantManager {
 				new SmokeScreen2(),
 				new SmokeScreen3(),
 				new Soulbound("Soulbound", ItemSets.EVERYTHING, Rarity.HYDRO, "Dying with this enchant on an item++has a chance of keeping it on respawn.", Material.GOLDEN_APPLE, 1),
+				new Starved1("Starved I", ItemSets.LEGGINGS, Rarity.UNCOMMON, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
+				new Starved2("Starved II", ItemSets.LEGGINGS, Rarity.RARE, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
+				new Starved3("Starved III", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
 				new SuperSpeed("Super Speed", ItemSets.BOOTS, Rarity.MYSTICAL, "When you hit to one and a half hearts or++below, you get a speed boost++for 3 seconds.", Material.GOLD_BOOTS),
 				new Thor("Thor", ItemSets.AXE, Rarity.COMMON, "Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
 				new Xwy("Xwy", ItemSets.BOOTS, Rarity.ADMIN, "OOF", Material.DIAMOND_BOOTS)

@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomTaskEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Rarity;
@@ -30,6 +31,6 @@ public class Flash extends CustomTaskEnchant {
 	}
 
 	private boolean ItemCheck(ItemStack i) {
-		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.FLASH.getName());
+		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.FLASH.getEnchant().getName());
 	}
 }

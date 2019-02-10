@@ -25,9 +25,7 @@ public enum MenuItem {
 	MOLTEN("This enchant will set an attacker on fire if they hit the wearer.", Material.LAVA_BUCKET),
 	GLOWING("This enchant gives the wearer infinite night vision.", Material.GLOWSTONE),
 	SCUBADIVER("This enchant gives the wearer infinite water breathing.", Material.RAW_FISH),
-	ANTIKNOCKBACKI("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
-	ANTIKNOCKBACKII("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
-	ANTIKNOCKBACKIII("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
+
 	EXPPROTECTOR("This enchantment prevents your EXP from being stolen.", Material.EXP_BOTTLE),
 	//DETONATE("This enchant has a chance of exploding, damaging everything nearby except the wearer.", Material.TNT),
 	STARVEDI("This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
@@ -44,7 +42,6 @@ public enum MenuItem {
 	POISONOUSARROW("This enchant gives you arrows a chance to++poison the player it hit.", Material.SPIDER_EYE),
 	FURNACE("This enchant allows your arrows to cook the++meat of animals that it kills.", Material.GRILLED_PORK),
 	MOONGRAVITY("This enchant gives the wearer JumpBoost I infinitely.", Material.GOLDEN_CARROT),
-	SUPERSPEED("When you hit to one and a half hearts or++below, you get a speed boost++for 3 seconds.", Material.GOLD_BOOTS),
 	//LEADERSHIP("When faction members are near you, your damage is increased.", Material.CHAINMAIL_HELMET),
 	WINDSSPEEDI("This enchant gives the wearer Speed I infinitely.", Material.SUGAR),
 	WINDSSPEEDII("This enchant gives the wearer Speed II infinitely.", Material.SUGAR),

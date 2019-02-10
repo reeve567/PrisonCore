@@ -2,7 +2,10 @@ package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,8 +16,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
-import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.commands.EventCommand;
 import pw.xwy.prison_core.utility.CustomEnviromentalDamageEnchant;
@@ -156,12 +157,9 @@ public class DamageListener implements Listener {
 		if (!e.isCancelled()) {
 
 			if (e.getEntity() instanceof Player) {
-				Player player = (Player) e.getEntity();
-				ItemStack legs = player.getInventory().getLeggings();
-				ItemStack chest = player.getInventory().getChestplate();
-				ItemStack boots = player.getInventory().getBoots();
-				ItemStack helm = player.getInventory().getHelmet();
-				
+
+				//TODO: Run enchants like Starved, Molten, and Antiknockback here
+
 				/*if (armorCheck(chest, CEnchant.DETONATE.getName())) {
 					int r = EnchantDrop.getRandomNumberFrom(1, 100);
 					if (r > 75) {
@@ -170,58 +168,6 @@ public class DamageListener implements Listener {
 						e.getEntity().getLocation().getWorld().createExplosion(e.getEntity().getLocation(), 3, false);
 					}
 				}*/
-				if (armorCheck(legs, RealName.STARVEDI.getEnchant().getName())) {
-					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
-						int num = EnchantDrop.getRandomNumberFrom(1, 100);
-						if (num <= 15) {
-							((Player) e.getDamager()).setFoodLevel(((Player) e.getDamager()).getFoodLevel() - 1);
-						}
-					}
-				} else if (armorCheck(legs, RealName.STARVEDII.getEnchant().getName())) {
-					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
-						int num = EnchantDrop.getRandomNumberFrom(1, 100);
-						if (num <= 25) {
-							((Player) e.getDamager()).setFoodLevel(((Player) e.getDamager()).getFoodLevel() - 1);
-						}
-					}
-				} else if (armorCheck(legs, RealName.STARVEDIII.getEnchant().getName())) {
-					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
-						int num = EnchantDrop.getRandomNumberFrom(1, 100);
-						if (num <= 35) {
-							((Player) e.getDamager()).setFoodLevel(((Player) e.getDamager()).getFoodLevel() - 1);
-						}
-					}
-				}
-				if (armorCheck(legs, RealName.ANTIKNOCKBACKI.getEnchant().getName())) {
-					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
-
-						Vector kb = e.getDamager().getLocation().toVector().subtract(e.getEntity().getLocation().toVector()).multiply(-0.75);
-						e.getEntity().setVelocity(kb);
-					}, 1);
-				} else if (armorCheck(legs, RealName.ANTIKNOCKBACKII.getEnchant().getName())) {
-					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
-
-						Vector kb = e.getDamager().getLocation().toVector().subtract(e.getEntity().getLocation().toVector()).multiply(-0.5);
-						e.getEntity().setVelocity(kb);
-					}, 1);
-				} else if (armorCheck(legs, RealName.ANTIKNOCKBACKIII.getEnchant().getName())) {
-
-					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
-
-						Vector kb = e.getDamager().getLocation().toVector().subtract(e.getEntity().getLocation().toVector()).multiply(-0.25);
-						e.getEntity().setVelocity(kb);
-					}, 1);
-				}
-
-				if (armorCheck(helm, RealName.MOLTEN.getEnchant().getName())) {
-					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(chest, RealName.MOLTEN.getEnchant().getName())) {
-					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(legs, RealName.MOLTEN.getEnchant().getName())) {
-					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(boots, RealName.MOLTEN.getEnchant().getName())) {
-					moltenFunc(e.getDamager(), e.getEntity());
-				}
 			}
 			if (e.getDamager() instanceof Arrow) {
 				if (((Arrow) e.getDamager()).getShooter() instanceof Player) {
@@ -370,23 +316,6 @@ public class DamageListener implements Listener {
 				}
 			}
 		}
-	}
-
-	private void moltenFunc(Entity damager, Entity person) {
-
-		if (damager instanceof Arrow) {
-			Arrow arrow = (Arrow) damager;
-			if (arrow.getShooter() instanceof Skeleton) {
-				Skeleton sk = (Skeleton) arrow.getShooter();
-				sk.setFireTicks(100);
-
-			} else if (arrow.getShooter() instanceof Player) {
-				Player pl = (Player) arrow.getShooter();
-				pl.setFireTicks(100);
-			} else
-				((Player) person).sendMessage(String.valueOf(((Arrow) damager).getShooter()));
-		} else
-			damager.setFireTicks(100);
 	}
 
 	@EventHandler

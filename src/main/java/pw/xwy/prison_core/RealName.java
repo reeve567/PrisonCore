@@ -5,6 +5,10 @@ import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
 
 public enum RealName {
+
+	ANTIKNOCKBACKI,
+	ANTIKNOCKBACKII,
+	ANTIKNOCKBACKIII,
 	ARMORDESTRUCTOR,
 	BURNSHIELD,
 	CURSED,
@@ -20,6 +24,7 @@ public enum RealName {
 	GUARDIANSBLOCK,
 	LUMBERJACK,
 	MEDICINE,
+	MOLTEN,
 	REINFORCED,
 	REKT,
 	SELFHEALER,
@@ -27,6 +32,9 @@ public enum RealName {
 	SMOKESCREENII,
 	SMOKESCREENIII,
 	SOULBOUND,
+	STARVEDI,
+	STARVEDII,
+	STARVEDIII,
 	SUPERSPEED,
 	THOR,
 	XWY,
@@ -34,8 +42,6 @@ public enum RealName {
 	//TODO: Move to correct place
 	//Just put these here to get rid of compiler errors, runtime errors will occur still
 	//Still need to make class for these enchants and some others
-
-
 	FORTUNEV,
 
 	EFFICIENCYI,
@@ -49,11 +55,6 @@ public enum RealName {
 	EFFICIENCYIX,
 	EFFICIENCYX,
 
-
-
-
-
-
 	SHOTGUN,
 	RIFLE,
 	FROZENARROW,
@@ -62,18 +63,6 @@ public enum RealName {
 	FURNACE,
 	EXPLOSIVEARROW,
 	RPG,
-
-	STARVEDI,
-	STARVEDII,
-	STARVEDIII,
-
-
-
-	ANTIKNOCKBACKI,
-	ANTIKNOCKBACKII,
-	ANTIKNOCKBACKIII,
-
-	MOLTEN,
 
 	VAMPIRE,
 
