@@ -1,5 +1,6 @@
-package pw.xwy.prison_core.custom_enchants;
+package pw.xwy.prison_core;
 
+import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
 
@@ -10,8 +11,13 @@ public enum RealName {
 	DECAPITATE,
 	DEMONSWEAKNESSI,
 	DEMONSWEAKNESSII,
+	EXPLOSIVEPICKI,
+	EXPLOSIVEPICKII,
+	EXPLOSIVEPICKIII,
 	FLASH,
+	GRAPPLINGBOW,
 	LUMBERJACK,
+	MEDICINE,
 	REKT,
 	SELFHEALER,
 	SMOKESCREENI,
@@ -24,9 +30,7 @@ public enum RealName {
 	//TODO: Move to correct place
 	//Just put these here to get rid of compiler errors, runtime errors will occur still
 	//Still need to make class for these enchants and some others
-	EXPLOSIVEPICKI,
-	EXPLOSIVEPICKII,
-	EXPLOSIVEPICKIII,
+
 
 	FORTUNEV,
 
@@ -41,7 +45,6 @@ public enum RealName {
 	EFFICIENCYIX,
 	EFFICIENCYX,
 
-	MEDICINE,
 
 	GUARDIAN,
 
@@ -49,12 +52,68 @@ public enum RealName {
 
 	REINFORCED,
 
-	GRAPPLINGBOW,
+	SHOTGUN,
+	RIFLE,
+	FROZENARROW,
+	VOLTAGE,
+	POISONOUSARROW,
+	FURNACE,
+	EXPLOSIVEARROW,
+	RPG,
+
+	STARVEDI,
+	STARVEDII,
+	STARVEDIII,
+
+	SUPERSPEED,
+
+	ANTIKNOCKBACKI,
+	ANTIKNOCKBACKII,
+	ANTIKNOCKBACKIII,
+
+	MOLTEN,
+
+	VAMPIRE,
+
+	STORMCALLER,
+
+	EXPTHIEF,
+
+	EXPPROTECTOR,
+
+	CHARGE,
+
+	WITHERI,
+	WITHERII,
+	FROZENBLADE,
+
+	DIZZY,
+
+	HOSTILEDAMAGE,
+
+	PARALYZE,
+
+	BATTLEROAR,
+
+	MINERI,
+	MINERII,
+
+	SMELTING
 
 	;
 
 	RealName() {
 
+	}
+
+	public static boolean hasEnchant(ItemStack itemInHand, RealName ench) {
+		if (itemInHand != null && itemInHand.hasItemMeta() && itemInHand.getItemMeta().hasLore()) {
+			for (String s : itemInHand.getItemMeta().getLore()) {
+				if (ench.getEnchant().getName().equalsIgnoreCase(s))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	public CustomEnchant getEnchant() {

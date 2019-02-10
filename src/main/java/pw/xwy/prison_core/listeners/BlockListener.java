@@ -1,6 +1,9 @@
 package pw.xwy.prison_core.listeners;
 
-import org.bukkit.*;
+import org.bukkit.Effect;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -9,10 +12,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.commands.AutosellCommand;
 import pw.xwy.prison_core.events.BlockMinedEvent;
+import pw.xwy.prison_core.utility.CustomBlockEnchant;
+import pw.xwy.prison_core.utility.CustomMineEnchant;
 import pw.xwy.prison_core.utility.FortuneCalc;
-import pw.xwy.prison_core.utility.enums.*;
+import pw.xwy.prison_core.utility.enums.ExtraRank;
+import pw.xwy.prison_core.utility.enums.ItemSets;
+import pw.xwy.prison_core.utility.enums.NormalWarps;
+import pw.xwy.prison_core.utility.enums.Rank;
 import pw.xwy.prison_core.utility.item.CustomItem;
 import pw.xwy.prison_core.utility.mine.Mine;
 import pw.xwy.prison_core.utility.mine.MineManager;
@@ -87,8 +96,8 @@ public class BlockListener implements Listener {
 			e.setCancelled(true);
 			if (player.getItemInHand() != null && player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
 				ItemStack i = player.getItemInHand();
-				if (ItemSets.AXE.setContains(i.getType()) && i.getItemMeta().getLore().contains(CEnchant.LUMBERJACK.getName()) && e.getBlock().getType().equals(Material.LOG)) {
-					//TODO: Run Lumberjack
+				if (ItemSets.AXE.setContains(i.getType()) && i.getItemMeta().getLore().contains(RealName.LUMBERJACK.getEnchant().getName()) && e.getBlock().getType().equals(Material.LOG)) {
+					((CustomBlockEnchant) RealName.LUMBERJACK.getEnchant()).event(e);
 				}
 			} else {
 				e.getBlock().setType(Material.AIR);
@@ -133,7 +142,7 @@ public class BlockListener implements Listener {
 			return;
 		}
 		ItemStack tool = e.getPlayer().getItemInHand();
-		boolean hasSmelt = CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.SMELTING);
+		boolean hasSmelt = RealName.hasEnchant(e.getPlayer().getItemInHand(), RealName.SMELTING);
 		int fortune = 0;
 		if (tool != null && tool.hasItemMeta() && tool.getItemMeta().hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
 			fortune = tool.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS);
@@ -172,7 +181,7 @@ public class BlockListener implements Listener {
 
 		if (AutosellCommand.toggled.contains(e.getPlayer().getUniqueId())) {
 			//if toggled autosell
-			Double total = 0.0;
+			double total = 0.0;
 			for (int i = 0; i < drops.size(); i++) {
 				if (drops.get(i) != null) {
 					if (e.getMine().shopContains(drops.get(i).getType(), drops.get(i).getDurability())) {
@@ -201,59 +210,13 @@ public class BlockListener implements Listener {
 				e.getPlayer().sendMessage("§cInventory is full!");
 			}
 			//explosive handle
-			if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKI)) {
-				for (int i = -1; i <= 1; i++) {
-					for (int j = -1; j <= 1; j++) {
-						for (int k = -1; k <= 1; k++) {
-							Location temp = e.getBlock().getLocation();
-							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
-							Mine mine = null;
-							if (e.getMine().getArea().contains(location)) {
-								mine = e.getMine();
-							}
-							if (!(i == 0 && j == 0 && k == 0)) {
-								BlockMinedEvent.call(location.getBlock(), e.getPlayer(), mine, false);
-							}
-						}
-					}
-				}
-			} else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKII)) {
-				for (int i = -2; i <= 2; i++) {
-					for (int j = -2; j <= 2; j++) {
-						for (int k = -2; k <= 2; k++) {
-
-							Location temp = e.getBlock().getLocation();
-							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
-							Mine mine = null;
-							if (e.getMine().getArea().contains(location)) {
-								mine = e.getMine();
-							}
-							if (!(i == 0 && j == 0 && k == 0)) {
-								BlockMinedEvent.call(location.getBlock(), e.getPlayer(), mine, false);
-							}
-						}
-					}
-				}
-			} else if (CEnchant.hasEnchant(e.getPlayer().getItemInHand(), CEnchant.EXPLOSIVEPICKIII)) {
-				for (int i = -3; i <= 3; i++) {
-					for (int j = -3; j <= 3; j++) {
-						for (int k = -3; k <= 3; k++) {
-
-							Location temp = e.getBlock().getLocation();
-							Location location = new Location(e.getBlock().getWorld(), temp.getX() + i, temp.getY() + j, temp.getZ() + k);
-							Mine mine = null;
-							if (e.getMine().getArea().contains(location)) {
-								mine = e.getMine();
-							}
-							if (!(i == 0 && j == 0 && k == 0)) {
-								BlockMinedEvent.call(location.getBlock(), e.getPlayer(), mine, false);
-							}
-						}
-					}
-				}
+			if (RealName.hasEnchant(e.getPlayer().getItemInHand(), RealName.EXPLOSIVEPICKI)) {
+				((CustomMineEnchant) RealName.EXPLOSIVEPICKI.getEnchant()).event(e);
+			} else if (RealName.hasEnchant(e.getPlayer().getItemInHand(), RealName.EXPLOSIVEPICKII)) {
+				((CustomMineEnchant) RealName.EXPLOSIVEPICKII.getEnchant()).event(e);
+			} else if (RealName.hasEnchant(e.getPlayer().getItemInHand(), RealName.EXPLOSIVEPICKIII)) {
+				((CustomMineEnchant) RealName.EXPLOSIVEPICKIII.getEnchant()).event(e);
 			}
-
-
 		} else {
 			e.getBlock().getLocation().getWorld().playEffect(e.getBlock().getLocation(), Effect.STEP_SOUND, e.getBlock().getTypeId());
 		}

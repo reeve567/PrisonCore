@@ -15,37 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum MenuItem {
-	DEMONSWEAKNESSI("Has a chance to give the opponent++weakness for 2 seconds.", Material.EYE_OF_ENDER),
-	DEMONSWEAKNESSII("Has a chance to give the opponent++weakness for 4 seconds.", Material.EYE_OF_ENDER),
 
-
-
-
-
-	SMOKESCREENI("Has a chance to give the opponent++blindness for 2 seconds.", Material.COAL, 1),
-	SMOKESCREENII("Has a chance to give the opponent++blindness for 4 seconds.", Material.COAL, 1),
-	SMOKESCREENIII("Has a chance to give the opponent++blindness for 5 seconds.", Material.COAL, 1),
-
-
-
-
-	CURSED("Has a chance to give the opponent++Mining Fatigue for 8 seconds.", Material.WOOD_PICKAXE),
-
-	SOULBOUND("Dying with this enchant on an item++has a chance of keeping it on respawn.", Material.GOLDEN_APPLE, 1),
-
-	REKT("Has a chance to deal double damage.", Material.DIAMOND_PICKAXE),
-
-	DECAPITATE("This enchant ensures you salvage++an enemy player's head.", Material.SKULL_ITEM, 3),
-
-	LUMBERJACK("Mining the bottom log in a tree++will drop all the wood.", Material.LOG),
-
-	ARMORDESTRUCTOR("Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
-
-	THOR("Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
-
-	SELFHEALER("This enchant will give you 4++seconds of regeneration when you get below 3 hearts.", Material.RED_MUSHROOM),
-
-	FLASH("This enchant gives you haste if++you have the enchant on all pieces of armor.", Material.GOLD_PICKAXE),
 
 	VALOR("This enchant gives you resistance if++you have the enchant on all pieces of armor.", Material.BEACON),
 	AUTOFEEDER("This enchant prevents you from losing hunger.", Material.COOKIE),
@@ -55,7 +25,6 @@ public enum MenuItem {
 	MEDICINE("This enchant makes the wearer immune to poison.", Material.BROWN_MUSHROOM),
 	HEARTBOOST("This enchant adds 4 hearts to the player's max health.", Material.REDSTONE_BLOCK),
 	MOLTEN("This enchant will set an attacker on fire if they hit the wearer.", Material.LAVA_BUCKET),
-	BURNSHEILD("This enchant allows the wearer to swim in lava and fire.", Material.POTION, 8259),
 	GLOWING("This enchant gives the wearer infinite night vision.", Material.GLOWSTONE),
 	SCUBADIVER("This enchant gives the wearer infinite water breathing.", Material.RAW_FISH),
 	ANTIKNOCKBACKI("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
@@ -69,7 +38,7 @@ public enum MenuItem {
 	STARVEDIII("This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
 	BATTLEROAR("This enchant either gives the wearer strength when hit, or wither.", Material.REDSTONE_TORCH_ON),
 	SHOTGUN("Shooting an arrow with this enchant++launches 4 projectiles while on the++correct mode.", Material.ARROW),
-	GRAPPLINGBOW("Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
+
 	RIFLE("With this enchant, all you have to do++is right click to shoot an arrow, if++on the correct mode.", Material.FIREWORK),
 	EXPLOSIVEARROW("This enchant gives your arrows a chance to++do double damage.", Material.GOLD_INGOT),
 	RPG("This enchant gives your arrows a chance to++explode on impact.", Material.TNT),
@@ -88,9 +57,6 @@ public enum MenuItem {
 	FORTUNEV("This enchant brings great fortune to many.", Material.DIAMOND_PICKAXE),
 	MINERI("This doubles the attack damage of a pickaxe", Material.GOLD_PICKAXE),
 	MINERII("This triples the attack damage of a pickaxe", Material.DIAMOND_AXE),
-	EXPLOSIVEPICKI("This enchant allows your pickaxe to++mine in a 3x3x3 area.", Material.FIREBALL),
-	EXPLOSIVEPICKII("This enchant allows your pickaxe to++mine in a 5x5x5 area.", Material.FIREBALL),
-	EXPLOSIVEPICKIII("This enchant allows your pickaxe to++mine in a 7x7x7 area.", Material.FIREBALL),
 	VAMPIRE("Hitting an enemy with this enchant++on your sword will heal you for half++the damage you do.", Material.PUMPKIN),
 	WITHERI("Hitting an enemy with this enchant++has a chance to wither the opponent++for 2 seconds.", Material.SKULL_ITEM, 1),
 	WITHERII("Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
@@ -119,16 +85,13 @@ public enum MenuItem {
 	EFFICIENCYX("Makes your pickaxe mine faster", Material.GOLD_PICKAXE)
 	;
 	
-	private final CEnchant customEnchant;
 	private final List<String> desc;
 	private final Material type;
 	private byte durability = 0;
 	
 	MenuItem(String desc, Material type) {
-		customEnchant = CEnchant.valueOf(toString());
 		this.desc = conv(desc);
 		this.type = type;
-		customEnchant.customEnchantList.setDescription(getDesc());
 	}
 	
 	private ArrayList<String> conv(String desc) {
@@ -142,20 +105,10 @@ public enum MenuItem {
 		return de;
 	}
 	
-	public List<String> getDesc() {
-		return desc;
-	}
-	
 	MenuItem(String desc, Material type, int dur) {
-		customEnchant = CEnchant.valueOf(toString());
 		durability = (byte) dur;
 		this.desc = conv(desc);
 		this.type = type;
-		customEnchant.customEnchantList.setDescription(this.desc);
-	}
-	
-	public CEnchant getCustomEnchant() {
-		return customEnchant;
 	}
 	
 	public byte getDurability() {

@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.commands.EventCommand;
-import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomEnviromentalDamageEnchant;
 import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -185,26 +185,26 @@ public class DamageListener implements Listener {
 						((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 0));
 					}
 				}
-				if (armorCheck(boots, CEnchant.SUPERSPEED.getName())) {
+				if (armorCheck(boots, RealName.SUPERSPEED.getEnchant().getName())) {
 					if (((Player) e.getEntity()).getHealth() <= 3) {
 						((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, 2));
 					}
 				}
-				if (armorCheck(legs, CEnchant.STARVEDI.getName())) {
+				if (armorCheck(legs, RealName.STARVEDI.getEnchant().getName())) {
 					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 15) {
 							((Player) e.getDamager()).setFoodLevel(((Player) e.getDamager()).getFoodLevel() - 1);
 						}
 					}
-				} else if (armorCheck(legs, CEnchant.STARVEDII.getName())) {
+				} else if (armorCheck(legs, RealName.STARVEDII.getEnchant().getName())) {
 					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 25) {
 							((Player) e.getDamager()).setFoodLevel(((Player) e.getDamager()).getFoodLevel() - 1);
 						}
 					}
-				} else if (armorCheck(legs, CEnchant.STARVEDIII.getName())) {
+				} else if (armorCheck(legs, RealName.STARVEDIII.getEnchant().getName())) {
 					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 35) {
@@ -212,19 +212,19 @@ public class DamageListener implements Listener {
 						}
 					}
 				}
-				if (armorCheck(legs, CEnchant.ANTIKNOCKBACKI.getName())) {
+				if (armorCheck(legs, RealName.ANTIKNOCKBACKI.getEnchant().getName())) {
 					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
 
 						Vector kb = e.getDamager().getLocation().toVector().subtract(e.getEntity().getLocation().toVector()).multiply(-0.75);
 						e.getEntity().setVelocity(kb);
 					}, 1);
-				} else if (armorCheck(legs, CEnchant.ANTIKNOCKBACKII.getName())) {
+				} else if (armorCheck(legs, RealName.ANTIKNOCKBACKII.getEnchant().getName())) {
 					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
 
 						Vector kb = e.getDamager().getLocation().toVector().subtract(e.getEntity().getLocation().toVector()).multiply(-0.5);
 						e.getEntity().setVelocity(kb);
 					}, 1);
-				} else if (armorCheck(legs, CEnchant.ANTIKNOCKBACKIII.getName())) {
+				} else if (armorCheck(legs, RealName.ANTIKNOCKBACKIII.getEnchant().getName())) {
 
 					Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> {
 
@@ -233,13 +233,13 @@ public class DamageListener implements Listener {
 					}, 1);
 				}
 
-				if (armorCheck(helm, CEnchant.MOLTEN.getName())) {
+				if (armorCheck(helm, RealName.MOLTEN.getEnchant().getName())) {
 					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(chest, CEnchant.MOLTEN.getName())) {
+				} else if (armorCheck(chest, RealName.MOLTEN.getEnchant().getName())) {
 					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(legs, CEnchant.MOLTEN.getName())) {
+				} else if (armorCheck(legs, RealName.MOLTEN.getEnchant().getName())) {
 					moltenFunc(e.getDamager(), e.getEntity());
-				} else if (armorCheck(boots, CEnchant.MOLTEN.getName())) {
+				} else if (armorCheck(boots, RealName.MOLTEN.getEnchant().getName())) {
 					moltenFunc(e.getDamager(), e.getEntity());
 				}
 			}
@@ -294,17 +294,17 @@ public class DamageListener implements Listener {
 				if (player.getItemInHand().hasItemMeta()) {
 					if (player.getItemInHand().getItemMeta().hasLore()) {
 						for (String s : player.getItemInHand().getItemMeta().getLore()) {
-							if (s.equalsIgnoreCase(CEnchant.VAMPIRE.getName())) {
+							if (s.equalsIgnoreCase(RealName.VAMPIRE.getEnchant().getName())) {
 								double d = player.getHealth() + (e.getDamage() / 2);
 								if (d > player.getMaxHealth()) d = player.getMaxHealth();
 								player.setHealth(d);
-							} else if (s.equalsIgnoreCase(CEnchant.STORMCALLER.getName()) || s.equalsIgnoreCase(RealName.THOR.getEnchant().getName())) {
+							} else if (s.equalsIgnoreCase(RealName.STORMCALLER.getEnchant().getName()) || s.equalsIgnoreCase(RealName.THOR.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r <= 10) {
 									player.getLocation().getWorld().strikeLightning(e.getEntity().getLocation());
 									summoner = player;
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.EXPTHIEF.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.EXPTHIEF.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r <= 85) {
 									if (e.getEntity() instanceof Player) {
@@ -312,13 +312,13 @@ public class DamageListener implements Listener {
 												((Player) e.getEntity()).getInventory().getBoots().hasItemMeta() &&
 												((Player) e.getEntity()).getInventory().getBoots().getItemMeta().hasLore() &&
 												((Player) e.getEntity()).getInventory().getBoots().getItemMeta().getLore()
-														.contains(CEnchant.EXPPROTECTOR.getName()))) {
+														.contains(RealName.EXPPROTECTOR.getEnchant().getName()))) {
 											((Player) e.getEntity()).setExp(((Player) e.getEntity()).getExp() * 98);
 											((Player) e.getDamager()).setExp(((Player) e.getDamager()).getExp() + ((Player) e.getEntity()).getExp() * 2);
 										}
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.CHARGE.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.CHARGE.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r > 85) {
 									if (player.isSprinting()) {
@@ -327,36 +327,36 @@ public class DamageListener implements Listener {
 								}
 							} /*else if (s.equalsIgnoreCase(CEnchant.DEMONSBLADE.getName())) {
 								e.setDamage(e.getDamage() * 1.05);
-							}*/ else if (s.equalsIgnoreCase(CEnchant.WITHERI.getName())) {
+							}*/ else if (s.equalsIgnoreCase(RealName.WITHERI.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r > 85) {
 									if (e.getEntity() instanceof Player) {
 										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 40, 0));
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.WITHERII.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.WITHERII.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r > 85) {
 									if (e.getEntity() instanceof Player) {
 										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 80, 0));
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.FROZENBLADE.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.FROZENBLADE.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r > 85) {
 									if (e.getEntity() instanceof Player) {
 										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.DIZZY.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.DIZZY.getEnchant().getName())) {
 								if (e.getEntity() instanceof Player) {
 									((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 60, 0));
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.HOSTILEDAMAGE.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.HOSTILEDAMAGE.getEnchant().getName())) {
 								if (e.getEntity() instanceof Monster) {
 									e.setDamage(e.getDamage() * 2);
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.PARALYZE.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.PARALYZE.getEnchant().getName())) {
 								if (e.getEntity() instanceof Player) {
 
 									int r = EnchantDrop.getRandomNumberFrom(1, 100);
@@ -364,7 +364,7 @@ public class DamageListener implements Listener {
 										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.BATTLEROAR.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.BATTLEROAR.getEnchant().getName())) {
 								if (e.getEntity() instanceof Player) {
 									int g = EnchantDrop.getRandomNumberFrom(1, 100);
 									if (g <= 20) {
@@ -380,7 +380,9 @@ public class DamageListener implements Listener {
 										}
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.MINERI.getName())) {
+							} else if (s.equalsIgnoreCase(RealName.MINERI.getEnchant().getName())) {
+
+							} else if (s.equalsIgnoreCase(RealName.MINERII.getEnchant().getName())) {
 
 							}
 						}
@@ -425,10 +427,10 @@ public class DamageListener implements Listener {
 			ItemStack chest = player.getInventory().getChestplate();
 			ItemStack boots = player.getInventory().getBoots();
 			ItemStack helm = player.getInventory().getHelmet();
-			if (armorCheck(helm, CEnchant.BURNSHEILD.getName()) ||
-					armorCheck(chest, CEnchant.BURNSHEILD.getName()) ||
-					armorCheck(legs, CEnchant.BURNSHEILD.getName()) ||
-					armorCheck(boots, CEnchant.BURNSHEILD.getName())) {
+			if (armorCheck(helm, RealName.BURNSHIELD.getEnchant().getName()) &&
+					armorCheck(chest, RealName.BURNSHIELD.getEnchant().getName()) &&
+					armorCheck(legs, RealName.BURNSHIELD.getEnchant().getName()) &&
+					armorCheck(boots, RealName.BURNSHIELD.getEnchant().getName())) {
 				e.setDuration(0);
 				e.setCancelled(true);
 			}

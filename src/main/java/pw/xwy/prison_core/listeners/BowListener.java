@@ -29,7 +29,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
-import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomBowEnchant;
 import pw.xwy.prison_core.utility.ce.MessagesFunctions;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -39,7 +39,7 @@ import java.util.List;
 
 public class BowListener implements Listener {
 
-	private static List<String> cantShoot = new ArrayList<>();
+	public static List<String> cantShoot = new ArrayList<>();
 	private static List<String> cantFire = new ArrayList<>();
 
 	static boolean shootChk(String player) {

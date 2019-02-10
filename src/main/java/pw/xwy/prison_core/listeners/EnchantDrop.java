@@ -23,7 +23,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
 import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;

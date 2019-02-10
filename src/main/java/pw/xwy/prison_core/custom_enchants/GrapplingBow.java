@@ -8,10 +8,13 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomBowEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Rarity;
+
+import static pw.xwy.prison_core.listeners.BowListener.cantShoot;
 
 public class GrapplingBow extends CustomBowEnchant {
 
