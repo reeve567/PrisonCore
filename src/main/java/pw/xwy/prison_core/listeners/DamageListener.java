@@ -15,8 +15,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
-import pw.xwy.prison_core.commands.EventCommand;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.commands.EventCommand;
 import pw.xwy.prison_core.utility.CustomEnviromentalDamageEnchant;
 import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -92,7 +92,7 @@ public class DamageListener implements Listener {
 				if (helm != null && helm.hasItemMeta() && helm.getItemMeta().hasLore()) {
 					for (String s : helm.getItemMeta().getLore()) {
 						if (s.equalsIgnoreCase(RealName.MEDICINE.getEnchant().getName())) {
-							e.setCancelled(true);
+							((CustomEnviromentalDamageEnchant) RealName.MEDICINE.getEnchant()).event(e);
 						}
 					}
 				}
@@ -105,7 +105,7 @@ public class DamageListener implements Listener {
 				if (helm != null && helm.hasItemMeta() && helm.getItemMeta().hasLore()) {
 					for (String s : helm.getItemMeta().getLore()) {
 						if (s.equalsIgnoreCase(RealName.GUARDIAN.getEnchant().getName())) {
-							e.setCancelled(true);
+							((CustomEnviromentalDamageEnchant) RealName.GUARDIAN.getEnchant()).event(e);
 						}
 					}
 				}
@@ -170,26 +170,6 @@ public class DamageListener implements Listener {
 						e.getEntity().getLocation().getWorld().createExplosion(e.getEntity().getLocation(), 3, false);
 					}
 				}*/
-
-				if (player.isBlocking() && player.getItemInHand() != null && player.getItemInHand().hasItemMeta() &&
-						player.getItemInHand().getItemMeta().hasLore() && player.getItemInHand().getItemMeta().getLore()
-						.contains(RealName.GUARDIANSBLOCK.getEnchant().getName())) {
-					e.setDamage(e.getDamage() / 2);
-				}
-
-				if (armorCheck(boots, RealName.SELFHEALER.getEnchant().getName())) {
-
-				}
-				if (armorCheck(chest, RealName.REINFORCED.getEnchant().getName())) {
-					if (((Player) e.getEntity()).getHealth() <= 5) {
-						((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 0));
-					}
-				}
-				if (armorCheck(boots, RealName.SUPERSPEED.getEnchant().getName())) {
-					if (((Player) e.getEntity()).getHealth() <= 3) {
-						((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, 2));
-					}
-				}
 				if (armorCheck(legs, RealName.STARVEDI.getEnchant().getName())) {
 					if (e.getDamager() instanceof Player && ((Player) e.getDamager()).getFoodLevel() > 0) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);

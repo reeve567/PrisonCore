@@ -21,8 +21,6 @@ public enum MenuItem {
 	AUTOFEEDER("This enchant prevents you from losing hunger.", Material.COOKIE),
 	//UNSTABLEI("This enchant decreases the speed at which armor durability decreases.", Material.DIAMOND),
 	//UNSTABLEII("This enchant decreases the speed at which armor durability decreases.", Material.DIAMOND),
-	GUARDIAN("This enchant makes the wearer immune to wither.", Material.YELLOW_FLOWER),
-	MEDICINE("This enchant makes the wearer immune to poison.", Material.BROWN_MUSHROOM),
 	HEARTBOOST("This enchant adds 4 hearts to the player's max health.", Material.REDSTONE_BLOCK),
 	MOLTEN("This enchant will set an attacker on fire if they hit the wearer.", Material.LAVA_BUCKET),
 	GLOWING("This enchant gives the wearer infinite night vision.", Material.GLOWSTONE),
@@ -31,7 +29,6 @@ public enum MenuItem {
 	ANTIKNOCKBACKII("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
 	ANTIKNOCKBACKIII("This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE),
 	EXPPROTECTOR("This enchantment prevents your EXP from being stolen.", Material.EXP_BOTTLE),
-	REINFORCED("This enchant will give you 4 seconds of++resistance when you get below 3 hearts.", Material.GOLDEN_APPLE),
 	//DETONATE("This enchant has a chance of exploding, damaging everything nearby except the wearer.", Material.TNT),
 	STARVEDI("This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
 	STARVEDII("This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
@@ -62,7 +59,6 @@ public enum MenuItem {
 	WITHERII("Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
 	CHARGE("Hitting an enemy while sprinting++increases your damage.", Material.GLOWSTONE_DUST),
 	DIZZY("Hitting an enemy with this enchant++inflicts 3 seconds of nausea.", Material.JACK_O_LANTERN),
-	GUARDIANSBLOCK("Taking damage while blocking with++this enchant reduces damage by 50%", Material.GOLD_SWORD),
 	EXPTHIEF("When you hit someone with this,++it has a chance of stealing their EXP.", Material.EXP_BOTTLE),
 	FROZENBLADE("This enchantment has a chance to give++the opponent slowness for 5 seconds.", Material.ICE),
 	//DEMONSBLADE("This enchant increases your damage++during combos.", Material.REDSTONE),
@@ -73,6 +69,8 @@ public enum MenuItem {
 	STORMCALLER("Hitting an enemy has a chance to++smite them with lightning.", Material.NETHER_STAR),
 	PARALYZE("Hitting a mob has a chance to slow++it's movement speed.", Material.ROTTEN_FLESH),
 	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF),
+
+
 	EFFICIENCYI("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),
 	EFFICIENCYII("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),
 	EFFICIENCYIII("Makes your pickaxe mine faster", Material.WOOD_PICKAXE),

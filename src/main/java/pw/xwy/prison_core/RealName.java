@@ -16,14 +16,18 @@ public enum RealName {
 	EXPLOSIVEPICKIII,
 	FLASH,
 	GRAPPLINGBOW,
+	GUARDIAN,
+	GUARDIANSBLOCK,
 	LUMBERJACK,
 	MEDICINE,
+	REINFORCED,
 	REKT,
 	SELFHEALER,
 	SMOKESCREENI,
 	SMOKESCREENII,
 	SMOKESCREENIII,
 	SOULBOUND,
+	SUPERSPEED,
 	THOR,
 	XWY,
 
@@ -46,11 +50,9 @@ public enum RealName {
 	EFFICIENCYX,
 
 
-	GUARDIAN,
 
-	GUARDIANSBLOCK,
 
-	REINFORCED,
+
 
 	SHOTGUN,
 	RIFLE,
@@ -65,7 +67,7 @@ public enum RealName {
 	STARVEDII,
 	STARVEDIII,
 
-	SUPERSPEED,
+
 
 	ANTIKNOCKBACKI,
 	ANTIKNOCKBACKII,
@@ -101,10 +103,6 @@ public enum RealName {
 	SMELTING
 
 	;
-
-	RealName() {
-
-	}
 
 	public static boolean hasEnchant(ItemStack itemInHand, RealName ench) {
 		if (itemInHand != null && itemInHand.hasItemMeta() && itemInHand.getItemMeta().hasLore()) {
