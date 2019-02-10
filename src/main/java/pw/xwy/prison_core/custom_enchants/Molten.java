@@ -24,14 +24,14 @@ public class Molten extends CustomDamageEnchant {
 			Arrow arrow = (Arrow) e.getDamager();
 			if (arrow.getShooter() instanceof Skeleton) {
 				Skeleton sk = (Skeleton) arrow.getShooter();
-				sk.setFireTicks(100);
+				sk.setFireTicks(e.getDamager().getFireTicks() + 100);
 
 			} else if (arrow.getShooter() instanceof Player) {
 				Player pl = (Player) arrow.getShooter();
-				pl.setFireTicks(100);
-			} else
-				e.getEntity().sendMessage(String.valueOf(((Arrow) e.getDamager()).getShooter()));
-		} else
-			e.getDamager().setFireTicks(100);
+				pl.setFireTicks(e.getDamager().getFireTicks() + 100);
+			}
+		} else {
+			e.getDamager().setFireTicks(e.getDamager().getFireTicks() + 100);
+		}
 	}
 }

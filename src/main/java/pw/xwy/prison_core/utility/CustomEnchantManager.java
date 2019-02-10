@@ -38,6 +38,7 @@ public class CustomEnchantManager {
 				new Antiknockback3("Antiknockback III", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
 				new ArmorDestructor("Armor Destructor", ItemSets.AXE, Rarity.RARE, "Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
 				new BurnShield("Burn Shield", ItemSets.ARMOR, Rarity.COMMON, "This enchant allows the wearer++to swim in lava and fire if you have++the enchant on all pieces of armor.", Material.POTION, 8259),
+				new Charge("Charge", ItemSets.SWORD, Rarity.RARE, "Hitting an enemy while sprinting++increases your damage.", Material.GLOWSTONE_DUST),
 				new Cursed(),
 				new Decapitate(),
 				new DemonsWeakness1(),
@@ -45,6 +46,7 @@ public class CustomEnchantManager {
 				new ExplosivePick1("Explosive Pick I", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 3x3x3 area.", Material.FIREBALL),
 				new ExplosivePick2("Explosive Pick II", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 5x5x5 area.", Material.FIREBALL),
 				new ExplosivePick3("Explosive Pick III", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 7x7x7 area.", Material.FIREBALL),
+				new ExpThief("Exp Thief", ItemSets.SWORD, Rarity.RARE, "When you hit someone with this,++it has a chance of stealing their EXP.", Material.EXP_BOTTLE),
 				new GrapplingBow("Grappling Bow", ItemSets.BOW, Rarity.HYDRO, "Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
 				new Guardian("Guardian", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to wither.", Material.YELLOW_FLOWER),
 				new GuardiansBlock("Guardian's Block", ItemSets.SWORD, Rarity.HYDRO, "Taking damage while blocking with++this enchant reduces damage by 50%", Material.GOLD_SWORD),
@@ -62,8 +64,12 @@ public class CustomEnchantManager {
 				new Starved1("Starved I", ItemSets.LEGGINGS, Rarity.UNCOMMON, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
 				new Starved2("Starved II", ItemSets.LEGGINGS, Rarity.RARE, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
 				new Starved3("Starved III", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchant has a chance to make your attacker hungry.", Material.RAW_FISH, 3),
+				new StormCaller("Storm Caller", ItemSets.SWORD, Rarity.UNCOMMON, "Hitting an enemy has a chance to++smite them with lightning.", Material.NETHER_STAR),
 				new SuperSpeed("Super Speed", ItemSets.BOOTS, Rarity.MYSTICAL, "When you hit to one and a half hearts or++below, you get a speed boost++for 3 seconds.", Material.GOLD_BOOTS),
 				new Thor("Thor", ItemSets.AXE, Rarity.COMMON, "Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
+				new Vampire("Vampire", ItemSets.SWORD, Rarity.HYDRO,"Hitting an enemy with this enchant++on your sword will heal you for half++the damage you do.", Material.PUMPKIN),
+				new Wither1("Wither I", ItemSets.SWORD, Rarity.MYSTICAL, "Hitting an enemy with this enchant++has a chance to wither the opponent++for 2 seconds.", Material.SKULL_ITEM, 1),
+				new Wither1("Wither II", ItemSets.SWORD, Rarity.HYDRO, "Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
 				new Xwy("Xwy", ItemSets.BOOTS, Rarity.ADMIN, "OOF", Material.DIAMOND_BOOTS)
 		);
 

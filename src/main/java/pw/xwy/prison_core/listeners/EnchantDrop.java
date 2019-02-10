@@ -310,16 +310,6 @@ public class EnchantDrop implements Listener {
 							itemInteractedWith.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
 							player.setItemOnCursor(null);
 							player.sendMessage(Messages.itemSuccess.get());
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYI.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 1);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYII.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 2);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIII.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 3);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIV.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 4);
-						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYV.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 5);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVI.getEnchant().getName())) {
 							effEnch(player, itemInteractedWith, 6);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVII.getEnchant().getName())) {
