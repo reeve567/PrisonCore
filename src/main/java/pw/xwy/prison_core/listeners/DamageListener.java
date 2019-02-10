@@ -17,6 +17,7 @@ import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.commands.EventCommand;
 import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.utility.CustomEnviromentalDamageEnchant;
 import pw.xwy.prison_core.utility.Rect3D;
 import pw.xwy.prison_core.utility.enums.Messages;
 
@@ -46,16 +47,17 @@ public class DamageListener implements Listener {
 	public void EnvHit(EntityDamageEvent e) {
 
 		//TODO: Get rid of all the extra code, dim it down to looping lists with conditions for molten and the like
+		//UPDATE: Might not be possible with all the different damage causes
 
 		if (e.getEntity() instanceof Player) {
 			Player player = (Player) e.getEntity();
 			ItemStack boots = player.getInventory().getBoots();
 			if (boots != null && boots.hasItemMeta() && boots.getItemMeta().hasLore() && boots.getItemMeta().getLore().contains(RealName.XWY.getEnchant().getName())) {
-				RealName.XWY.getEnchant().event(e);
+				((CustomEnviromentalDamageEnchant) RealName.XWY.getEnchant()).event(e);
 			}
 		}
 
-		//Lightning
+		//Lightning, should stay probably
 		if (e.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING)) {
 			if (e.getEntity() instanceof Player) {
 				Player player = (Player) e.getEntity();
@@ -118,11 +120,11 @@ public class DamageListener implements Listener {
 				ItemStack chest = player.getInventory().getChestplate();
 				ItemStack boots = player.getInventory().getBoots();
 				ItemStack helm = player.getInventory().getHelmet();
-				if (armorCheck(helm, RealName.BURNSHEILD.getEnchant().getName()) ||
-						armorCheck(chest, RealName.BURNSHEILD.getEnchant().getName()) ||
-						armorCheck(legs, RealName.BURNSHEILD.getEnchant().getName()) ||
-						armorCheck(boots, RealName.BURNSHEILD.getEnchant().getName()))
-					e.setCancelled(true);
+				if (armorCheck(helm, RealName.BURNSHIELD.getEnchant().getName()) &&
+						armorCheck(chest, RealName.BURNSHIELD.getEnchant().getName()) &&
+						armorCheck(legs, RealName.BURNSHIELD.getEnchant().getName()) &&
+						armorCheck(boots, RealName.BURNSHIELD.getEnchant().getName()))
+					((CustomEnviromentalDamageEnchant) RealName.BURNSHIELD.getEnchant()).event(e);
 			}
 		}
 	}
@@ -244,41 +246,38 @@ public class DamageListener implements Listener {
 			if (e.getDamager() instanceof Arrow) {
 				if (((Arrow) e.getDamager()).getShooter() instanceof Player) {
 					Player p = (Player) ((Arrow) e.getDamager()).getShooter();
-					if (BowListener.freezerlist.contains(p.getName())) {
+					Arrow arrow = (Arrow) e.getDamager();
+					if (arrow.hasMetadata("Freezer")) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 20) {
 							if (e.getEntity() instanceof Player) {
 								Player p1 = (Player) e.getEntity();
 								p1.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5, 3));
 								p.sendMessage(Messages.frozen.get());
-								BowListener.freezerlist.remove(p.getName());
 							}
 						}
 					}
-					if (BowListener.smiteList.contains(p.getName())) {
+					if (arrow.hasMetadata("Voltage")) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 20) {
 							e.getEntity().getLocation().getWorld().strikeLightning(e.getEntity().getLocation());
 							p.sendMessage(Messages.smited.get());
-							BowListener.smiteList.remove(p.getName());
 						}
 					}
-					if (BowListener.rpgList.contains(p.getName())) {
+					if (arrow.hasMetadata("RPG")) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 15) {
 							playerMadeExplosion = true;
 							e.getEntity().getLocation().getWorld().createExplosion(e.getEntity().getLocation(), 5);
-							BowListener.rpgList.remove(p.getName());
 						}
 					}
-					if (BowListener.explosiveList.contains(p.getName())) {
+					if (arrow.hasMetadata("Explosive")) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 70) {
 							e.setDamage(e.getDamage() * 2);
-							BowListener.explosiveList.remove(p.getName());
 						}
 					}
-					if (BowListener.poisonList.contains(p.getName())) {
+					if (arrow.hasMetadata("Poisonous")) {
 						int num = EnchantDrop.getRandomNumberFrom(1, 100);
 						if (num <= 50) {
 							if (e.getEntity() instanceof Player) {

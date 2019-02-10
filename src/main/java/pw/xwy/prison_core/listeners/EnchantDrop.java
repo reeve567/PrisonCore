@@ -376,7 +376,7 @@ public class EnchantDrop implements Listener {
 	private boolean checkCan(String name, Material type) {
 
 		if (name != null) {
-			return CustomEnchantsManager.manager.getEnchantsByRealName().get(name).checkSets(type);
+			return CustomEnchantsManager.manager.getEnchantsByName().get(name).checkSets(type);
 		}
 		return false;
 	}

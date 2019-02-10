@@ -4,7 +4,8 @@ import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
 
 public enum RealName {
-	ArmorDestructor,
+	ARMORDESTRUCTOR,
+	BURNSHIELD,
 	CURSED,
 	DECAPITATE,
 	DEMONSWEAKNESSI,
@@ -46,9 +47,9 @@ public enum RealName {
 
 	GUARDIANSBLOCK,
 
-	BURNSHEILD,
-
 	REINFORCED,
+
+	GRAPPLINGBOW,
 
 	;
 

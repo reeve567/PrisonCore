@@ -26,8 +26,11 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
+import pw.xwy.prison_core.custom_enchants.RealName;
+import pw.xwy.prison_core.utility.CustomBowEnchant;
 import pw.xwy.prison_core.utility.ce.MessagesFunctions;
 import pw.xwy.prison_core.utility.enums.Messages;
 
@@ -36,15 +39,8 @@ import java.util.List;
 
 public class BowListener implements Listener {
 
-	static List<String> freezerlist = new ArrayList<>();
-	static List<String> smiteList = new ArrayList<>();
-	static List<String> poisonList = new ArrayList<>();
-	static List<String> furnaceList = new ArrayList<>();
-	static List<String> explosiveList = new ArrayList<>();
-	static List<String> rpgList = new ArrayList<>();
 	private static List<String> cantShoot = new ArrayList<>();
 	private static List<String> cantFire = new ArrayList<>();
-	private List<String> fired = new ArrayList<>();
 
 	static boolean shootChk(String player) {
 
@@ -102,11 +98,11 @@ public class BowListener implements Listener {
 						}
 					}
 				} else if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-					if (e.getItem() != null && e.getItem().hasItemMeta() && e.getItem().getItemMeta().hasLore() && e.getItem().getItemMeta().getLore().contains(CEnchant.RIFLE.getName())) {
+					if (e.getItem() != null && e.getItem().hasItemMeta() && e.getItem().getItemMeta().hasLore() && e.getItem().getItemMeta().getLore().contains(RealName.RIFLE.getEnchant().getName())) {
 
 						if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle") ||
 								(e.getPlayer().getInventory().getBoots() != null && e.getPlayer().getInventory().getBoots().hasItemMeta() && e.getPlayer
-										().getInventory().getBoots().getItemMeta().hasLore() && e.getPlayer().getInventory().getBoots().getItemMeta().getLore().contains(CEnchant.XWY.getName()))) {
+										().getInventory().getBoots().getItemMeta().hasLore() && e.getPlayer().getInventory().getBoots().getItemMeta().getLore().contains(RealName.XWY.getEnchant().getName()))) {
 							if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle")) {
 								if (e.getPlayer().getInventory().contains(Material.ARROW)) {
 
@@ -179,7 +175,7 @@ public class BowListener implements Listener {
 		if (e.getEntity() instanceof Player) {
 			if (e.getBow().hasItemMeta()) {
 				if (e.getBow().getItemMeta().hasLore()) {
-					if (e.getBow().getItemMeta().getLore().contains(CEnchant.SHOTGUN.getName())) {
+					if (e.getBow().getItemMeta().getLore().contains(RealName.SHOTGUN.getEnchant().getName())) {
 						ItemStack i = e.getBow();
 						if (i.getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Default")) {
 							if (((Player) e.getEntity()).getInventory().contains(Material.ARROW, 4)) {
@@ -217,7 +213,7 @@ public class BowListener implements Listener {
 
 	@EventHandler
 	public void onFire(ProjectileLaunchEvent e) {
-
+		//TODO: redo grappling
 		if (e.getEntity().getShooter() instanceof Player) {
 			if (e.getEntity() instanceof Arrow) {
 				final Player p = (Player) e.getEntity().getShooter();
@@ -227,49 +223,22 @@ public class BowListener implements Listener {
 						for (String s : i.getItemMeta().getLore()) {
 							if (s.equalsIgnoreCase(ChatColor.GRAY + "Mode: Grappling")) {
 								for (String k : i.getItemMeta().getLore()) {
-									if (k.equalsIgnoreCase(CEnchant.GRAPPLINGBOW.getName())) {
-
-										ItemStack boots = p.getInventory().getBoots();
-										if (boots != null && boots.getItemMeta().getLore().contains(CEnchant.XWY.getName())) {
-											fired.add(p.getName());
-										} else {
-											if (!cantShoot.contains(p.getName())) {
-												fired.add(p.getName());
-												cantShoot.add(p.getName());
-												Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> cantShoot.remove(p.getName()), 300);
-											} else {
-												p.sendMessage(Messages.fifsecCooldown.get());
-												e.setCancelled(true);
-												p.getInventory().addItem(new ItemStack(Material.ARROW));
-											}
-										}
+									if (k.equalsIgnoreCase(RealName.GRAPPLINGBOW.getEnchant().getName())) {
+										((CustomBowEnchant) RealName.GRAPPLINGBOW.getEnchant()).launch(e);
 									}
 								}
-							} else if (s.equalsIgnoreCase(CEnchant.FROZENARROW.getName())) {
-								if (!freezerlist.contains(p.getName())) {
-									freezerlist.add(p.getName());
-								}
-							} else if (s.equalsIgnoreCase(CEnchant.VOLTAGE.getName())) {
-								if (!smiteList.contains(p.getName())) {
-									smiteList.add(p.getName());
-									DamageListener.summoner = p;
-								}
-							} else if (s.equalsIgnoreCase(CEnchant.POISONOUSARROW.getName())) {
-								if (!poisonList.contains(p.getName())) {
-									poisonList.add(p.getName());
-								}
-							} else if (s.equalsIgnoreCase(CEnchant.FURNACE.getName())) {
-								if (!furnaceList.contains(p.getName())) {
-									furnaceList.add(p.getName());
-								}
-							} else if (s.equalsIgnoreCase(CEnchant.EXPLOSIVEARROW.getName())) {
-								if (!explosiveList.contains(p.getName())) {
-									explosiveList.add(p.getName());
-								}
-							} else if (s.equalsIgnoreCase(CEnchant.RPG.getName())) {
-								if (!rpgList.contains(p.getName())) {
-									rpgList.add(p.getName());
-								}
+							} else if (s.equalsIgnoreCase(RealName.FROZENARROW.getEnchant().getName())) {
+								e.getEntity().setMetadata("Freezer", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+							} else if (s.equalsIgnoreCase(RealName.VOLTAGE.getEnchant().getName())) {
+								e.getEntity().setMetadata("Voltage", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+							} else if (s.equalsIgnoreCase(RealName.POISONOUSARROW.getEnchant().getName())) {
+								e.getEntity().setMetadata("Poisonous", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+							} else if (s.equalsIgnoreCase(RealName.FURNACE.getEnchant().getName())) {
+								e.getEntity().setMetadata("Furnace", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+							} else if (s.equalsIgnoreCase(RealName.EXPLOSIVEARROW.getEnchant().getName())) {
+								e.getEntity().setMetadata("Explosive", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+							} else if (s.equalsIgnoreCase(RealName.RPG.getEnchant().getName())) {
+								e.getEntity().setMetadata("RPG", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							}
 						}
 					}
@@ -286,8 +255,29 @@ public class BowListener implements Listener {
 			if (a.getShooter() instanceof Player) {
 				Player p = (Player) a.getShooter();
 
-				if (fired != null) {
-					int i = 0;
+				if (e.getEntity().hasMetadata("Grappling")) {
+					//redoing
+
+					Location aLoc = a.getLocation();
+					Location pLoc = p.getLocation();
+
+					double x = aLoc.getX() - pLoc.getX();
+					double y = aLoc.getY() - pLoc.getY();
+					double z = aLoc.getZ() - pLoc.getZ();
+
+					Vector v = new Vector();
+
+					v.setX(x / 3);
+					v.setY(y / 9);
+					v.setZ(z / 3);
+
+					p.setVelocity(v);
+
+					p.sendMessage(Messages.launched.get());
+
+
+					//old
+					/*int i = 0;
 					while (i < fired.size()) {
 						String s = fired.get(i);
 						if (s.equalsIgnoreCase(p.getName())) {
@@ -295,9 +285,9 @@ public class BowListener implements Listener {
 							Location aLoc = a.getLocation();
 							Location pLoc = p.getLocation();
 
-							Double x = aLoc.getX() - pLoc.getX();
-							Double y = aLoc.getY() - pLoc.getY();
-							Double z = aLoc.getZ() - pLoc.getZ();
+							double x = aLoc.getX() - pLoc.getX();
+							double y = aLoc.getY() - pLoc.getY();
+							double z = aLoc.getZ() - pLoc.getZ();
 
 							Vector v = new Vector();
 
@@ -309,22 +299,20 @@ public class BowListener implements Listener {
 
 							p.sendMessage(Messages.launched.get());
 
+
 							fired.remove(p.getName());
 						}
 						i++;
-					}
+					}*/
 
 				}
 
-				if (rpgList != null) {
-					if (BowListener.rpgList.contains(p.getName())) {
-						BowListener.rpgList.remove(p.getName());
-						int ab = EnchantDrop.getRandomNumberFrom(1, 100);
-						if (ab <= 15) {
-							DamageListener.playerMadeExplosion = true;
-							Location l = e.getEntity().getLocation();
-							e.getEntity().getLocation().getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 5, false, false);
-						}
+				if (e.getEntity().hasMetadata("RPG")) {
+					int ab = EnchantDrop.getRandomNumberFrom(1, 100);
+					if (ab <= 15) {
+						DamageListener.playerMadeExplosion = true;
+						Location l = e.getEntity().getLocation();
+						e.getEntity().getLocation().getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 5, false, false);
 					}
 				}
 

@@ -33,6 +33,7 @@ public class CustomEnchantManager {
 		// START ENCHANTS
 		init(
 				new ArmorDestructor("Armor Destructor", ItemSets.AXE, Rarity.RARE, "Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
+				new BurnShield("Burn Shield", ItemSets.ARMOR, Rarity.COMMON, "This enchant allows the wearer++to swim in lava and fire if you have++the enchant on all pieces of armor.", Material.POTION, 8259),
 				new Cursed(),
 				new Decapitate(),
 				new DemonsWeakness1(),
@@ -66,6 +67,14 @@ public class CustomEnchantManager {
 
 	public HashMap<String, CustomEnchant> getEnchantsByLore() {
 		return enchantsByLore;
+	}
+
+	public CustomEnchant getEnchantsByLabel(String label) {
+		return enchantsByLabel.get(label);
+	}
+
+	public HashMap<String, CustomEnchant> getEnchantsByName() {
+		return enchantsByName;
 	}
 
 	public List<CustomDamageEnchant> getDamageEnchants() {
@@ -118,7 +127,5 @@ public class CustomEnchantManager {
 
 	}
 
-	public CustomEnchant getEnchantsByLabel(String label) {
-		return enchantsByLabel.get(label);
-	}
+
 }
