@@ -21,9 +21,36 @@ public enum RealName {
 	XWY,
 
 	//TODO: Move to correct place
+	//Just put these here to get rid of compiler errors, runtime errors will occur still
+	//Still need to make class for these enchants and some others
 	EXPLOSIVEPICKI,
 	EXPLOSIVEPICKII,
-	EXPLOSIVEPICKIII;
+	EXPLOSIVEPICKIII,
+
+	FORTUNEV,
+
+	EFFICIENCYI,
+	EFFICIENCYII,
+	EFFICIENCYIII,
+	EFFICIENCYIV,
+	EFFICIENCYV,
+	EFFICIENCYVI,
+	EFFICIENCYVII,
+	EFFICIENCYVIII,
+	EFFICIENCYIX,
+	EFFICIENCYX,
+
+	MEDICINE,
+
+	GUARDIAN,
+
+	GUARDIANSBLOCK,
+
+	BURNSHEILD,
+
+	REINFORCED,
+
+	;
 
 	RealName() {
 

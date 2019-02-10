@@ -94,7 +94,7 @@ public class EnchantDrop implements Listener {
 					if (ret == ADMIN_ENCHANT) {
 						successFail(e, itemInteractedWith, itemOnCursor, player, false, "");
 						if (itemInteractedWith.hasItemMeta() && itemInteractedWith.getItemMeta().hasLore()) {
-							if (itemInteractedWith.getItemMeta().getLore().contains(CEnchant.XWY.getEnchant().getName())) {
+							if (itemInteractedWith.getItemMeta().getLore().contains(RealName.XWY.getEnchant().getName())) {
 								ItemMeta meta = itemInteractedWith.getItemMeta();
 								meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&3&l«&9&l&kk&3&l» &6&lXwy's Boots &3&l«&9&l&kf&3&l»"));
 								itemInteractedWith.setItemMeta(meta);
@@ -181,7 +181,7 @@ public class EnchantDrop implements Listener {
 					return HAS_SAME;
 				}
 
-				if (ce.getName().charAt(ce.getName().length() - 1) == 'I') {
+				if (customEnchant.getName().charAt(customEnchant.getName().length() - 1) == 'I') {
 					String slvl = ench.substring(ench.indexOf('I'));
 					int nlvl = 0;
 
@@ -301,7 +301,7 @@ public class EnchantDrop implements Listener {
 						}
 						itemInteractedWith.setItemMeta(meta);
 
-						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.FORTUNEV.getName())) {
+						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.FORTUNEV.getEnchant().getName())) {
 							if (itemInteractedWith.getItemMeta().hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
 								if (itemInteractedWith.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) == 5)
 									return;

@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="531f2f66-5fa7-4fd1-af11-ceedade93abd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Xwy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/CustomEnchantsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/CustomEnchantsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Flash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Flash.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Soulbound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Soulbound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/BowListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/BowListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DamageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DeathListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DeathListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/FeedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/FeedListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/FlashCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/FlashCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/HeartCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/HeartCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/JumpBoostCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/JumpBoostCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/NightVisionCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/NightVisionCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/SpeedCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/SpeedCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/ValorCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/ValorCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/WaterBreathingCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/tasks/WaterBreathingCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchantManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchantManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ce/CustomEnchantsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ce/CustomEnchantsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ce/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/ce/Menu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,26 +60,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="89" />
+          <entry key="java" value="90" />
           <entry key="yml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="89" />
+          <entry key="JAVA" value="90" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="5891" />
+          <entry key="java" value="6289" />
           <entry key="yml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5891" />
+          <entry key="JAVA" value="6289" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="YAML" value="3" />
         </counts>
@@ -109,21 +91,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DamageListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="47" column="115" selection-start-line="47" selection-start-column="115" selection-end-line="47" selection-end-column="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1549774236000" expanded="true" signature="1505:2220" ph="..." />
-              </folding>
+            <state relative-caret-position="544">
+              <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -131,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+            <state relative-caret-position="840">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,21 +110,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="163" column="60" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Xwy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state relative-caret-position="136">
+              <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#773#774#0" expanded="true" />
                 <element signature="e#802#803#0" expanded="true" />
               </folding>
             </state>
@@ -165,10 +126,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+            <state relative-caret-position="255">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1549775192000" expanded="true" signature="1466:2181" ph="..." />
               </folding>
             </state>
           </provider>
@@ -283,13 +257,13 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/commands/CustomEnchantsCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/enums/CEnchant.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/enums/CustomEnchantList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Xwy.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchantManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DamageListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java" />
       </list>
     </option>
   </component>
@@ -380,72 +354,6 @@
               <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="custom_enchants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="listeners" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="tasks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="utility" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="utility" type="462c0819:PsiDirectoryNode" />
-              <item name="ce" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="utility" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="prison_core" type="462c0819:PsiDirectoryNode" />
-              <item name="utility" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PrisonCore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PrisonCore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -464,7 +372,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549773180186" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549774522527" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -532,7 +440,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913043" visible="true" weight="0.1641791" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913043" visible="true" weight="0.1641791" />
       <window_info id="Structure" order="1" sideWeight="0.5008696" side_tool="true" weight="0.24949698" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -941,38 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Xwy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#802#803#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1549774236000" expanded="true" signature="1505:2220" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchantManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -993,27 +869,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state relative-caret-position="-188">
+          <caret line="96" column="93" selection-start-line="96" selection-start-column="93" selection-end-line="96" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/RealName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/EnchantDrop.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnchant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="163" column="60" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="60" />
+        <state relative-caret-position="680">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1549775192000" expanded="true" signature="1466:2181" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/utility/CustomEnviromentalDamageEnchant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/custom_enchants/Xwy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#773#774#0" expanded="true" />
+            <element signature="e#802#803#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/prison_core/listeners/DamageListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="47" column="115" selection-start-line="47" selection-start-column="115" selection-end-line="47" selection-end-column="115" />
+        <state relative-caret-position="544">
+          <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
         </state>
       </provider>
     </entry>

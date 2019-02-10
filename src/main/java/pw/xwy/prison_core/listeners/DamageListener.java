@@ -89,7 +89,7 @@ public class DamageListener implements Listener {
 				ItemStack helm = player.getInventory().getHelmet();
 				if (helm != null && helm.hasItemMeta() && helm.getItemMeta().hasLore()) {
 					for (String s : helm.getItemMeta().getLore()) {
-						if (s.equalsIgnoreCase(CEnchant.MEDICINE.getName())) {
+						if (s.equalsIgnoreCase(RealName.MEDICINE.getEnchant().getName())) {
 							e.setCancelled(true);
 						}
 					}
@@ -102,7 +102,7 @@ public class DamageListener implements Listener {
 				ItemStack helm = player.getInventory().getHelmet();
 				if (helm != null && helm.hasItemMeta() && helm.getItemMeta().hasLore()) {
 					for (String s : helm.getItemMeta().getLore()) {
-						if (s.equalsIgnoreCase(CEnchant.GUARDIAN.getName())) {
+						if (s.equalsIgnoreCase(RealName.GUARDIAN.getEnchant().getName())) {
 							e.setCancelled(true);
 						}
 					}
@@ -118,10 +118,10 @@ public class DamageListener implements Listener {
 				ItemStack chest = player.getInventory().getChestplate();
 				ItemStack boots = player.getInventory().getBoots();
 				ItemStack helm = player.getInventory().getHelmet();
-				if (armorCheck(helm, CEnchant.BURNSHEILD.getName()) ||
-						armorCheck(chest, CEnchant.BURNSHEILD.getName()) ||
-						armorCheck(legs, CEnchant.BURNSHEILD.getName()) ||
-						armorCheck(boots, CEnchant.BURNSHEILD.getName()))
+				if (armorCheck(helm, RealName.BURNSHEILD.getEnchant().getName()) ||
+						armorCheck(chest, RealName.BURNSHEILD.getEnchant().getName()) ||
+						armorCheck(legs, RealName.BURNSHEILD.getEnchant().getName()) ||
+						armorCheck(boots, RealName.BURNSHEILD.getEnchant().getName()))
 					e.setCancelled(true);
 			}
 		}
@@ -170,16 +170,15 @@ public class DamageListener implements Listener {
 				}*/
 
 				if (player.isBlocking() && player.getItemInHand() != null && player.getItemInHand().hasItemMeta() &&
-						player.getItemInHand().getItemMeta().hasLore() && player.getItemInHand().getItemMeta().getLore().contains(CEnchant
-						.GUARDIANSBLOCK
-						.getName())) {
+						player.getItemInHand().getItemMeta().hasLore() && player.getItemInHand().getItemMeta().getLore()
+						.contains(RealName.GUARDIANSBLOCK.getEnchant().getName())) {
 					e.setDamage(e.getDamage() / 2);
 				}
 
-				if (armorCheck(boots, CEnchant.SELFHEALER.getName())) {
+				if (armorCheck(boots, RealName.SELFHEALER.getEnchant().getName())) {
 
 				}
-				if (armorCheck(chest, CEnchant.REINFORCED.getName())) {
+				if (armorCheck(chest, RealName.REINFORCED.getEnchant().getName())) {
 					if (((Player) e.getEntity()).getHealth() <= 5) {
 						((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 0));
 					}
@@ -300,7 +299,7 @@ public class DamageListener implements Listener {
 								double d = player.getHealth() + (e.getDamage() / 2);
 								if (d > player.getMaxHealth()) d = player.getMaxHealth();
 								player.setHealth(d);
-							} else if (s.equalsIgnoreCase(CEnchant.STORMCALLER.getName()) || s.equalsIgnoreCase(CEnchant.THOR.getName())) {
+							} else if (s.equalsIgnoreCase(CEnchant.STORMCALLER.getName()) || s.equalsIgnoreCase(RealName.THOR.getEnchant().getName())) {
 								int r = EnchantDrop.getRandomNumberFrom(1, 100);
 								if (r <= 10) {
 									player.getLocation().getWorld().strikeLightning(e.getEntity().getLocation());

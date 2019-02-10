@@ -38,8 +38,6 @@ public abstract class CustomEnchant {
 		this.displayItem = new CustomItem(displayItem).setDurability(durability);
 	}
 
-	public abstract void event(Event e);
-
 	public void saveDefault(Config config) {
 		String base = "CustomEnchants." + realName + ".";
 		config.set(base + "name", name);
