@@ -19,7 +19,7 @@ public class Thor extends CustomDamageEnchant {
 	public void event(EntityDamageByEntityEvent e) {
 		if (EnchantDrop.getRandomNumberFrom(1, 100) <= 10) {
 			e.getDamager().getLocation().getWorld().strikeLightning(e.getEntity().getLocation());
-			DamageListener.summoner = (Player) e.getDamager();
+			StormCaller.summoner = (Player) e.getDamager();
 		}
 	}
 }

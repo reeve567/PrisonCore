@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.RealName;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,7 @@ public class DeathListener implements Listener {
 			if (k.getItemInHand().hasItemMeta()) {
 				if (k.getItemInHand().getItemMeta().hasLore()) {
 					for (String s : k.getItemInHand().getItemMeta().getLore()) {
-						if (s.equalsIgnoreCase(CEnchant.DECAPITATE.getName())) {
+						if (s.equalsIgnoreCase(RealName.DECAPITATE.getEnchant().getName())) {
 							// TODO: Run Decapitate
 						}
 					}
@@ -55,14 +56,14 @@ public class DeathListener implements Listener {
 			ItemStack i = p.getItemInHand();
 
 			if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore()) {
-				if (i.getItemMeta().getLore().contains(CEnchant.MOBSLAYERI.getName())) {
+				if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERI.getEnchant().getName())) {
 					e.setDroppedExp(e.getDroppedExp() * 2);
-				} else if (i.getItemMeta().getLore().contains(CEnchant.MOBSLAYERII.getName())) {
+				} else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERII.getEnchant().getName())) {
 					e.setDroppedExp(e.getDroppedExp() * 3);
-				} else if (i.getItemMeta().getLore().contains(CEnchant.MOBSLAYERIII.getName())) {
+				} else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERIII.getEnchant().getName())) {
 					e.setDroppedExp(e.getDroppedExp() * 4);
 				}
-				if (i.getItemMeta().getLore().contains(CEnchant.ANIMALCOOKER.getName())) {
+				if (i.getItemMeta().getLore().contains(RealName.ANIMALCOOKER.getEnchant().getName())) {
 					changeDrops(e);
 				} else if (BowListener.furnaceList.contains(p.getName())) {
 					changeDrops(e);

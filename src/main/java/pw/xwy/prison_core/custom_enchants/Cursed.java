@@ -13,8 +13,13 @@ import pw.xwy.prison_core.utility.enums.Rarity;
 
 public class Cursed extends CustomDamageEnchant {
 
-	public Cursed() {
-		super("Cursed", ItemSets.AXE, Rarity.HYDRO, "Has a chance to give the opponent++Mining Fatigue for 8 seconds.", Material.WOOD_PICKAXE);
+
+	public Cursed(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, disable);
+	}
+
+	public Cursed(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, int durability, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, durability, disable);
 	}
 
 	@Override

@@ -13,8 +13,13 @@ import pw.xwy.prison_core.utility.enums.Rarity;
 
 public class SmokeScreen3 extends CustomEnchant {
 
-	public SmokeScreen3() {
-		super("Smoke Screen III", ItemSets.SWORDAXE, Rarity.HYDRO, "Has a chance to give the opponent++blindness for 5 seconds.", Material.COAL, 1);
+
+	public SmokeScreen3(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, disable);
+	}
+
+	public SmokeScreen3(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, int durability, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, durability, disable);
 	}
 
 	@EventHandler

@@ -62,7 +62,16 @@ public enum RealName {
 	EXPLOSIVEARROW,
 	RPG,
 
-	SMELTING
+	SMELTING,
+
+	GLOWING,
+	SCUBADIVER,
+	VALOR,
+
+	MOBSLAYERI,
+	MOBSLAYERII,
+	MOBSLAYERIII,
+	ANIMALCOOKER
 	;
 
 	public static boolean hasEnchant(ItemStack itemInHand, RealName ench) {

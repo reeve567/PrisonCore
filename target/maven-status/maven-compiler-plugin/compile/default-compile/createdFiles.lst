@@ -1,0 +1,9 @@
+pw\xwy\prison_core\utility\CustomEnchant.class
+pw\xwy\prison_core\utility\config\Config.class
+pw\xwy\prison_core\commands\AutosellCommand.class
+pw\xwy\prison_core\utility\enums\Rarity.class
+pw\xwy\prison_core\utility\CustomTaskEnchant.class
+pw\xwy\prison_core\custom_enchants\Miner2.class
+pw\xwy\prison_core\utility\enums\ItemSets.class
+pw\xwy\prison_core\utility\CustomDamageEnchant.class
+pw\xwy\prison_core\custom_enchants\Flash.class

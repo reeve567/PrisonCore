@@ -13,8 +13,12 @@ import java.util.List;
 
 public class Decapitate extends CustomDeathEnchant {
 
-	public Decapitate() {
-		super("Decapitate", ItemSets.SWORDAXE, Rarity.RARE, "This enchant ensures you salvage++an enemy player's head.", Material.SKULL_ITEM, 3);
+	public Decapitate(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, disable);
+	}
+
+	public Decapitate(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, int durability, boolean... disable) {
+		super(name, sets, rarity, description, displayItem, durability, disable);
 	}
 
 	@Override

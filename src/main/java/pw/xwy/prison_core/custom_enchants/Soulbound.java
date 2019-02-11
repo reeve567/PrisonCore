@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.listeners.EnchantDrop;
 import pw.xwy.prison_core.utility.CustomDeathEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
@@ -33,7 +34,7 @@ public class Soulbound extends CustomDeathEnchant {
 		while (iter.hasNext()) {
 			ItemStack i = iter.next();
 			if (i.hasItemMeta() && i.getItemMeta().hasLore()) {
-				if (i.getItemMeta().getLore().contains(CEnchant.SOULBOUND.getName())) {
+				if (i.getItemMeta().getLore().contains(RealName.SOULBOUND.getEnchant().getName())) {
 					if (EnchantDrop.getRandomNumberFrom(1, 100) <= 10) {
 						keeps.add(i);
 						iter.remove();

@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import pw.xwy.prison_core.RealName;
 
 public class ValorCheck implements Runnable {
 
@@ -39,7 +40,7 @@ public class ValorCheck implements Runnable {
 
 	boolean ItemCheck(ItemStack i) {
 
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.VALOR.getName())) {
+		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.VALOR.getEnchant().getName())) {
 			return true;
 		}
 		return false;

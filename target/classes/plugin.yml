@@ -1,0 +1,81 @@
+main: pw.xwy.prison_core.PrisonCore
+name: PrisonCore
+version: DEV
+author: Xwy
+depend: [Votifier,Citizens]
+commands:
+  feed:
+    aliases: []
+    permission: xwy.perks.commands.feed
+    permission-message: §cYou do not have permission to do this!
+  mine:
+    aliases: []
+    permission: xwy.admin.mine
+    permission-message: §cYou do not have permission to do this!
+  bal:
+    aliases: [balance,money]
+  scoreboardtoggle:
+    aliases: [sbt,sbtoggle]
+  ce:
+    aliases: [customenchants]
+  conv:
+    aliases: [convert]
+  ds:
+    aliases: [donorshop]
+  rankup:
+    aliases: [ru]
+  kit:
+    aliases: []
+  set:
+    aliases: []
+    permission: xwy.admin.set
+    permission-message: §cYou do not have permission to do this!
+  spawn:
+    aliases: []
+  chatstop:
+    aliases: [cs,sc,stopchat]
+    permission: xwy.admin.chatstop
+    permission-message: §cYou do not have permission to do this!
+  chatclear:
+    aliases: [cc,clearchat]
+    permission: xwy.admin.chatclear
+    permission-message: §cYou do not have permission to do this!
+  workbench:
+    aliases: [wb]
+    permission: xwy.perks.commands.workbench
+    permission-message: §cYou do not have permission to do this!
+  sellall:
+    aliases: [sa]
+    permission: xwy.perks.commands.sellall
+    permission-message: §cYou do not have permission to do this!
+  autosell:
+    aliases: [as]
+    permission: xwy.perks.commands.autosell
+    permission-message: §cYou do not have permission to do this!
+  enderchest:
+    aliases: [ec]
+    permission: xwy.perks.commands.enderchest
+    permission-message: §cYou do not have permission to do this!
+  hat:
+    aliases: []
+    permission: xwy.perks.commands.hat
+    permission-message: §cYou do not have permission to do this!
+  key:
+    aliases: []
+    permission: xwy.admin.key
+    permission-message: §cYou do not have permission to do this!
+  permissions:
+    aliases: [perms]
+    permission: xwy.admin.permissions
+    permission-message: §cYou do not have permission to do this!
+  fly:
+    aliases: []
+    permission: xwy.perks.commands.fly
+    permission-message: §cYou do not have permission to do this!
+  tags:
+    aliases: [tag]
+  warp:
+    aliases: [warps]
+  event:
+    aliases: [ev,events]
+  vote:

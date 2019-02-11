@@ -46,7 +46,6 @@ public enum MenuItem {
 	MOBSLAYERI("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 	MOBSLAYERII("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 	MOBSLAYERIII("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
-	HOSTILEDAMAGE("This enchantment doubles damage to++hostile mobs.", Material.SKULL_ITEM, 2),
 	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF),
 
 
