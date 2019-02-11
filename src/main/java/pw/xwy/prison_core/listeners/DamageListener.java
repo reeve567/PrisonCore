@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,8 +17,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.commands.EventCommand;
-import pw.xwy.prison_core.utility.CustomEnviromentalDamageEnchant;
-import pw.xwy.prison_core.utility.Rect3D;
+import pw.xwy.prison_core.utility.*;
 import pw.xwy.prison_core.utility.enums.Messages;
 
 import java.util.HashMap;
@@ -157,6 +155,21 @@ public class DamageListener implements Listener {
 
 		if (!e.isCancelled()) {
 			//TODO: Sort out which enchants need player damager and which don't
+
+			Player player = (Player) e.getDamager();
+			if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
+				for (String s : player.getItemInHand().getItemMeta().getLore()) {
+					if (CustomEnchantManager.getInstance().getEnchantsByLore().containsKey(s)) {
+						CustomEnchant enchant = CustomEnchantManager.getInstance().getEnchantsByLore().get(s);
+						if (enchant instanceof CustomDamageEnchant) {
+							CustomDamageEnchant damageEnchant = (CustomDamageEnchant) enchant;
+
+							damageEnchant.event(e);
+						}
+					}
+				}
+			}
+
 			if (e.getEntity() instanceof Player) {
 
 				//TODO: Run enchants like Molten, Antiknockback here
@@ -215,96 +228,7 @@ public class DamageListener implements Listener {
 			}
 
 			if (e.getDamager() instanceof Player) {
-				Player player = (Player) e.getDamager();
-				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
 
-
-
-
-					for (String s : player.getItemInHand().getItemMeta().getLore()) {
-						if (s.equalsIgnoreCase(RealName.EXPTHIEF.getEnchant().getName())) {
-							int r = EnchantDrop.getRandomNumberFrom(1, 100);
-							if (r <= 85) {
-								if (e.getEntity() instanceof Player) {
-									if (!(((Player) e.getEntity()).getInventory().getBoots() != null &&
-											((Player) e.getEntity()).getInventory().getBoots().hasItemMeta() &&
-											((Player) e.getEntity()).getInventory().getBoots().getItemMeta().hasLore() &&
-											((Player) e.getEntity()).getInventory().getBoots().getItemMeta().getLore()
-													.contains(RealName.EXPPROTECTOR.getEnchant().getName()))) {
-										((Player) e.getEntity()).setExp(((Player) e.getEntity()).getExp() * 98);
-										((Player) e.getDamager()).setExp(((Player) e.getDamager()).getExp() + ((Player) e.getEntity()).getExp() * 2);
-									}
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.CHARGE.getEnchant().getName())) {
-							int r = EnchantDrop.getRandomNumberFrom(1, 100);
-							if (r > 85) {
-								if (player.isSprinting()) {
-									e.setDamage(e.getDamage() * 1.2);
-								}
-							}
-						} /*else if (s.equalsIgnoreCase(CEnchant.DEMONSBLADE.getName())) {
-								e.setDamage(e.getDamage() * 1.05);
-							}*/ else if (s.equalsIgnoreCase(RealName.WITHERI.getEnchant().getName())) {
-							int r = EnchantDrop.getRandomNumberFrom(1, 100);
-							if (r > 85) {
-								if (e.getEntity() instanceof Player) {
-									((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 40, 0));
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.WITHERII.getEnchant().getName())) {
-							int r = EnchantDrop.getRandomNumberFrom(1, 100);
-							if (r > 85) {
-								if (e.getEntity() instanceof Player) {
-									((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 80, 0));
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.FROZENBLADE.getEnchant().getName())) {
-							int r = EnchantDrop.getRandomNumberFrom(1, 100);
-							if (r > 85) {
-								if (e.getEntity() instanceof Player) {
-									((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.DIZZY.getEnchant().getName())) {
-							if (e.getEntity() instanceof Player) {
-								((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 60, 0));
-							}
-						} else if (s.equalsIgnoreCase(RealName.HOSTILEDAMAGE.getEnchant().getName())) {
-							if (e.getEntity() instanceof Monster) {
-								e.setDamage(e.getDamage() * 2);
-							}
-						} else if (s.equalsIgnoreCase(RealName.PARALYZE.getEnchant().getName())) {
-							if (e.getEntity() instanceof Player) {
-
-								int r = EnchantDrop.getRandomNumberFrom(1, 100);
-								if (r > 80) {
-									((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.BATTLEROAR.getEnchant().getName())) {
-							if (e.getEntity() instanceof Player) {
-								int g = EnchantDrop.getRandomNumberFrom(1, 100);
-								if (g <= 20) {
-									int r = EnchantDrop.getRandomNumberFrom(1, 100);
-									if (r <= 50) {
-										if (((Player) e.getEntity()).hasPotionEffect(PotionEffectType.INCREASE_DAMAGE))
-											((Player) e.getEntity()).removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 400, 0));
-									} else {
-										if (((Player) e.getEntity()).hasPotionEffect(PotionEffectType.WITHER))
-											((Player) e.getEntity()).removePotionEffect(PotionEffectType.WITHER);
-										((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 400, 0));
-									}
-								}
-							}
-						} else if (s.equalsIgnoreCase(RealName.MINERI.getEnchant().getName())) {
-
-						} else if (s.equalsIgnoreCase(RealName.MINERII.getEnchant().getName())) {
-
-						}
-					}
-				}
 			}
 		}
 	}

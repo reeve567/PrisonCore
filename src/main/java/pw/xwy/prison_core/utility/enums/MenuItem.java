@@ -25,9 +25,7 @@ public enum MenuItem {
 	GLOWING("This enchant gives the wearer infinite night vision.", Material.GLOWSTONE),
 	SCUBADIVER("This enchant gives the wearer infinite water breathing.", Material.RAW_FISH),
 
-	EXPPROTECTOR("This enchantment prevents your EXP from being stolen.", Material.EXP_BOTTLE),
 	//DETONATE("This enchant has a chance of exploding, damaging everything nearby except the wearer.", Material.TNT),
-	BATTLEROAR("This enchant either gives the wearer strength when hit, or wither.", Material.REDSTONE_TORCH_ON),
 	SHOTGUN("Shooting an arrow with this enchant++launches 4 projectiles while on the++correct mode.", Material.ARROW),
 
 	RIFLE("With this enchant, all you have to do++is right click to shoot an arrow, if++on the correct mode.", Material.FIREWORK),
@@ -45,18 +43,10 @@ public enum MenuItem {
 	//MAGNET("Mined blocks go straight to your inventory.", Material.HOPPER),
 	SMELTING("When you destroy a block with this, you++get the molten products of that block.", Material.GOLD_INGOT),
 	FORTUNEV("This enchant brings great fortune to many.", Material.DIAMOND_PICKAXE),
-	MINERI("This doubles the attack damage of a pickaxe", Material.GOLD_PICKAXE),
-	MINERII("This triples the attack damage of a pickaxe", Material.DIAMOND_AXE),
-	VAMPIRE("Hitting an enemy with this enchant++on your sword will heal you for half++the damage you do.", Material.PUMPKIN),
-	WITHERI("Hitting an enemy with this enchant++has a chance to wither the opponent++for 2 seconds.", Material.SKULL_ITEM, 1),
-	WITHERII("Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
-	DIZZY("Hitting an enemy with this enchant++inflicts 3 seconds of nausea.", Material.JACK_O_LANTERN),
-	FROZENBLADE("This enchantment has a chance to give++the opponent slowness for 5 seconds.", Material.ICE),
 	MOBSLAYERI("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 	MOBSLAYERII("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 	MOBSLAYERIII("Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 	HOSTILEDAMAGE("This enchantment doubles damage to++hostile mobs.", Material.SKULL_ITEM, 2),
-	PARALYZE("Hitting a mob has a chance to slow++it's movement speed.", Material.ROTTEN_FLESH),
 	ANIMALCOOKER("Killing mobs will cook their meat automatically.", Material.COOKED_BEEF),
 
 
