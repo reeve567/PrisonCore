@@ -13,7 +13,6 @@ package pw.xwy.prison_core.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,6 +25,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
+import pw.xwy.prison_core.utility.CustomVanillaEnchant;
 import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -302,24 +302,17 @@ public class EnchantDrop implements Listener {
 						itemInteractedWith.setItemMeta(meta);
 
 						if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.FORTUNEV.getEnchant().getName())) {
-							if (itemInteractedWith.getItemMeta().hasEnchant(Enchantment.LOOT_BONUS_BLOCKS)) {
-								if (itemInteractedWith.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) == 5)
-									return;
-							}
-							itemInteractedWith.removeEnchantment(Enchantment.LOOT_BONUS_BLOCKS);
-							itemInteractedWith.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 5);
-							player.setItemOnCursor(null);
-							player.sendMessage(Messages.itemSuccess.get());
+							((CustomVanillaEnchant) RealName.FORTUNEV.getEnchant()).apply(itemInteractedWith, player);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVI.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 6);
+							((CustomVanillaEnchant) RealName.EFFICIENCYVI.getEnchant()).apply(itemInteractedWith, player);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVII.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 7);
+							((CustomVanillaEnchant) RealName.EFFICIENCYVII.getEnchant()).apply(itemInteractedWith, player);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYVIII.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 8);
+							((CustomVanillaEnchant) RealName.EFFICIENCYVIII.getEnchant()).apply(itemInteractedWith, player);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYIX.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 9);
+							((CustomVanillaEnchant) RealName.EFFICIENCYIX.getEnchant()).apply(itemInteractedWith, player);
 						} else if (itemOnCursor.getItemMeta().getDisplayName().equalsIgnoreCase(RealName.EFFICIENCYX.getEnchant().getName())) {
-							effEnch(player, itemInteractedWith, 10);
+							((CustomVanillaEnchant) RealName.EFFICIENCYX.getEnchant()).apply(itemInteractedWith, player);
 						} else if (enchant(itemOnCursor, itemInteractedWith)) {
 							player.setItemOnCursor(null);
 							player.sendMessage(Messages.itemSuccess.get());
@@ -402,14 +395,4 @@ public class EnchantDrop implements Listener {
 		player.getInventory().setItem(slot, new ItemStack(Material.AIR));
 	}
 
-	public void effEnch(Player player, ItemStack pick, int i) {
-		if (pick.getItemMeta().hasEnchant(Enchantment.DIG_SPEED)) {
-			if (pick.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED) >= i)
-				return;
-		}
-		pick.removeEnchantment(Enchantment.DIG_SPEED);
-		pick.addUnsafeEnchantment(Enchantment.DIG_SPEED, i);
-		player.sendMessage(Messages.itemSuccess.get());
-		player.setItemOnCursor(null);
-	}
 }

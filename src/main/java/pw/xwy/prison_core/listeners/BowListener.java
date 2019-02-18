@@ -11,7 +11,6 @@ package pw.xwy.prison_core.listeners;
 // made by reeve
 // on 11:49 AM
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,11 +29,12 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.custom_enchants.Rifle;
 import pw.xwy.prison_core.utility.CustomBowBlockEnchant;
 import pw.xwy.prison_core.utility.CustomBowDeathEnchant;
 import pw.xwy.prison_core.utility.CustomBowEnchant;
+import pw.xwy.prison_core.utility.CustomBowShootEnchant;
 import pw.xwy.prison_core.utility.ce.MessagesFunctions;
-import pw.xwy.prison_core.utility.enums.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ import java.util.List;
 public class BowListener implements Listener {
 
 	public static List<String> cantShoot = new ArrayList<>();
-	private static List<String> cantFire = new ArrayList<>();
+	public static List<String> cantFire = new ArrayList<>();
 
 	static boolean shootChk(String player) {
 
@@ -64,13 +64,13 @@ public class BowListener implements Listener {
 
 							for (String s : e.getItem().getItemMeta().getLore()) {
 								if (!s.contains("Mode")) {
-									if (s.contains("GrapplingBow")) {
+									if (s.contains("Grappling")) {
 										hasGrapple = true;
 									}
 									if (s.contains("Rifle")) {
 										hasRifle = true;
 									}
-									if (s.contains("ShotgunBow")) {
+									if (s.contains("Shotgun")) {
 										hasShotgun = true;
 									}
 								}
@@ -106,28 +106,7 @@ public class BowListener implements Listener {
 								(e.getPlayer().getInventory().getBoots() != null && e.getPlayer().getInventory().getBoots().hasItemMeta() && e.getPlayer
 										().getInventory().getBoots().getItemMeta().hasLore() && e.getPlayer().getInventory().getBoots().getItemMeta().getLore().contains(RealName.XWY.getEnchant().getName()))) {
 							if (e.getPlayer().getItemInHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Rifle")) {
-								if (e.getPlayer().getInventory().contains(Material.ARROW)) {
-
-									if (!cantFire.contains(e.getPlayer().getName())) {
-										cantFire.add(e.getPlayer().getName());
-										e.setCancelled(true);
-										e.getPlayer().getItemInHand().setDurability((short) (e.getPlayer().getItemInHand().getDurability() + 1));
-										e.getPlayer().getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-										Arrow arrow = e.getPlayer().launchProjectile(Arrow.class);
-										arrow.setBounce(false);
-										Vector v = e.getPlayer().getLocation().getDirection().multiply(3);
-										arrow.setVelocity(v);
-										e.getPlayer().updateInventory();
-
-										Bukkit.getScheduler().runTaskLater(PrisonCore.getInstance(), () -> cantFire.remove(e.getPlayer().getName()), 100L);
-
-									} else {
-										e.setCancelled(true);
-										e.getPlayer().sendMessage(Messages.prefix.get() + ChatColor.GRAY + "You may only do this every 5 seconds.");
-									}
-								} else {
-									e.getPlayer().sendMessage(Messages.noAmmo.get());
-								}
+								((Rifle) RealName.RIFLE.getEnchant()).launch(e);
 							} else {
 								e.setCancelled(true);
 								Arrow arrow = e.getPlayer().launchProjectile(Arrow.class);
@@ -178,44 +157,17 @@ public class BowListener implements Listener {
 			if (e.getBow().hasItemMeta()) {
 				if (e.getBow().getItemMeta().hasLore()) {
 					if (e.getBow().getItemMeta().getLore().contains(RealName.SHOTGUN.getEnchant().getName())) {
-						ItemStack i = e.getBow();
-						if (i.getItemMeta().getLore().contains(ChatColor.GRAY + "Mode: Default")) {
-							if (((Player) e.getEntity()).getInventory().contains(Material.ARROW, 4)) {
-
-								e.getProjectile().remove();
-								((Player) e.getEntity()).getInventory().addItem(new ItemStack(Material.ARROW, 1));
-
-								e.getBow().setDurability((short) (e.getBow().getDurability() - 1));
-								for (int r = 1; r <= 4; r++) {
-									((Player) e.getEntity()).getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-									Arrow arrow = e.getEntity().launchProjectile(Arrow.class);
-									arrow.setBounce(false);
-									Vector v = e.getEntity().getLocation().getDirection();
-									v.add(new Vector(Vec(), 0, Vec()));
-									arrow.setVelocity(v);
-									((Player) e.getEntity()).updateInventory();
-								}
-							} else {
-								e.setCancelled(true);
-								e.getEntity().sendMessage(Messages.noAmmo.get());
-								((Player) e.getEntity()).updateInventory();
-							}
-						}
+						((CustomBowShootEnchant) RealName.SHOTGUN.getEnchant()).event(e);
 					}
 				}
 			}
 		}
 	}
 
-	private float Vec() {
-
-		float spread = (float) .2;
-		return -spread + (float) (Math.random() * ((spread + spread)));
-	}
 
 	@EventHandler
 	public void onFire(ProjectileLaunchEvent e) {
-		//TODO: redo grappling
+		//TODO: Combine with shoot event ?
 		if (e.getEntity().getShooter() instanceof Player) {
 			if (e.getEntity() instanceof Arrow) {
 				final Player p = (Player) e.getEntity().getShooter();
@@ -224,15 +176,11 @@ public class BowListener implements Listener {
 					if (i.getItemMeta().hasLore()) {
 						for (String s : i.getItemMeta().getLore()) {
 							if (s.equalsIgnoreCase(ChatColor.GRAY + "Mode: Grappling")) {
-								for (String k : i.getItemMeta().getLore()) {
-									if (k.equalsIgnoreCase(RealName.GRAPPLINGBOW.getEnchant().getName())) {
-										((CustomBowEnchant) RealName.GRAPPLINGBOW.getEnchant()).launch(e);
-									}
-								}
+								((CustomBowEnchant) RealName.GRAPPLINGBOW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.FROZENARROW.getEnchant().getName())) {
 								e.getEntity().setMetadata("Freezer", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							} else if (s.equalsIgnoreCase(RealName.VOLTAGE.getEnchant().getName())) {
-								e.getEntity().setMetadata("Voltage", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+								((CustomBowDeathEnchant) RealName.VOLTAGE.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.POISONOUSARROW.getEnchant().getName())) {
 								e.getEntity().setMetadata("Poisonous", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							} else if (s.equalsIgnoreCase(RealName.FURNACE.getEnchant().getName())) {

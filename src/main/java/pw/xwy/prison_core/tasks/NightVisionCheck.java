@@ -15,41 +15,34 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomTaskEnchant;
 
 public class NightVisionCheck implements Runnable {
 	private JavaPlugin main;
-	
+
 	public NightVisionCheck(JavaPlugin main) {
 		this.main = main;
 		run();
 	}
-	
+
 	@Override
 	public void run() {
-		
+
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet())) {
-						if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
-							p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-						}
-						p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 300, 0));
+						((CustomTaskEnchant) RealName.GLOWING.getEnchant()).event(p);
 					}
 				}
 			}
 		}, 0, 40);
 	}
-	
-	boolean ItemCheck(ItemStack i) {
-		
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.GLOWING.getEnchant().getName())) {
-			return true;
-		}
-		return false;
+
+	private boolean ItemCheck(ItemStack i) {
+
+		return i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.GLOWING.getEnchant().getName());
 	}
-	
+
 }

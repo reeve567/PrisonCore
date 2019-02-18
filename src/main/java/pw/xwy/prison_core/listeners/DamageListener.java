@@ -197,11 +197,7 @@ public class DamageListener implements Listener {
 					}
 				}
 				if (arrow.hasMetadata("Voltage")) {
-					int num = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (num <= 20) {
-						e.getEntity().getLocation().getWorld().strikeLightning(e.getEntity().getLocation());
-						p.sendMessage(Messages.smited.get());
-					}
+					((CustomBowEnchant) RealName.VOLTAGE.getEnchant()).event(e);
 				}
 				if (arrow.hasMetadata("RPG")) {
 					int num = EnchantDrop.getRandomNumberFrom(1, 100);

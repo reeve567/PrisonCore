@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.commands.AutosellCommand;
+import pw.xwy.prison_core.custom_enchants.Smelting;
 import pw.xwy.prison_core.events.BlockMinedEvent;
 import pw.xwy.prison_core.utility.CustomBlockEnchant;
 import pw.xwy.prison_core.utility.CustomMineEnchant;
@@ -226,19 +227,10 @@ public class BlockListener implements Listener {
 
 	private List<ItemStack> getDrop(Block b, boolean smelt, boolean fortune, int lvl, byte data, ItemStack it) {
 
-		Material type = b.getType();
 		List<ItemStack> drops = new ArrayList<>();
 		if (shouldAdd(b.getType(), it)) {
 			if (smelt) {
-				if (type.equals(Material.GOLD_ORE) || type.equals(Material.IRON_ORE) || type.equals(Material.COBBLESTONE)) {
-					drops.add(smelting(type, getAmount(fortune, lvl, b.getType())));
-				} else {
-					if (b.getType() == Material.LAPIS_ORE) data = 4;
-
-					for (ItemStack j : b.getDrops()) {
-						drops.add(new CustomItem(new ItemStack(j.getType(), getAmount(fortune, lvl, b.getType()), data)).setDurability((int) data));
-					}
-				}
+				drops = ((Smelting) RealName.SMELTING.getEnchant()).event(b, fortune, lvl, data);
 			} else {
 				if (b.getType() == Material.LAPIS_ORE) data = 4;
 
@@ -248,18 +240,6 @@ public class BlockListener implements Listener {
 			}
 		}
 		return drops;
-	}
-
-	private ItemStack smelting(Material type, int amount) {
-
-		if (type.equals(Material.GOLD_ORE)) {
-			return new ItemStack(Material.GOLD_INGOT, amount);
-		} else if (type.equals(Material.IRON_ORE)) {
-			return new ItemStack(Material.IRON_INGOT, amount);
-		} else if (type.equals(Material.COBBLESTONE)) {
-			return new ItemStack(Material.STONE);
-		}
-		return new ItemStack(Material.AIR);
 	}
 
 	private int getAmount(boolean fortune, int forLevel, Material type) {

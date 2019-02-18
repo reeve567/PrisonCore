@@ -4,9 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomTaskEnchant;
 
 public class WaterBreathingCheck implements Runnable {
 
@@ -24,10 +23,7 @@ public class WaterBreathingCheck implements Runnable {
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getHelmet())) {
-						if (p.hasPotionEffect(PotionEffectType.WATER_BREATHING)) {
-							p.removePotionEffect(PotionEffectType.WATER_BREATHING);
-						}
-						p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 45, 0));
+						((CustomTaskEnchant) RealName.SCUBADIVER.getEnchant()).event(p);
 					}
 				}
 			}
