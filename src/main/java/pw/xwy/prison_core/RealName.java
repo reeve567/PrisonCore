@@ -23,6 +23,7 @@ public enum RealName {
 	GRAPPLINGBOW,
 	GUARDIAN,
 	GUARDIANSBLOCK,
+	HEARTBOOST,
 	HOSTILEDAMAGE,
 	LUMBERJACK,
 	MEDICINE,
@@ -39,6 +40,7 @@ public enum RealName {
 	SUPERSPEED,
 	THOR,
 	VAMPIRE,
+	WINDSSPEEDI, WINDSSPEEDII,
 	WITHERI, WITHERII,
 	XWY,
 
@@ -71,7 +73,11 @@ public enum RealName {
 	MOBSLAYERI,
 	MOBSLAYERII,
 	MOBSLAYERIII,
-	ANIMALCOOKER
+	ANIMALCOOKER,
+
+
+
+
 	;
 
 	public static boolean hasEnchant(ItemStack itemInHand, RealName ench) {

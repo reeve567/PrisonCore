@@ -6,6 +6,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomTaskEnchant;
 
 public class SpeedCheck implements Runnable {
 
@@ -19,21 +21,13 @@ public class SpeedCheck implements Runnable {
 
 	@Override
 	public void run() {
-
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
-
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots()) == 1) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 45, 0));
-						if (p.hasPotionEffect(PotionEffectType.SPEED)) {
-							p.removePotionEffect(PotionEffectType.SPEED);
-						}
+						((CustomTaskEnchant) RealName.WINDSSPEEDI.getEnchant()).event(p);
 					} else if (ItemCheck(p.getInventory().getBoots()) == 2) {
-						if (p.hasPotionEffect(PotionEffectType.SPEED)) {
-							p.removePotionEffect(PotionEffectType.SPEED);
-						}
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 45, 1));
+						((CustomTaskEnchant) RealName.WINDSSPEEDII.getEnchant()).event(p);
 					}
 				}
 			}
@@ -42,9 +36,9 @@ public class SpeedCheck implements Runnable {
 
 	int ItemCheck(ItemStack i) {
 
-		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.WINDSSPEEDI.getName())) {
+		if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.WINDSSPEEDI.getEnchant().getName())) {
 			return 1;
-		} else if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(CEnchant.WINDSSPEEDII.getName())) {
+		} else if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore() && i.getItemMeta().getLore().contains(RealName.WINDSSPEEDII.getEnchant().getName())) {
 			return 2;
 		}
 		return 0;

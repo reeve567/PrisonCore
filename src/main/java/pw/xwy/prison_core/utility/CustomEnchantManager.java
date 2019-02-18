@@ -55,6 +55,7 @@ public class CustomEnchantManager {
 				new GrapplingBow("Grappling Bow", ItemSets.BOW, Rarity.HYDRO, "Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
 				new Guardian("Guardian", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to wither.", Material.YELLOW_FLOWER),
 				new GuardiansBlock("Guardian's Block", ItemSets.SWORD, Rarity.HYDRO, "Taking damage while blocking with++this enchant reduces damage by 50%", Material.GOLD_SWORD),
+				new HeartBoost("Heart Boost", ItemSets.HELM, Rarity.HYDRO, "This enchant adds 4 hearts to the player's max health.", Material.REDSTONE_BLOCK),
 				new HostileDamage("Hostile Damage", ItemSets.SWORD, Rarity.UNCOMMON, "This enchantment doubles damage to++hostile mobs.", Material.SKULL_ITEM, 2),
 				new Lumberjack("Lumberjack", ItemSets.AXE, Rarity.RARE, "Mining the bottom log in a tree++will drop all the wood.", Material.LOG),
 				new Medicine("Medicine", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to poison.", Material.BROWN_MUSHROOM),
@@ -76,6 +77,8 @@ public class CustomEnchantManager {
 				new SuperSpeed("Super Speed", ItemSets.BOOTS, Rarity.MYSTICAL, "When you hit to one and a half hearts or++below, you get a speed boost++for 3 seconds.", Material.GOLD_BOOTS),
 				new Thor("Thor", ItemSets.AXE, Rarity.COMMON, "Has a chance to smite the opponent when you hit them.", Material.IRON_AXE),
 				new Vampire("Vampire", ItemSets.SWORD, Rarity.HYDRO, "Hitting an enemy with this enchant++on your sword will heal you for half++the damage you do.", Material.PUMPKIN),
+				new WindsSpeed1("Wind's Speed I", ItemSets.BOOTS, Rarity.COMMON, "This enchant gives the wearer Speed I infinitely.", Material.SUGAR),
+				new WindsSpeed2("Wind's Speed II", ItemSets.BOOTS, Rarity.RARE, "This enchant gives the wearer Speed II infinitely.", Material.SUGAR),
 				new Wither1("Wither I", ItemSets.SWORD, Rarity.MYSTICAL, "Hitting an enemy with this enchant++has a chance to wither the opponent++for 2 seconds.", Material.SKULL_ITEM, 1),
 				new Wither1("Wither II", ItemSets.SWORD, Rarity.HYDRO, "Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
 				new Xwy("Xwy", ItemSets.BOOTS, Rarity.ADMIN, "OOF", Material.DIAMOND_BOOTS)
