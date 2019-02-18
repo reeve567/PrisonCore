@@ -178,15 +178,15 @@ public class BowListener implements Listener {
 							if (s.equalsIgnoreCase(ChatColor.GRAY + "Mode: Grappling")) {
 								((CustomBowEnchant) RealName.GRAPPLINGBOW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.FROZENARROW.getEnchant().getName())) {
-								e.getEntity().setMetadata("Freezer", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+								((CustomBowEnchant) RealName.FROZENARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.VOLTAGE.getEnchant().getName())) {
 								((CustomBowDeathEnchant) RealName.VOLTAGE.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.POISONOUSARROW.getEnchant().getName())) {
-								e.getEntity().setMetadata("Poisonous", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+								((CustomBowDeathEnchant) RealName.POISONOUSARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.FURNACE.getEnchant().getName())) {
 								((CustomBowDeathEnchant) RealName.FURNACE.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.EXPLOSIVEARROW.getEnchant().getName())) {
-								e.getEntity().setMetadata("Explosive", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+								((CustomBowDeathEnchant) RealName.EXPLOSIVEARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.RPG.getEnchant().getName())) {
 								e.getEntity().setMetadata("RPG", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							}

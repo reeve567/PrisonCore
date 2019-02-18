@@ -2,7 +2,6 @@ package pw.xwy.prison_core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,12 +12,9 @@ import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.commands.EventCommand;
 import pw.xwy.prison_core.utility.*;
-import pw.xwy.prison_core.utility.enums.Messages;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -28,7 +24,7 @@ import static pw.xwy.prison_core.custom_enchants.StormCaller.summoner;
 public class DamageListener implements Listener {
 
 	public static HashMap<UUID, Integer> combatTag = new HashMap<>();
-	static boolean playerMadeExplosion = false;
+	public static boolean playerMadeExplosion = false;
 	private Player explodee = null;
 	private Rect3D safeArea = new Rect3D(new Location(Bukkit.getWorld("world"), -42, 90, -328), new Location(Bukkit.getWorld("world"), -27, 76, -357));
 	private Rect3D pvpArea = new Rect3D(new Location(Bukkit.getWorld("world"), -56, 40, -239), new Location(Bukkit.getWorld("world"), 80, 139, -359));
@@ -183,45 +179,11 @@ public class DamageListener implements Listener {
 					}
 				}*/
 			}
-			if (e.getDamager() instanceof Arrow && ((Arrow) e.getDamager()).getShooter() instanceof Player) {
-				Player p = (Player) ((Arrow) e.getDamager()).getShooter();
-				Arrow arrow = (Arrow) e.getDamager();
-				if (arrow.hasMetadata("Freezer")) {
-					int num = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (num <= 20) {
-						if (e.getEntity() instanceof Player) {
-							Player p1 = (Player) e.getEntity();
-							p1.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5, 3));
-							p.sendMessage(Messages.frozen.get());
-						}
-					}
-				}
-				if (arrow.hasMetadata("Voltage")) {
-					((CustomBowEnchant) RealName.VOLTAGE.getEnchant()).event(e);
-				}
-				if (arrow.hasMetadata("RPG")) {
-					int num = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (num <= 15) {
-						playerMadeExplosion = true;
-						e.getEntity().getLocation().getWorld().createExplosion(e.getEntity().getLocation(), 5);
-					}
-				}
-				if (arrow.hasMetadata("Explosive")) {
-					int num = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (num <= 70) {
-						e.setDamage(e.getDamage() * 2);
-					}
-				}
-				if (arrow.hasMetadata("Poisonous")) {
-					int num = EnchantDrop.getRandomNumberFrom(1, 100);
-					if (num <= 50) {
-						if (e.getEntity() instanceof Player) {
-							((Player) e.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0));
-							p.sendMessage(Messages.poisoned.get());
-						}
-					}
-				}
-			}
+			((CustomBowEnchant) RealName.FROZENARROW.getEnchant()).event(e);
+			((CustomBowEnchant) RealName.VOLTAGE.getEnchant()).event(e);
+			((CustomBowEnchant) RealName.RPG.getEnchant()).event(e);
+			((CustomBowEnchant) RealName.EXPLOSIVEARROW.getEnchant()).event(e);
+			((CustomBowEnchant) RealName.POISONOUSARROW.getEnchant()).event(e);
 
 			if (e.getDamager() instanceof Player) {
 
