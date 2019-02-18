@@ -11,7 +11,6 @@ package pw.xwy.prison_core.listeners;
 // made by reeve
 // on 8:00 PM
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +18,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomBowDeathEnchant;
+import pw.xwy.prison_core.utility.CustomDeathEnchant;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,14 +38,14 @@ public class DeathListener implements Listener {
 				if (k.getItemInHand().getItemMeta().hasLore()) {
 					for (String s : k.getItemInHand().getItemMeta().getLore()) {
 						if (s.equalsIgnoreCase(RealName.DECAPITATE.getEnchant().getName())) {
-							// TODO: Run Decapitate
+							((CustomDeathEnchant) RealName.DECAPITATE.getEnchant()).event(e);
 						}
 					}
 				}
 			}
 		}
 
-		// TODO: Run Soulbound
+		((CustomDeathEnchant) RealName.SOULBOUND.getEnchant()).event(e);
 
 	}
 
@@ -56,32 +57,17 @@ public class DeathListener implements Listener {
 			ItemStack i = p.getItemInHand();
 
 			if (i != null && i.hasItemMeta() && i.getItemMeta().hasLore()) {
-				if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERI.getEnchant().getName())) {
-					e.setDroppedExp(e.getDroppedExp() * 2);
-				} else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERII.getEnchant().getName())) {
-					e.setDroppedExp(e.getDroppedExp() * 3);
-				} else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERIII.getEnchant().getName())) {
-					e.setDroppedExp(e.getDroppedExp() * 4);
-				}
-				if (i.getItemMeta().getLore().contains(RealName.ANIMALCOOKER.getEnchant().getName())) {
-					changeDrops(e);
-				} else if (BowListener.furnaceList.contains(p.getName())) {
-					changeDrops(e);
-				}
+				if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERI.getEnchant().getName()))
+					((CustomDeathEnchant) RealName.MOBSLAYERI.getEnchant()).event(e);
+				else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERII.getEnchant().getName()))
+					((CustomDeathEnchant) RealName.MOBSLAYERI.getEnchant()).event(e);
+				else if (i.getItemMeta().getLore().contains(RealName.MOBSLAYERIII.getEnchant().getName()))
+					((CustomDeathEnchant) RealName.MOBSLAYERI.getEnchant()).event(e);
+				if (i.getItemMeta().getLore().contains(RealName.ANIMALCOOKER.getEnchant().getName()))
+					((CustomDeathEnchant) RealName.ANIMALCOOKER.getEnchant()).event(e);
 			}
+			((CustomBowDeathEnchant) RealName.FURNACE.getEnchant()).event(e);
 		}
 	}
 
-	private void changeDrops(EntityDeathEvent e) {
-
-		for (ItemStack it : e.getDrops()) {
-			if (it.getType().equals(Material.RAW_BEEF)) {
-				it.setType(Material.COOKED_BEEF);
-			} else if (it.getType().equals(Material.PORK)) {
-				it.setType(Material.GRILLED_PORK);
-			} else if (it.getType().equals(Material.RAW_CHICKEN)) {
-				it.setType(Material.COOKED_CHICKEN);
-			}
-		}
-	}
 }

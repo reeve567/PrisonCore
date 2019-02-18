@@ -6,8 +6,10 @@ import pw.xwy.prison_core.utility.CustomEnchantManager;
 
 public enum RealName {
 
+	ANIMALCOOKER,
 	ANTIKNOCKBACKI, ANTIKNOCKBACKII, ANTIKNOCKBACKIII,
 	ARMORDESTRUCTOR,
+	AUTOFEEDER,
 	BATTLEROAR,
 	BURNSHIELD,
 	CHARGE,
@@ -20,6 +22,7 @@ public enum RealName {
 	EXPTHIEF,
 	FLASH,
 	FROZENBLADE,
+	FURNACE,
 	GRAPPLINGBOW,
 	GUARDIAN,
 	GUARDIANSBLOCK,
@@ -28,6 +31,7 @@ public enum RealName {
 	LUMBERJACK,
 	MEDICINE,
 	MINERI, MINERII,
+	MOBSLAYERI, MOBSLAYERII, MOBSLAYERIII,
 	MOLTEN,
 	PARALYZE,
 	REINFORCED,
@@ -46,7 +50,8 @@ public enum RealName {
 
 	//TODO: Move to correct place
 	//Just put these here to get rid of compiler errors, runtime errors will occur still
-	//Still need to make class for these enchants and some others
+	//Still need to make classes for these enchants
+
 	FORTUNEV,
 
 	EFFICIENCYVI,
@@ -60,7 +65,7 @@ public enum RealName {
 	FROZENARROW,
 	VOLTAGE,
 	POISONOUSARROW,
-	FURNACE,
+
 	EXPLOSIVEARROW,
 	RPG,
 
@@ -70,10 +75,8 @@ public enum RealName {
 	SCUBADIVER,
 	VALOR,
 
-	MOBSLAYERI,
-	MOBSLAYERII,
-	MOBSLAYERIII,
-	ANIMALCOOKER,
+
+
 
 
 

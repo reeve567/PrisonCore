@@ -33,10 +33,12 @@ public class CustomEnchantManager {
 
 		// START ENCHANTS
 		init(
+				new AnimalCooker("Animal Cooker", ItemSets.SWORD, Rarity.COMMON, "Killing mobs will cook their meat automatically.", Material.COOKED_BEEF),
 				new Antiknockback1("Antiknockback I", ItemSets.LEGGINGS, Rarity.UNCOMMON, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
 				new Antiknockback2("Antiknockback II", ItemSets.LEGGINGS, Rarity.RARE, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
 				new Antiknockback3("Antiknockback III", ItemSets.LEGGINGS, Rarity.MYSTICAL, "This enchantment reduces the amount of knockback you take.", Material.FIREWORK_CHARGE, true),
 				new ArmorDestructor("Armor Destructor", ItemSets.AXE, Rarity.RARE, "Damages the opponents armor more than normal.", Material.LEATHER_CHESTPLATE),
+				new Autofeeder("Auto Feeder", ItemSets.LEGGINGS, Rarity.MYSTICAL,"This enchant prevents you from losing hunger.", Material.COOKIE),
 				new BattleRoar("Battle Roar", ItemSets.CHEST, Rarity.UNCOMMON, "This enchant either gives the wearer strength when hit, or wither.", Material.REDSTONE_TORCH_ON),
 				new BurnShield("Burn Shield", ItemSets.ARMOR, Rarity.COMMON, "This enchant allows the wearer++to swim in lava and fire if you have++the enchant on all pieces of armor.", Material.POTION, 8259),
 				new Charge("Charge", ItemSets.SWORD, Rarity.RARE, "Hitting an enemy while sprinting++increases your damage.", Material.GLOWSTONE_DUST),
@@ -51,6 +53,7 @@ public class CustomEnchantManager {
 				new ExpProtector("Exp Protector", ItemSets.BOOTS, Rarity.RARE, "This enchantment prevents your EXP from being stolen.", Material.EXP_BOTTLE),
 				new ExpThief("Exp Thief", ItemSets.SWORD, Rarity.RARE, "When you hit someone with this,++it has a chance of stealing their EXP.", Material.EXP_BOTTLE),
 				new Flash("Flash", ItemSets.ARMOR, Rarity.HYDRO, "This enchant gives you haste if++you have the enchant on all pieces of armor.", Material.GOLD_PICKAXE),
+				new Furnace("Furnace", ItemSets.BOW, Rarity.COMMON, "This enchant allows your arrows to cook the++meat of animals that it kills.", Material.GRILLED_PORK),
 				new FrozenBlade("Frozen Blade", ItemSets.SWORD, Rarity.RARE, "This enchantment has a chance to give++the opponent slowness for 5 seconds.", Material.ICE),
 				new GrapplingBow("Grappling Bow", ItemSets.BOW, Rarity.HYDRO, "Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
 				new Guardian("Guardian", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to wither.", Material.YELLOW_FLOWER),
@@ -61,6 +64,9 @@ public class CustomEnchantManager {
 				new Medicine("Medicine", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to poison.", Material.BROWN_MUSHROOM),
 				new Miner1("Miner I", ItemSets.PICK, Rarity.RARE, "This doubles the attack damage of a pickaxe", Material.GOLD_PICKAXE),
 				new Miner2("Miner II", ItemSets.PICK, Rarity.MYSTICAL, "This triples the attack damage of a pickaxe", Material.GOLD_PICKAXE),
+				new MobSlayer1("Mob Slayer I", ItemSets.SWORD, Rarity.UNCOMMON,"Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
+				new MobSlayer2("Mob Slayer II", ItemSets.SWORD, Rarity.RARE,"Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
+				new MobSlayer3("Mob Slayer III", ItemSets.SWORD, Rarity.MYSTICAL,"Killing mobs with this enchantment++yields a higher amount of XP.", Material.SPIDER_EYE),
 				new Molten("Molten", ItemSets.ARMOR, Rarity.COMMON, "This enchant will set an attacker on fire if they hit the wearer.", Material.LAVA_BUCKET),
 				new Paralyze("Paralyze", ItemSets.SWORD, Rarity.MYSTICAL, "Hitting a mob has a chance to slow++it's movement speed.", Material.ROTTEN_FLESH),
 				new Reinforced("Reinforced", ItemSets.CHEST, Rarity.HYDRO, "This enchant will give you 4 seconds of++resistance when you get below 3 hearts.", Material.GOLDEN_APPLE),

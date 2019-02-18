@@ -30,6 +30,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomBowBlockEnchant;
+import pw.xwy.prison_core.utility.CustomBowDeathEnchant;
 import pw.xwy.prison_core.utility.CustomBowEnchant;
 import pw.xwy.prison_core.utility.ce.MessagesFunctions;
 import pw.xwy.prison_core.utility.enums.Messages;
@@ -234,7 +236,7 @@ public class BowListener implements Listener {
 							} else if (s.equalsIgnoreCase(RealName.POISONOUSARROW.getEnchant().getName())) {
 								e.getEntity().setMetadata("Poisonous", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							} else if (s.equalsIgnoreCase(RealName.FURNACE.getEnchant().getName())) {
-								e.getEntity().setMetadata("Furnace", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
+								((CustomBowDeathEnchant) RealName.FURNACE.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.EXPLOSIVEARROW.getEnchant().getName())) {
 								e.getEntity().setMetadata("Explosive", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							} else if (s.equalsIgnoreCase(RealName.RPG.getEnchant().getName())) {
@@ -253,28 +255,11 @@ public class BowListener implements Listener {
 		if (e.getEntity() instanceof Arrow) {
 			Arrow a = (Arrow) e.getEntity();
 			if (a.getShooter() instanceof Player) {
-				Player p = (Player) a.getShooter();
 
 				if (e.getEntity().hasMetadata("Grappling")) {
 					//redoing
 
-					Location aLoc = a.getLocation();
-					Location pLoc = p.getLocation();
-
-					double x = aLoc.getX() - pLoc.getX();
-					double y = aLoc.getY() - pLoc.getY();
-					double z = aLoc.getZ() - pLoc.getZ();
-
-					Vector v = new Vector();
-
-					v.setX(x / 3);
-					v.setY(y / 9);
-					v.setZ(z / 3);
-
-					p.setVelocity(v);
-
-					p.sendMessage(Messages.launched.get());
-
+					((CustomBowBlockEnchant) RealName.GRAPPLINGBOW.getEnchant()).event(e);
 
 					//old
 					/*int i = 0;

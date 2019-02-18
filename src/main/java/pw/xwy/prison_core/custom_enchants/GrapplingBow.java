@@ -1,22 +1,24 @@
 package pw.xwy.prison_core.custom_enchants;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.util.Vector;
 import pw.xwy.prison_core.PrisonCore;
 import pw.xwy.prison_core.RealName;
-import pw.xwy.prison_core.utility.CustomBowEnchant;
+import pw.xwy.prison_core.utility.CustomBowBlockEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.enums.Rarity;
 
 import static pw.xwy.prison_core.listeners.BowListener.cantShoot;
 
-public class GrapplingBow extends CustomBowEnchant {
+public class GrapplingBow extends CustomBowBlockEnchant {
 
 	public GrapplingBow(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
 		super(name, sets, rarity, description, displayItem, disable);
@@ -51,7 +53,24 @@ public class GrapplingBow extends CustomBowEnchant {
 	}
 
 	@Override
-	public void event(EntityDamageByEntityEvent e) {
+	public void event(ProjectileHitEvent e) {
+		Location aLoc = e.getEntity().getLocation();
+		Location pLoc = ((Player) e.getEntity().getShooter()).getLocation();
+
+		double x = aLoc.getX() - pLoc.getX();
+		double y = aLoc.getY() - pLoc.getY();
+		double z = aLoc.getZ() - pLoc.getZ();
+
+		Vector v = new Vector();
+
+		v.setX(x / 3);
+		v.setY(y / 9);
+		v.setZ(z / 3);
+
+		((Player) e.getEntity().getShooter()).setVelocity(v);
+
+		((Player) e.getEntity().getShooter()).sendMessage(Messages.launched.get());
 
 	}
+
 }
