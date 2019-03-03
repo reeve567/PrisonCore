@@ -26,17 +26,15 @@ import pw.xwy.prison_core.utility.item.Glow;
 import java.lang.reflect.Field;
 
 public class CustomEnchantsManager {
-	
+
 	public static int ceCount;
-	public static CustomEnchantManager manager = new CustomEnchantManager();
+	public static CustomEnchantManager manager;
 
 	public void onEnable() {
 		registerGlow();
-		
+
 		new MessagesFunctions();
 		Config config = new Config(PrisonCore.getInstance().getDataFolder(), "custom-enchants");
-		int ce = 0;
-		
 		int sword = 0;
 		int axe = 0;
 		int pick = 0;
@@ -45,7 +43,7 @@ public class CustomEnchantsManager {
 		int chest = 0;
 		int leggings = 0;
 		int boots = 0;
-		
+
 		boolean newf = false;
 		if (config.getInt("ver") != 1) {
 			newf = true;
@@ -55,7 +53,7 @@ public class CustomEnchantsManager {
 
 		manager = new CustomEnchantManager();
 
-		for (CustomEnchant c: manager.getEnchantsByRealName().values()) {
+		for (CustomEnchant c : manager.getEnchantsByRealName().values()) {
 			if (newf)
 				c.saveDefault(config);
 			else
@@ -73,12 +71,12 @@ public class CustomEnchantsManager {
 			}
 		}
 		config.saveConfig();
-		
+
 		if (Bukkit.getOnlinePlayers().size() > 0) {
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (p.hasPermission("Xwy.ce.notify")) {
 					p.sendMessage(ChatColor.GRAY + "" + ChatColor.BOLD + "«" + ChatColor.STRIKETHROUGH + "------------------------------" + ChatColor.GRAY + "" + ChatColor.BOLD + "»");
-					p.sendMessage(Messages.mainPre.get() + "§6CustomEnchants" + ChatColor.GRAY + " have been loaded with " + ce + " enchants.");
+					p.sendMessage(Messages.mainPre.get() + "§6CustomEnchants" + ChatColor.GRAY + " have been loaded with " + (ceCount = sword + bow + axe + pick + helm + chest + leggings + boots) + " enchants.");
 					p.sendMessage(Messages.mainPre.get() + "§c" + sword + " sword");
 					p.sendMessage(Messages.mainPre.get() + "§c" + bow + " bow");
 					p.sendMessage(Messages.mainPre.get() + "§c" + axe + " axe");
@@ -87,7 +85,7 @@ public class CustomEnchantsManager {
 					p.sendMessage(Messages.mainPre.get() + "§c" + chest + " chestplate");
 					p.sendMessage(Messages.mainPre.get() + "§c" + leggings + " legging");
 					p.sendMessage(Messages.mainPre.get() + "§c" + boots + " boot");
-					p.sendMessage(Messages.mainPre.get() + "§c" + (ceCount = sword + bow + axe + pick + helm + chest + leggings + boots) + " total");
+					p.sendMessage(Messages.mainPre.get() + "§c" + ceCount + " total");
 					p.sendMessage(ChatColor.GRAY + "" + ChatColor.BOLD + "«" + ChatColor.STRIKETHROUGH + "------------------------------" + ChatColor.GRAY + "" + ChatColor.BOLD + "»");
 				}
 			}
@@ -96,7 +94,7 @@ public class CustomEnchantsManager {
 		loadMenus();
 		Bukkit.getPluginManager().registerEvents(new ConversionMenu(), PrisonCore.getInstance());
 	}
-	
+
 	private void registerGlow() {
 		try {
 			Field f = Enchantment.class.getDeclaredField("acceptingNew");
@@ -115,7 +113,7 @@ public class CustomEnchantsManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void startTasks() {
 		new WaterBreathingCheck(PrisonCore.getInstance());
 		new NightVisionCheck(PrisonCore.getInstance());
@@ -125,7 +123,7 @@ public class CustomEnchantsManager {
 		new JumpBoostCheck(PrisonCore.getInstance());
 		new SpeedCheck(PrisonCore.getInstance());
 	}
-	
+
 	private void loadMenus() {
 		new AxeMenu();
 		new BootsMenu();
@@ -136,5 +134,5 @@ public class CustomEnchantsManager {
 		new PickMenu();
 		new SwordMenu();
 	}
-	
+
 }

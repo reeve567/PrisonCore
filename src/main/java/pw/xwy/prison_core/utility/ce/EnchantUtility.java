@@ -38,7 +38,7 @@ public class EnchantUtility {
 			desc.add("");
 		}
 
-		CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(n);
+		CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel().get(n);
 
 		if (customEnchant != null) {
 			desc.add(customEnchant.getRarity().getLabel());

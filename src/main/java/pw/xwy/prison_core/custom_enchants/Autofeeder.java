@@ -2,11 +2,12 @@ package pw.xwy.prison_core.custom_enchants;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import pw.xwy.prison_core.utility.CustomTaskEnchant;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Rarity;
 
-public class Autofeeder extends CustomTaskEnchant {
+public class Autofeeder extends CustomEnchant {
 	public Autofeeder(String name, ItemSets sets, Rarity rarity, String description, Material displayItem) {
 		super(name, sets, rarity, description, displayItem);
 	}
@@ -15,8 +16,7 @@ public class Autofeeder extends CustomTaskEnchant {
 		super(name, sets, rarity, description, displayItem, durability);
 	}
 
-	@Override
-	public void event(Player player) {
-		player.setFoodLevel(20);
+	public void event(FoodLevelChangeEvent e) {
+		e.setFoodLevel(20);
 	}
 }

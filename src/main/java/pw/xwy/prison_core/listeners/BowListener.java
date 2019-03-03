@@ -176,7 +176,7 @@ public class BowListener implements Listener {
 					if (i.getItemMeta().hasLore()) {
 						for (String s : i.getItemMeta().getLore()) {
 							if (s.equalsIgnoreCase(ChatColor.GRAY + "Mode: Grappling")) {
-								((CustomBowEnchant) RealName.GRAPPLINGBOW.getEnchant()).launch(e);
+								((CustomBowBlockEnchant) RealName.GRAPPLING.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.FROZENARROW.getEnchant().getName())) {
 								((CustomBowEnchant) RealName.FROZENARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.VOLTAGE.getEnchant().getName())) {
@@ -185,8 +185,8 @@ public class BowListener implements Listener {
 								((CustomBowDeathEnchant) RealName.POISONOUSARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.FURNACE.getEnchant().getName())) {
 								((CustomBowDeathEnchant) RealName.FURNACE.getEnchant()).launch(e);
-							} else if (s.equalsIgnoreCase(RealName.EXPLOSIVEARROW.getEnchant().getName())) {
-								((CustomBowDeathEnchant) RealName.EXPLOSIVEARROW.getEnchant()).launch(e);
+							} else if (s.equalsIgnoreCase(RealName.EXTRADAMAGEARROW.getEnchant().getName())) {
+								((CustomBowDeathEnchant) RealName.EXTRADAMAGEARROW.getEnchant()).launch(e);
 							} else if (s.equalsIgnoreCase(RealName.RPG.getEnchant().getName())) {
 								e.getEntity().setMetadata("RPG", new FixedMetadataValue(PrisonCore.getInstance(), p.getName()));
 							}
@@ -207,7 +207,7 @@ public class BowListener implements Listener {
 				if (e.getEntity().hasMetadata("Grappling")) {
 					//redoing
 
-					((CustomBowBlockEnchant) RealName.GRAPPLINGBOW.getEnchant()).event(e);
+					((CustomBowBlockEnchant) RealName.GRAPPLING.getEnchant()).event(e);
 
 					//old
 					/*int i = 0;

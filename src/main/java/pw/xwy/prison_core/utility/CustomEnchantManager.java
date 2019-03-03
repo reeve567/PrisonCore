@@ -16,7 +16,6 @@ public class CustomEnchantManager {
 	private static CustomEnchantManager instance;
 	private HashMap<Rarity, List<CustomEnchant>> enchantsByRarity = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByRealName = new HashMap<>();
-	private HashMap<String, CustomEnchant> enchantsByName = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByLore = new HashMap<>();
 	private HashMap<String, CustomEnchant> enchantsByLabel = new HashMap<>();
 	private List<CustomDamageEnchant> damageEnchants = new ArrayList<>();
@@ -25,6 +24,7 @@ public class CustomEnchantManager {
 	private List<CustomTaskEnchant> taskEnchants = new ArrayList<>();
 
 	public CustomEnchantManager() {
+		System.out.println("Custom Enchant Manager started, lists should be good.");
 		instance = this;
 		// Setup list
 		for (Rarity r : Rarity.values()) {
@@ -52,19 +52,19 @@ public class CustomEnchantManager {
 				new Efficiency8("Efficiency VIII", ItemSets.PICK, Rarity.RARE, "Makes your pickaxe mine faster", Material.IRON_PICKAXE),
 				new Efficiency9("Efficiency IX", ItemSets.PICK, Rarity.MYSTICAL, "Makes your pickaxe mine faster", Material.DIAMOND_PICKAXE),
 				new Efficiency10("Efficiency X", ItemSets.PICK, Rarity.HYDRO, "Makes your pickaxe mine faster", Material.GOLD_PICKAXE),
-				new ExplosiveArrow("Extra Damage Arrow", ItemSets.BOW, Rarity.HYDRO, "This enchant gives your arrows a chance to++do double damage.", Material.GOLD_INGOT),
 				new ExplosivePick1("Explosive Pick I", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 3x3x3 area.", Material.FIREBALL),
 				new ExplosivePick2("Explosive Pick II", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 5x5x5 area.", Material.FIREBALL),
 				new ExplosivePick3("Explosive Pick III", ItemSets.PICK, Rarity.HYDRO, "This enchant allows your pickaxe to++mine in a 7x7x7 area.", Material.FIREBALL),
 				new ExpProtector("Exp Protector", ItemSets.BOOTS, Rarity.RARE, "This enchantment prevents your EXP from being stolen.", Material.EXP_BOTTLE),
 				new ExpThief("Exp Thief", ItemSets.SWORD, Rarity.RARE, "When you hit someone with this,++it has a chance of stealing their EXP.", Material.EXP_BOTTLE),
+				new ExtraDamageArrow("Extra Damage Arrow", ItemSets.BOW, Rarity.HYDRO, "This enchant gives your arrows a chance to++do double damage.", Material.GOLD_INGOT),
 				new Flash("Flash", ItemSets.ARMOR, Rarity.HYDRO, "This enchant gives you haste if++you have the enchant on all pieces of armor.", Material.GOLD_PICKAXE),
 				new Fortune5("Fortune V", ItemSets.PICK, Rarity.HYDRO, "This enchant brings great fortune to many.", Material.DIAMOND_PICKAXE),
 				new FrozenArrow("Frozen Arrow", ItemSets.BOW, Rarity.RARE, "This enchant gives your arrows a chance to++give the player it hit slowness.", Material.ICE),
 				new FrozenBlade("Frozen Blade", ItemSets.SWORD, Rarity.RARE, "This enchantment has a chance to give++the opponent slowness for 5 seconds.", Material.ICE),
 				new Furnace("Furnace", ItemSets.BOW, Rarity.COMMON, "This enchant allows your arrows to cook the++meat of animals that it kills.", Material.GRILLED_PORK),
 				new Glowing("Glowing", ItemSets.HELM, Rarity.UNCOMMON, "This enchant gives the wearer infinite night vision.", Material.GLOWSTONE),
-				new GrapplingBow("Grappling", ItemSets.BOW, Rarity.HYDRO, "Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
+				new Grappling("Grappling", ItemSets.BOW, Rarity.HYDRO, "Arrows will launch you towards where they++land, if on the correct mode.", Material.WEB),
 				new Guardian("Guardian", ItemSets.HELM, Rarity.MYSTICAL, "This enchant makes the wearer immune to wither.", Material.YELLOW_FLOWER),
 				new GuardiansBlock("Guardian's Block", ItemSets.SWORD, Rarity.HYDRO, "Taking damage while blocking with++this enchant reduces damage by 50%", Material.GOLD_SWORD),
 				new HeartBoost("Heart Boost", ItemSets.HELM, Rarity.HYDRO, "This enchant adds 4 hearts to the player's max health.", Material.REDSTONE_BLOCK),
@@ -107,7 +107,7 @@ public class CustomEnchantManager {
 				new Wither1("Wither II", ItemSets.SWORD, Rarity.HYDRO, "Hitting an enemy with this enchant++has a chance to wither the opponent++for 4 seconds.", Material.SKULL_ITEM, 1),
 				new Xwy("Xwy", ItemSets.BOOTS, Rarity.ADMIN, "OOF", Material.DIAMOND_BOOTS)
 		);
-
+		System.out.println("Done loading manager");
 
 	}
 
@@ -127,12 +127,8 @@ public class CustomEnchantManager {
 		return enchantsByLore;
 	}
 
-	public CustomEnchant getEnchantsByLabel(String label) {
-		return enchantsByLabel.get(label);
-	}
-
-	public HashMap<String, CustomEnchant> getEnchantsByName() {
-		return enchantsByName;
+	public HashMap<String, CustomEnchant> getEnchantsByLabel() {
+		return enchantsByLabel;
 	}
 
 	public List<CustomDamageEnchant> getDamageEnchants() {

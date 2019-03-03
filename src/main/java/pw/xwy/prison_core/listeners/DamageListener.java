@@ -152,15 +152,17 @@ public class DamageListener implements Listener {
 		if (!e.isCancelled()) {
 			//TODO: Sort out which enchants need player damager and which don't
 
-			Player player = (Player) e.getDamager();
-			if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
-				for (String s : player.getItemInHand().getItemMeta().getLore()) {
-					if (CustomEnchantManager.getInstance().getEnchantsByLore().containsKey(s)) {
-						CustomEnchant enchant = CustomEnchantManager.getInstance().getEnchantsByLore().get(s);
-						if (enchant instanceof CustomDamageEnchant) {
-							CustomDamageEnchant damageEnchant = (CustomDamageEnchant) enchant;
+			if (e.getDamager() instanceof Player) {
+				Player player = (Player) e.getDamager();
+				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasLore()) {
+					for (String s : player.getItemInHand().getItemMeta().getLore()) {
+						if (CustomEnchantManager.getInstance().getEnchantsByLore().containsKey(s)) {
+							CustomEnchant enchant = CustomEnchantManager.getInstance().getEnchantsByLore().get(s);
+							if (enchant instanceof CustomDamageEnchant) {
+								CustomDamageEnchant damageEnchant = (CustomDamageEnchant) enchant;
 
-							damageEnchant.event(e);
+								damageEnchant.event(e);
+							}
 						}
 					}
 				}
@@ -179,15 +181,16 @@ public class DamageListener implements Listener {
 					}
 				}*/
 			}
+
+
+
 			((CustomBowEnchant) RealName.FROZENARROW.getEnchant()).event(e);
 			((CustomBowEnchant) RealName.VOLTAGE.getEnchant()).event(e);
 			((CustomBowEnchant) RealName.RPG.getEnchant()).event(e);
-			((CustomBowEnchant) RealName.EXPLOSIVEARROW.getEnchant()).event(e);
+			((CustomBowEnchant) RealName.EXTRADAMAGEARROW.getEnchant()).event(e);
 			((CustomBowEnchant) RealName.POISONOUSARROW.getEnchant()).event(e);
 
-			if (e.getDamager() instanceof Player) {
 
-			}
 		}
 	}
 

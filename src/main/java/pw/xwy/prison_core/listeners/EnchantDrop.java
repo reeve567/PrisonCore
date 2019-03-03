@@ -26,7 +26,6 @@ import pw.xwy.prison_core.RealName;
 import pw.xwy.prison_core.utility.CustomEnchant;
 import pw.xwy.prison_core.utility.CustomEnchantManager;
 import pw.xwy.prison_core.utility.CustomVanillaEnchant;
-import pw.xwy.prison_core.utility.ce.CustomEnchantsManager;
 import pw.xwy.prison_core.utility.enums.ItemSets;
 import pw.xwy.prison_core.utility.enums.Messages;
 import pw.xwy.prison_core.utility.item.CustomItem;
@@ -359,7 +358,7 @@ public class EnchantDrop implements Listener {
 	private boolean checkCan(String name, Material type) {
 
 		if (name != null) {
-			return CustomEnchantsManager.manager.getEnchantsByName().get(name).checkSets(type);
+			return CustomEnchantManager.getInstance().getEnchantsByLore().get(name).checkSets(type);
 		}
 		return false;
 	}

@@ -17,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.custom_enchants.Autofeeder;
 import pw.xwy.prison_core.utility.CustomTaskEnchant;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class FeedListener implements Listener {
 					if (legs.getItemMeta().hasLore()) {
 						List<String> lore = legs.getItemMeta().getLore();
 						if (lore.contains(RealName.AUTOFEEDER.getEnchant().getName())) {
-							((CustomTaskEnchant) RealName.AUTOFEEDER.getEnchant()).event(player);
+							((Autofeeder) RealName.AUTOFEEDER.getEnchant()).event(e);
 						}
 					}
 				}

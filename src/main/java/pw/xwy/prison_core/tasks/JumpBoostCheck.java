@@ -15,9 +15,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import pw.xwy.prison_core.RealName;
+import pw.xwy.prison_core.utility.CustomTaskEnchant;
 
 public class JumpBoostCheck implements Runnable {
 	private JavaPlugin main;
@@ -33,7 +32,7 @@ public class JumpBoostCheck implements Runnable {
 			if (Bukkit.getOnlinePlayers().size() > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (ItemCheck(p.getInventory().getBoots())) {
-
+						((CustomTaskEnchant) RealName.MOONGRAVITY.getEnchant()).event(p);
 					}
 				}
 			}

@@ -51,7 +51,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 						if (args.length >= 3) {
 							if (args[2].equalsIgnoreCase("true")) {
 
-								CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+								CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel().get(args[1]);
 
 								if (customEnchant != null) {
 									((Player) sender).getInventory().addItem(bookGive(args[1], true));
@@ -73,7 +73,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 									} else {
 										boolean found = false;
 
-										CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+										CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel().get(args[1]);
 
 										if (customEnchant != null) {
 											((Player) sender).getInventory().addItem(bookGive(args[1], false));
@@ -104,7 +104,7 @@ public class CustomEnchantsCommand implements CommandExecutor {
 								} else {
 									boolean found = false;
 
-									CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel(args[1]);
+									CustomEnchant customEnchant = CustomEnchantsManager.manager.getEnchantsByLabel().get(args[1]);
 
 									if (customEnchant != null) {
 										((Player) sender).getInventory().addItem(bookGive(args[1], false));

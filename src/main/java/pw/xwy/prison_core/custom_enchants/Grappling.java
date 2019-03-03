@@ -18,13 +18,13 @@ import pw.xwy.prison_core.utility.enums.Rarity;
 
 import static pw.xwy.prison_core.listeners.BowListener.cantShoot;
 
-public class GrapplingBow extends CustomBowBlockEnchant {
+public class Grappling extends CustomBowBlockEnchant {
 
-	public GrapplingBow(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
+	public Grappling(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, boolean... disable) {
 		super(name, sets, rarity, description, displayItem, disable);
 	}
 
-	public GrapplingBow(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, int durability, boolean... disable) {
+	public Grappling(String name, ItemSets sets, Rarity rarity, String description, Material displayItem, int durability, boolean... disable) {
 		super(name, sets, rarity, description, displayItem, durability, disable);
 	}
 

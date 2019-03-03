@@ -21,7 +21,6 @@ pw\xwy\prison_core\commands\VoteCommand.class
 pw\xwy\prison_core\commands\PermissionsCommand.class
 pw\xwy\prison_core\custom_enchants\Voltage.class
 pw\xwy\prison_core\utility\CustomBowEnchant.class
-pw\xwy\prison_core\custom_enchants\GrapplingBow.class
 pw\xwy\prison_core\custom_enchants\Rifle.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager$1.class
 pw\xwy\prison_core\listeners\BlockListener$1.class
@@ -50,6 +49,7 @@ pw\xwy\prison_core\custom_enchants\Miner2.class
 pw\xwy\prison_core\commands\ToggleCommand.class
 pw\xwy\prison_core\PrisonCore.class
 pw\xwy\prison_core\commands\BalanceCommand.class
+pw\xwy\prison_core\custom_enchants\ExtraDamageArrow.class
 pw\xwy\prison_core\custom_enchants\RPG.class
 pw\xwy\prison_core\utility\CustomBlockEnchant.class
 pw\xwy\prison_core\utility\TimeFormatting.class
@@ -167,10 +167,10 @@ pw\xwy\prison_core\utility\config\Config.class
 pw\xwy\prison_core\commands\TagCommand.class
 pw\xwy\prison_core\utility\enums\Gorix.class
 pw\xwy\prison_core\utility\misc_managers\HologramsManager.class
-pw\xwy\prison_core\custom_enchants\ExplosiveArrow.class
 pw\xwy\prison_core\custom_enchants\Antiknockback2.class
 pw\xwy\prison_core\custom_enchants\Valor.class
 pw\xwy\prison_core\custom_enchants\Paralyze.class
+pw\xwy\prison_core\custom_enchants\Grappling.class
 pw\xwy\prison_core\custom_enchants\Rekt.class
 pw\xwy\prison_core\utility\misc_managers\RanksManager$Prestige.class
 pw\xwy\prison_core\custom_enchants\Guardian.class
