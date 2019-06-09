@@ -148,7 +148,7 @@ public class PrisonCore extends JavaPlugin {
 		new CombatTagTask().runTaskTimer(this, 5, 20);
 	}
 	
-	public static void registerEvents(Listener listener) {
+	private static void registerEvents(Listener listener) {
 		Bukkit.getPluginManager().registerEvents(listener, instance);
 	}
 	

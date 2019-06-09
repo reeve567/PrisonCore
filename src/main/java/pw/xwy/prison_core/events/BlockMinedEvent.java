@@ -31,7 +31,7 @@ public class BlockMinedEvent extends Event {
 	
 	@Override
 	public HandlerList getHandlers() {
-		return handlers;
+		return null;
 	}
 	
 	public boolean isOriginal() {

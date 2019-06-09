@@ -1,0 +1,14 @@
+
+Asquid:S3010"%Remove this assignment of "instance".(ñõîÙşÿÿÿÿ
+”squid:S1192_"xDefine a constant instead of duplicating this literal "This enchant has a chance to make your attacker hungry." 3 times.(Ìèöïşÿÿÿÿ
+—squid:S1192%"{Define a constant instead of duplicating this literal "This enchantment reduces the amount of knockback you take." 3 times.(Ì¿Ùúÿÿÿÿ
+vsquid:S11922"_Define a constant instead of duplicating this literal "Makes your pickaxe mine faster" 5 times.(ä—¸Í
+™squid:S1192L"‚Define a constant instead of duplicating this literal "Killing mobs with this enchantment++yields a higher amount of XP." 3 times.(æÙü
+„squid:S1319v"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ˆ„™Ì
+‰squid:S1319z"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(öõÌøÿÿÿÿ
+„squid:S1319~"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(è Óÿ
+„squid:S1319‚"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(Çïü7
+O
+squid:S106"9Replace this use of System.out or System.err by a logger.(©Ö¦Û
+O
+squid:S106n"9Replace this use of System.out or System.err by a logger.(©ñÉÆ
