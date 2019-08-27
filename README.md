@@ -32,5 +32,5 @@ Some of the custom "drugs":
 
 * Sugar - Provides the speed potion effect so that players can run faster
 * Gun Powder - Provides the player with a short buff in strength and therefor damage output
-* Ghast Tear - Provides the player with jump boost, mining fatigue, and regeneration
+* Ghast Tear - Provides the player with jump boost, mining fatigue, regeneration, and a faster speed than sugar
 
