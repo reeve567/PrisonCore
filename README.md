@@ -1,6 +1,6 @@
 # PrisonCore
 
-***I forgot, but a lot of the commit titles are useless because I never thought anyone else would see the repo***
+*I forgot, but a lot of the commit titles are useless because I never thought anyone else would see the repo*
 
 This project was a modification to the way you play Minecraft.  It was made to be run on Minecraft Servers as the foundation of the modifications.
 
