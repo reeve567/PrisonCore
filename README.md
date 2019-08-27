@@ -106,3 +106,6 @@ Some other misc data is also stored in this way (yml) in a small file or two.
 ### Misc
 
 Among these things, there are a lot of minor features like holograms, cosmetic tags, events (like a pvp tournament semi-automated), and more.
+
+One of the useful tools we had was Google Sheets, which we used for some things like [prices](https://docs.google.com/spreadsheets/d/1lheXPsqUxcHBY1EaWcVAXqiZebHpGt5JnNtnOIA4y4s/edit?usp=sharing).
+Tried to use for [suggestions](https://docs.google.com/spreadsheets/d/1EN9YmPLAZoazmXASbO_-TtumxRJdlpPUBWXCyV3JT1s/edit?usp=sharing) which was more friendly to non developers, [mine composition](https://docs.google.com/spreadsheets/d/1YrDcqEDYgk1xkB-HPfNIIYfaWdUE4fTu5IERnrilv9g/edit#gid=0) (which we forgot to finish).
