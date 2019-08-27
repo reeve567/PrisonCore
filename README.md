@@ -2,7 +2,7 @@
 
 ## Contributors
 
-Mainly this was developed by myself (@reeve567), however my friend @danielrolon0406 tried learning Java for a little while and contributed some things to the project, like a unique players counter.  His code is all in his commits, which you can all check.
+Mainly this was developed by myself (@reeve567), however my friend @danielrolon0406 tried learning Java for a little while and contributed some things to the project, like a unique players counter.  His code is all in his commits, which you can all view seperately.
 
 ----
 
