@@ -36,3 +36,25 @@ Some of the custom "drugs":
 * Gun Powder - Provides the player with a short buff in strength and therefor damage output
 * Ghast Tear - Provides the player with jump boost, mining fatigue, regeneration, and a faster speed than sugar
 
+### Voting
+
+In order to promote the server, we signed up for several sites for listings, which would be voted for to increase our ranking.
+
+Players could vote once every 24h on each website, and via a common API, a rewards system was introduced for players that voted.
+Players who voted would recieve a key for a vote crate, which had a chance of containing a paid rank, in-game currency, kits, or items.
+
+### Kits
+
+The kits system allows for donators and voters to gain access to items redeemable every 24h (depending on the kit).
+
+Upon using the /kit command, a GUI is presented to the player to select one of the kits they have access to.  Once used, the date timestamp as a long is saved to their data file, which is later used to check how long it has been since they last used it.
+
+Players new to the server would not have any timestamp saved, so it was assumed if the timestamp is null that the player is new or had their data cleared.
+
+### Custom Enchants
+
+One of the largest parts of the codebase, the custom enchants system is a modified version of one of my earlier projects.  At one point I was trying to clean up the code, but currently I'm not sure if that is in this version or not.  The custom enchants system is very messy, and I'd like to sort it out, however that's a lot of time I don't want to spend right now on a project I don't think I'll come back to making.
+
+### Misc
+
+Among these things, there are a lot of minor features like holograms, cosmetic tags, events (like a pvp tournament semi-automated), and more.
