@@ -1,5 +1,11 @@
 # PrisonCore
 
+## Contributors
+
+Mainly this was developed by myself (@reeve567), however my friend @danielrolon0406 tried learning Java for a little while and contributed some things to the project, like a unique players counter.  His code is all in his commits, which you can all check.
+
+----
+
 *I forgot, but a lot of the commit titles are useless because I never thought anyone else would see the repo*
 
 This project was a modification to the way you play Minecraft.  It was made to be run on Minecraft Servers as the foundation of the modifications.
