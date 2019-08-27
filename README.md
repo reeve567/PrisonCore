@@ -92,6 +92,10 @@ Prestiges - `prestiges.yml`:
 * Each prestige contains
   * Sell multiplier
   * Rankup price multiplier
+  
+Player data is stored via files, each player having a different file.  File names are along the lines of `(player uuid).yml` and contained kits, balance, rank, permissions, etc.
+
+Some other misc data is also stored in this way (yml) in a small file or two.
 
 ### Misc
 
