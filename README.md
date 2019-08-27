@@ -4,6 +4,8 @@
 
 This project was a modification to the way you play Minecraft.  It was made to be run on Minecraft Servers as the foundation of the modifications.
 
+Made to be configurable, I tried to include as much as possible config wise.
+
 The core feature of it was the Prison gamemode.
 
 ## Prison ##
@@ -54,6 +56,42 @@ Players new to the server would not have any timestamp saved, so it was assumed 
 ### Custom Enchants
 
 One of the largest parts of the codebase, the custom enchants system is a modified version of one of my earlier projects.  At one point I was trying to clean up the code, but currently I'm not sure if that is in this version or not.  The custom enchants system is very messy, and I'd like to sort it out, however that's a lot of time I don't want to spend right now on a project I don't think I'll come back to making.
+
+### Config & Data
+
+The main configuration file `config.yml`:
+* Discord Integration (Webhook URL, Server-Identifier, Bot-ID, Chat-ID)
+* Telegram Integration (Bot-ID, Chat-ID)
+* Starting balance
+* Money symbol
+* Max prestige
+
+Ranks - `ranks.yml`:
+* Made based off of the `A-Z` ranks
+* Each rank had rankup cost and a configurable chat prefix
+
+Mines - `mines.yml`:
+* Saved all of the mines to change settings or remove/add them via files
+* Each mine contains
+  * Ore Composition
+  * Location
+  * Progress sign location (how close the mine is to empty and reset(changed to be a hologram but left it as sign in config))
+  * Warp location (where the player is teleported to when they select to come to the mine)
+  * Shop prices
+
+Scoreboard - `scoreboard.yml`:
+* Animation length (ignored if only one frame)
+* Contained the scoreboard frames
+* Each frame contains
+  * Title
+  * Lines to display with placeholders
+  * Duration
+  
+Prestiges - `prestiges.yml`:
+* Saved all prestige config values
+* Each prestige contains
+  * Sell multiplier
+  * Rankup price multiplier
 
 ### Misc
 
